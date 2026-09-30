@@ -2,7 +2,15 @@
 name = "jev-local-laya"
 version = "0.1.0"
 requires-python = ">=3.11,<3.12"
-dependencies = ["laya>=0.3.21,<0.4", "openvino>=2024.0,<2027"]
+dependencies = [
+    "laya>=0.3.21,<0.4",
+    "openvino>=2024.0,<2027",
+    "fastapi>=0.142,<1",
+    "uvicorn>=0.54,<1",
+    "onnx>=1.23,<2",
+    "onnxruntime>=1.30,<2",
+    "onnxscript>=0.7,<1",
+]
 
 [tool.uv]
 package = false

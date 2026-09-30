@@ -1,2 +1,5 @@
 .laya-cache/
 .venv/
+.mypy_cache/
+extract_tickets_CC_2026.xlsx
+__pycache__/

@@ -1,0 +1,15 @@
+
+Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]
+Fetching 5 files: 100%|##########| 5/5 [00:00<00:00, 455.04it/s]
+C:\Users\cyril.beurier\code\Jev\.venv\Lib\site-packages\laya\agent.py:1404: RuntimeWarning: laya: this checkpoint ships invalid temperatures or values outside [0.5, 5]; using choice:11+=0.10058280825614929 -> 0.5. Treat confidence from the affected entries as uncalibrated.
+  return Agent(model_id_or_path, device=device, token=token, subfolder=subfolder, fast=fast,
+Traceback (most recent call last):
+loaded in 338.2s (max_len 512, head_max_len 192)
+  File "C:\Users\cyril.beurier\code\Jev\export_onnx_gpu.py", line 231, in <module>
+    main()
+  File "C:\Users\cyril.beurier\code\Jev\export_onnx_gpu.py", line 187, in main
+    print(f"max|\u0394logits| patched vs original PyTorch forward: {d_patch:.2e}")
+  File "C:\Users\cyril.beurier\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u0394' in position 4: character maps to <undefined>
