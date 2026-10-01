@@ -14,9 +14,11 @@ Two modes, chosen by --batch / JEV_BATCH:
         `states x questions` items become one forward pass.
 
 A third route, `POST /v1/systemone/batch`, takes many states in one request:
-`{model, states: [...], questions}` answers `{model, results: [{answers, usage}, ...], usage}`,
-with one result per state in the order they were sent. It is what laya-client.ps1 uses, so a file
-of a thousand states costs one request, and the whole request is one lot for the batcher.
+`{model, states: [...], questions, batch_size}` answers
+`{model, results: [{answers, usage}, ...], usage}`, with one result per state in the order they
+were sent. It is what laya-client.ps1 uses, so a file of a thousand states costs one request.
+`batch_size` (optional, a positive integer) is how many states the client wants per forward pass;
+a request without one uses `--batch-states`.
 
 The contract is identical in both modes: `GET /health` and `POST /v1/systemone` taking
 `{model, state, questions}` and answering `{model, answers, usage}`. Answers are unchanged,
@@ -36,11 +38,15 @@ downloaded or loaded.
 Every setting has a command-line flag and an environment variable, the flag winning:
 
   --batch on|off          batch requests into shared forward passes   (JEV_BATCH, default on)
-  --batch-states N        states per forward pass                     (JEV_BATCH_STATES, default 50)
+  --batch-states N        states per forward pass for a request with
+                          no batch_size of its own                   (JEV_BATCH_STATES, default 50)
   --window-ms N           how long a batch waits to fill              (JEV_BATCH_WINDOW_MS, default 20)
-  --max-concurrent N      requests admitted at once                   (LAYA_MAX_CONCURRENT, default 1024)
+  --max-concurrent N      requests admitted at once; beyond it the
+                          server answers 503 with Retry-After       (LAYA_MAX_CONCURRENT, default 2)
+  --max-len N             compiled sequence length for every question (LAYA_OV_MAX_LEN, default 128)
   --host H, --port N      where to listen                             (LAYA_HOST, LAYA_PORT)
   LAYA_LOG_LEVEL          uvicorn log level                           (default info)
+  LAYA_ACCESS_LOG         uvicorn's one line per request              (default off)
   LAYA_API_KEY            bearer token, unchecked when unset
 """
 from __future__ import annotations
@@ -72,8 +78,8 @@ ROUTER_NAMES = ("english", "multilingual", "typed-decisions")
 DEFAULT_NAME = "multilingual"
 
 
-def build_router() -> Router:
-    agent = OpenVINOAgent()
+def build_router(max_len: Optional[int] = None) -> Router:
+    agent = OpenVINOAgent(max_len=max_len)
     # No `models=` map: the three names already exist, and `load()` returns an attached agent
     # before it would ever look a repository up.
     router = Router(default=DEFAULT_NAME, max_loaded=len(ROUTER_NAMES), preload=False)
@@ -327,14 +333,21 @@ def _build_batched_app(router: Router, window_ms: int, batch_states: int,
             )
         for state in states:
             stock._check_request_limits(state, questions)
+        raw_batch_size = body.get("batch_size")
+        if raw_batch_size is None:
+            batch_size = batch_states
+        elif isinstance(raw_batch_size, bool) or not isinstance(raw_batch_size, int) or raw_batch_size < 1:
+            raise HTTPException(status_code=400, detail="'batch_size' must be a positive integer")
+        else:
+            batch_size = raw_batch_size
         model = stock._resolve_model(body.get("model"))
         requests = [{"state": state, "questions": questions, "model": model} for state in states]
 
         started = time.perf_counter()
         try:
-            # The whole request is one lot: Laya splits it into forward passes of batch_states.
+            # Laya splits the request's states into forward passes of the client's batch_size.
             results = await asyncio.get_running_loop().run_in_executor(
-                pool, lambda: router.predict_batch(requests, batch_size=batch_states)
+                pool, lambda: router.predict_batch(requests, batch_size=batch_size)
             )
         except ValueError as exc:
             raise HTTPException(status_code=422, detail=str(exc))
@@ -390,7 +403,12 @@ def _parse_args(argv: Optional[list] = None):
                              f"(env JEV_BATCH_WINDOW_MS, default {_env_int('JEV_BATCH_WINDOW_MS', 20)})")
     parser.add_argument("--max-concurrent", type=int, default=None,
                         help="requests admitted at once; beyond it the server answers 503 "
-                             f"(env LAYA_MAX_CONCURRENT, default {_env_int('LAYA_MAX_CONCURRENT', 1024)})")
+                             f"(env LAYA_MAX_CONCURRENT, default {_env_int('LAYA_MAX_CONCURRENT', 2)})")
+    parser.add_argument("--max-len", type=int, default=None,
+                        help="compiled sequence length for every question; the question and its "
+                             "options share this budget with the state, so a question with little "
+                             "room left truncates the state, possibly to nothing "
+                             f"(env LAYA_OV_MAX_LEN, default {_env_int('LAYA_OV_MAX_LEN', 128)})")
     parser.add_argument("--host", default=None,
                         help=f"bind address (env LAYA_HOST, default {os.environ.get('LAYA_HOST', '127.0.0.1')})")
     parser.add_argument("--port", type=int, default=None,
@@ -405,16 +423,19 @@ def main() -> None:
     batching = _env_bool("JEV_BATCH", True) if args.batch is None else args.batch == "on"
     window_ms = args.window_ms or _env_int("JEV_BATCH_WINDOW_MS", 20)
     batch_states = args.batch_states or _env_int("JEV_BATCH_STATES", 50)
-    max_concurrent = args.max_concurrent or _env_int("LAYA_MAX_CONCURRENT", 1024)
-    if batch_states < 1 or window_ms < 0 or max_concurrent < 1:
-        raise SystemExit("--batch-states and --max-concurrent must be at least 1, "
+    max_concurrent = args.max_concurrent or _env_int("LAYA_MAX_CONCURRENT", 2)
+    max_len = args.max_len or _env_int("LAYA_OV_MAX_LEN", 128)
+    if batch_states < 1 or window_ms < 0 or max_concurrent < 1 or max_len < 1:
+        raise SystemExit("--batch-states, --max-concurrent and --max-len must be at least 1, "
                          "and --window-ms cannot be negative")
 
     uvicorn.run(
-        build_app(build_router(), batching, window_ms, batch_states, max_concurrent),
+        build_app(build_router(max_len=max_len), batching, window_ms, batch_states, max_concurrent),
         host=args.host or os.environ.get("LAYA_HOST", "127.0.0.1"),
         port=args.port or int(os.environ.get("LAYA_PORT", "8001")),
         log_level=os.environ.get("LAYA_LOG_LEVEL", "info"),
+        # One line per request buries the forward pass lines; LAYA_ACCESS_LOG=1 puts them back.
+        access_log=_env_bool("LAYA_ACCESS_LOG", False),
     )
 
 

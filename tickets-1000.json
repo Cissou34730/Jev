@@ -4,7 +4,7 @@
       "type": "choice",
       "instructions": "Quel service doit traiter cette demande ?",
       "criteria": {
-        "facturation": "Paiement, prélèvement, facture, abonnement ou remboursement",
+        "facturation": "Paiement, prélèvement, facture ou abonnement",
         "technique": "Dysfonctionnement du logiciel, accès, erreur ou fonctionnalité indisponible",
         "livraison": "Acheminement, suivi, réception ou état d'un colis"
       }
@@ -15,11 +15,11 @@
     },
     "urgence": {
       "type": "score",
-      "instructions": "Évaluer l'urgence exprimée et l'impact immédiat décrit dans le ticket.",
+      "instructions": "Quel délai de réponse la personne demande-t-elle ?",
       "criteria": [
-        "Faible",
-        "Modérée",
-        "Élevée"
+        "Faible : elle peut attendre, quelques jours ou plus",
+        "Modérée : un délai court, 48 heures ou la fin de la semaine",
+        "Élevée : le jour même, elle ne peut pas attendre"
       ]
     }
   },

@@ -58,6 +58,49 @@ def _env(name: str, default: str) -> str:
     return value or default
 
 
+# When this process started and how much memory it holds. A pass that slows down has to be read
+# against both: with one fixed input shape, the shape cache cannot be the cause, but a growing
+# working set or a long uptime can.
+_PROCESS_STARTED = time.perf_counter()
+
+if sys.platform == "win32":
+    import ctypes
+    from ctypes import wintypes
+
+    class _ProcessMemoryCounters(ctypes.Structure):
+        _fields_ = [
+            ("cb", wintypes.DWORD),
+            ("PageFaultCount", wintypes.DWORD),
+            ("PeakWorkingSetSize", ctypes.c_size_t),
+            ("WorkingSetSize", ctypes.c_size_t),
+            ("QuotaPeakPagedPoolUsage", ctypes.c_size_t),
+            ("QuotaPagedPoolUsage", ctypes.c_size_t),
+            ("QuotaPeakNonPagedPoolUsage", ctypes.c_size_t),
+            ("QuotaNonPagedPoolUsage", ctypes.c_size_t),
+            ("PagefileUsage", ctypes.c_size_t),
+            ("PeakPagefileUsage", ctypes.c_size_t),
+        ]
+
+    def _resident_mb() -> float:
+        """Working set of this process in MB, or 0 when it cannot be read."""
+        counters = _ProcessMemoryCounters()
+        counters.cb = ctypes.sizeof(counters)
+        try:
+            call = ctypes.windll.psapi.GetProcessMemoryInfo
+            # Without these the pseudo-handle from GetCurrentProcess (-1) is passed as 32 bits and
+            # the call fails, which is how this reported 0 MB for every pass.
+            call.argtypes = [wintypes.HANDLE, ctypes.POINTER(_ProcessMemoryCounters), wintypes.DWORD]
+            call.restype = wintypes.BOOL
+            ok = call(ctypes.windll.kernel32.GetCurrentProcess(), ctypes.byref(counters), counters.cb)
+        except OSError:
+            return 0.0
+        return counters.WorkingSetSize / (1024 * 1024) if ok else 0.0
+
+else:
+    def _resident_mb() -> float:
+        return 0.0
+
+
 class OpenVINOAgent:
     """Same surface as `laya.Agent` for the calls the Router makes, on the OpenVINO model."""
 
@@ -227,17 +270,33 @@ class OpenVINOAgent:
             rows = len(part)
             states = len({state_index for state_index, _ in part})
             compiled = self._compile(rows)
-            started = time.perf_counter()
-            logits = np.asarray(compiled(self._feeds([item for _, item in part]))["logits"])
-            seconds = time.perf_counter() - started
-            self.pass_count += 1
-            print(
-                f"forward pass {self.pass_count}: {states} state(s), {rows} items, {seconds:.2f}s",
-                file=sys.stderr, flush=True,
-            )
+            # The phases are timed apart because one total says nothing about the GPU: building the
+            # feeds, copying the logits and decoding are CPU work on this same thread, and only the
+            # middle number is the model.
+            feeds_started = time.perf_counter()
+            feeds = self._feeds([item for _, item in part])
+            feeds_seconds = time.perf_counter() - feeds_started
+            infer_started = time.perf_counter()
+            raw_logits = compiled(feeds)["logits"]
+            infer_seconds = time.perf_counter() - infer_started
+            copy_started = time.perf_counter()
+            logits = np.asarray(raw_logits)
+            copy_seconds = time.perf_counter() - copy_started
+            decode_started = time.perf_counter()
             for offset, (state_index, item) in enumerate(part):
                 qid = item["qid"]
                 answers[state_index][qid] = self._decode(logits[offset], item, internal[qid])
+            decode_seconds = time.perf_counter() - decode_started
+            self.pass_count += 1
+            total_seconds = feeds_seconds + infer_seconds + copy_seconds + decode_seconds
+            print(
+                f"forward pass {self.pass_count}: {states} state(s), {rows} items | "
+                f"feeds {feeds_seconds:.2f}s infer {infer_seconds:.2f}s "
+                f"copy {copy_seconds:.2f}s decode {decode_seconds:.2f}s | "
+                f"total {total_seconds:.2f}s | up {time.perf_counter() - _PROCESS_STARTED:.0f}s, "
+                f"rss {_resident_mb():.0f} MB",
+                file=sys.stderr, flush=True,
+            )
         return answers, input_tokens
 
     def _prepare(self, questions: Any):
@@ -263,7 +322,15 @@ class OpenVINOAgent:
         results: List[Dict[str, Any]] = []
         for start in range(0, len(states), chunk):
             part = states[start:start + chunk]
+            # Tokenizing the states and assembling their sequences happens before `_run`, so it is
+            # the one part of a request the pass line cannot show. It is not free.
+            encode_started = time.perf_counter()
             encoded = [self._encode_state(state, internal, ids) for state in part]
+            print(
+                f"encode: {len(part)} state(s) x {len(ids)} question(s), "
+                f"{time.perf_counter() - encode_started:.2f}s",
+                file=sys.stderr, flush=True,
+            )
             answers, input_tokens = self._run(encoded, internal, ids)
             tokens = max(1, input_tokens // max(1, len(part)))
             for state_answers in answers:
