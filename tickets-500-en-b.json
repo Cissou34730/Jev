@@ -1,0 +1,4528 @@
+{
+  "questions": {
+    "service": {
+      "type": "choice",
+      "instructions": "Which department should handle this request?",
+      "criteria": {
+        "billing": "Payment, direct debit, invoice or subscription",
+        "technical": "Software malfunction, access issue, error or unavailable feature",
+        "delivery": "Shipping, tracking, receipt or parcel status"
+      }
+    },
+    "refund": {
+      "type": "noul",
+      "instructions": "Does the person explicitly ask for a refund?"
+    },
+    "urgency": {
+      "type": "score",
+      "instructions": "What response delay does the person expect?",
+      "criteria": [
+        "Low: they can wait, a few days or more",
+        "Moderate: a short delay, 48 hours or by the end of the week",
+        "High: today, they cannot wait"
+      ]
+    }
+  },
+  "tickets": [
+    {
+      "id": "N-0001",
+      "state": "To whom it may concern, My subscription renewed automatically although I had switched to the monthly plan. Take your time, nothing depends on this right now. Ref TKT-0001.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0002",
+      "state": "Hi, A promotional code was not applied when I paid for my subscription. I'm in no hurry for an answer. Ref TKT-0002.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0003",
+      "state": "Good morning, I keep getting a blank page after logging in on the web portal. Could you come back to me by Thursday? Ref TKT-0003.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0004",
+      "state": "Hi there, My parcel has been marked as out for delivery for 7 days now. Please refund the shipping costs. Please get back to me in the next day or two. Ref TKT-0004.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0005",
+      "state": "Hello customer care, The tracking page has not changed since the parcel reached the depot. Could you come back to me by Thursday? Please refund the shipping costs. Ref TKT-0005.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0006",
+      "state": "Hi, The API times out whenever I send more than a handful of requests. I'd like my money back for the days I could not work. I need this resolved today, my customers are waiting. Ref TKT-0006.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0007",
+      "state": "To whom it may concern, The billing portal shows an overdue balance, but I paid on time. Please refund the duplicate payment to my card. No rush at all on my side. Ref TKT-0007.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0008",
+      "state": "Hello customer care, The direct debit for 82 euros went through on the wrong date this month. Urgent: I need an answer before the end of the day. Ref TKT-0008.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0009",
+      "state": "To whom it may concern, The delivery slot I booked for Tuesday was missed with no notice. I would like a refund for the parcel that never arrived. This can't wait, please respond within the hour. Ref TKT-0009.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0010",
+      "state": "Hi, I would like to change the delivery date for order 43470. It can wait until you have a free moment. I would like a refund for the parcel that never arrived. Ref TKT-0010.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0011",
+      "state": "Hi, My subscription renewed automatically although I had switched to the monthly plan. Please treat this as top priority, it is blocking everything today. Ref TKT-0011.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0012",
+      "state": "Hello customer care, My subscription renewed automatically although I had switched to the monthly plan. Urgent: I need an answer before the end of the day. I'm requesting a full refund of that payment. Ref TKT-0012.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0013",
+      "state": "Dear support, The report builder freezes when I select more than 490 rows. This can't wait, please respond within the hour. Ref TKT-0013.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0014",
+      "state": "Good morning, The billing portal shows an overdue balance, but I paid on time. I'd appreciate an answer in the next couple of days. Could you reimburse me for the difference? Ref TKT-0014.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0015",
+      "state": "Hi there, My package was delivered to the wrong building number. I need this resolved today, my customers are waiting. Ref TKT-0015.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0016",
+      "state": "Hi there, The tracking page has not changed since the parcel reached the depot. I'd like this resolved within the next 48 hours. Ref TKT-0016.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0017",
+      "state": "Good morning, The courier left the package at a neighbour's address without telling me. Please get back to me in the next day or two. Ref TKT-0017.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0018",
+      "state": "Hello customer care, Invoice INV-44293 lists a plan I never signed up for. Take your time, nothing depends on this right now. Ref TKT-0018.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0019",
+      "state": "Hi, The VAT number on invoice INV-63147 is wrong. I'd appreciate an answer in the next couple of days. Could you reimburse me for the difference? Ref TKT-0019.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0020",
+      "state": "Good morning, The installer stops at 39 percent on my laptop. No rush at all on my side. Ref TKT-0020.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0021",
+      "state": "Hello customer care, The billing portal shows an overdue balance, but I paid on time. I would like a refund of the overcharged amount. Urgent: I need an answer before the end of the day. Ref TKT-0021.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0022",
+      "state": "Hello customer care, My payment of 211 euros was declined, yet the money left my account. I would like a refund of the overcharged amount. Please treat this as top priority, it is blocking everything today. Ref TKT-0022.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0023",
+      "state": "To whom it may concern, My subscription renewed automatically although I had switched to the monthly plan. Please treat this as top priority, it is blocking everything today. Please issue a refund for this month. Ref TKT-0023.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0024",
+      "state": "To whom it may concern, The delivery slot I booked for Tuesday was missed with no notice. I have a deadline this afternoon and need this fixed immediately. Ref TKT-0024.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0025",
+      "state": "To whom it may concern, My payment of 171 euros was declined, yet the money left my account. Please issue a refund for this month. A reply within two days would be great. Ref TKT-0025.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0026",
+      "state": "Hi, My parcel has been marked as out for delivery for 7 days now. We are completely stuck until this is fixed, so please act right now. Ref TKT-0026.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0027",
+      "state": "Dear support, The driver could not find my address and took the parcel back to the warehouse. No rush at all on my side. Ref TKT-0027.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0028",
+      "state": "Good morning, The driver could not find my address and took the parcel back to the warehouse. I have a deadline this afternoon and need this fixed immediately. Ref TKT-0028.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0029",
+      "state": "Hi, The delivery slot I booked for Tuesday was missed with no notice. This can't wait, please respond within the hour. Ref TKT-0029.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0030",
+      "state": "Hi there, My parcel has been marked as out for delivery for 7 days now. I have a deadline this afternoon and need this fixed immediately. I would like a refund for the parcel that never arrived. Ref TKT-0030.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0031",
+      "state": "Hello customer care, I need to change the card used for my subscription. Please get back to me in the next day or two. Ref TKT-0031.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0032",
+      "state": "Good morning, My bank statement shows two charges of 142 euros for the same subscription. Could you reimburse me for the difference? I need this resolved today, my customers are waiting. Ref TKT-0032.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0033",
+      "state": "Good morning, There is an unexplained fee of 137 euros on my latest invoice. I am asking for my money back for this charge. I'd appreciate an answer in the next couple of days. Ref TKT-0033.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0034",
+      "state": "Good morning, The pickup point says it has no trace of my parcel. Feel free to get back to me next week. Please refund the shipping costs. Ref TKT-0034.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0035",
+      "state": "Hello customer care, There is an unexplained fee of 81 euros on my latest invoice. This isn't pressing, any day this month is fine. Ref TKT-0035.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0036",
+      "state": "Good morning, File uploads fail with error code 509 halfway through. No rush at all on my side. Ref TKT-0036.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0037",
+      "state": "Hi there, I keep getting a blank page after logging in on the web portal. Please refund this month's subscription since the tool is unusable. I'd appreciate an answer in the next couple of days. Ref TKT-0037.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0038",
+      "state": "To whom it may concern, The API times out whenever I send more than a handful of requests. I am requesting a refund for the faulty release. I'd appreciate an answer in the next couple of days. Ref TKT-0038.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0039",
+      "state": "Good morning, The installer stops at 94 percent on my laptop. It can wait until you have a free moment. Ref TKT-0039.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0040",
+      "state": "To whom it may concern, Invoice INV-75333 lists a plan I never signed up for. This can't wait, please respond within the hour. Please refund the duplicate payment to my card. Ref TKT-0040.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0041",
+      "state": "Hello customer care, My parcel has been stuck at the customs office for 6 days. I'd appreciate an answer in the next couple of days. Ref TKT-0041.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0042",
+      "state": "To whom it may concern, The desktop client keeps asking me to sign in again every few minutes. A reply within two days would be great. Kindly refund the fee for this period. Ref TKT-0042.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0043",
+      "state": "Good morning, Autosave does not seem to work, I have lost my last changes twice. I'd appreciate an answer in the next couple of days. I am requesting a refund for the faulty release. Ref TKT-0043.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0044",
+      "state": "Hi there, A promotional code was not applied when I paid for my subscription. Feel free to get back to me next week. Please issue a refund for this month. Ref TKT-0044.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0045",
+      "state": "Hello customer care, Invoice INV-43759 lists a plan I never signed up for. I am asking for my money back for this charge. I'm in no hurry for an answer. Ref TKT-0045.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0046",
+      "state": "Hello customer care, I would like to know why my monthly payment went up by 195 euros. I have a deadline this afternoon and need this fixed immediately. Ref TKT-0046.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0047",
+      "state": "To whom it may concern, The VAT number on invoice INV-51184 is wrong. We are completely stuck until this is fixed, so please act right now. Ref TKT-0047.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0048",
+      "state": "Hi there, I would like to know why my monthly payment went up by 217 euros. I'm in no hurry for an answer. Ref TKT-0048.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0049",
+      "state": "Hi, My bank statement shows two charges of 160 euros for the same subscription. No rush at all on my side. Please refund the duplicate payment to my card. Ref TKT-0049.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0050",
+      "state": "Hello customer care, The report builder freezes when I select more than 493 rows. I'd like this resolved within the next 48 hours. Ref TKT-0050.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0051",
+      "state": "Good morning, The box arrived with its seal broken and the contents scattered. It would help to have this sorted by the end of the week. Ref TKT-0051.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0052",
+      "state": "Good morning, My subscription renewed automatically although I had switched to the monthly plan. This isn't pressing, any day this month is fine. I am asking for my money back for this charge. Ref TKT-0052.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0053",
+      "state": "Hi there, Two-factor codes never reach my phone, so I cannot sign in. Kindly refund the fee for this period. I have a deadline this afternoon and need this fixed immediately. Ref TKT-0053.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0054",
+      "state": "To whom it may concern, The VAT number on invoice INV-97519 is wrong. Please refund the duplicate payment to my card. I'm in no hurry for an answer. Ref TKT-0054.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0055",
+      "state": "Dear support, Dark mode resets itself every time I reopen the application. It can wait until you have a free moment. Ref TKT-0055.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0056",
+      "state": "To whom it may concern, The courier asked for a signature but nobody came to the door. I want my money back for the damaged goods. I'd like this resolved within the next 48 hours. Ref TKT-0056.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0057",
+      "state": "Hello customer care, The report builder freezes when I select more than 690 rows. Could you come back to me by Thursday? Ref TKT-0057.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0058",
+      "state": "Good morning, The installer stops at 39 percent on my laptop. A reply within two days would be great. Ref TKT-0058.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0059",
+      "state": "To whom it may concern, Dark mode resets itself every time I reopen the application. Urgent: I need an answer before the end of the day. Ref TKT-0059.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0060",
+      "state": "Dear support, I would like to change the delivery date for order 11967. I want my money back for the damaged goods. Feel free to get back to me next week. Ref TKT-0060.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0061",
+      "state": "Dear support, My parcel has been stuck at the customs office for 9 days. I would like a refund for the parcel that never arrived. I'm in no hurry for an answer. Ref TKT-0061.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0062",
+      "state": "Dear support, I would like to change the delivery date for order 87967. I want my money back for the damaged goods. It can wait until you have a free moment. Ref TKT-0062.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0063",
+      "state": "Hi there, A promotional code was not applied when I paid for my subscription. Urgent: I need an answer before the end of the day. I am asking for my money back for this charge. Ref TKT-0063.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0064",
+      "state": "Hello customer care, My parcel has been marked as out for delivery for 5 days now. Please get back to me in the next day or two. I want my money back for the damaged goods. Ref TKT-0064.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0065",
+      "state": "Hi there, I would like to know why my monthly payment went up by 149 euros. Could you reimburse me for the difference? No rush at all on my side. Ref TKT-0065.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0066",
+      "state": "Hi, The pickup point says it has no trace of my parcel. We are completely stuck until this is fixed, so please act right now. I'm asking for a full refund of order 32958. Ref TKT-0066.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0067",
+      "state": "Hi, File uploads fail with error code 455 halfway through. I am requesting a refund for the faulty release. I need this resolved today, my customers are waiting. Ref TKT-0067.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0068",
+      "state": "To whom it may concern, Autosave does not seem to work, I have lost my last changes twice. It can wait until you have a free moment. I'd like my money back for the days I could not work. Ref TKT-0068.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0069",
+      "state": "Hi there, The courier left the package at a neighbour's address without telling me. No rush at all on my side. Ref TKT-0069.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0070",
+      "state": "Good morning, The report builder freezes when I select more than 745 rows. I'd appreciate an answer in the next couple of days. Ref TKT-0070.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0071",
+      "state": "To whom it may concern, The desktop client keeps asking me to sign in again every few minutes. Please refund this month's subscription since the tool is unusable. We are completely stuck until this is fixed, so please act right now. Ref TKT-0071.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0072",
+      "state": "Hi there, My package was delivered to the wrong building number. Could you reimburse me for the missing items? I'm in no hurry for an answer. Ref TKT-0072.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0073",
+      "state": "Dear support, I was billed at the old price although my new rate has already started. We are completely stuck until this is fixed, so please act right now. Ref TKT-0073.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0074",
+      "state": "Hi, The pickup point says it has no trace of my parcel. I'm in no hurry for an answer. Ref TKT-0074.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0075",
+      "state": "Good morning, I need to change the card used for my subscription. I am asking for my money back for this charge. Urgent: I need an answer before the end of the day. Ref TKT-0075.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0076",
+      "state": "Hi there, The search bar returns no results even for items I know exist. I'm in no hurry for an answer. Ref TKT-0076.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0077",
+      "state": "Hello customer care, The mobile app crashes as soon as I tap the dashboard icon. This isn't pressing, any day this month is fine. I am requesting a refund for the faulty release. Ref TKT-0077.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0078",
+      "state": "Good morning, I keep getting a blank page after logging in on the web portal. Kindly refund the fee for this period. Take your time, nothing depends on this right now. Ref TKT-0078.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0079",
+      "state": "Good morning, The courier asked for a signature but nobody came to the door. Could you come back to me by Thursday? I would like a refund for the parcel that never arrived. Ref TKT-0079.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0080",
+      "state": "Good morning, There is an unexplained fee of 40 euros on my latest invoice. Please issue a refund for this month. This isn't pressing, any day this month is fine. Ref TKT-0080.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0081",
+      "state": "Hi there, The mobile app crashes as soon as I tap the dashboard icon. Urgent: I need an answer before the end of the day. Ref TKT-0081.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0082",
+      "state": "Dear support, Autosave does not seem to work, I have lost my last changes twice. It would help to have this sorted by the end of the week. Ref TKT-0082.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0083",
+      "state": "Dear support, The tracking page has not changed since the parcel reached the depot. I would like a refund for the parcel that never arrived. It can wait until you have a free moment. Ref TKT-0083.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0084",
+      "state": "Hi, I received only two boxes out of the three I ordered. Please refund the shipping costs. A reply within two days would be great. Ref TKT-0084.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0085",
+      "state": "Hi, I would like to know why my monthly payment went up by 178 euros. I'm in no hurry for an answer. Could you reimburse me for the difference? Ref TKT-0085.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0086",
+      "state": "Hello customer care, Autosave does not seem to work, I have lost my last changes twice. We are completely stuck until this is fixed, so please act right now. Kindly refund the fee for this period. Ref TKT-0086.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0087",
+      "state": "Good morning, The wrong colour of chair was delivered with order 85155. Please treat this as top priority, it is blocking everything today. Ref TKT-0087.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0088",
+      "state": "Dear support, The tracking page has not changed since the parcel reached the depot. I'm asking for a full refund of order 18005. I need this resolved today, my customers are waiting. Ref TKT-0088.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0089",
+      "state": "Hi there, I was billed at the old price although my new rate has already started. Please treat this as top priority, it is blocking everything today. Ref TKT-0089.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0090",
+      "state": "Dear support, A promotional code was not applied when I paid for my subscription. A reply within two days would be great. I am asking for my money back for this charge. Ref TKT-0090.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0091",
+      "state": "To whom it may concern, The wrong colour of chair was delivered with order 51474. Please refund the shipping costs. It can wait until you have a free moment. Ref TKT-0091.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0092",
+      "state": "Hello customer care, I keep getting a blank page after logging in on the web portal. I'd like my money back for the days I could not work. This isn't pressing, any day this month is fine. Ref TKT-0092.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0093",
+      "state": "Dear support, I keep getting a blank page after logging in on the web portal. I'm in no hurry for an answer. Kindly refund the fee for this period. Ref TKT-0093.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0094",
+      "state": "Good morning, Autosave does not seem to work, I have lost my last changes twice. This can't wait, please respond within the hour. Kindly refund the fee for this period. Ref TKT-0094.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0095",
+      "state": "Hello customer care, I need to redirect order 28137 to my office instead of my home. Feel free to get back to me next week. Ref TKT-0095.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0096",
+      "state": "Hi, The driver could not find my address and took the parcel back to the warehouse. Take your time, nothing depends on this right now. I'm asking for a full refund of order 27737. Ref TKT-0096.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0097",
+      "state": "Hi, The API times out whenever I send more than a handful of requests. Urgent: I need an answer before the end of the day. I am requesting a refund for the faulty release. Ref TKT-0097.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0098",
+      "state": "Hi there, I would like to change the delivery date for order 33847. Please refund the shipping costs. I'd appreciate an answer in the next couple of days. Ref TKT-0098.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0099",
+      "state": "Hi there, The driver could not find my address and took the parcel back to the warehouse. I'd appreciate an answer in the next couple of days. Please refund the shipping costs. Ref TKT-0099.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0100",
+      "state": "Good morning, I need to change the card used for my subscription. I need this resolved today, my customers are waiting. Ref TKT-0100.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0101",
+      "state": "Dear support, My parcel has been stuck at the customs office for 4 days. This isn't pressing, any day this month is fine. Ref TKT-0101.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0102",
+      "state": "Hello customer care, I cannot find the receipt for my last payment in the billing portal. We are completely stuck until this is fixed, so please act right now. Ref TKT-0102.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0103",
+      "state": "Hello customer care, My parcel has been marked as out for delivery for 8 days now. Feel free to get back to me next week. Ref TKT-0103.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0104",
+      "state": "Hi, I keep getting a blank page after logging in on the web portal. I need this resolved today, my customers are waiting. Ref TKT-0104.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0105",
+      "state": "To whom it may concern, A promotional code was not applied when I paid for my subscription. Please treat this as top priority, it is blocking everything today. Ref TKT-0105.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0106",
+      "state": "Hi, The delivery slot I booked for Tuesday was missed with no notice. A reply within two days would be great. I want my money back for the damaged goods. Ref TKT-0106.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0107",
+      "state": "To whom it may concern, The box arrived with its seal broken and the contents scattered. Could you come back to me by Thursday? Ref TKT-0107.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0108",
+      "state": "Hi there, My parcel has been stuck at the customs office for 8 days. I'm asking for a full refund of order 20249. Urgent: I need an answer before the end of the day. Ref TKT-0108.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0109",
+      "state": "To whom it may concern, The box arrived with its seal broken and the contents scattered. No rush at all on my side. I want my money back for the damaged goods. Ref TKT-0109.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0110",
+      "state": "Hi, The report builder freezes when I select more than 490 rows. Feel free to get back to me next week. Please refund this month's subscription since the tool is unusable. Ref TKT-0110.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0111",
+      "state": "Hi there, My bank statement shows two charges of 99 euros for the same subscription. I would like a refund of the overcharged amount. I'd like this resolved within the next 48 hours. Ref TKT-0111.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0112",
+      "state": "To whom it may concern, The wrong colour of chair was delivered with order 22657. Could you reimburse me for the missing items? Could you come back to me by Thursday? Ref TKT-0112.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0113",
+      "state": "Hello customer care, Dark mode resets itself every time I reopen the application. It can wait until you have a free moment. I am requesting a refund for the faulty release. Ref TKT-0113.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0114",
+      "state": "Good morning, I need to change the card used for my subscription. Take your time, nothing depends on this right now. I'm requesting a full refund of that payment. Ref TKT-0114.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0115",
+      "state": "Hi there, The courier left the package at a neighbour's address without telling me. We are completely stuck until this is fixed, so please act right now. Ref TKT-0115.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0116",
+      "state": "Good morning, Two-factor codes never reach my phone, so I cannot sign in. I'd like this resolved within the next 48 hours. I am requesting a refund for the faulty release. Ref TKT-0116.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0117",
+      "state": "Hi, I keep getting a blank page after logging in on the web portal. Could you come back to me by Thursday? I am requesting a refund for the faulty release. Ref TKT-0117.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0118",
+      "state": "Dear support, I need to redirect order 26630 to my office instead of my home. Please refund the shipping costs. I'd like this resolved within the next 48 hours. Ref TKT-0118.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0119",
+      "state": "Dear support, The delivery slot I booked for Tuesday was missed with no notice. I have a deadline this afternoon and need this fixed immediately. Ref TKT-0119.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0120",
+      "state": "Hi, The API times out whenever I send more than a handful of requests. It would help to have this sorted by the end of the week. I am requesting a refund for the faulty release. Ref TKT-0120.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0121",
+      "state": "Dear support, Two-factor codes never reach my phone, so I cannot sign in. I need this resolved today, my customers are waiting. Ref TKT-0121.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0122",
+      "state": "Good morning, The box arrived with its seal broken and the contents scattered. We are completely stuck until this is fixed, so please act right now. Ref TKT-0122.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0123",
+      "state": "To whom it may concern, The installer stops at 87 percent on my laptop. I'm in no hurry for an answer. Could you reimburse me for the period without access? Ref TKT-0123.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0124",
+      "state": "Dear support, The direct debit for 228 euros went through on the wrong date this month. I'm requesting a full refund of that payment. I'm in no hurry for an answer. Ref TKT-0124.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0125",
+      "state": "Hello customer care, The delivery slot I booked for Tuesday was missed with no notice. I'm asking for a full refund of order 38875. Urgent: I need an answer before the end of the day. Ref TKT-0125.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0126",
+      "state": "Hello customer care, I cannot find the receipt for my last payment in the billing portal. A reply within two days would be great. Ref TKT-0126.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0127",
+      "state": "Hello customer care, My shared folders disappeared from the sidebar after the last release. It would help to have this sorted by the end of the week. Ref TKT-0127.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0128",
+      "state": "Hello customer care, A promotional code was not applied when I paid for my subscription. I'm in no hurry for an answer. Ref TKT-0128.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0129",
+      "state": "Good morning, I need to change the card used for my subscription. Feel free to get back to me next week. Ref TKT-0129.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0130",
+      "state": "Hi, The mobile app crashes as soon as I tap the dashboard icon. I am requesting a refund for the faulty release. It would help to have this sorted by the end of the week. Ref TKT-0130.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0131",
+      "state": "Hi, The wrong colour of chair was delivered with order 68975. I'm in no hurry for an answer. Ref TKT-0131.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0132",
+      "state": "To whom it may concern, The company name on invoice INV-35623 is misspelled. I would like a refund of the overcharged amount. Could you come back to me by Thursday? Ref TKT-0132.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0133",
+      "state": "Hi, I was billed at the old price although my new rate has already started. I am asking for my money back for this charge. Feel free to get back to me next week. Ref TKT-0133.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0134",
+      "state": "Hi there, My subscription renewed automatically although I had switched to the monthly plan. I have a deadline this afternoon and need this fixed immediately. Ref TKT-0134.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0135",
+      "state": "Dear support, Autosave does not seem to work, I have lost my last changes twice. I'd appreciate an answer in the next couple of days. Ref TKT-0135.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0136",
+      "state": "Hi there, The mobile app crashes as soon as I tap the dashboard icon. I'd like my money back for the days I could not work. This isn't pressing, any day this month is fine. Ref TKT-0136.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0137",
+      "state": "Hello customer care, My package was delivered to the wrong building number. I want my money back for the damaged goods. It can wait until you have a free moment. Ref TKT-0137.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0138",
+      "state": "Dear support, I need to redirect order 32801 to my office instead of my home. I'd like this resolved within the next 48 hours. Could you reimburse me for the missing items? Ref TKT-0138.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0139",
+      "state": "Hi, Dark mode resets itself every time I reopen the application. I'm in no hurry for an answer. Ref TKT-0139.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0140",
+      "state": "Hi, The VAT number on invoice INV-87835 is wrong. It can wait until you have a free moment. I'm requesting a full refund of that payment. Ref TKT-0140.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0141",
+      "state": "Hello customer care, The wrong colour of chair was delivered with order 94057. Please refund the shipping costs. It can wait until you have a free moment. Ref TKT-0141.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0142",
+      "state": "Dear support, A promotional code was not applied when I paid for my subscription. This can't wait, please respond within the hour. I am asking for my money back for this charge. Ref TKT-0142.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0143",
+      "state": "Hi, I cannot find the receipt for my last payment in the billing portal. I need this resolved today, my customers are waiting. Ref TKT-0143.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0144",
+      "state": "Hello customer care, The direct debit for 221 euros went through on the wrong date this month. I have a deadline this afternoon and need this fixed immediately. I am asking for my money back for this charge. Ref TKT-0144.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0145",
+      "state": "Hi, There is an unexplained fee of 83 euros on my latest invoice. I'm requesting a full refund of that payment. It can wait until you have a free moment. Ref TKT-0145.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0146",
+      "state": "Good morning, A promotional code was not applied when I paid for my subscription. Take your time, nothing depends on this right now. Ref TKT-0146.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0147",
+      "state": "Dear support, Two-factor codes never reach my phone, so I cannot sign in. Please refund this month's subscription since the tool is unusable. This can't wait, please respond within the hour. Ref TKT-0147.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0148",
+      "state": "Good morning, Exported spreadsheets open with scrambled characters. Feel free to get back to me next week. Ref TKT-0148.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0149",
+      "state": "Dear support, I would like to change the delivery date for order 53587. I want my money back for the damaged goods. Could you come back to me by Thursday? Ref TKT-0149.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0150",
+      "state": "To whom it may concern, The desktop client keeps asking me to sign in again every few minutes. Please refund this month's subscription since the tool is unusable. We are completely stuck until this is fixed, so please act right now. Ref TKT-0150.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0151",
+      "state": "Dear support, The mobile app crashes as soon as I tap the dashboard icon. Could you reimburse me for the period without access? Please treat this as top priority, it is blocking everything today. Ref TKT-0151.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0152",
+      "state": "To whom it may concern, The driver could not find my address and took the parcel back to the warehouse. Please refund the shipping costs. It can wait until you have a free moment. Ref TKT-0152.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0153",
+      "state": "Good morning, The courier asked for a signature but nobody came to the door. This isn't pressing, any day this month is fine. Ref TKT-0153.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0154",
+      "state": "Good morning, I need to redirect order 18017 to my office instead of my home. I'm in no hurry for an answer. Ref TKT-0154.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0155",
+      "state": "Hi, I would like to change the delivery date for order 33668. I'm asking for a full refund of order 48713. Take your time, nothing depends on this right now. Ref TKT-0155.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0156",
+      "state": "Hello customer care, The courier left the package at a neighbour's address without telling me. I'd appreciate an answer in the next couple of days. Ref TKT-0156.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0157",
+      "state": "Hi there, The search bar returns no results even for items I know exist. I'd like my money back for the days I could not work. A reply within two days would be great. Ref TKT-0157.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0158",
+      "state": "To whom it may concern, The report builder freezes when I select more than 520 rows. I have a deadline this afternoon and need this fixed immediately. Ref TKT-0158.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0159",
+      "state": "Hi there, The billing portal shows an overdue balance, but I paid on time. We are completely stuck until this is fixed, so please act right now. Ref TKT-0159.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0160",
+      "state": "To whom it may concern, The billing portal shows an overdue balance, but I paid on time. It can wait until you have a free moment. Ref TKT-0160.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0161",
+      "state": "Good morning, The report builder freezes when I select more than 363 rows. Please treat this as top priority, it is blocking everything today. Ref TKT-0161.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0162",
+      "state": "Hi there, My shared folders disappeared from the sidebar after the last release. No rush at all on my side. Could you reimburse me for the period without access? Ref TKT-0162.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0163",
+      "state": "Hi there, I need to change the card used for my subscription. Could you come back to me by Thursday? Ref TKT-0163.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0164",
+      "state": "Hi there, Exported spreadsheets open with scrambled characters. Take your time, nothing depends on this right now. Ref TKT-0164.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0165",
+      "state": "To whom it may concern, The report builder freezes when I select more than 648 rows. Kindly refund the fee for this period. No rush at all on my side. Ref TKT-0165.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0166",
+      "state": "Hi, The driver could not find my address and took the parcel back to the warehouse. Could you reimburse me for the missing items? Urgent: I need an answer before the end of the day. Ref TKT-0166.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0167",
+      "state": "Hi, I keep getting a blank page after logging in on the web portal. Kindly refund the fee for this period. I'm in no hurry for an answer. Ref TKT-0167.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0168",
+      "state": "Hi there, The installer stops at 12 percent on my laptop. I'd appreciate an answer in the next couple of days. Ref TKT-0168.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0169",
+      "state": "To whom it may concern, File uploads fail with error code 265 halfway through. Please treat this as top priority, it is blocking everything today. Ref TKT-0169.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0170",
+      "state": "Dear support, Autosave does not seem to work, I have lost my last changes twice. It can wait until you have a free moment. Ref TKT-0170.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0171",
+      "state": "Hi, Invoice INV-71954 lists a plan I never signed up for. I'd like this resolved within the next 48 hours. Please issue a refund for this month. Ref TKT-0171.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0172",
+      "state": "Good morning, The installer stops at 81 percent on my laptop. I have a deadline this afternoon and need this fixed immediately. Ref TKT-0172.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0173",
+      "state": "Hi, I need to redirect order 70702 to my office instead of my home. I'd appreciate an answer in the next couple of days. Ref TKT-0173.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0174",
+      "state": "Dear support, A promotional code was not applied when I paid for my subscription. Please get back to me in the next day or two. Please refund the duplicate payment to my card. Ref TKT-0174.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0175",
+      "state": "Good morning, There is an unexplained fee of 219 euros on my latest invoice. I have a deadline this afternoon and need this fixed immediately. Please issue a refund for this month. Ref TKT-0175.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0176",
+      "state": "Hi there, The report builder freezes when I select more than 343 rows. Please get back to me in the next day or two. Ref TKT-0176.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0177",
+      "state": "Hi there, My payment of 30 euros was declined, yet the money left my account. I need this resolved today, my customers are waiting. I would like a refund of the overcharged amount. Ref TKT-0177.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0178",
+      "state": "Hello customer care, The report builder freezes when I select more than 681 rows. Feel free to get back to me next week. Could you reimburse me for the period without access? Ref TKT-0178.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0179",
+      "state": "Good morning, The company name on invoice INV-89399 is misspelled. I have a deadline this afternoon and need this fixed immediately. Could you reimburse me for the difference? Ref TKT-0179.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0180",
+      "state": "Hi there, Invoice INV-41813 lists a plan I never signed up for. This isn't pressing, any day this month is fine. Please issue a refund for this month. Ref TKT-0180.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0181",
+      "state": "Hi, Autosave does not seem to work, I have lost my last changes twice. I need this resolved today, my customers are waiting. I am requesting a refund for the faulty release. Ref TKT-0181.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0182",
+      "state": "Hi there, Autosave does not seem to work, I have lost my last changes twice. I'm in no hurry for an answer. Please refund this month's subscription since the tool is unusable. Ref TKT-0182.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0183",
+      "state": "Dear support, The courier left the package at a neighbour's address without telling me. Take your time, nothing depends on this right now. Ref TKT-0183.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0184",
+      "state": "Dear support, A promotional code was not applied when I paid for my subscription. Please refund the duplicate payment to my card. I'd like this resolved within the next 48 hours. Ref TKT-0184.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0185",
+      "state": "Hi there, My package was delivered to the wrong building number. Could you come back to me by Thursday? I'm asking for a full refund of order 34081. Ref TKT-0185.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0186",
+      "state": "Hi there, The wrong colour of chair was delivered with order 77025. This isn't pressing, any day this month is fine. Ref TKT-0186.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0187",
+      "state": "Hi there, The desktop client keeps asking me to sign in again every few minutes. Could you come back to me by Thursday? Ref TKT-0187.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0188",
+      "state": "Hello customer care, Calendar sync stopped working between the app and my phone. Please refund this month's subscription since the tool is unusable. We are completely stuck until this is fixed, so please act right now. Ref TKT-0188.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0189",
+      "state": "Hello customer care, The wrong colour of chair was delivered with order 10757. It would help to have this sorted by the end of the week. Ref TKT-0189.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0190",
+      "state": "Hi there, The pickup point says it has no trace of my parcel. Please get back to me in the next day or two. Ref TKT-0190.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0191",
+      "state": "Hi, The VAT number on invoice INV-49014 is wrong. Please get back to me in the next day or two. I would like a refund of the overcharged amount. Ref TKT-0191.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0192",
+      "state": "Hi there, I keep getting a blank page after logging in on the web portal. Please refund this month's subscription since the tool is unusable. Could you come back to me by Thursday? Ref TKT-0192.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0193",
+      "state": "Good morning, My bank statement shows two charges of 170 euros for the same subscription. We are completely stuck until this is fixed, so please act right now. Please refund the duplicate payment to my card. Ref TKT-0193.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0194",
+      "state": "To whom it may concern, The wrong colour of chair was delivered with order 55669. We are completely stuck until this is fixed, so please act right now. Could you reimburse me for the missing items? Ref TKT-0194.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0195",
+      "state": "Dear support, My subscription renewed automatically although I had switched to the monthly plan. It can wait until you have a free moment. Ref TKT-0195.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0196",
+      "state": "Hello customer care, I cannot find the receipt for my last payment in the billing portal. A reply within two days would be great. Ref TKT-0196.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0197",
+      "state": "Dear support, My package was delivered to the wrong building number. It would help to have this sorted by the end of the week. Ref TKT-0197.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0198",
+      "state": "To whom it may concern, I would like to know why my monthly payment went up by 204 euros. I have a deadline this afternoon and need this fixed immediately. I'm requesting a full refund of that payment. Ref TKT-0198.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0199",
+      "state": "Hello customer care, The search bar returns no results even for items I know exist. Feel free to get back to me next week. Ref TKT-0199.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0200",
+      "state": "Hi, The billing portal shows an overdue balance, but I paid on time. I'm requesting a full refund of that payment. Could you come back to me by Thursday? Ref TKT-0200.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0201",
+      "state": "To whom it may concern, My payment of 30 euros was declined, yet the money left my account. Urgent: I need an answer before the end of the day. Ref TKT-0201.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0202",
+      "state": "Hi, I cannot find the receipt for my last payment in the billing portal. This can't wait, please respond within the hour. Ref TKT-0202.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0203",
+      "state": "Good morning, I would like to change the delivery date for order 10232. This isn't pressing, any day this month is fine. Please refund the shipping costs. Ref TKT-0203.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0204",
+      "state": "Hi there, The API times out whenever I send more than a handful of requests. I'm in no hurry for an answer. Could you reimburse me for the period without access? Ref TKT-0204.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0205",
+      "state": "Hello customer care, My payment of 77 euros was declined, yet the money left my account. It can wait until you have a free moment. Ref TKT-0205.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0206",
+      "state": "Good morning, The billing portal shows an overdue balance, but I paid on time. This can't wait, please respond within the hour. I am asking for my money back for this charge. Ref TKT-0206.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0207",
+      "state": "Hi there, I would like to change the delivery date for order 97033. This can't wait, please respond within the hour. Ref TKT-0207.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0208",
+      "state": "Hi there, The pickup point says it has no trace of my parcel. I need this resolved today, my customers are waiting. I want my money back for the damaged goods. Ref TKT-0208.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0209",
+      "state": "Good morning, Calendar sync stopped working between the app and my phone. Take your time, nothing depends on this right now. Ref TKT-0209.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0210",
+      "state": "Hello customer care, My bank statement shows two charges of 203 euros for the same subscription. I'm in no hurry for an answer. Ref TKT-0210.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0211",
+      "state": "To whom it may concern, My shared folders disappeared from the sidebar after the last release. I'd like my money back for the days I could not work. A reply within two days would be great. Ref TKT-0211.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0212",
+      "state": "Good morning, The courier asked for a signature but nobody came to the door. I want my money back for the damaged goods. A reply within two days would be great. Ref TKT-0212.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0213",
+      "state": "Hi there, I would like to know why my monthly payment went up by 131 euros. It would help to have this sorted by the end of the week. Ref TKT-0213.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0214",
+      "state": "To whom it may concern, The report builder freezes when I select more than 867 rows. I need this resolved today, my customers are waiting. Ref TKT-0214.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0215",
+      "state": "Dear support, The company name on invoice INV-97117 is misspelled. I'd like this resolved within the next 48 hours. Ref TKT-0215.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0216",
+      "state": "Hi, My parcel has been stuck at the customs office for 3 days. I would like a refund for the parcel that never arrived. Could you come back to me by Thursday? Ref TKT-0216.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0217",
+      "state": "Hi, I was billed at the old price although my new rate has already started. Please get back to me in the next day or two. I'm requesting a full refund of that payment. Ref TKT-0217.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0218",
+      "state": "Dear support, The box arrived with its seal broken and the contents scattered. It would help to have this sorted by the end of the week. Ref TKT-0218.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0219",
+      "state": "Hi there, Two-factor codes never reach my phone, so I cannot sign in. I am requesting a refund for the faulty release. I'd appreciate an answer in the next couple of days. Ref TKT-0219.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0220",
+      "state": "Hello customer care, My subscription renewed automatically although I had switched to the monthly plan. This isn't pressing, any day this month is fine. Ref TKT-0220.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0221",
+      "state": "Good morning, The direct debit for 146 euros went through on the wrong date this month. Take your time, nothing depends on this right now. Ref TKT-0221.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0222",
+      "state": "Dear support, My payment of 240 euros was declined, yet the money left my account. Feel free to get back to me next week. Ref TKT-0222.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0223",
+      "state": "Good morning, My shared folders disappeared from the sidebar after the last release. Kindly refund the fee for this period. A reply within two days would be great. Ref TKT-0223.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0224",
+      "state": "To whom it may concern, My subscription renewed automatically although I had switched to the monthly plan. This can't wait, please respond within the hour. Ref TKT-0224.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0225",
+      "state": "Good morning, The pickup point says it has no trace of my parcel. Could you reimburse me for the missing items? Urgent: I need an answer before the end of the day. Ref TKT-0225.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0226",
+      "state": "Hi there, The installer stops at 38 percent on my laptop. Could you reimburse me for the period without access? Feel free to get back to me next week. Ref TKT-0226.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0227",
+      "state": "Dear support, The company name on invoice INV-13410 is misspelled. I'd like this resolved within the next 48 hours. Please issue a refund for this month. Ref TKT-0227.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0228",
+      "state": "Good morning, The box arrived with its seal broken and the contents scattered. Could you come back to me by Thursday? Ref TKT-0228.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0229",
+      "state": "To whom it may concern, The tracking page has not changed since the parcel reached the depot. It can wait until you have a free moment. Ref TKT-0229.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0230",
+      "state": "To whom it may concern, My shared folders disappeared from the sidebar after the last release. We are completely stuck until this is fixed, so please act right now. Ref TKT-0230.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0231",
+      "state": "Hi there, Calendar sync stopped working between the app and my phone. I'd like this resolved within the next 48 hours. Ref TKT-0231.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0232",
+      "state": "Good morning, The mobile app crashes as soon as I tap the dashboard icon. Could you reimburse me for the period without access? I have a deadline this afternoon and need this fixed immediately. Ref TKT-0232.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0233",
+      "state": "Good morning, The billing portal shows an overdue balance, but I paid on time. No rush at all on my side. Ref TKT-0233.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0234",
+      "state": "Dear support, I need to change the card used for my subscription. This isn't pressing, any day this month is fine. Ref TKT-0234.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0235",
+      "state": "Hello customer care, Two-factor codes never reach my phone, so I cannot sign in. It can wait until you have a free moment. Kindly refund the fee for this period. Ref TKT-0235.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0236",
+      "state": "Hello customer care, I was billed at the old price although my new rate has already started. It would help to have this sorted by the end of the week. Ref TKT-0236.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0237",
+      "state": "Hi there, File uploads fail with error code 283 halfway through. This can't wait, please respond within the hour. Ref TKT-0237.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0238",
+      "state": "Hello customer care, The direct debit for 146 euros went through on the wrong date this month. Please refund the duplicate payment to my card. Please treat this as top priority, it is blocking everything today. Ref TKT-0238.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0239",
+      "state": "Hi there, Dark mode resets itself every time I reopen the application. We are completely stuck until this is fixed, so please act right now. Ref TKT-0239.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0240",
+      "state": "Dear support, I was billed at the old price although my new rate has already started. Could you reimburse me for the difference? I'd like this resolved within the next 48 hours. Ref TKT-0240.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0241",
+      "state": "Hello customer care, Exported spreadsheets open with scrambled characters. Please refund this month's subscription since the tool is unusable. I'm in no hurry for an answer. Ref TKT-0241.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0242",
+      "state": "To whom it may concern, I keep getting a blank page after logging in on the web portal. Please refund this month's subscription since the tool is unusable. It can wait until you have a free moment. Ref TKT-0242.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0243",
+      "state": "Hello customer care, Invoice INV-55697 lists a plan I never signed up for. This isn't pressing, any day this month is fine. Ref TKT-0243.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0244",
+      "state": "Dear support, The wrong colour of chair was delivered with order 65036. It would help to have this sorted by the end of the week. I want my money back for the damaged goods. Ref TKT-0244.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0245",
+      "state": "Hi, A promotional code was not applied when I paid for my subscription. Please issue a refund for this month. I have a deadline this afternoon and need this fixed immediately. Ref TKT-0245.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0246",
+      "state": "To whom it may concern, Dark mode resets itself every time I reopen the application. Please treat this as top priority, it is blocking everything today. Ref TKT-0246.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0247",
+      "state": "Hi there, The courier left the package at a neighbour's address without telling me. I'd like this resolved within the next 48 hours. Ref TKT-0247.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0248",
+      "state": "Hi there, Invoice INV-22985 lists a plan I never signed up for. I need this resolved today, my customers are waiting. Ref TKT-0248.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0249",
+      "state": "Hi there, My parcel has been stuck at the customs office for 8 days. Could you come back to me by Thursday? Please refund the shipping costs. Ref TKT-0249.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0250",
+      "state": "Hi there, Invoice INV-43242 lists a plan I never signed up for. Could you reimburse me for the difference? I'd appreciate an answer in the next couple of days. Ref TKT-0250.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0251",
+      "state": "To whom it may concern, My package was delivered to the wrong building number. It would help to have this sorted by the end of the week. Could you reimburse me for the missing items? Ref TKT-0251.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0252",
+      "state": "Hi, The box arrived with its seal broken and the contents scattered. I'd like this resolved within the next 48 hours. Please refund the shipping costs. Ref TKT-0252.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0253",
+      "state": "Good morning, My subscription renewed automatically although I had switched to the monthly plan. Could you reimburse me for the difference? We are completely stuck until this is fixed, so please act right now. Ref TKT-0253.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0254",
+      "state": "Hello customer care, The mobile app crashes as soon as I tap the dashboard icon. This can't wait, please respond within the hour. Ref TKT-0254.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0255",
+      "state": "Hi there, My payment of 218 euros was declined, yet the money left my account. I'd appreciate an answer in the next couple of days. Ref TKT-0255.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0256",
+      "state": "Dear support, I received only two boxes out of the three I ordered. I have a deadline this afternoon and need this fixed immediately. Ref TKT-0256.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0257",
+      "state": "Good morning, The API times out whenever I send more than a handful of requests. This can't wait, please respond within the hour. Ref TKT-0257.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0258",
+      "state": "Hello customer care, Dark mode resets itself every time I reopen the application. I need this resolved today, my customers are waiting. Ref TKT-0258.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0259",
+      "state": "Hi there, My subscription renewed automatically although I had switched to the monthly plan. I'd appreciate an answer in the next couple of days. Ref TKT-0259.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0260",
+      "state": "To whom it may concern, My shared folders disappeared from the sidebar after the last release. I have a deadline this afternoon and need this fixed immediately. Kindly refund the fee for this period. Ref TKT-0260.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0261",
+      "state": "Dear support, The courier left the package at a neighbour's address without telling me. I'm asking for a full refund of order 62652. I need this resolved today, my customers are waiting. Ref TKT-0261.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0262",
+      "state": "Hello customer care, Dark mode resets itself every time I reopen the application. Could you reimburse me for the period without access? This isn't pressing, any day this month is fine. Ref TKT-0262.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0263",
+      "state": "Dear support, The courier asked for a signature but nobody came to the door. I want my money back for the damaged goods. Please treat this as top priority, it is blocking everything today. Ref TKT-0263.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0264",
+      "state": "Hi, The report builder freezes when I select more than 231 rows. Please refund this month's subscription since the tool is unusable. We are completely stuck until this is fixed, so please act right now. Ref TKT-0264.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0265",
+      "state": "Good morning, I received only two boxes out of the three I ordered. It can wait until you have a free moment. I would like a refund for the parcel that never arrived. Ref TKT-0265.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0266",
+      "state": "Dear support, My shared folders disappeared from the sidebar after the last release. I'd like my money back for the days I could not work. I'd like this resolved within the next 48 hours. Ref TKT-0266.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0267",
+      "state": "Hi, The driver could not find my address and took the parcel back to the warehouse. No rush at all on my side. Ref TKT-0267.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0268",
+      "state": "To whom it may concern, My subscription renewed automatically although I had switched to the monthly plan. Could you reimburse me for the difference? I need this resolved today, my customers are waiting. Ref TKT-0268.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0269",
+      "state": "Dear support, My parcel has been stuck at the customs office for 8 days. I'm asking for a full refund of order 55688. We are completely stuck until this is fixed, so please act right now. Ref TKT-0269.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0270",
+      "state": "To whom it may concern, I would like to change the delivery date for order 31513. Could you reimburse me for the missing items? I need this resolved today, my customers are waiting. Ref TKT-0270.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0271",
+      "state": "Hi, My shared folders disappeared from the sidebar after the last release. I'd like this resolved within the next 48 hours. Ref TKT-0271.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0272",
+      "state": "Hi there, Invoice INV-76712 lists a plan I never signed up for. I am asking for my money back for this charge. Please treat this as top priority, it is blocking everything today. Ref TKT-0272.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0273",
+      "state": "To whom it may concern, I keep getting a blank page after logging in on the web portal. Could you come back to me by Thursday? Ref TKT-0273.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0274",
+      "state": "Good morning, Autosave does not seem to work, I have lost my last changes twice. It can wait until you have a free moment. Ref TKT-0274.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0275",
+      "state": "Hi, A promotional code was not applied when I paid for my subscription. Please issue a refund for this month. This isn't pressing, any day this month is fine. Ref TKT-0275.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0276",
+      "state": "Hi, The driver could not find my address and took the parcel back to the warehouse. I'm in no hurry for an answer. Ref TKT-0276.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0277",
+      "state": "Hi there, My shared folders disappeared from the sidebar after the last release. We are completely stuck until this is fixed, so please act right now. I am requesting a refund for the faulty release. Ref TKT-0277.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0278",
+      "state": "Good morning, The pickup point says it has no trace of my parcel. Urgent: I need an answer before the end of the day. Could you reimburse me for the missing items? Ref TKT-0278.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0279",
+      "state": "Good morning, The driver could not find my address and took the parcel back to the warehouse. No rush at all on my side. Ref TKT-0279.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0280",
+      "state": "Hi, There is an unexplained fee of 82 euros on my latest invoice. I need this resolved today, my customers are waiting. Ref TKT-0280.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0281",
+      "state": "Hi there, Exported spreadsheets open with scrambled characters. Could you come back to me by Thursday? Kindly refund the fee for this period. Ref TKT-0281.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0282",
+      "state": "To whom it may concern, The delivery slot I booked for Tuesday was missed with no notice. Please treat this as top priority, it is blocking everything today. Ref TKT-0282.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0283",
+      "state": "Good morning, Two-factor codes never reach my phone, so I cannot sign in. This isn't pressing, any day this month is fine. Ref TKT-0283.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0284",
+      "state": "Hello customer care, My package was delivered to the wrong building number. Please get back to me in the next day or two. Ref TKT-0284.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0285",
+      "state": "Hi, The company name on invoice INV-82058 is misspelled. Could you come back to me by Thursday? Ref TKT-0285.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0286",
+      "state": "Hello customer care, The box arrived with its seal broken and the contents scattered. I have a deadline this afternoon and need this fixed immediately. Ref TKT-0286.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0287",
+      "state": "Hi, The search bar returns no results even for items I know exist. A reply within two days would be great. Ref TKT-0287.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0288",
+      "state": "Hi there, My parcel has been stuck at the customs office for 9 days. I need this resolved today, my customers are waiting. Ref TKT-0288.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0289",
+      "state": "Hello customer care, Dark mode resets itself every time I reopen the application. I have a deadline this afternoon and need this fixed immediately. Ref TKT-0289.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0290",
+      "state": "Good morning, The box arrived with its seal broken and the contents scattered. Feel free to get back to me next week. I want my money back for the damaged goods. Ref TKT-0290.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0291",
+      "state": "Good morning, The billing portal shows an overdue balance, but I paid on time. No rush at all on my side. Ref TKT-0291.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0292",
+      "state": "Good morning, My package was delivered to the wrong building number. Please treat this as top priority, it is blocking everything today. Ref TKT-0292.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0293",
+      "state": "To whom it may concern, Calendar sync stopped working between the app and my phone. I need this resolved today, my customers are waiting. Ref TKT-0293.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0294",
+      "state": "Hello customer care, The wrong colour of chair was delivered with order 48449. I'm in no hurry for an answer. Could you reimburse me for the missing items? Ref TKT-0294.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0295",
+      "state": "Hi there, The pickup point says it has no trace of my parcel. It can wait until you have a free moment. Ref TKT-0295.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0296",
+      "state": "Hi there, The driver could not find my address and took the parcel back to the warehouse. Could you come back to me by Thursday? Ref TKT-0296.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0297",
+      "state": "Good morning, The direct debit for 202 euros went through on the wrong date this month. Please treat this as top priority, it is blocking everything today. Ref TKT-0297.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0298",
+      "state": "Dear support, I keep getting a blank page after logging in on the web portal. Could you reimburse me for the period without access? No rush at all on my side. Ref TKT-0298.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0299",
+      "state": "To whom it may concern, My payment of 90 euros was declined, yet the money left my account. I'd appreciate an answer in the next couple of days. Ref TKT-0299.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0300",
+      "state": "Hello customer care, I would like to change the delivery date for order 84156. I need this resolved today, my customers are waiting. I'm asking for a full refund of order 34003. Ref TKT-0300.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0301",
+      "state": "Good morning, The delivery slot I booked for Tuesday was missed with no notice. It can wait until you have a free moment. Ref TKT-0301.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0302",
+      "state": "Hello customer care, I would like to know why my monthly payment went up by 214 euros. Take your time, nothing depends on this right now. Please refund the duplicate payment to my card. Ref TKT-0302.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0303",
+      "state": "Hi, The pickup point says it has no trace of my parcel. This isn't pressing, any day this month is fine. Ref TKT-0303.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0304",
+      "state": "Dear support, My parcel has been stuck at the customs office for 8 days. Could you reimburse me for the missing items? Urgent: I need an answer before the end of the day. Ref TKT-0304.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0305",
+      "state": "Hi, The pickup point says it has no trace of my parcel. Please refund the shipping costs. It can wait until you have a free moment. Ref TKT-0305.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0306",
+      "state": "Good morning, The box arrived with its seal broken and the contents scattered. I'm asking for a full refund of order 26324. We are completely stuck until this is fixed, so please act right now. Ref TKT-0306.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0307",
+      "state": "To whom it may concern, The search bar returns no results even for items I know exist. I'd appreciate an answer in the next couple of days. Please refund this month's subscription since the tool is unusable. Ref TKT-0307.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0308",
+      "state": "Hello customer care, The API times out whenever I send more than a handful of requests. It would help to have this sorted by the end of the week. Ref TKT-0308.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0309",
+      "state": "Dear support, Invoice INV-90105 lists a plan I never signed up for. This isn't pressing, any day this month is fine. Ref TKT-0309.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0310",
+      "state": "Good morning, My parcel has been stuck at the customs office for 4 days. I have a deadline this afternoon and need this fixed immediately. Ref TKT-0310.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0311",
+      "state": "Hi there, My parcel has been marked as out for delivery for 8 days now. Could you come back to me by Thursday? Ref TKT-0311.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0312",
+      "state": "Hi, The box arrived with its seal broken and the contents scattered. We are completely stuck until this is fixed, so please act right now. Ref TKT-0312.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0313",
+      "state": "Hi there, My package was delivered to the wrong building number. I'd like this resolved within the next 48 hours. Ref TKT-0313.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0314",
+      "state": "Good morning, My bank statement shows two charges of 207 euros for the same subscription. I have a deadline this afternoon and need this fixed immediately. Ref TKT-0314.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0315",
+      "state": "Hello customer care, The tracking page has not changed since the parcel reached the depot. I'd appreciate an answer in the next couple of days. Please refund the shipping costs. Ref TKT-0315.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0316",
+      "state": "To whom it may concern, My shared folders disappeared from the sidebar after the last release. I am requesting a refund for the faulty release. I'd appreciate an answer in the next couple of days. Ref TKT-0316.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0317",
+      "state": "Hi, The delivery slot I booked for Tuesday was missed with no notice. I would like a refund for the parcel that never arrived. A reply within two days would be great. Ref TKT-0317.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0318",
+      "state": "Good morning, There is an unexplained fee of 54 euros on my latest invoice. Could you reimburse me for the difference? Please treat this as top priority, it is blocking everything today. Ref TKT-0318.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0319",
+      "state": "Hi there, My parcel has been marked as out for delivery for 7 days now. Could you come back to me by Thursday? Ref TKT-0319.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0320",
+      "state": "To whom it may concern, I was billed at the old price although my new rate has already started. I'd appreciate an answer in the next couple of days. Ref TKT-0320.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0321",
+      "state": "Good morning, The desktop client keeps asking me to sign in again every few minutes. Kindly refund the fee for this period. Please treat this as top priority, it is blocking everything today. Ref TKT-0321.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0322",
+      "state": "Dear support, My subscription renewed automatically although I had switched to the monthly plan. I need this resolved today, my customers are waiting. Ref TKT-0322.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0323",
+      "state": "To whom it may concern, I would like to know why my monthly payment went up by 76 euros. It would help to have this sorted by the end of the week. Ref TKT-0323.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0324",
+      "state": "Hello customer care, There is an unexplained fee of 123 euros on my latest invoice. I'd appreciate an answer in the next couple of days. Ref TKT-0324.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0325",
+      "state": "Hi there, My package was delivered to the wrong building number. I'd appreciate an answer in the next couple of days. Ref TKT-0325.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0326",
+      "state": "To whom it may concern, My subscription renewed automatically although I had switched to the monthly plan. I'm in no hurry for an answer. Ref TKT-0326.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0327",
+      "state": "Good morning, The wrong colour of chair was delivered with order 88797. I'm asking for a full refund of order 85571. Take your time, nothing depends on this right now. Ref TKT-0327.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0328",
+      "state": "Dear support, The delivery slot I booked for Tuesday was missed with no notice. I'm in no hurry for an answer. Ref TKT-0328.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0329",
+      "state": "Hi, The courier asked for a signature but nobody came to the door. This can't wait, please respond within the hour. Ref TKT-0329.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0330",
+      "state": "Hi, I need to change the card used for my subscription. It would help to have this sorted by the end of the week. Ref TKT-0330.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0331",
+      "state": "Hello customer care, The report builder freezes when I select more than 405 rows. It would help to have this sorted by the end of the week. I am requesting a refund for the faulty release. Ref TKT-0331.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0332",
+      "state": "Hi there, Autosave does not seem to work, I have lost my last changes twice. I'd appreciate an answer in the next couple of days. Ref TKT-0332.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0333",
+      "state": "Good morning, The wrong colour of chair was delivered with order 51203. I'd like this resolved within the next 48 hours. Ref TKT-0333.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0334",
+      "state": "To whom it may concern, The desktop client keeps asking me to sign in again every few minutes. Urgent: I need an answer before the end of the day. Ref TKT-0334.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0335",
+      "state": "To whom it may concern, The direct debit for 159 euros went through on the wrong date this month. I have a deadline this afternoon and need this fixed immediately. Ref TKT-0335.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0336",
+      "state": "Hi there, The billing portal shows an overdue balance, but I paid on time. Could you reimburse me for the difference? I'm in no hurry for an answer. Ref TKT-0336.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0337",
+      "state": "Hi, My parcel has been stuck at the customs office for 8 days. Please get back to me in the next day or two. Ref TKT-0337.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0338",
+      "state": "Hi, The company name on invoice INV-40474 is misspelled. I'd appreciate an answer in the next couple of days. I'm requesting a full refund of that payment. Ref TKT-0338.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0339",
+      "state": "Dear support, My parcel has been stuck at the customs office for 5 days. I need this resolved today, my customers are waiting. Ref TKT-0339.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0340",
+      "state": "Hello customer care, The courier left the package at a neighbour's address without telling me. No rush at all on my side. Please refund the shipping costs. Ref TKT-0340.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0341",
+      "state": "Hello customer care, My parcel has been stuck at the customs office for 5 days. I'm in no hurry for an answer. Ref TKT-0341.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0342",
+      "state": "Good morning, My bank statement shows two charges of 64 euros for the same subscription. I'd appreciate an answer in the next couple of days. Ref TKT-0342.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0343",
+      "state": "Hi there, Autosave does not seem to work, I have lost my last changes twice. Please treat this as top priority, it is blocking everything today. Ref TKT-0343.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0344",
+      "state": "Hi there, My parcel has been marked as out for delivery for 8 days now. I'm asking for a full refund of order 13855. I'd appreciate an answer in the next couple of days. Ref TKT-0344.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0345",
+      "state": "Hi, I need to change the card used for my subscription. We are completely stuck until this is fixed, so please act right now. Ref TKT-0345.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0346",
+      "state": "Dear support, My payment of 50 euros was declined, yet the money left my account. It would help to have this sorted by the end of the week. Ref TKT-0346.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0347",
+      "state": "To whom it may concern, I would like to change the delivery date for order 85127. Urgent: I need an answer before the end of the day. I'm asking for a full refund of order 19850. Ref TKT-0347.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0348",
+      "state": "To whom it may concern, The billing portal shows an overdue balance, but I paid on time. Could you reimburse me for the difference? I need this resolved today, my customers are waiting. Ref TKT-0348.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0349",
+      "state": "To whom it may concern, The driver could not find my address and took the parcel back to the warehouse. I need this resolved today, my customers are waiting. I'm asking for a full refund of order 92915. Ref TKT-0349.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0350",
+      "state": "Hello customer care, I would like to know why my monthly payment went up by 186 euros. It can wait until you have a free moment. Ref TKT-0350.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0351",
+      "state": "Hi, Autosave does not seem to work, I have lost my last changes twice. I am requesting a refund for the faulty release. We are completely stuck until this is fixed, so please act right now. Ref TKT-0351.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0352",
+      "state": "Dear support, I received only two boxes out of the three I ordered. I'd like this resolved within the next 48 hours. I'm asking for a full refund of order 34003. Ref TKT-0352.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0353",
+      "state": "Hello customer care, A promotional code was not applied when I paid for my subscription. This can't wait, please respond within the hour. Ref TKT-0353.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0354",
+      "state": "To whom it may concern, I was billed at the old price although my new rate has already started. A reply within two days would be great. I'm requesting a full refund of that payment. Ref TKT-0354.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0355",
+      "state": "Dear support, Calendar sync stopped working between the app and my phone. I'd like this resolved within the next 48 hours. Ref TKT-0355.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0356",
+      "state": "Good morning, My parcel has been stuck at the customs office for 9 days. I'm in no hurry for an answer. Ref TKT-0356.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0357",
+      "state": "To whom it may concern, Dark mode resets itself every time I reopen the application. We are completely stuck until this is fixed, so please act right now. Ref TKT-0357.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0358",
+      "state": "To whom it may concern, The pickup point says it has no trace of my parcel. I want my money back for the damaged goods. I have a deadline this afternoon and need this fixed immediately. Ref TKT-0358.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0359",
+      "state": "Hi, I was billed at the old price although my new rate has already started. Urgent: I need an answer before the end of the day. Ref TKT-0359.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0360",
+      "state": "Dear support, My parcel has been marked as out for delivery for 8 days now. Please get back to me in the next day or two. Ref TKT-0360.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0361",
+      "state": "Hi there, Calendar sync stopped working between the app and my phone. I'd appreciate an answer in the next couple of days. Ref TKT-0361.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0362",
+      "state": "To whom it may concern, My payment of 189 euros was declined, yet the money left my account. This isn't pressing, any day this month is fine. I would like a refund of the overcharged amount. Ref TKT-0362.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0363",
+      "state": "Good morning, I would like to know why my monthly payment went up by 181 euros. Feel free to get back to me next week. Please refund the duplicate payment to my card. Ref TKT-0363.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0364",
+      "state": "Hi, The tracking page has not changed since the parcel reached the depot. It can wait until you have a free moment. Could you reimburse me for the missing items? Ref TKT-0364.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0365",
+      "state": "Hello customer care, I received only two boxes out of the three I ordered. I have a deadline this afternoon and need this fixed immediately. Ref TKT-0365.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0366",
+      "state": "To whom it may concern, I need to change the card used for my subscription. Take your time, nothing depends on this right now. Ref TKT-0366.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0367",
+      "state": "Good morning, The tracking page has not changed since the parcel reached the depot. This isn't pressing, any day this month is fine. Could you reimburse me for the missing items? Ref TKT-0367.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0368",
+      "state": "Hello customer care, Exported spreadsheets open with scrambled characters. Please treat this as top priority, it is blocking everything today. Could you reimburse me for the period without access? Ref TKT-0368.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0369",
+      "state": "Hi there, I would like to change the delivery date for order 98167. Could you come back to me by Thursday? Ref TKT-0369.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0370",
+      "state": "To whom it may concern, Invoice INV-37767 lists a plan I never signed up for. I'm requesting a full refund of that payment. We are completely stuck until this is fixed, so please act right now. Ref TKT-0370.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0371",
+      "state": "Hi, My parcel has been marked as out for delivery for 5 days now. I have a deadline this afternoon and need this fixed immediately. I would like a refund for the parcel that never arrived. Ref TKT-0371.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0372",
+      "state": "Dear support, Two-factor codes never reach my phone, so I cannot sign in. Please refund this month's subscription since the tool is unusable. I'm in no hurry for an answer. Ref TKT-0372.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0373",
+      "state": "Hi, The direct debit for 21 euros went through on the wrong date this month. Please refund the duplicate payment to my card. I'd like this resolved within the next 48 hours. Ref TKT-0373.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0374",
+      "state": "Hi there, I cannot find the receipt for my last payment in the billing portal. Could you come back to me by Thursday? Ref TKT-0374.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0375",
+      "state": "Good morning, Calendar sync stopped working between the app and my phone. No rush at all on my side. Ref TKT-0375.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0376",
+      "state": "Hi there, The desktop client keeps asking me to sign in again every few minutes. A reply within two days would be great. Ref TKT-0376.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0377",
+      "state": "To whom it may concern, Exported spreadsheets open with scrambled characters. I'd appreciate an answer in the next couple of days. Ref TKT-0377.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0378",
+      "state": "Hi, A promotional code was not applied when I paid for my subscription. This can't wait, please respond within the hour. Ref TKT-0378.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0379",
+      "state": "Dear support, I need to redirect order 59824 to my office instead of my home. A reply within two days would be great. Please refund the shipping costs. Ref TKT-0379.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0380",
+      "state": "To whom it may concern, The billing portal shows an overdue balance, but I paid on time. This isn't pressing, any day this month is fine. Ref TKT-0380.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0381",
+      "state": "To whom it may concern, Exported spreadsheets open with scrambled characters. I have a deadline this afternoon and need this fixed immediately. Ref TKT-0381.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0382",
+      "state": "Hi there, My parcel has been marked as out for delivery for 3 days now. Urgent: I need an answer before the end of the day. Ref TKT-0382.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0383",
+      "state": "Hello customer care, Two-factor codes never reach my phone, so I cannot sign in. Kindly refund the fee for this period. Could you come back to me by Thursday? Ref TKT-0383.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0384",
+      "state": "Hi, The desktop client keeps asking me to sign in again every few minutes. I have a deadline this afternoon and need this fixed immediately. Ref TKT-0384.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0385",
+      "state": "Hi there, I would like to know why my monthly payment went up by 140 euros. Could you come back to me by Thursday? Ref TKT-0385.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0386",
+      "state": "Hello customer care, My parcel has been marked as out for delivery for 7 days now. I want my money back for the damaged goods. It would help to have this sorted by the end of the week. Ref TKT-0386.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0387",
+      "state": "To whom it may concern, I need to change the card used for my subscription. I'm requesting a full refund of that payment. It would help to have this sorted by the end of the week. Ref TKT-0387.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0388",
+      "state": "Dear support, A promotional code was not applied when I paid for my subscription. It can wait until you have a free moment. Ref TKT-0388.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0389",
+      "state": "Hi there, The API times out whenever I send more than a handful of requests. It can wait until you have a free moment. Ref TKT-0389.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0390",
+      "state": "Dear support, I would like to change the delivery date for order 48306. I'm asking for a full refund of order 95191. It can wait until you have a free moment. Ref TKT-0390.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0391",
+      "state": "Good morning, My subscription renewed automatically although I had switched to the monthly plan. Feel free to get back to me next week. I am asking for my money back for this charge. Ref TKT-0391.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0392",
+      "state": "Hi there, I would like to change the delivery date for order 12947. I'm asking for a full refund of order 45313. Could you come back to me by Thursday? Ref TKT-0392.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0393",
+      "state": "Dear support, Invoice INV-73318 lists a plan I never signed up for. We are completely stuck until this is fixed, so please act right now. Ref TKT-0393.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0394",
+      "state": "Hi, Calendar sync stopped working between the app and my phone. This isn't pressing, any day this month is fine. Ref TKT-0394.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0395",
+      "state": "Hi, The direct debit for 171 euros went through on the wrong date this month. Could you reimburse me for the difference? No rush at all on my side. Ref TKT-0395.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0396",
+      "state": "Hi there, The company name on invoice INV-13586 is misspelled. Please get back to me in the next day or two. Ref TKT-0396.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0397",
+      "state": "To whom it may concern, The pickup point says it has no trace of my parcel. Could you reimburse me for the missing items? This isn't pressing, any day this month is fine. Ref TKT-0397.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0398",
+      "state": "Hi, Invoice INV-59271 lists a plan I never signed up for. It would help to have this sorted by the end of the week. Ref TKT-0398.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0399",
+      "state": "Dear support, I need to change the card used for my subscription. I'd like this resolved within the next 48 hours. I would like a refund of the overcharged amount. Ref TKT-0399.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0400",
+      "state": "Hi, The installer stops at 49 percent on my laptop. Please refund this month's subscription since the tool is unusable. Urgent: I need an answer before the end of the day. Ref TKT-0400.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0401",
+      "state": "Good morning, The VAT number on invoice INV-30191 is wrong. Could you come back to me by Thursday? Ref TKT-0401.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0402",
+      "state": "Hi there, I need to redirect order 13603 to my office instead of my home. Take your time, nothing depends on this right now. Ref TKT-0402.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0403",
+      "state": "Hello customer care, Two-factor codes never reach my phone, so I cannot sign in. I need this resolved today, my customers are waiting. Could you reimburse me for the period without access? Ref TKT-0403.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0404",
+      "state": "Good morning, I was billed at the old price although my new rate has already started. Could you reimburse me for the difference? I'm in no hurry for an answer. Ref TKT-0404.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0405",
+      "state": "Good morning, Two-factor codes never reach my phone, so I cannot sign in. Urgent: I need an answer before the end of the day. Ref TKT-0405.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0406",
+      "state": "Dear support, My parcel has been marked as out for delivery for 9 days now. We are completely stuck until this is fixed, so please act right now. I'm asking for a full refund of order 49128. Ref TKT-0406.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0407",
+      "state": "To whom it may concern, The desktop client keeps asking me to sign in again every few minutes. Please refund this month's subscription since the tool is unusable. Feel free to get back to me next week. Ref TKT-0407.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0408",
+      "state": "To whom it may concern, The API times out whenever I send more than a handful of requests. I'd like this resolved within the next 48 hours. Ref TKT-0408.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0409",
+      "state": "Good morning, The box arrived with its seal broken and the contents scattered. It can wait until you have a free moment. Ref TKT-0409.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0410",
+      "state": "To whom it may concern, Exported spreadsheets open with scrambled characters. I need this resolved today, my customers are waiting. I am requesting a refund for the faulty release. Ref TKT-0410.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0411",
+      "state": "Good morning, Dark mode resets itself every time I reopen the application. I have a deadline this afternoon and need this fixed immediately. I'd like my money back for the days I could not work. Ref TKT-0411.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0412",
+      "state": "Hi there, The desktop client keeps asking me to sign in again every few minutes. I am requesting a refund for the faulty release. I'd appreciate an answer in the next couple of days. Ref TKT-0412.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0413",
+      "state": "Hi there, My shared folders disappeared from the sidebar after the last release. Kindly refund the fee for this period. I need this resolved today, my customers are waiting. Ref TKT-0413.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0414",
+      "state": "Hello customer care, The installer stops at 21 percent on my laptop. I need this resolved today, my customers are waiting. I'd like my money back for the days I could not work. Ref TKT-0414.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0415",
+      "state": "Dear support, The driver could not find my address and took the parcel back to the warehouse. Please refund the shipping costs. I need this resolved today, my customers are waiting. Ref TKT-0415.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0416",
+      "state": "To whom it may concern, The courier left the package at a neighbour's address without telling me. It can wait until you have a free moment. Ref TKT-0416.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0417",
+      "state": "Hi there, My payment of 213 euros was declined, yet the money left my account. No rush at all on my side. Could you reimburse me for the difference? Ref TKT-0417.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0418",
+      "state": "Dear support, The VAT number on invoice INV-40999 is wrong. Please get back to me in the next day or two. Please refund the duplicate payment to my card. Ref TKT-0418.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0419",
+      "state": "To whom it may concern, I need to change the card used for my subscription. Take your time, nothing depends on this right now. Ref TKT-0419.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0420",
+      "state": "Hi there, The driver could not find my address and took the parcel back to the warehouse. I would like a refund for the parcel that never arrived. I'm in no hurry for an answer. Ref TKT-0420.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0421",
+      "state": "Hi there, The mobile app crashes as soon as I tap the dashboard icon. This can't wait, please respond within the hour. Please refund this month's subscription since the tool is unusable. Ref TKT-0421.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0422",
+      "state": "Good morning, The billing portal shows an overdue balance, but I paid on time. Please get back to me in the next day or two. Ref TKT-0422.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0423",
+      "state": "Good morning, Invoice INV-45945 lists a plan I never signed up for. I am asking for my money back for this charge. I need this resolved today, my customers are waiting. Ref TKT-0423.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0424",
+      "state": "To whom it may concern, The installer stops at 59 percent on my laptop. A reply within two days would be great. Ref TKT-0424.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0425",
+      "state": "Hi, Dark mode resets itself every time I reopen the application. I'm in no hurry for an answer. Ref TKT-0425.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0426",
+      "state": "Dear support, The courier left the package at a neighbour's address without telling me. It can wait until you have a free moment. Ref TKT-0426.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0427",
+      "state": "To whom it may concern, The tracking page has not changed since the parcel reached the depot. Please treat this as top priority, it is blocking everything today. Ref TKT-0427.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0428",
+      "state": "Dear support, The company name on invoice INV-25885 is misspelled. I am asking for my money back for this charge. Could you come back to me by Thursday? Ref TKT-0428.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0429",
+      "state": "Hi, The report builder freezes when I select more than 548 rows. Please get back to me in the next day or two. Ref TKT-0429.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0430",
+      "state": "Hi, The tracking page has not changed since the parcel reached the depot. Could you reimburse me for the missing items? A reply within two days would be great. Ref TKT-0430.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0431",
+      "state": "Hi there, Calendar sync stopped working between the app and my phone. I'm in no hurry for an answer. Ref TKT-0431.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0432",
+      "state": "Dear support, The company name on invoice INV-78579 is misspelled. I'm in no hurry for an answer. Ref TKT-0432.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0433",
+      "state": "Hello customer care, I received only two boxes out of the three I ordered. Feel free to get back to me next week. Ref TKT-0433.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0434",
+      "state": "Hello customer care, There is an unexplained fee of 44 euros on my latest invoice. Please issue a refund for this month. It would help to have this sorted by the end of the week. Ref TKT-0434.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0435",
+      "state": "Hello customer care, The report builder freezes when I select more than 291 rows. Could you reimburse me for the period without access? No rush at all on my side. Ref TKT-0435.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0436",
+      "state": "Hi there, The courier left the package at a neighbour's address without telling me. This can't wait, please respond within the hour. Ref TKT-0436.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0437",
+      "state": "Hi, A promotional code was not applied when I paid for my subscription. I am asking for my money back for this charge. Feel free to get back to me next week. Ref TKT-0437.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0438",
+      "state": "Hi, My package was delivered to the wrong building number. I'm in no hurry for an answer. Ref TKT-0438.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0439",
+      "state": "Dear support, Autosave does not seem to work, I have lost my last changes twice. Feel free to get back to me next week. Could you reimburse me for the period without access? Ref TKT-0439.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0440",
+      "state": "Hello customer care, Exported spreadsheets open with scrambled characters. Take your time, nothing depends on this right now. Ref TKT-0440.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0441",
+      "state": "Hello customer care, File uploads fail with error code 481 halfway through. It would help to have this sorted by the end of the week. Please refund this month's subscription since the tool is unusable. Ref TKT-0441.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0442",
+      "state": "Hello customer care, I keep getting a blank page after logging in on the web portal. Take your time, nothing depends on this right now. Ref TKT-0442.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0443",
+      "state": "To whom it may concern, Autosave does not seem to work, I have lost my last changes twice. I'd appreciate an answer in the next couple of days. Could you reimburse me for the period without access? Ref TKT-0443.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0444",
+      "state": "Good morning, The wrong colour of chair was delivered with order 18545. Please refund the shipping costs. Please treat this as top priority, it is blocking everything today. Ref TKT-0444.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0445",
+      "state": "Hi there, I need to change the card used for my subscription. It would help to have this sorted by the end of the week. Ref TKT-0445.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0446",
+      "state": "Good morning, I need to redirect order 81590 to my office instead of my home. Please treat this as top priority, it is blocking everything today. Ref TKT-0446.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0447",
+      "state": "Hi there, The desktop client keeps asking me to sign in again every few minutes. A reply within two days would be great. Ref TKT-0447.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0448",
+      "state": "To whom it may concern, The direct debit for 164 euros went through on the wrong date this month. A reply within two days would be great. Ref TKT-0448.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0449",
+      "state": "Hi, The API times out whenever I send more than a handful of requests. I'm in no hurry for an answer. Ref TKT-0449.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0450",
+      "state": "Hi there, The report builder freezes when I select more than 441 rows. No rush at all on my side. Ref TKT-0450.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0451",
+      "state": "Hello customer care, The courier asked for a signature but nobody came to the door. Please refund the shipping costs. Urgent: I need an answer before the end of the day. Ref TKT-0451.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0452",
+      "state": "Dear support, Autosave does not seem to work, I have lost my last changes twice. Please get back to me in the next day or two. Please refund this month's subscription since the tool is unusable. Ref TKT-0452.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0453",
+      "state": "To whom it may concern, The direct debit for 9 euros went through on the wrong date this month. I have a deadline this afternoon and need this fixed immediately. Ref TKT-0453.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0454",
+      "state": "Hello customer care, The mobile app crashes as soon as I tap the dashboard icon. This can't wait, please respond within the hour. Ref TKT-0454.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0455",
+      "state": "Dear support, Invoice INV-94757 lists a plan I never signed up for. I'd appreciate an answer in the next couple of days. Ref TKT-0455.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0456",
+      "state": "Dear support, My bank statement shows two charges of 230 euros for the same subscription. Could you come back to me by Thursday? Ref TKT-0456.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0457",
+      "state": "Dear support, My package was delivered to the wrong building number. Please get back to me in the next day or two. Ref TKT-0457.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0458",
+      "state": "Dear support, A promotional code was not applied when I paid for my subscription. I'd like this resolved within the next 48 hours. Please issue a refund for this month. Ref TKT-0458.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0459",
+      "state": "Good morning, My shared folders disappeared from the sidebar after the last release. This isn't pressing, any day this month is fine. Ref TKT-0459.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0460",
+      "state": "Hello customer care, File uploads fail with error code 183 halfway through. I'd like this resolved within the next 48 hours. Could you reimburse me for the period without access? Ref TKT-0460.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0461",
+      "state": "Hi, The delivery slot I booked for Tuesday was missed with no notice. It would help to have this sorted by the end of the week. Ref TKT-0461.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0462",
+      "state": "Good morning, My bank statement shows two charges of 135 euros for the same subscription. I'm requesting a full refund of that payment. I need this resolved today, my customers are waiting. Ref TKT-0462.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0463",
+      "state": "Dear support, The courier asked for a signature but nobody came to the door. Could you come back to me by Thursday? Ref TKT-0463.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0464",
+      "state": "Good morning, The installer stops at 87 percent on my laptop. Kindly refund the fee for this period. Could you come back to me by Thursday? Ref TKT-0464.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0465",
+      "state": "Hi, The delivery slot I booked for Tuesday was missed with no notice. It can wait until you have a free moment. I'm asking for a full refund of order 44024. Ref TKT-0465.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0466",
+      "state": "To whom it may concern, The search bar returns no results even for items I know exist. It can wait until you have a free moment. Ref TKT-0466.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0467",
+      "state": "Dear support, I received only two boxes out of the three I ordered. We are completely stuck until this is fixed, so please act right now. Ref TKT-0467.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0468",
+      "state": "Dear support, I received only two boxes out of the three I ordered. Could you reimburse me for the missing items? It can wait until you have a free moment. Ref TKT-0468.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0469",
+      "state": "Good morning, I was billed at the old price although my new rate has already started. This can't wait, please respond within the hour. Please issue a refund for this month. Ref TKT-0469.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0470",
+      "state": "Hi there, I keep getting a blank page after logging in on the web portal. I'd appreciate an answer in the next couple of days. Please refund this month's subscription since the tool is unusable. Ref TKT-0470.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0471",
+      "state": "Hi there, Autosave does not seem to work, I have lost my last changes twice. Please treat this as top priority, it is blocking everything today. Ref TKT-0471.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0472",
+      "state": "Good morning, I would like to change the delivery date for order 47380. I have a deadline this afternoon and need this fixed immediately. Ref TKT-0472.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0473",
+      "state": "Hello customer care, File uploads fail with error code 452 halfway through. Take your time, nothing depends on this right now. Could you reimburse me for the period without access? Ref TKT-0473.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0474",
+      "state": "Good morning, My parcel has been stuck at the customs office for 7 days. I need this resolved today, my customers are waiting. Ref TKT-0474.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0475",
+      "state": "Hi there, Two-factor codes never reach my phone, so I cannot sign in. Please get back to me in the next day or two. I'd like my money back for the days I could not work. Ref TKT-0475.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0476",
+      "state": "Hello customer care, The courier asked for a signature but nobody came to the door. Urgent: I need an answer before the end of the day. Ref TKT-0476.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0477",
+      "state": "Good morning, My payment of 50 euros was declined, yet the money left my account. I would like a refund of the overcharged amount. It would help to have this sorted by the end of the week. Ref TKT-0477.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0478",
+      "state": "Good morning, The box arrived with its seal broken and the contents scattered. I need this resolved today, my customers are waiting. I want my money back for the damaged goods. Ref TKT-0478.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0479",
+      "state": "Hello customer care, Two-factor codes never reach my phone, so I cannot sign in. Could you come back to me by Thursday? Please refund this month's subscription since the tool is unusable. Ref TKT-0479.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0480",
+      "state": "Good morning, Two-factor codes never reach my phone, so I cannot sign in. We are completely stuck until this is fixed, so please act right now. Please refund this month's subscription since the tool is unusable. Ref TKT-0480.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0481",
+      "state": "Hi, The mobile app crashes as soon as I tap the dashboard icon. Take your time, nothing depends on this right now. Ref TKT-0481.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0482",
+      "state": "Dear support, The search bar returns no results even for items I know exist. Take your time, nothing depends on this right now. Ref TKT-0482.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0483",
+      "state": "Good morning, I keep getting a blank page after logging in on the web portal. I'd appreciate an answer in the next couple of days. Ref TKT-0483.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0484",
+      "state": "Hello customer care, The driver could not find my address and took the parcel back to the warehouse. Could you reimburse me for the missing items? I have a deadline this afternoon and need this fixed immediately. Ref TKT-0484.",
+      "expected": {
+        "service": "delivery",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0485",
+      "state": "Hi, I would like to change the delivery date for order 25519. Could you come back to me by Thursday? Ref TKT-0485.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0486",
+      "state": "Hello customer care, The direct debit for 235 euros went through on the wrong date this month. It can wait until you have a free moment. Ref TKT-0486.",
+      "expected": {
+        "service": "billing",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0487",
+      "state": "Hi there, My subscription renewed automatically although I had switched to the monthly plan. I need this resolved today, my customers are waiting. I'm requesting a full refund of that payment. Ref TKT-0487.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0488",
+      "state": "Hi there, The box arrived with its seal broken and the contents scattered. Take your time, nothing depends on this right now. Ref TKT-0488.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0489",
+      "state": "Good morning, The desktop client keeps asking me to sign in again every few minutes. This isn't pressing, any day this month is fine. Ref TKT-0489.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0490",
+      "state": "To whom it may concern, I cannot find the receipt for my last payment in the billing portal. I'd appreciate an answer in the next couple of days. Could you reimburse me for the difference? Ref TKT-0490.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0491",
+      "state": "Hi there, I cannot find the receipt for my last payment in the billing portal. Please issue a refund for this month. No rush at all on my side. Ref TKT-0491.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0492",
+      "state": "Good morning, There is an unexplained fee of 137 euros on my latest invoice. Please issue a refund for this month. Take your time, nothing depends on this right now. Ref TKT-0492.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0493",
+      "state": "Good morning, Dark mode resets itself every time I reopen the application. I'm in no hurry for an answer. Ref TKT-0493.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0494",
+      "state": "Hi there, My shared folders disappeared from the sidebar after the last release. I'd like my money back for the days I could not work. This can't wait, please respond within the hour. Ref TKT-0494.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "High"
+      }
+    },
+    {
+      "id": "N-0495",
+      "state": "Good morning, My subscription renewed automatically although I had switched to the monthly plan. This isn't pressing, any day this month is fine. I am asking for my money back for this charge. Ref TKT-0495.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0496",
+      "state": "Hi, The installer stops at 33 percent on my laptop. I am requesting a refund for the faulty release. Feel free to get back to me next week. Ref TKT-0496.",
+      "expected": {
+        "service": "technical",
+        "refund": true,
+        "urgency": "Low"
+      }
+    },
+    {
+      "id": "N-0497",
+      "state": "Hi there, My shared folders disappeared from the sidebar after the last release. Could you come back to me by Thursday? Ref TKT-0497.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0498",
+      "state": "Hi there, My package was delivered to the wrong building number. Could you come back to me by Thursday? Ref TKT-0498.",
+      "expected": {
+        "service": "delivery",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0499",
+      "state": "To whom it may concern, There is an unexplained fee of 225 euros on my latest invoice. Could you come back to me by Thursday? Please issue a refund for this month. Ref TKT-0499.",
+      "expected": {
+        "service": "billing",
+        "refund": true,
+        "urgency": "Moderate"
+      }
+    },
+    {
+      "id": "N-0500",
+      "state": "Hi there, The API times out whenever I send more than a handful of requests. I'd like this resolved within the next 48 hours. Ref TKT-0500.",
+      "expected": {
+        "service": "technical",
+        "refund": false,
+        "urgency": "Moderate"
+      }
+    }
+  ]
+}

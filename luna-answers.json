@@ -1,0 +1,8505 @@
+{
+  "model": "GPT-5.6 Luna (copilot)",
+  "answers": [
+    {
+      "id": "B-0001",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0002",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0003",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0004",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0005",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0006",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0007",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0008",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0009",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0010",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0011",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0012",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0013",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0014",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0015",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0016",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0017",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0018",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0019",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0020",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0021",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0022",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0023",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0024",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0025",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0026",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0027",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0028",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0029",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0030",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0031",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0032",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0033",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0034",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0035",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0036",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0037",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0038",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0039",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0040",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0041",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0042",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0043",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0044",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0045",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0046",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0047",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0048",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0049",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0050",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0051",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0052",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0053",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0054",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0055",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0056",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0057",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0058",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0059",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0060",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0061",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0062",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0063",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0064",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0065",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0066",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0067",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0068",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0069",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0070",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0071",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0072",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0073",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0074",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0075",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0076",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0077",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0078",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0079",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0080",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0081",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0082",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0083",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0084",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0085",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0086",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0087",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0088",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0089",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0090",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0091",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0092",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0093",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0094",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0095",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0096",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0097",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0098",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0099",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0100",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0101",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0102",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0103",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0104",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0105",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0106",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0107",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0108",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0109",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0110",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0111",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0112",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0113",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0114",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0115",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0116",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0117",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0118",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0119",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0120",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0121",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0122",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0123",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0124",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0125",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0126",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0127",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0128",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0129",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0130",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0131",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0132",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0133",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0134",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0135",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0136",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0137",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0138",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0139",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0140",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0141",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0142",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0143",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0144",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0145",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0146",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0147",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0148",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0149",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0150",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0151",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0152",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0153",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0154",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0155",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0156",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0157",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0158",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0159",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0160",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0161",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0162",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0163",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0164",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0165",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0166",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0167",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0168",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0169",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0170",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0171",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0172",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0173",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0174",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0175",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0176",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0177",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0178",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0179",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0180",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0181",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0182",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0183",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0184",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0185",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0186",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0187",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0188",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0189",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0190",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0191",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0192",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0193",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0194",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0195",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0196",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0197",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0198",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0199",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0200",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0201",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0202",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0203",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0204",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0205",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0206",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0207",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0208",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0209",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0210",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0211",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0212",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0213",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0214",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0215",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0216",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0217",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0218",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0219",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0220",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0221",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0222",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0223",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0224",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0225",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0226",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0227",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0228",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0229",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0230",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0231",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0232",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0233",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0234",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0235",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0236",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0237",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0238",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0239",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0240",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0241",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0242",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0243",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0244",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0245",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0246",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0247",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0248",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0249",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0250",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0251",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0252",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0253",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0254",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0255",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0256",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0257",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0258",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0259",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0260",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0261",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0262",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0263",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0264",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0265",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0266",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0267",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0268",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0269",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0270",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0271",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0272",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0273",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0274",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0275",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0276",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0277",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0278",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0279",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0280",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0281",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0282",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0283",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0284",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0285",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0286",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0287",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0288",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0289",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0290",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0291",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0292",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0293",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0294",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0295",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0296",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0297",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0298",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0299",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0300",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0301",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0302",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0303",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0304",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0305",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0306",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0307",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0308",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0309",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0310",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0311",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0312",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0313",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0314",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0315",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0316",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0317",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0318",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0319",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0320",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0321",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0322",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0323",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0324",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0325",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0326",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0327",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0328",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0329",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0330",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0331",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0332",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0333",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0334",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0335",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0336",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0337",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0338",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0339",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0340",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0341",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0342",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0343",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0344",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0345",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0346",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0347",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0348",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0349",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0350",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0351",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0352",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0353",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0354",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0355",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0356",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0357",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0358",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0359",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0360",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0361",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0362",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0363",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0364",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0365",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0366",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0367",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0368",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0369",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0370",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0371",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0372",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0373",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0374",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0375",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0376",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0377",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0378",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0379",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0380",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0381",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0382",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0383",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0384",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0385",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0386",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0387",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0388",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0389",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0390",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0391",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0392",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0393",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0394",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0395",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0396",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0397",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0398",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0399",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0400",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0401",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0402",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0403",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0404",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0405",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0406",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0407",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0408",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0409",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0410",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0411",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0412",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0413",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0414",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0415",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0416",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0417",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0418",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0419",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0420",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0421",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0422",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0423",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0424",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0425",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0426",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0427",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0428",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0429",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0430",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0431",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0432",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0433",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0434",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0435",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0436",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0437",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0438",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0439",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0440",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0441",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0442",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0443",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0444",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0445",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0446",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0447",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0448",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0449",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0450",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0451",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0452",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0453",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0454",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0455",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0456",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0457",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0458",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0459",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0460",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0461",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0462",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0463",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0464",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0465",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0466",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0467",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0468",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0469",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0470",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0471",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0472",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0473",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0474",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0475",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0476",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0477",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0478",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0479",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0480",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0481",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0482",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0483",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0484",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0485",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0486",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0487",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0488",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0489",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0490",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0491",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "livraison"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0492",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0493",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0494",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": "B-0495",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0496",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0497",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 2
+        }
+      }
+    },
+    {
+      "id": "B-0498",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0499",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "facturation"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 1
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    },
+    {
+      "id": "B-0500",
+      "answers": {
+        "service": {
+          "type": "choice",
+          "choice": "technique"
+        },
+        "remboursement": {
+          "type": "noul",
+          "noul": 0
+        },
+        "urgence": {
+          "type": "score",
+          "score": 0
+        }
+      }
+    }
+  ]
+}

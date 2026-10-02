@@ -1,0 +1,1828 @@
+{
+  "questions": {
+    "request": {
+      "type": "choice",
+      "instructions": "Que demande le client ?",
+      "criteria": {
+        "refund": "un remboursement ou un prélèvement annulé",
+        "cancel": "mettre fin à l'abonnement du client",
+        "document": "recevoir une facture ou un justificatif"
+      }
+    },
+    "deadline": {
+      "type": "noul",
+      "instructions": "Le message indique-t-il une échéance ou une pression de temps ?"
+    },
+    "tone": {
+      "type": "score",
+      "instructions": "Sur quel ton le client s'exprime-t-il ?",
+      "criteria": [
+        "calme et neutre",
+        "agacé",
+        "en colère"
+      ]
+    }
+  },
+  "tickets": [
+    {
+      "id": "T-0001",
+      "state": "Madame, Monsieur, Pouvez-vous résilier mon abonnement dès que possible ? Vous pouvez me répondre la semaine prochaine. C'est une honte, je suis exaspéré. Ref TKT-0132.",
+      "expected": {
+        "request": "cancel",
+        "deadline": false,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0002",
+      "state": "Bonjour, Pouvez-vous m'envoyer une copie de la facture ? Rien ne presse, prenez votre temps. Cette situation commence à être pénible. Ref TKT-0182.",
+      "expected": {
+        "request": "document",
+        "deadline": false,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0003",
+      "state": "Bonjour au support, Je demande le remboursement de ce montant. J'ai besoin d'une solution aujourd'hui. Je trouve cela vraiment agaçant. Ref TKT-0023.",
+      "expected": {
+        "request": "refund",
+        "deadline": true,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0004",
+      "state": "Bonjour, J'aimerais recevoir le document correspondant. Vous pouvez me répondre la semaine prochaine. Je vous remercie par avance. Ref TKT-0173.",
+      "expected": {
+        "request": "document",
+        "deadline": false,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0005",
+      "state": "Bonjour au support, Je souhaite obtenir le justificatif de ce paiement. J'ai besoin d'une solution aujourd'hui. Bonne journée à vous. Ref TKT-0145.",
+      "expected": {
+        "request": "document",
+        "deadline": true,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0006",
+      "state": "Bonjour au support, Pouvez-vous résilier mon abonnement dès que possible ? Cette demande est à traiter avant la fin de la semaine. C'est une honte, je suis exaspéré. Ref TKT-0093.",
+      "expected": {
+        "request": "cancel",
+        "deadline": true,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0007",
+      "state": "Bonjour, Je veux mettre fin à mon abonnement. J'ai besoin d'une solution aujourd'hui. Je suis en colère, ce traitement est scandaleux. Ref TKT-0098.",
+      "expected": {
+        "request": "cancel",
+        "deadline": true,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0008",
+      "state": "Bonjour, Pouvez-vous m'envoyer une copie de la facture ? Rien ne presse, prenez votre temps. Cette situation commence à être pénible. Ref TKT-0188.",
+      "expected": {
+        "request": "document",
+        "deadline": false,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0009",
+      "state": "Bonjour, Je demande le remboursement de ce montant. Prenez le temps qu'il faut, je ne suis pas pressé. Je suis en colère, ce traitement est scandaleux. Ref TKT-0059.",
+      "expected": {
+        "request": "refund",
+        "deadline": false,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0010",
+      "state": "Bonjour, Je souhaite résilier mon abonnement. Il me faut une réponse avant vendredi. C'est inadmissible, je suis furieux. Ref TKT-0094.",
+      "expected": {
+        "request": "cancel",
+        "deadline": true,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0011",
+      "state": "Bonjour au support, Pouvez-vous me rembourser la somme prélevée en double ? Il me faut une réponse avant vendredi. Merci pour votre aide. Ref TKT-0007.",
+      "expected": {
+        "request": "refund",
+        "deadline": true,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0012",
+      "state": "Bonjour au support, Pouvez-vous résilier mon abonnement dès que possible ? Cette demande est à traiter avant la fin de la semaine. Je vous remercie par avance. Ref TKT-0071.",
+      "expected": {
+        "request": "cancel",
+        "deadline": true,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0013",
+      "state": "Bonjour, Pouvez-vous résilier mon abonnement dès que possible ? Vous pouvez me répondre la semaine prochaine. Je vous remercie par avance. Ref TKT-0107.",
+      "expected": {
+        "request": "cancel",
+        "deadline": false,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0014",
+      "state": "Madame, Monsieur, Je souhaite résilier mon abonnement. Il me faut une réponse avant vendredi. Merci pour votre aide. Ref TKT-0069.",
+      "expected": {
+        "request": "cancel",
+        "deadline": true,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0015",
+      "state": "Madame, Monsieur, J'aimerais recevoir le document correspondant. Cette demande est à traiter avant la fin de la semaine. Cela devient lassant à la longue. Ref TKT-0154.",
+      "expected": {
+        "request": "document",
+        "deadline": true,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0016",
+      "state": "Bonjour, Je souhaite obtenir le justificatif de ce paiement. Prenez le temps qu'il faut, je ne suis pas pressé. Bonne journée à vous. Ref TKT-0169.",
+      "expected": {
+        "request": "document",
+        "deadline": false,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0017",
+      "state": "Bonjour, Je souhaite obtenir le justificatif de ce paiement. Prenez le temps qu'il faut, je ne suis pas pressé. Je trouve cela vraiment agaçant. Ref TKT-0180.",
+      "expected": {
+        "request": "document",
+        "deadline": false,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0018",
+      "state": "Bonjour au support, Je souhaite obtenir le justificatif de ce paiement. Prenez le temps qu'il faut, je ne suis pas pressé. Je suis en colère, ce traitement est scandaleux. Ref TKT-0200.",
+      "expected": {
+        "request": "document",
+        "deadline": false,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0019",
+      "state": "Bonjour, Pouvez-vous me rembourser ce prélèvement ? Cette demande est à traiter avant la fin de la semaine. C'est une honte, je suis exaspéré. Ref TKT-0030.",
+      "expected": {
+        "request": "refund",
+        "deadline": true,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0020",
+      "state": "Madame, Monsieur, Pouvez-vous me rembourser la somme prélevée en double ? Rien ne presse, prenez votre temps. Cette situation commence à être pénible. Ref TKT-0047.",
+      "expected": {
+        "request": "refund",
+        "deadline": false,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0021",
+      "state": "Bonjour, Pouvez-vous me rembourser la somme prélevée en double ? Il me faut une réponse avant vendredi. Merci pour votre aide. Ref TKT-0010.",
+      "expected": {
+        "request": "refund",
+        "deadline": true,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0022",
+      "state": "Madame, Monsieur, J'aimerais recevoir le document correspondant. Cette demande est à traiter avant la fin de la semaine. Je vous remercie par avance. Ref TKT-0143.",
+      "expected": {
+        "request": "document",
+        "deadline": true,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0023",
+      "state": "Madame, Monsieur, Pouvez-vous m'envoyer une copie de la facture ? Il me faut une réponse avant vendredi. Merci pour votre aide. Ref TKT-0135.",
+      "expected": {
+        "request": "document",
+        "deadline": true,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0024",
+      "state": "Bonjour, Je souhaite résilier mon abonnement. Il me faut une réponse avant vendredi. Cette situation commence à être pénible. Ref TKT-0089.",
+      "expected": {
+        "request": "cancel",
+        "deadline": true,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0025",
+      "state": "Madame, Monsieur, Je souhaite obtenir le justificatif de ce paiement. Prenez le temps qu'il faut, je ne suis pas pressé. Je suis en colère, ce traitement est scandaleux. Ref TKT-0194.",
+      "expected": {
+        "request": "document",
+        "deadline": false,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0026",
+      "state": "Bonjour, Je souhaite résilier mon abonnement. Rien ne presse, prenez votre temps. Merci pour votre aide. Ref TKT-0111.",
+      "expected": {
+        "request": "cancel",
+        "deadline": false,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0027",
+      "state": "Bonjour au support, Pouvez-vous me rembourser ce prélèvement ? Cette demande est à traiter avant la fin de la semaine. C'est une honte, je suis exaspéré. Ref TKT-0027.",
+      "expected": {
+        "request": "refund",
+        "deadline": true,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0028",
+      "state": "Madame, Monsieur, Pouvez-vous me rembourser ce prélèvement ? Cette demande est à traiter avant la fin de la semaine. C'est une honte, je suis exaspéré. Ref TKT-0033.",
+      "expected": {
+        "request": "refund",
+        "deadline": true,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0029",
+      "state": "Bonjour, Pouvez-vous résilier mon abonnement dès que possible ? Vous pouvez me répondre la semaine prochaine. Cela devient lassant à la longue. Ref TKT-0118.",
+      "expected": {
+        "request": "cancel",
+        "deadline": false,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0030",
+      "state": "Madame, Monsieur, Je souhaite résilier mon abonnement. Rien ne presse, prenez votre temps. Cette situation commence à être pénible. Ref TKT-0113.",
+      "expected": {
+        "request": "cancel",
+        "deadline": false,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0031",
+      "state": "Bonjour, Pouvez-vous me rembourser ce prélèvement ? Cette demande est à traiter avant la fin de la semaine. Cela devient lassant à la longue. Ref TKT-0018.",
+      "expected": {
+        "request": "refund",
+        "deadline": true,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0032",
+      "state": "Madame, Monsieur, Je demande le remboursement de ce montant. Prenez le temps qu'il faut, je ne suis pas pressé. Bonne journée à vous. Ref TKT-0040.",
+      "expected": {
+        "request": "refund",
+        "deadline": false,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0033",
+      "state": "Bonjour au support, Je souhaite obtenir le justificatif de ce paiement. J'ai besoin d'une solution aujourd'hui. Je suis en colère, ce traitement est scandaleux. Ref TKT-0167.",
+      "expected": {
+        "request": "document",
+        "deadline": true,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0034",
+      "state": "Bonjour, Je demande le remboursement de ce montant. J'ai besoin d'une solution aujourd'hui. Je trouve cela vraiment agaçant. Ref TKT-0014.",
+      "expected": {
+        "request": "refund",
+        "deadline": true,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0035",
+      "state": "Madame, Monsieur, Je veux mettre fin à mon abonnement. J'ai besoin d'une solution aujourd'hui. Je suis en colère, ce traitement est scandaleux. Ref TKT-0095.",
+      "expected": {
+        "request": "cancel",
+        "deadline": true,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0036",
+      "state": "Madame, Monsieur, Je souhaite obtenir le justificatif de ce paiement. J'ai besoin d'une solution aujourd'hui. Bonne journée à vous. Ref TKT-0139.",
+      "expected": {
+        "request": "document",
+        "deadline": true,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0037",
+      "state": "Madame, Monsieur, Pouvez-vous résilier mon abonnement dès que possible ? Vous pouvez me répondre la semaine prochaine. Je vous remercie par avance. Ref TKT-0110.",
+      "expected": {
+        "request": "cancel",
+        "deadline": false,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0038",
+      "state": "Bonjour au support, J'aimerais recevoir le document correspondant. Cette demande est à traiter avant la fin de la semaine. Cela devient lassant à la longue. Ref TKT-0148.",
+      "expected": {
+        "request": "document",
+        "deadline": true,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0039",
+      "state": "Bonjour, Pouvez-vous me rembourser ce prélèvement ? Vous pouvez me répondre la semaine prochaine. Cela devient lassant à la longue. Ref TKT-0052.",
+      "expected": {
+        "request": "refund",
+        "deadline": false,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0040",
+      "state": "Madame, Monsieur, Je souhaite résilier mon abonnement. Rien ne presse, prenez votre temps. Merci pour votre aide. Ref TKT-0102.",
+      "expected": {
+        "request": "cancel",
+        "deadline": false,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0041",
+      "state": "Bonjour au support, Pouvez-vous me rembourser ce prélèvement ? Vous pouvez me répondre la semaine prochaine. C'est une honte, je suis exaspéré. Ref TKT-0060.",
+      "expected": {
+        "request": "refund",
+        "deadline": false,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0042",
+      "state": "Bonjour au support, Je souhaite obtenir le justificatif de ce paiement. Prenez le temps qu'il faut, je ne suis pas pressé. Je trouve cela vraiment agaçant. Ref TKT-0189.",
+      "expected": {
+        "request": "document",
+        "deadline": false,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0043",
+      "state": "Madame, Monsieur, Je veux mettre fin à mon abonnement. Prenez le temps qu'il faut, je ne suis pas pressé. Je trouve cela vraiment agaçant. Ref TKT-0117.",
+      "expected": {
+        "request": "cancel",
+        "deadline": false,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0044",
+      "state": "Bonjour, Pouvez-vous me rembourser ce prélèvement ? Cette demande est à traiter avant la fin de la semaine. Je vous remercie par avance. Ref TKT-0006.",
+      "expected": {
+        "request": "refund",
+        "deadline": true,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0045",
+      "state": "Bonjour, Pouvez-vous m'envoyer une copie de la facture ? Rien ne presse, prenez votre temps. Merci pour votre aide. Ref TKT-0171.",
+      "expected": {
+        "request": "document",
+        "deadline": false,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0046",
+      "state": "Bonjour, Je souhaite résilier mon abonnement. Il me faut une réponse avant vendredi. C'est inadmissible, je suis furieux. Ref TKT-0100.",
+      "expected": {
+        "request": "cancel",
+        "deadline": true,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0047",
+      "state": "Bonjour au support, Je veux mettre fin à mon abonnement. J'ai besoin d'une solution aujourd'hui. Je suis en colère, ce traitement est scandaleux. Ref TKT-0101.",
+      "expected": {
+        "request": "cancel",
+        "deadline": true,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0048",
+      "state": "Madame, Monsieur, Pouvez-vous m'envoyer une copie de la facture ? Rien ne presse, prenez votre temps. Merci pour votre aide. Ref TKT-0168.",
+      "expected": {
+        "request": "document",
+        "deadline": false,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0049",
+      "state": "Bonjour au support, J'aimerais recevoir le document correspondant. Vous pouvez me répondre la semaine prochaine. Cela devient lassant à la longue. Ref TKT-0181.",
+      "expected": {
+        "request": "document",
+        "deadline": false,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0050",
+      "state": "Bonjour, Je souhaite obtenir le justificatif de ce paiement. J'ai besoin d'une solution aujourd'hui. Je trouve cela vraiment agaçant. Ref TKT-0147.",
+      "expected": {
+        "request": "document",
+        "deadline": true,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0051",
+      "state": "Madame, Monsieur, Pouvez-vous me rembourser ce prélèvement ? Vous pouvez me répondre la semaine prochaine. C'est une honte, je suis exaspéré. Ref TKT-0066.",
+      "expected": {
+        "request": "refund",
+        "deadline": false,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0052",
+      "state": "Bonjour, Je demande le remboursement de ce montant. J'ai besoin d'une solution aujourd'hui. Bonne journée à vous. Ref TKT-0002.",
+      "expected": {
+        "request": "refund",
+        "deadline": true,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0053",
+      "state": "Bonjour, Je souhaite résilier mon abonnement. Rien ne presse, prenez votre temps. Merci pour votre aide. Ref TKT-0105.",
+      "expected": {
+        "request": "cancel",
+        "deadline": false,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0054",
+      "state": "Madame, Monsieur, Pouvez-vous me rembourser ce prélèvement ? Vous pouvez me répondre la semaine prochaine. Je vous remercie par avance. Ref TKT-0044.",
+      "expected": {
+        "request": "refund",
+        "deadline": false,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0055",
+      "state": "Bonjour, Pouvez-vous me rembourser la somme prélevée en double ? Rien ne presse, prenez votre temps. Merci pour votre aide. Ref TKT-0039.",
+      "expected": {
+        "request": "refund",
+        "deadline": false,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0056",
+      "state": "Bonjour au support, Pouvez-vous m'envoyer une copie de la facture ? Rien ne presse, prenez votre temps. Cette situation commence à être pénible. Ref TKT-0185.",
+      "expected": {
+        "request": "document",
+        "deadline": false,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0057",
+      "state": "Madame, Monsieur, Je souhaite résilier mon abonnement. Rien ne presse, prenez votre temps. C'est inadmissible, je suis furieux. Ref TKT-0124.",
+      "expected": {
+        "request": "cancel",
+        "deadline": false,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0058",
+      "state": "Madame, Monsieur, Je souhaite obtenir le justificatif de ce paiement. Prenez le temps qu'il faut, je ne suis pas pressé. Bonne journée à vous. Ref TKT-0172.",
+      "expected": {
+        "request": "document",
+        "deadline": false,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0059",
+      "state": "Bonjour, Pouvez-vous m'envoyer une copie de la facture ? Il me faut une réponse avant vendredi. Merci pour votre aide. Ref TKT-0138.",
+      "expected": {
+        "request": "document",
+        "deadline": true,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0060",
+      "state": "Bonjour au support, Pouvez-vous m'envoyer une copie de la facture ? Il me faut une réponse avant vendredi. C'est inadmissible, je suis furieux. Ref TKT-0163.",
+      "expected": {
+        "request": "document",
+        "deadline": true,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0061",
+      "state": "Bonjour, Je souhaite résilier mon abonnement. Il me faut une réponse avant vendredi. Merci pour votre aide. Ref TKT-0072.",
+      "expected": {
+        "request": "cancel",
+        "deadline": true,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0062",
+      "state": "Bonjour, Pouvez-vous me rembourser la somme prélevée en double ? Rien ne presse, prenez votre temps. Merci pour votre aide. Ref TKT-0045.",
+      "expected": {
+        "request": "refund",
+        "deadline": false,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0063",
+      "state": "Bonjour, Pouvez-vous résilier mon abonnement dès que possible ? Cette demande est à traiter avant la fin de la semaine. C'est une honte, je suis exaspéré. Ref TKT-0096.",
+      "expected": {
+        "request": "cancel",
+        "deadline": true,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0064",
+      "state": "Bonjour, Je souhaite obtenir le justificatif de ce paiement. Prenez le temps qu'il faut, je ne suis pas pressé. Bonne journée à vous. Ref TKT-0175.",
+      "expected": {
+        "request": "document",
+        "deadline": false,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0065",
+      "state": "Madame, Monsieur, Pouvez-vous me rembourser la somme prélevée en double ? Il me faut une réponse avant vendredi. Cette situation commence à être pénible. Ref TKT-0013.",
+      "expected": {
+        "request": "refund",
+        "deadline": true,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0066",
+      "state": "Bonjour, Je demande le remboursement de ce montant. J'ai besoin d'une solution aujourd'hui. Bonne journée à vous. Ref TKT-0008.",
+      "expected": {
+        "request": "refund",
+        "deadline": true,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0067",
+      "state": "Madame, Monsieur, Pouvez-vous me rembourser ce prélèvement ? Vous pouvez me répondre la semaine prochaine. Cela devient lassant à la longue. Ref TKT-0055.",
+      "expected": {
+        "request": "refund",
+        "deadline": false,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0068",
+      "state": "Bonjour, Je souhaite obtenir le justificatif de ce paiement. J'ai besoin d'une solution aujourd'hui. Je trouve cela vraiment agaçant. Ref TKT-0153.",
+      "expected": {
+        "request": "document",
+        "deadline": true,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0069",
+      "state": "Bonjour, Pouvez-vous me rembourser la somme prélevée en double ? Il me faut une réponse avant vendredi. Cette situation commence à être pénible. Ref TKT-0022.",
+      "expected": {
+        "request": "refund",
+        "deadline": true,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0070",
+      "state": "Bonjour, Je demande le remboursement de ce montant. Prenez le temps qu'il faut, je ne suis pas pressé. Je trouve cela vraiment agaçant. Ref TKT-0048.",
+      "expected": {
+        "request": "refund",
+        "deadline": false,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0071",
+      "state": "Madame, Monsieur, Je demande le remboursement de ce montant. J'ai besoin d'une solution aujourd'hui. Je suis en colère, ce traitement est scandaleux. Ref TKT-0029.",
+      "expected": {
+        "request": "refund",
+        "deadline": true,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0072",
+      "state": "Bonjour, Pouvez-vous m'envoyer une copie de la facture ? Rien ne presse, prenez votre temps. Merci pour votre aide. Ref TKT-0177.",
+      "expected": {
+        "request": "document",
+        "deadline": false,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0073",
+      "state": "Bonjour au support, Je demande le remboursement de ce montant. J'ai besoin d'une solution aujourd'hui. Je suis en colère, ce traitement est scandaleux. Ref TKT-0035.",
+      "expected": {
+        "request": "refund",
+        "deadline": true,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0074",
+      "state": "Bonjour au support, Pouvez-vous me rembourser ce prélèvement ? Cette demande est à traiter avant la fin de la semaine. Je vous remercie par avance. Ref TKT-0003.",
+      "expected": {
+        "request": "refund",
+        "deadline": true,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0075",
+      "state": "Bonjour, Je souhaite résilier mon abonnement. Rien ne presse, prenez votre temps. C'est inadmissible, je suis furieux. Ref TKT-0133.",
+      "expected": {
+        "request": "cancel",
+        "deadline": false,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0076",
+      "state": "Bonjour au support, Je souhaite résilier mon abonnement. Rien ne presse, prenez votre temps. Cette situation commence à être pénible. Ref TKT-0119.",
+      "expected": {
+        "request": "cancel",
+        "deadline": false,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0077",
+      "state": "Bonjour, Je demande le remboursement de ce montant. Prenez le temps qu'il faut, je ne suis pas pressé. Bonne journée à vous. Ref TKT-0043.",
+      "expected": {
+        "request": "refund",
+        "deadline": false,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0078",
+      "state": "Madame, Monsieur, Pouvez-vous m'envoyer une copie de la facture ? Rien ne presse, prenez votre temps. C'est inadmissible, je suis furieux. Ref TKT-0190.",
+      "expected": {
+        "request": "document",
+        "deadline": false,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0079",
+      "state": "Bonjour, J'aimerais recevoir le document correspondant. Cette demande est à traiter avant la fin de la semaine. Cela devient lassant à la longue. Ref TKT-0151.",
+      "expected": {
+        "request": "document",
+        "deadline": true,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0080",
+      "state": "Bonjour au support, Pouvez-vous me rembourser ce prélèvement ? Cette demande est à traiter avant la fin de la semaine. Cela devient lassant à la longue. Ref TKT-0015.",
+      "expected": {
+        "request": "refund",
+        "deadline": true,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0081",
+      "state": "Bonjour, Pouvez-vous m'envoyer une copie de la facture ? Il me faut une réponse avant vendredi. C'est inadmissible, je suis furieux. Ref TKT-0166.",
+      "expected": {
+        "request": "document",
+        "deadline": true,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0082",
+      "state": "Bonjour au support, Pouvez-vous me rembourser la somme prélevée en double ? Rien ne presse, prenez votre temps. Merci pour votre aide. Ref TKT-0042.",
+      "expected": {
+        "request": "refund",
+        "deadline": false,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0083",
+      "state": "Bonjour, Pouvez-vous m'envoyer une copie de la facture ? Rien ne presse, prenez votre temps. C'est inadmissible, je suis furieux. Ref TKT-0193.",
+      "expected": {
+        "request": "document",
+        "deadline": false,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0084",
+      "state": "Bonjour au support, Je demande le remboursement de ce montant. Prenez le temps qu'il faut, je ne suis pas pressé. Bonne journée à vous. Ref TKT-0046.",
+      "expected": {
+        "request": "refund",
+        "deadline": false,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0085",
+      "state": "Bonjour, Je souhaite résilier mon abonnement. Il me faut une réponse avant vendredi. Cette situation commence à être pénible. Ref TKT-0083.",
+      "expected": {
+        "request": "cancel",
+        "deadline": true,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0086",
+      "state": "Bonjour, Pouvez-vous résilier mon abonnement dès que possible ? Vous pouvez me répondre la semaine prochaine. C'est une honte, je suis exaspéré. Ref TKT-0129.",
+      "expected": {
+        "request": "cancel",
+        "deadline": false,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0087",
+      "state": "Bonjour au support, Pouvez-vous me rembourser la somme prélevée en double ? Rien ne presse, prenez votre temps. C'est inadmissible, je suis furieux. Ref TKT-0064.",
+      "expected": {
+        "request": "refund",
+        "deadline": false,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0088",
+      "state": "Madame, Monsieur, Pouvez-vous me rembourser la somme prélevée en double ? Rien ne presse, prenez votre temps. C'est inadmissible, je suis furieux. Ref TKT-0058.",
+      "expected": {
+        "request": "refund",
+        "deadline": false,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0089",
+      "state": "Madame, Monsieur, J'aimerais recevoir le document correspondant. Vous pouvez me répondre la semaine prochaine. C'est une honte, je suis exaspéré. Ref TKT-0198.",
+      "expected": {
+        "request": "document",
+        "deadline": false,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0090",
+      "state": "Madame, Monsieur, Je souhaite obtenir le justificatif de ce paiement. J'ai besoin d'une solution aujourd'hui. Je suis en colère, ce traitement est scandaleux. Ref TKT-0161.",
+      "expected": {
+        "request": "document",
+        "deadline": true,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0091",
+      "state": "Bonjour, Je demande le remboursement de ce montant. Prenez le temps qu'il faut, je ne suis pas pressé. Je trouve cela vraiment agaçant. Ref TKT-0054.",
+      "expected": {
+        "request": "refund",
+        "deadline": false,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0092",
+      "state": "Bonjour, Je veux mettre fin à mon abonnement. J'ai besoin d'une solution aujourd'hui. Bonne journée à vous. Ref TKT-0076.",
+      "expected": {
+        "request": "cancel",
+        "deadline": true,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0093",
+      "state": "Bonjour, Je veux mettre fin à mon abonnement. Prenez le temps qu'il faut, je ne suis pas pressé. Bonne journée à vous. Ref TKT-0109.",
+      "expected": {
+        "request": "cancel",
+        "deadline": false,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0094",
+      "state": "Bonjour, Je souhaite obtenir le justificatif de ce paiement. J'ai besoin d'une solution aujourd'hui. Bonne journée à vous. Ref TKT-0136.",
+      "expected": {
+        "request": "document",
+        "deadline": true,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0095",
+      "state": "Bonjour, Je souhaite résilier mon abonnement. Rien ne presse, prenez votre temps. Cette situation commence à être pénible. Ref TKT-0122.",
+      "expected": {
+        "request": "cancel",
+        "deadline": false,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0096",
+      "state": "Bonjour, Pouvez-vous m'envoyer une copie de la facture ? Il me faut une réponse avant vendredi. C'est inadmissible, je suis furieux. Ref TKT-0160.",
+      "expected": {
+        "request": "document",
+        "deadline": true,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0097",
+      "state": "Bonjour, J'aimerais recevoir le document correspondant. Vous pouvez me répondre la semaine prochaine. Cela devient lassant à la longue. Ref TKT-0184.",
+      "expected": {
+        "request": "document",
+        "deadline": false,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0098",
+      "state": "Bonjour au support, Je demande le remboursement de ce montant. Prenez le temps qu'il faut, je ne suis pas pressé. Je suis en colère, ce traitement est scandaleux. Ref TKT-0068.",
+      "expected": {
+        "request": "refund",
+        "deadline": false,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0099",
+      "state": "Bonjour au support, J'aimerais recevoir le document correspondant. Vous pouvez me répondre la semaine prochaine. Je vous remercie par avance. Ref TKT-0170.",
+      "expected": {
+        "request": "document",
+        "deadline": false,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0100",
+      "state": "Madame, Monsieur, Je demande le remboursement de ce montant. Prenez le temps qu'il faut, je ne suis pas pressé. Je trouve cela vraiment agaçant. Ref TKT-0051.",
+      "expected": {
+        "request": "refund",
+        "deadline": false,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0101",
+      "state": "Madame, Monsieur, Pouvez-vous résilier mon abonnement dès que possible ? Cette demande est à traiter avant la fin de la semaine. Cela devient lassant à la longue. Ref TKT-0088.",
+      "expected": {
+        "request": "cancel",
+        "deadline": true,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0102",
+      "state": "Bonjour, Je veux mettre fin à mon abonnement. J'ai besoin d'une solution aujourd'hui. Bonne journée à vous. Ref TKT-0070.",
+      "expected": {
+        "request": "cancel",
+        "deadline": true,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0103",
+      "state": "Bonjour au support, Je veux mettre fin à mon abonnement. J'ai besoin d'une solution aujourd'hui. Je trouve cela vraiment agaçant. Ref TKT-0090.",
+      "expected": {
+        "request": "cancel",
+        "deadline": true,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0104",
+      "state": "Bonjour, Je souhaite obtenir le justificatif de ce paiement. Prenez le temps qu'il faut, je ne suis pas pressé. Je suis en colère, ce traitement est scandaleux. Ref TKT-0197.",
+      "expected": {
+        "request": "document",
+        "deadline": false,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0105",
+      "state": "Bonjour, Je souhaite résilier mon abonnement. Rien ne presse, prenez votre temps. Cette situation commence à être pénible. Ref TKT-0116.",
+      "expected": {
+        "request": "cancel",
+        "deadline": false,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0106",
+      "state": "Bonjour, Je demande le remboursement de ce montant. J'ai besoin d'une solution aujourd'hui. Je trouve cela vraiment agaçant. Ref TKT-0020.",
+      "expected": {
+        "request": "refund",
+        "deadline": true,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0107",
+      "state": "Bonjour, Pouvez-vous m'envoyer une copie de la facture ? Il me faut une réponse avant vendredi. Cette situation commence à être pénible. Ref TKT-0149.",
+      "expected": {
+        "request": "document",
+        "deadline": true,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0108",
+      "state": "Bonjour au support, Je souhaite résilier mon abonnement. Il me faut une réponse avant vendredi. C'est inadmissible, je suis furieux. Ref TKT-0097.",
+      "expected": {
+        "request": "cancel",
+        "deadline": true,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0109",
+      "state": "Bonjour, Je veux mettre fin à mon abonnement. J'ai besoin d'une solution aujourd'hui. Je trouve cela vraiment agaçant. Ref TKT-0087.",
+      "expected": {
+        "request": "cancel",
+        "deadline": true,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0110",
+      "state": "Bonjour, Pouvez-vous me rembourser ce prélèvement ? Cette demande est à traiter avant la fin de la semaine. Je vous remercie par avance. Ref TKT-0012.",
+      "expected": {
+        "request": "refund",
+        "deadline": true,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0111",
+      "state": "Madame, Monsieur, Pouvez-vous me rembourser ce prélèvement ? Cette demande est à traiter avant la fin de la semaine. Je vous remercie par avance. Ref TKT-0009.",
+      "expected": {
+        "request": "refund",
+        "deadline": true,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0112",
+      "state": "Bonjour, Pouvez-vous me rembourser la somme prélevée en double ? Rien ne presse, prenez votre temps. C'est inadmissible, je suis furieux. Ref TKT-0061.",
+      "expected": {
+        "request": "refund",
+        "deadline": false,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0113",
+      "state": "Bonjour, Pouvez-vous me rembourser la somme prélevée en double ? Il me faut une réponse avant vendredi. C'est inadmissible, je suis furieux. Ref TKT-0034.",
+      "expected": {
+        "request": "refund",
+        "deadline": true,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0114",
+      "state": "Bonjour au support, Pouvez-vous m'envoyer une copie de la facture ? Rien ne presse, prenez votre temps. Merci pour votre aide. Ref TKT-0174.",
+      "expected": {
+        "request": "document",
+        "deadline": false,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0115",
+      "state": "Bonjour au support, Je veux mettre fin à mon abonnement. J'ai besoin d'une solution aujourd'hui. Bonne journée à vous. Ref TKT-0079.",
+      "expected": {
+        "request": "cancel",
+        "deadline": true,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0116",
+      "state": "Madame, Monsieur, Je demande le remboursement de ce montant. J'ai besoin d'une solution aujourd'hui. Bonne journée à vous. Ref TKT-0005.",
+      "expected": {
+        "request": "refund",
+        "deadline": true,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0117",
+      "state": "Bonjour, Je veux mettre fin à mon abonnement. Prenez le temps qu'il faut, je ne suis pas pressé. Je trouve cela vraiment agaçant. Ref TKT-0120.",
+      "expected": {
+        "request": "cancel",
+        "deadline": false,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0118",
+      "state": "Madame, Monsieur, Je veux mettre fin à mon abonnement. Prenez le temps qu'il faut, je ne suis pas pressé. Bonne journée à vous. Ref TKT-0106.",
+      "expected": {
+        "request": "cancel",
+        "deadline": false,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0119",
+      "state": "Madame, Monsieur, Je souhaite obtenir le justificatif de ce paiement. Prenez le temps qu'il faut, je ne suis pas pressé. Je trouve cela vraiment agaçant. Ref TKT-0183.",
+      "expected": {
+        "request": "document",
+        "deadline": false,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0120",
+      "state": "Madame, Monsieur, Je veux mettre fin à mon abonnement. Prenez le temps qu'il faut, je ne suis pas pressé. Je suis en colère, ce traitement est scandaleux. Ref TKT-0128.",
+      "expected": {
+        "request": "cancel",
+        "deadline": false,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0121",
+      "state": "Bonjour au support, Je souhaite obtenir le justificatif de ce paiement. Prenez le temps qu'il faut, je ne suis pas pressé. Bonne journée à vous. Ref TKT-0178.",
+      "expected": {
+        "request": "document",
+        "deadline": false,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0122",
+      "state": "Bonjour au support, Pouvez-vous me rembourser la somme prélevée en double ? Il me faut une réponse avant vendredi. C'est inadmissible, je suis furieux. Ref TKT-0031.",
+      "expected": {
+        "request": "refund",
+        "deadline": true,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0123",
+      "state": "Madame, Monsieur, J'aimerais recevoir le document correspondant. Vous pouvez me répondre la semaine prochaine. Cela devient lassant à la longue. Ref TKT-0187.",
+      "expected": {
+        "request": "document",
+        "deadline": false,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0124",
+      "state": "Bonjour, Pouvez-vous me rembourser ce prélèvement ? Vous pouvez me répondre la semaine prochaine. Je vous remercie par avance. Ref TKT-0041.",
+      "expected": {
+        "request": "refund",
+        "deadline": false,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0125",
+      "state": "Bonjour, Pouvez-vous me rembourser la somme prélevée en double ? Rien ne presse, prenez votre temps. Cette situation commence à être pénible. Ref TKT-0050.",
+      "expected": {
+        "request": "refund",
+        "deadline": false,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0126",
+      "state": "Madame, Monsieur, Pouvez-vous m'envoyer une copie de la facture ? Rien ne presse, prenez votre temps. Cette situation commence à être pénible. Ref TKT-0179.",
+      "expected": {
+        "request": "document",
+        "deadline": false,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0127",
+      "state": "Madame, Monsieur, Pouvez-vous résilier mon abonnement dès que possible ? Cette demande est à traiter avant la fin de la semaine. Je vous remercie par avance. Ref TKT-0077.",
+      "expected": {
+        "request": "cancel",
+        "deadline": true,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0128",
+      "state": "Bonjour, Je souhaite obtenir le justificatif de ce paiement. J'ai besoin d'une solution aujourd'hui. Je suis en colère, ce traitement est scandaleux. Ref TKT-0158.",
+      "expected": {
+        "request": "document",
+        "deadline": true,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0129",
+      "state": "Bonjour, J'aimerais recevoir le document correspondant. Cette demande est à traiter avant la fin de la semaine. C'est une honte, je suis exaspéré. Ref TKT-0162.",
+      "expected": {
+        "request": "document",
+        "deadline": true,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0130",
+      "state": "Bonjour, Pouvez-vous résilier mon abonnement dès que possible ? Cette demande est à traiter avant la fin de la semaine. Je vous remercie par avance. Ref TKT-0074.",
+      "expected": {
+        "request": "cancel",
+        "deadline": true,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0131",
+      "state": "Madame, Monsieur, J'aimerais recevoir le document correspondant. Cette demande est à traiter avant la fin de la semaine. C'est une honte, je suis exaspéré. Ref TKT-0165.",
+      "expected": {
+        "request": "document",
+        "deadline": true,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0132",
+      "state": "Bonjour au support, Pouvez-vous m'envoyer une copie de la facture ? Il me faut une réponse avant vendredi. Cette situation commence à être pénible. Ref TKT-0152.",
+      "expected": {
+        "request": "document",
+        "deadline": true,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0133",
+      "state": "Bonjour, Je demande le remboursement de ce montant. J'ai besoin d'une solution aujourd'hui. Je suis en colère, ce traitement est scandaleux. Ref TKT-0032.",
+      "expected": {
+        "request": "refund",
+        "deadline": true,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0134",
+      "state": "Bonjour au support, Je souhaite résilier mon abonnement. Il me faut une réponse avant vendredi. Merci pour votre aide. Ref TKT-0075.",
+      "expected": {
+        "request": "cancel",
+        "deadline": true,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0135",
+      "state": "Bonjour au support, J'aimerais recevoir le document correspondant. Vous pouvez me répondre la semaine prochaine. C'est une honte, je suis exaspéré. Ref TKT-0192.",
+      "expected": {
+        "request": "document",
+        "deadline": false,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0136",
+      "state": "Bonjour, Pouvez-vous me rembourser la somme prélevée en double ? Il me faut une réponse avant vendredi. C'est inadmissible, je suis furieux. Ref TKT-0028.",
+      "expected": {
+        "request": "refund",
+        "deadline": true,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0137",
+      "state": "Bonjour au support, Pouvez-vous résilier mon abonnement dès que possible ? Vous pouvez me répondre la semaine prochaine. C'est une honte, je suis exaspéré. Ref TKT-0126.",
+      "expected": {
+        "request": "cancel",
+        "deadline": false,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0138",
+      "state": "Bonjour, Pouvez-vous m'envoyer une copie de la facture ? Rien ne presse, prenez votre temps. C'est inadmissible, je suis furieux. Ref TKT-0199.",
+      "expected": {
+        "request": "document",
+        "deadline": false,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0139",
+      "state": "Bonjour au support, Pouvez-vous résilier mon abonnement dès que possible ? Cette demande est à traiter avant la fin de la semaine. Cela devient lassant à la longue. Ref TKT-0082.",
+      "expected": {
+        "request": "cancel",
+        "deadline": true,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0140",
+      "state": "Madame, Monsieur, Pouvez-vous me rembourser ce prélèvement ? Cette demande est à traiter avant la fin de la semaine. Cela devient lassant à la longue. Ref TKT-0021.",
+      "expected": {
+        "request": "refund",
+        "deadline": true,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0141",
+      "state": "Bonjour au support, Je souhaite obtenir le justificatif de ce paiement. J'ai besoin d'une solution aujourd'hui. Je trouve cela vraiment agaçant. Ref TKT-0156.",
+      "expected": {
+        "request": "document",
+        "deadline": true,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0142",
+      "state": "Bonjour au support, Pouvez-vous résilier mon abonnement dès que possible ? Vous pouvez me répondre la semaine prochaine. Cela devient lassant à la longue. Ref TKT-0115.",
+      "expected": {
+        "request": "cancel",
+        "deadline": false,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0143",
+      "state": "Bonjour, J'aimerais recevoir le document correspondant. Cette demande est à traiter avant la fin de la semaine. Je vous remercie par avance. Ref TKT-0140.",
+      "expected": {
+        "request": "document",
+        "deadline": true,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0144",
+      "state": "Bonjour, Je demande le remboursement de ce montant. Prenez le temps qu'il faut, je ne suis pas pressé. Bonne journée à vous. Ref TKT-0037.",
+      "expected": {
+        "request": "refund",
+        "deadline": false,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0145",
+      "state": "Madame, Monsieur, Je demande le remboursement de ce montant. Prenez le temps qu'il faut, je ne suis pas pressé. Je suis en colère, ce traitement est scandaleux. Ref TKT-0062.",
+      "expected": {
+        "request": "refund",
+        "deadline": false,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0146",
+      "state": "Bonjour au support, Je demande le remboursement de ce montant. Prenez le temps qu'il faut, je ne suis pas pressé. Je trouve cela vraiment agaçant. Ref TKT-0057.",
+      "expected": {
+        "request": "refund",
+        "deadline": false,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0147",
+      "state": "Madame, Monsieur, Pouvez-vous m'envoyer une copie de la facture ? Il me faut une réponse avant vendredi. Cette situation commence à être pénible. Ref TKT-0146.",
+      "expected": {
+        "request": "document",
+        "deadline": true,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0148",
+      "state": "Bonjour au support, Pouvez-vous me rembourser ce prélèvement ? Vous pouvez me répondre la semaine prochaine. Cela devient lassant à la longue. Ref TKT-0049.",
+      "expected": {
+        "request": "refund",
+        "deadline": false,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0149",
+      "state": "Madame, Monsieur, Je demande le remboursement de ce montant. J'ai besoin d'une solution aujourd'hui. Je trouve cela vraiment agaçant. Ref TKT-0017.",
+      "expected": {
+        "request": "refund",
+        "deadline": true,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0150",
+      "state": "Madame, Monsieur, Je veux mettre fin à mon abonnement. J'ai besoin d'une solution aujourd'hui. Je trouve cela vraiment agaçant. Ref TKT-0084.",
+      "expected": {
+        "request": "cancel",
+        "deadline": true,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0151",
+      "state": "Bonjour, Pouvez-vous me rembourser ce prélèvement ? Vous pouvez me répondre la semaine prochaine. C'est une honte, je suis exaspéré. Ref TKT-0063.",
+      "expected": {
+        "request": "refund",
+        "deadline": false,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0152",
+      "state": "Bonjour au support, Je souhaite résilier mon abonnement. Il me faut une réponse avant vendredi. Cette situation commence à être pénible. Ref TKT-0086.",
+      "expected": {
+        "request": "cancel",
+        "deadline": true,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0153",
+      "state": "Bonjour, Je souhaite résilier mon abonnement. Rien ne presse, prenez votre temps. C'est inadmissible, je suis furieux. Ref TKT-0127.",
+      "expected": {
+        "request": "cancel",
+        "deadline": false,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0154",
+      "state": "Madame, Monsieur, Pouvez-vous me rembourser la somme prélevée en double ? Il me faut une réponse avant vendredi. Merci pour votre aide. Ref TKT-0001.",
+      "expected": {
+        "request": "refund",
+        "deadline": true,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0155",
+      "state": "Bonjour, Je veux mettre fin à mon abonnement. Prenez le temps qu'il faut, je ne suis pas pressé. Bonne journée à vous. Ref TKT-0103.",
+      "expected": {
+        "request": "cancel",
+        "deadline": false,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0156",
+      "state": "Bonjour, Pouvez-vous me rembourser ce prélèvement ? Cette demande est à traiter avant la fin de la semaine. Cela devient lassant à la longue. Ref TKT-0024.",
+      "expected": {
+        "request": "refund",
+        "deadline": true,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0157",
+      "state": "Bonjour, Pouvez-vous me rembourser la somme prélevée en double ? Il me faut une réponse avant vendredi. Merci pour votre aide. Ref TKT-0004.",
+      "expected": {
+        "request": "refund",
+        "deadline": true,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0158",
+      "state": "Bonjour au support, Pouvez-vous m'envoyer une copie de la facture ? Il me faut une réponse avant vendredi. Merci pour votre aide. Ref TKT-0141.",
+      "expected": {
+        "request": "document",
+        "deadline": true,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0159",
+      "state": "Bonjour, Pouvez-vous me rembourser la somme prélevée en double ? Il me faut une réponse avant vendredi. Cette situation commence à être pénible. Ref TKT-0016.",
+      "expected": {
+        "request": "refund",
+        "deadline": true,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0160",
+      "state": "Bonjour au support, Pouvez-vous m'envoyer une copie de la facture ? Rien ne presse, prenez votre temps. C'est inadmissible, je suis furieux. Ref TKT-0196.",
+      "expected": {
+        "request": "document",
+        "deadline": false,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0161",
+      "state": "Bonjour au support, Je veux mettre fin à mon abonnement. Prenez le temps qu'il faut, je ne suis pas pressé. Je suis en colère, ce traitement est scandaleux. Ref TKT-0134.",
+      "expected": {
+        "request": "cancel",
+        "deadline": false,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0162",
+      "state": "Bonjour, Je veux mettre fin à mon abonnement. Prenez le temps qu'il faut, je ne suis pas pressé. Je trouve cela vraiment agaçant. Ref TKT-0114.",
+      "expected": {
+        "request": "cancel",
+        "deadline": false,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0163",
+      "state": "Bonjour, Je souhaite obtenir le justificatif de ce paiement. Prenez le temps qu'il faut, je ne suis pas pressé. Je suis en colère, ce traitement est scandaleux. Ref TKT-0191.",
+      "expected": {
+        "request": "document",
+        "deadline": false,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0164",
+      "state": "Bonjour, Je souhaite obtenir le justificatif de ce paiement. J'ai besoin d'une solution aujourd'hui. Bonne journée à vous. Ref TKT-0142.",
+      "expected": {
+        "request": "document",
+        "deadline": true,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0165",
+      "state": "Bonjour au support, Pouvez-vous me rembourser la somme prélevée en double ? Rien ne presse, prenez votre temps. Cette situation commence à être pénible. Ref TKT-0053.",
+      "expected": {
+        "request": "refund",
+        "deadline": false,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0166",
+      "state": "Bonjour, Je souhaite obtenir le justificatif de ce paiement. J'ai besoin d'une solution aujourd'hui. Je suis en colère, ce traitement est scandaleux. Ref TKT-0164.",
+      "expected": {
+        "request": "document",
+        "deadline": true,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0167",
+      "state": "Madame, Monsieur, Pouvez-vous m'envoyer une copie de la facture ? Il me faut une réponse avant vendredi. C'est inadmissible, je suis furieux. Ref TKT-0157.",
+      "expected": {
+        "request": "document",
+        "deadline": true,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0168",
+      "state": "Bonjour, Je veux mettre fin à mon abonnement. J'ai besoin d'une solution aujourd'hui. Je trouve cela vraiment agaçant. Ref TKT-0081.",
+      "expected": {
+        "request": "cancel",
+        "deadline": true,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0169",
+      "state": "Bonjour au support, Je veux mettre fin à mon abonnement. Prenez le temps qu'il faut, je ne suis pas pressé. Bonne journée à vous. Ref TKT-0112.",
+      "expected": {
+        "request": "cancel",
+        "deadline": false,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0170",
+      "state": "Madame, Monsieur, Je souhaite résilier mon abonnement. Il me faut une réponse avant vendredi. C'est inadmissible, je suis furieux. Ref TKT-0091.",
+      "expected": {
+        "request": "cancel",
+        "deadline": true,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0171",
+      "state": "Madame, Monsieur, J'aimerais recevoir le document correspondant. Vous pouvez me répondre la semaine prochaine. Je vous remercie par avance. Ref TKT-0176.",
+      "expected": {
+        "request": "document",
+        "deadline": false,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0172",
+      "state": "Bonjour, Pouvez-vous m'envoyer une copie de la facture ? Il me faut une réponse avant vendredi. Merci pour votre aide. Ref TKT-0144.",
+      "expected": {
+        "request": "document",
+        "deadline": true,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0173",
+      "state": "Madame, Monsieur, Pouvez-vous résilier mon abonnement dès que possible ? Vous pouvez me répondre la semaine prochaine. Cela devient lassant à la longue. Ref TKT-0121.",
+      "expected": {
+        "request": "cancel",
+        "deadline": false,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0174",
+      "state": "Bonjour, Pouvez-vous résilier mon abonnement dès que possible ? Cette demande est à traiter avant la fin de la semaine. Cela devient lassant à la longue. Ref TKT-0085.",
+      "expected": {
+        "request": "cancel",
+        "deadline": true,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0175",
+      "state": "Bonjour au support, Pouvez-vous me rembourser la somme prélevée en double ? Il me faut une réponse avant vendredi. Cette situation commence à être pénible. Ref TKT-0019.",
+      "expected": {
+        "request": "refund",
+        "deadline": true,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0176",
+      "state": "Bonjour, Je demande le remboursement de ce montant. J'ai besoin d'une solution aujourd'hui. Je suis en colère, ce traitement est scandaleux. Ref TKT-0026.",
+      "expected": {
+        "request": "refund",
+        "deadline": true,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0177",
+      "state": "Madame, Monsieur, Je souhaite résilier mon abonnement. Il me faut une réponse avant vendredi. Cette situation commence à être pénible. Ref TKT-0080.",
+      "expected": {
+        "request": "cancel",
+        "deadline": true,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0178",
+      "state": "Bonjour au support, Pouvez-vous me rembourser ce prélèvement ? Vous pouvez me répondre la semaine prochaine. Je vous remercie par avance. Ref TKT-0038.",
+      "expected": {
+        "request": "refund",
+        "deadline": false,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0179",
+      "state": "Bonjour, Pouvez-vous m'envoyer une copie de la facture ? Il me faut une réponse avant vendredi. Cette situation commence à être pénible. Ref TKT-0155.",
+      "expected": {
+        "request": "document",
+        "deadline": true,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0180",
+      "state": "Bonjour au support, J'aimerais recevoir le document correspondant. Cette demande est à traiter avant la fin de la semaine. Je vous remercie par avance. Ref TKT-0137.",
+      "expected": {
+        "request": "document",
+        "deadline": true,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0181",
+      "state": "Bonjour, Je demande le remboursement de ce montant. Prenez le temps qu'il faut, je ne suis pas pressé. Je suis en colère, ce traitement est scandaleux. Ref TKT-0065.",
+      "expected": {
+        "request": "refund",
+        "deadline": false,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0182",
+      "state": "Bonjour au support, J'aimerais recevoir le document correspondant. Cette demande est à traiter avant la fin de la semaine. C'est une honte, je suis exaspéré. Ref TKT-0159.",
+      "expected": {
+        "request": "document",
+        "deadline": true,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0183",
+      "state": "Madame, Monsieur, Pouvez-vous me rembourser la somme prélevée en double ? Il me faut une réponse avant vendredi. C'est inadmissible, je suis furieux. Ref TKT-0025.",
+      "expected": {
+        "request": "refund",
+        "deadline": true,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0184",
+      "state": "Bonjour, Je souhaite obtenir le justificatif de ce paiement. Prenez le temps qu'il faut, je ne suis pas pressé. Je trouve cela vraiment agaçant. Ref TKT-0186.",
+      "expected": {
+        "request": "document",
+        "deadline": false,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0185",
+      "state": "Madame, Monsieur, Je veux mettre fin à mon abonnement. J'ai besoin d'une solution aujourd'hui. Bonne journée à vous. Ref TKT-0073.",
+      "expected": {
+        "request": "cancel",
+        "deadline": true,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0186",
+      "state": "Madame, Monsieur, Pouvez-vous me rembourser la somme prélevée en double ? Rien ne presse, prenez votre temps. Merci pour votre aide. Ref TKT-0036.",
+      "expected": {
+        "request": "refund",
+        "deadline": false,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0187",
+      "state": "Bonjour au support, Je souhaite résilier mon abonnement. Rien ne presse, prenez votre temps. C'est inadmissible, je suis furieux. Ref TKT-0130.",
+      "expected": {
+        "request": "cancel",
+        "deadline": false,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0188",
+      "state": "Bonjour, Pouvez-vous me rembourser la somme prélevée en double ? Rien ne presse, prenez votre temps. Cette situation commence à être pénible. Ref TKT-0056.",
+      "expected": {
+        "request": "refund",
+        "deadline": false,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0189",
+      "state": "Madame, Monsieur, Je souhaite obtenir le justificatif de ce paiement. J'ai besoin d'une solution aujourd'hui. Je trouve cela vraiment agaçant. Ref TKT-0150.",
+      "expected": {
+        "request": "document",
+        "deadline": true,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0190",
+      "state": "Bonjour, Je veux mettre fin à mon abonnement. J'ai besoin d'une solution aujourd'hui. Je suis en colère, ce traitement est scandaleux. Ref TKT-0092.",
+      "expected": {
+        "request": "cancel",
+        "deadline": true,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0191",
+      "state": "Bonjour au support, Je veux mettre fin à mon abonnement. Prenez le temps qu'il faut, je ne suis pas pressé. Je trouve cela vraiment agaçant. Ref TKT-0123.",
+      "expected": {
+        "request": "cancel",
+        "deadline": false,
+        "tone": "agacé"
+      }
+    },
+    {
+      "id": "T-0192",
+      "state": "Bonjour, Je souhaite résilier mon abonnement. Il me faut une réponse avant vendredi. Merci pour votre aide. Ref TKT-0078.",
+      "expected": {
+        "request": "cancel",
+        "deadline": true,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0193",
+      "state": "Bonjour au support, Pouvez-vous résilier mon abonnement dès que possible ? Vous pouvez me répondre la semaine prochaine. Je vous remercie par avance. Ref TKT-0104.",
+      "expected": {
+        "request": "cancel",
+        "deadline": false,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0194",
+      "state": "Bonjour, Je veux mettre fin à mon abonnement. Prenez le temps qu'il faut, je ne suis pas pressé. Je suis en colère, ce traitement est scandaleux. Ref TKT-0125.",
+      "expected": {
+        "request": "cancel",
+        "deadline": false,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0195",
+      "state": "Bonjour, Je veux mettre fin à mon abonnement. Prenez le temps qu'il faut, je ne suis pas pressé. Je suis en colère, ce traitement est scandaleux. Ref TKT-0131.",
+      "expected": {
+        "request": "cancel",
+        "deadline": false,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0196",
+      "state": "Bonjour, Pouvez-vous me rembourser la somme prélevée en double ? Rien ne presse, prenez votre temps. C'est inadmissible, je suis furieux. Ref TKT-0067.",
+      "expected": {
+        "request": "refund",
+        "deadline": false,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0197",
+      "state": "Bonjour au support, Je demande le remboursement de ce montant. J'ai besoin d'une solution aujourd'hui. Bonne journée à vous. Ref TKT-0011.",
+      "expected": {
+        "request": "refund",
+        "deadline": true,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0198",
+      "state": "Bonjour au support, Je souhaite résilier mon abonnement. Rien ne presse, prenez votre temps. Merci pour votre aide. Ref TKT-0108.",
+      "expected": {
+        "request": "cancel",
+        "deadline": false,
+        "tone": "calme et neutre"
+      }
+    },
+    {
+      "id": "T-0199",
+      "state": "Bonjour, J'aimerais recevoir le document correspondant. Vous pouvez me répondre la semaine prochaine. C'est une honte, je suis exaspéré. Ref TKT-0195.",
+      "expected": {
+        "request": "document",
+        "deadline": false,
+        "tone": "en colère"
+      }
+    },
+    {
+      "id": "T-0200",
+      "state": "Madame, Monsieur, Pouvez-vous résilier mon abonnement dès que possible ? Cette demande est à traiter avant la fin de la semaine. C'est une honte, je suis exaspéré. Ref TKT-0099.",
+      "expected": {
+        "request": "cancel",
+        "deadline": true,
+        "tone": "en colère"
+      }
+    }
+  ]
+}

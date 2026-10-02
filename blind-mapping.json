@@ -1,0 +1,4002 @@
+{
+  "B-0001": {
+    "id": "LIV-0609",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0002": {
+    "id": "LIV-0420",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0003": {
+    "id": "LIV-0174",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0004": {
+    "id": "TEC-0656",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0005": {
+    "id": "FAC-0952",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0006": {
+    "id": "TEC-0791",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0007": {
+    "id": "LIV-0435",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0008": {
+    "id": "TEC-0074",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0009": {
+    "id": "FAC-0241",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0010": {
+    "id": "LIV-0072",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0011": {
+    "id": "TEC-0857",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0012": {
+    "id": "LIV-0147",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0013": {
+    "id": "TEC-0320",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0014": {
+    "id": "FAC-0793",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0015": {
+    "id": "FAC-0595",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0016": {
+    "id": "TEC-0017",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0017": {
+    "id": "TEC-0209",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0018": {
+    "id": "TEC-0416",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0019": {
+    "id": "TEC-0455",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0020": {
+    "id": "TEC-0761",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0021": {
+    "id": "FAC-0625",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0022": {
+    "id": "TEC-0389",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0023": {
+    "id": "LIV-0699",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0024": {
+    "id": "LIV-0138",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0025": {
+    "id": "FAC-0007",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0026": {
+    "id": "FAC-0283",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0027": {
+    "id": "TEC-0005",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0028": {
+    "id": "LIV-0249",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0029": {
+    "id": "LIV-0867",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0030": {
+    "id": "FAC-0208",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0031": {
+    "id": "FAC-0766",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0032": {
+    "id": "LIV-0816",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0033": {
+    "id": "FAC-0940",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0034": {
+    "id": "TEC-0266",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0035": {
+    "id": "FAC-0772",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0036": {
+    "id": "FAC-0214",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0037": {
+    "id": "FAC-0580",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0038": {
+    "id": "LIV-0390",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0039": {
+    "id": "FAC-0802",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0040": {
+    "id": "FAC-0463",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0041": {
+    "id": "FAC-0430",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0042": {
+    "id": "FAC-0976",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0043": {
+    "id": "LIV-0507",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0044": {
+    "id": "FAC-0823",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0045": {
+    "id": "LIV-0888",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0046": {
+    "id": "LIV-0819",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0047": {
+    "id": "FAC-0364",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0048": {
+    "id": "LIV-0813",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0049": {
+    "id": "LIV-0039",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0050": {
+    "id": "LIV-0252",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0051": {
+    "id": "TEC-0338",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0052": {
+    "id": "TEC-0029",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0053": {
+    "id": "FAC-0385",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0054": {
+    "id": "LIV-0021",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0055": {
+    "id": "TEC-0815",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0056": {
+    "id": "TEC-0380",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0057": {
+    "id": "FAC-0349",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0058": {
+    "id": "TEC-0593",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0059": {
+    "id": "TEC-0980",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0060": {
+    "id": "LIV-0879",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0061": {
+    "id": "FAC-0037",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0062": {
+    "id": "FAC-0751",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0063": {
+    "id": "FAC-0265",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0064": {
+    "id": "TEC-0917",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0065": {
+    "id": "TEC-0707",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0066": {
+    "id": "TEC-0653",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0067": {
+    "id": "TEC-0182",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0068": {
+    "id": "FAC-0457",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0069": {
+    "id": "TEC-0863",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0070": {
+    "id": "LIV-0288",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0071": {
+    "id": "LIV-0141",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0072": {
+    "id": "LIV-0189",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0073": {
+    "id": "TEC-0545",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0074": {
+    "id": "FAC-0874",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0075": {
+    "id": "LIV-0453",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0076": {
+    "id": "TEC-0254",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0077": {
+    "id": "FAC-0352",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0078": {
+    "id": "FAC-0127",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0079": {
+    "id": "FAC-0121",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0080": {
+    "id": "FAC-0637",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0081": {
+    "id": "TEC-0080",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0082": {
+    "id": "TEC-0614",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0083": {
+    "id": "LIV-0933",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0084": {
+    "id": "TEC-0689",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0085": {
+    "id": "FAC-0004",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0086": {
+    "id": "TEC-0896",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0087": {
+    "id": "FAC-0079",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0088": {
+    "id": "LIV-0516",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0089": {
+    "id": "TEC-0875",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0090": {
+    "id": "LIV-0279",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0091": {
+    "id": "FAC-0058",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0092": {
+    "id": "TEC-0986",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0093": {
+    "id": "LIV-0090",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0094": {
+    "id": "TEC-0305",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0095": {
+    "id": "TEC-0059",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0096": {
+    "id": "FAC-0298",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0097": {
+    "id": "FAC-0964",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0098": {
+    "id": "FAC-0817",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0099": {
+    "id": "TEC-0395",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0100": {
+    "id": "FAC-0469",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0101": {
+    "id": "LIV-0486",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0102": {
+    "id": "LIV-0585",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0103": {
+    "id": "TEC-0665",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0104": {
+    "id": "TEC-0503",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0105": {
+    "id": "FAC-0967",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0106": {
+    "id": "FAC-0067",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0107": {
+    "id": "LIV-0066",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0108": {
+    "id": "LIV-0783",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0109": {
+    "id": "TEC-0269",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0110": {
+    "id": "LIV-0777",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0111": {
+    "id": "TEC-0659",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0112": {
+    "id": "LIV-0237",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0113": {
+    "id": "FAC-0598",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0114": {
+    "id": "LIV-0864",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0115": {
+    "id": "LIV-0429",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0116": {
+    "id": "FAC-0910",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0117": {
+    "id": "TEC-0404",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0118": {
+    "id": "FAC-0361",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0119": {
+    "id": "TEC-0734",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0120": {
+    "id": "FAC-0544",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0121": {
+    "id": "FAC-0997",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0122": {
+    "id": "LIV-0183",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0123": {
+    "id": "TEC-0737",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0124": {
+    "id": "FAC-0664",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0125": {
+    "id": "LIV-0063",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0126": {
+    "id": "FAC-0367",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0127": {
+    "id": "FAC-0412",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0128": {
+    "id": "LIV-0213",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0129": {
+    "id": "LIV-0087",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0130": {
+    "id": "FAC-0418",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0131": {
+    "id": "FAC-0244",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0132": {
+    "id": "FAC-0532",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0133": {
+    "id": "TEC-0923",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0134": {
+    "id": "TEC-0908",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0135": {
+    "id": "LIV-0126",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0136": {
+    "id": "LIV-0210",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0137": {
+    "id": "LIV-0861",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0138": {
+    "id": "TEC-0200",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0139": {
+    "id": "FAC-0820",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0140": {
+    "id": "TEC-0869",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0141": {
+    "id": "LIV-0804",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0142": {
+    "id": "TEC-0068",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0143": {
+    "id": "FAC-0508",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0144": {
+    "id": "LIV-0741",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0145": {
+    "id": "TEC-0251",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0146": {
+    "id": "LIV-0678",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0147": {
+    "id": "FAC-0601",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0148": {
+    "id": "TEC-0467",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0149": {
+    "id": "TEC-0851",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0150": {
+    "id": "FAC-0064",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0151": {
+    "id": "LIV-0666",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0152": {
+    "id": "LIV-0939",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0153": {
+    "id": "LIV-0606",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0154": {
+    "id": "FAC-0946",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0155": {
+    "id": "LIV-0108",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0156": {
+    "id": "FAC-0193",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0157": {
+    "id": "LIV-0480",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0158": {
+    "id": "LIV-0354",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0159": {
+    "id": "FAC-0487",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0160": {
+    "id": "FAC-0880",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0161": {
+    "id": "TEC-0488",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0162": {
+    "id": "TEC-0968",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0163": {
+    "id": "FAC-0199",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0164": {
+    "id": "TEC-0158",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0165": {
+    "id": "TEC-0797",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0166": {
+    "id": "LIV-0117",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0167": {
+    "id": "LIV-0735",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0168": {
+    "id": "FAC-0319",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0169": {
+    "id": "LIV-0762",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0170": {
+    "id": "TEC-0167",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0171": {
+    "id": "FAC-0301",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0172": {
+    "id": "TEC-0953",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0173": {
+    "id": "FAC-0814",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0174": {
+    "id": "TEC-0776",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0175": {
+    "id": "LIV-0627",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0176": {
+    "id": "LIV-0789",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0177": {
+    "id": "TEC-0662",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0178": {
+    "id": "TEC-0461",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0179": {
+    "id": "TEC-0485",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0180": {
+    "id": "TEC-0995",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0181": {
+    "id": "TEC-0998",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0182": {
+    "id": "TEC-0137",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0183": {
+    "id": "FAC-0259",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0184": {
+    "id": "TEC-0560",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0185": {
+    "id": "LIV-0891",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0186": {
+    "id": "FAC-0415",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0187": {
+    "id": "TEC-0845",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0188": {
+    "id": "FAC-0451",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0189": {
+    "id": "TEC-0221",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0190": {
+    "id": "FAC-0034",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0191": {
+    "id": "LIV-0369",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0192": {
+    "id": "FAC-0895",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0193": {
+    "id": "TEC-0962",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0194": {
+    "id": "LIV-0372",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0195": {
+    "id": "TEC-0014",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0196": {
+    "id": "FAC-0286",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0197": {
+    "id": "FAC-0694",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0198": {
+    "id": "TEC-0275",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0199": {
+    "id": "TEC-0854",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0200": {
+    "id": "TEC-0581",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0201": {
+    "id": "LIV-0663",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0202": {
+    "id": "LIV-0405",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0203": {
+    "id": "TEC-0731",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0204": {
+    "id": "FAC-0160",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0205": {
+    "id": "TEC-0155",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0206": {
+    "id": "FAC-0733",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0207": {
+    "id": "FAC-0142",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0208": {
+    "id": "LIV-0930",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0209": {
+    "id": "LIV-0576",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0210": {
+    "id": "FAC-0472",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0211": {
+    "id": "TEC-0578",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0212": {
+    "id": "TEC-0692",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0213": {
+    "id": "FAC-0478",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0214": {
+    "id": "TEC-0920",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0215": {
+    "id": "FAC-0052",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0216": {
+    "id": "LIV-0060",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0217": {
+    "id": "LIV-0498",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0218": {
+    "id": "LIV-0477",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0219": {
+    "id": "LIV-0465",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0220": {
+    "id": "TEC-0551",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0221": {
+    "id": "FAC-0517",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0222": {
+    "id": "LIV-0534",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0223": {
+    "id": "TEC-0449",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0224": {
+    "id": "FAC-0889",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0225": {
+    "id": "FAC-0091",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0226": {
+    "id": "FAC-0328",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0227": {
+    "id": "TEC-0872",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0228": {
+    "id": "TEC-0458",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0229": {
+    "id": "FAC-0511",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0230": {
+    "id": "FAC-0832",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0231": {
+    "id": "FAC-0613",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0232": {
+    "id": "TEC-0023",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0233": {
+    "id": "TEC-0377",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0234": {
+    "id": "LIV-0027",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0235": {
+    "id": "FAC-0373",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0236": {
+    "id": "LIV-0042",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0237": {
+    "id": "TEC-0185",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0238": {
+    "id": "LIV-0024",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0239": {
+    "id": "LIV-0102",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0240": {
+    "id": "LIV-0393",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0241": {
+    "id": "FAC-0859",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0242": {
+    "id": "LIV-0612",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0243": {
+    "id": "TEC-0218",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0244": {
+    "id": "TEC-0110",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0245": {
+    "id": "LIV-0144",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0246": {
+    "id": "FAC-0958",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0247": {
+    "id": "TEC-0215",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0248": {
+    "id": "TEC-0242",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0249": {
+    "id": "TEC-0746",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0250": {
+    "id": "LIV-0300",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0251": {
+    "id": "TEC-0008",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0252": {
+    "id": "TEC-0410",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0253": {
+    "id": "LIV-0018",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0254": {
+    "id": "TEC-0554",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0255": {
+    "id": "LIV-0768",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0256": {
+    "id": "FAC-0688",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0257": {
+    "id": "FAC-0061",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0258": {
+    "id": "TEC-0245",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0259": {
+    "id": "FAC-0529",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0260": {
+    "id": "TEC-0719",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0261": {
+    "id": "FAC-0148",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0262": {
+    "id": "FAC-0163",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0263": {
+    "id": "FAC-0904",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0264": {
+    "id": "LIV-0639",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0265": {
+    "id": "LIV-0996",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0266": {
+    "id": "FAC-0016",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0267": {
+    "id": "TEC-0989",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0268": {
+    "id": "FAC-0922",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0269": {
+    "id": "FAC-0013",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0270": {
+    "id": "LIV-0273",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0271": {
+    "id": "TEC-0767",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0272": {
+    "id": "LIV-0180",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0273": {
+    "id": "TEC-0287",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0274": {
+    "id": "FAC-0184",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0275": {
+    "id": "TEC-0890",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0276": {
+    "id": "FAC-0871",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0277": {
+    "id": "LIV-0873",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0278": {
+    "id": "TEC-0785",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0279": {
+    "id": "TEC-0125",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0280": {
+    "id": "TEC-0272",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0281": {
+    "id": "FAC-0382",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0282": {
+    "id": "LIV-0099",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0283": {
+    "id": "FAC-0280",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0284": {
+    "id": "FAC-0658",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0285": {
+    "id": "TEC-0065",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0286": {
+    "id": "FAC-0028",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0287": {
+    "id": "TEC-0392",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0288": {
+    "id": "TEC-0830",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0289": {
+    "id": "TEC-0053",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0290": {
+    "id": "TEC-0374",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0291": {
+    "id": "FAC-0022",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0292": {
+    "id": "FAC-0724",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0293": {
+    "id": "FAC-0790",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0294": {
+    "id": "LIV-0069",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0295": {
+    "id": "FAC-0769",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0296": {
+    "id": "TEC-0950",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0297": {
+    "id": "LIV-0414",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0298": {
+    "id": "FAC-0166",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0299": {
+    "id": "FAC-0337",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0300": {
+    "id": "FAC-0325",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0301": {
+    "id": "LIV-0744",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0302": {
+    "id": "FAC-0877",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0303": {
+    "id": "TEC-0032",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0304": {
+    "id": "LIV-0471",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0305": {
+    "id": "FAC-0001",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0306": {
+    "id": "TEC-0518",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0307": {
+    "id": "LIV-0345",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0308": {
+    "id": "TEC-0860",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0309": {
+    "id": "FAC-0574",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0310": {
+    "id": "TEC-0635",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0311": {
+    "id": "TEC-0884",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0312": {
+    "id": "FAC-0697",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0313": {
+    "id": "FAC-0526",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0314": {
+    "id": "LIV-0048",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0315": {
+    "id": "LIV-0915",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0316": {
+    "id": "LIV-0990",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0317": {
+    "id": "FAC-0652",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0318": {
+    "id": "FAC-0106",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0319": {
+    "id": "LIV-0987",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0320": {
+    "id": "FAC-0388",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0321": {
+    "id": "LIV-0897",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0322": {
+    "id": "TEC-0470",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0323": {
+    "id": "LIV-0510",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0324": {
+    "id": "TEC-0623",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0325": {
+    "id": "TEC-0386",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0326": {
+    "id": "LIV-0900",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0327": {
+    "id": "FAC-0538",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0328": {
+    "id": "FAC-0049",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0329": {
+    "id": "FAC-0709",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0330": {
+    "id": "TEC-0806",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0331": {
+    "id": "FAC-0862",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0332": {
+    "id": "TEC-0446",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0333": {
+    "id": "LIV-0351",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0334": {
+    "id": "LIV-0720",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0335": {
+    "id": "LIV-0972",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0336": {
+    "id": "TEC-0428",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0337": {
+    "id": "LIV-0765",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0338": {
+    "id": "FAC-0103",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0339": {
+    "id": "FAC-0796",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0340": {
+    "id": "FAC-0898",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0341": {
+    "id": "LIV-0033",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0342": {
+    "id": "LIV-0162",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0343": {
+    "id": "LIV-0564",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0344": {
+    "id": "FAC-0892",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0345": {
+    "id": "FAC-0433",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0346": {
+    "id": "TEC-0638",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0347": {
+    "id": "FAC-0727",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0348": {
+    "id": "LIV-0276",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0349": {
+    "id": "FAC-0985",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0350": {
+    "id": "TEC-0911",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0351": {
+    "id": "LIV-0963",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0352": {
+    "id": "FAC-0856",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0353": {
+    "id": "FAC-0136",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0354": {
+    "id": "TEC-0674",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0355": {
+    "id": "TEC-0440",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0356": {
+    "id": "FAC-0391",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0357": {
+    "id": "FAC-0043",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0358": {
+    "id": "FAC-0448",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0359": {
+    "id": "LIV-0654",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0360": {
+    "id": "LIV-0306",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0361": {
+    "id": "TEC-0611",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0362": {
+    "id": "TEC-0647",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0363": {
+    "id": "TEC-0671",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0364": {
+    "id": "TEC-0512",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0365": {
+    "id": "FAC-0445",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0366": {
+    "id": "TEC-0779",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0367": {
+    "id": "LIV-0936",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0368": {
+    "id": "FAC-0169",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0369": {
+    "id": "FAC-0322",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0370": {
+    "id": "LIV-0309",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0371": {
+    "id": "LIV-0837",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0372": {
+    "id": "LIV-0969",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0373": {
+    "id": "FAC-0805",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0374": {
+    "id": "LIV-0468",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0375": {
+    "id": "FAC-0406",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0376": {
+    "id": "TEC-0839",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0377": {
+    "id": "FAC-0742",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0378": {
+    "id": "TEC-0359",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0379": {
+    "id": "TEC-0260",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0380": {
+    "id": "TEC-0365",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0381": {
+    "id": "FAC-0226",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0382": {
+    "id": "LIV-0966",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0383": {
+    "id": "FAC-0502",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0384": {
+    "id": "FAC-0271",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0385": {
+    "id": "TEC-0350",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0386": {
+    "id": "LIV-0132",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0387": {
+    "id": "LIV-0456",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0388": {
+    "id": "LIV-0357",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0389": {
+    "id": "TEC-0848",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0390": {
+    "id": "LIV-0201",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0391": {
+    "id": "TEC-0677",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0392": {
+    "id": "LIV-0093",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0393": {
+    "id": "FAC-0937",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0394": {
+    "id": "TEC-0296",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0395": {
+    "id": "TEC-0530",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0396": {
+    "id": "LIV-0135",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0397": {
+    "id": "TEC-0356",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0398": {
+    "id": "LIV-0096",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0399": {
+    "id": "FAC-0865",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0400": {
+    "id": "TEC-0113",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0401": {
+    "id": "LIV-0441",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0402": {
+    "id": "LIV-0675",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0403": {
+    "id": "FAC-0715",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0404": {
+    "id": "TEC-0548",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0405": {
+    "id": "LIV-0228",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0406": {
+    "id": "FAC-0055",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0407": {
+    "id": "FAC-0088",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0408": {
+    "id": "LIV-0129",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0409": {
+    "id": "TEC-0101",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0410": {
+    "id": "TEC-0152",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0411": {
+    "id": "LIV-0708",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0412": {
+    "id": "FAC-0304",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0413": {
+    "id": "FAC-0454",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0414": {
+    "id": "LIV-0387",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0415": {
+    "id": "TEC-0431",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0416": {
+    "id": "TEC-0002",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0417": {
+    "id": "FAC-0718",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0418": {
+    "id": "LIV-0366",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0419": {
+    "id": "TEC-0992",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0420": {
+    "id": "LIV-0669",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0421": {
+    "id": "FAC-0355",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0422": {
+    "id": "LIV-0462",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0423": {
+    "id": "FAC-0829",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0424": {
+    "id": "LIV-0846",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0425": {
+    "id": "TEC-0473",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0426": {
+    "id": "FAC-0466",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0427": {
+    "id": "LIV-0324",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0428": {
+    "id": "TEC-0794",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0429": {
+    "id": "TEC-0818",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0430": {
+    "id": "FAC-0481",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0431": {
+    "id": "FAC-0256",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0432": {
+    "id": "TEC-0062",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0433": {
+    "id": "LIV-0696",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0434": {
+    "id": "FAC-0223",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0435": {
+    "id": "LIV-0687",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0436": {
+    "id": "LIV-0255",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0437": {
+    "id": "LIV-0120",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0438": {
+    "id": "TEC-0620",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0439": {
+    "id": "LIV-0795",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0440": {
+    "id": "TEC-0443",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0441": {
+    "id": "FAC-0085",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0442": {
+    "id": "LIV-0339",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0443": {
+    "id": "LIV-0549",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0444": {
+    "id": "FAC-0157",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0445": {
+    "id": "FAC-0133",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0446": {
+    "id": "TEC-0077",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0447": {
+    "id": "LIV-0258",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0448": {
+    "id": "FAC-0376",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0449": {
+    "id": "FAC-0973",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0450": {
+    "id": "TEC-0047",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0451": {
+    "id": "LIV-0321",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0452": {
+    "id": "LIV-0330",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0453": {
+    "id": "FAC-0118",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0454": {
+    "id": "FAC-0760",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0455": {
+    "id": "FAC-0277",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0456": {
+    "id": "LIV-0633",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0457": {
+    "id": "TEC-0407",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0458": {
+    "id": "TEC-0725",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0459": {
+    "id": "LIV-0672",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0460": {
+    "id": "FAC-0643",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0461": {
+    "id": "TEC-0728",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0462": {
+    "id": "FAC-0073",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0463": {
+    "id": "FAC-0847",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0464": {
+    "id": "FAC-0721",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0465": {
+    "id": "LIV-0234",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0466": {
+    "id": "FAC-0220",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0467": {
+    "id": "TEC-0491",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0468": {
+    "id": "LIV-0981",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0469": {
+    "id": "LIV-0267",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0470": {
+    "id": "LIV-0918",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0471": {
+    "id": "LIV-0240",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0472": {
+    "id": "TEC-0500",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0473": {
+    "id": "FAC-0400",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0474": {
+    "id": "FAC-0778",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0475": {
+    "id": "LIV-0801",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0476": {
+    "id": "TEC-0524",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0477": {
+    "id": "TEC-0482",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0478": {
+    "id": "TEC-0938",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0479": {
+    "id": "TEC-0899",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0480": {
+    "id": "FAC-0589",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0481": {
+    "id": "TEC-0128",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0482": {
+    "id": "LIV-0870",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0483": {
+    "id": "FAC-0274",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0484": {
+    "id": "FAC-0931",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0485": {
+    "id": "TEC-0509",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0486": {
+    "id": "FAC-0370",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0487": {
+    "id": "FAC-0046",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0488": {
+    "id": "TEC-0812",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0489": {
+    "id": "TEC-0071",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0490": {
+    "id": "TEC-0035",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0491": {
+    "id": "LIV-0954",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0492": {
+    "id": "TEC-0368",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0493": {
+    "id": "FAC-0346",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0494": {
+    "id": "TEC-0230",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Modérée"
+    }
+  },
+  "B-0495": {
+    "id": "FAC-0628",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0496": {
+    "id": "FAC-0505",
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0497": {
+    "id": "TEC-0701",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  "B-0498": {
+    "id": "TEC-0650",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  "B-0499": {
+    "id": "FAC-0928",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  "B-0500": {
+    "id": "TEC-0344",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  }
+}

@@ -19,6 +19,11 @@ rebuilds itself on every draw, and a class can only be parsed once the module is
 The input is either {"questions": {...}, "tickets": [...]} or a bare array of tickets (then use
 -QuestionsPath). -Model defaults to "multilingual", a name laya-serve routes.
 
+-NoulThreshold is where a noul answer flips to true (default 0.5). -ScoreLowCut and -ScoreHighCut
+replace the argmax on a 3-level score question with two boundaries on the score number, e.g.
+-ScoreLowCut 0.95 -ScoreHighCut 1.25. Both change only how an answer is read, never the model, and
+both default to the behaviour above.
+
 .EXAMPLE
 .\laya-client-spectre.ps1 -InputPath .\tickets.json
 .\laya-client-spectre.ps1 -InputPath .\tickets.json -BatchSize 50 -MaxWaitSeconds 600
@@ -37,10 +42,21 @@ param(
     [int]$MaxWaitSeconds = 300,
     [int]$RefreshMs = 200,
     [int]$TimeoutSeconds = 3600,
-    [string]$OutputPath
+    [string]$OutputPath,
+    [double]$NoulThreshold = 0.5,
+    [double]$ScoreLowCut,
+    [double]$ScoreHighCut
 )
 
 $ErrorActionPreference = 'Stop'
+
+if ($PSBoundParameters.ContainsKey('ScoreLowCut') -ne $PSBoundParameters.ContainsKey('ScoreHighCut')) {
+    throw '-ScoreLowCut and -ScoreHighCut go together: pass both, or neither'
+}
+$scoreCutsActive = $PSBoundParameters.ContainsKey('ScoreLowCut')
+if ($scoreCutsActive -and $ScoreLowCut -ge $ScoreHighCut) {
+    throw "-ScoreLowCut ($ScoreLowCut) must be below -ScoreHighCut ($ScoreHighCut)"
+}
 
 # Spectre refuses to draw its box characters on an OEM code page, and this is the fix it asks for.
 $OutputEncoding = [Console]::InputEncoding = [Console]::OutputEncoding = [System.Text.UTF8Encoding]::new()
@@ -294,19 +310,33 @@ foreach ($outcome in @($outcomes | Sort-Object -Property Index)) {
     }
 }
 
+function Get-ScoreLevel($Answer) {
+    # -ScoreLowCut and -ScoreHighCut place the two boundaries on the score number: at or below the
+    # first is the lowest level, above the second the highest, in between the middle one (3-level
+    # questions). Without them the level is the one the model favours, as this client always did.
+    if ($scoreCutsActive) {
+        $value = [double]$Answer.score
+        if ($value -le $ScoreLowCut) { return 0 }
+        if ($value -gt $ScoreHighCut) { return 2 }
+        return 1
+    }
+    $level = 0
+    $best = -1
+    foreach ($key in $Answer.probabilities.PSObject.Properties.Name) {
+        $p = [double]$Answer.probabilities.$key
+        if ($p -gt $best) { $best = $p; $level = [int]$key }
+    }
+    return $level
+}
+
 function Test-Answer($Definition, $Answer, $Expected) {
     switch ($Definition.type) {
         'choice' { return $Answer.choice -eq $Expected }
-        'noul' { return ([double]$Answer.noul -ge 0.5) -eq [bool]$Expected }
+        'noul' { return ([double]$Answer.noul -ge $NoulThreshold) -eq [bool]$Expected }
         'score' {
             # The average of levels weighted by probability can round to a level neither close
             # to being this model's top choice; read the level it actually favors instead.
-            $level = 0
-            $best = -1
-            foreach ($key in $Answer.probabilities.PSObject.Properties.Name) {
-                $p = [double]$Answer.probabilities.$key
-                if ($p -gt $best) { $best = $p; $level = [int]$key }
-            }
+            $level = Get-ScoreLevel $Answer
             $label = ($Definition.criteria[$level] -split ':')[0].Trim()
             return $label -eq $Expected
         }
@@ -342,16 +372,11 @@ function Get-ChosenLabel($Definition, $Answer) {
     switch ($Definition.type) {
         'choice' { return $Answer.choice }
         'noul' {
-            if ([double]$Answer.noul -ge 0.5) { return 'true' }
+            if ([double]$Answer.noul -ge $NoulThreshold) { return 'true' }
             return 'false'
         }
         'score' {
-            $level = 0
-            $best = -1
-            foreach ($key in $Answer.probabilities.PSObject.Properties.Name) {
-                $p = [double]$Answer.probabilities.$key
-                if ($p -gt $best) { $best = $p; $level = [int]$key }
-            }
+            $level = Get-ScoreLevel $Answer
             return ($Definition.criteria[$level] -split ':')[0].Trim()
         }
     }

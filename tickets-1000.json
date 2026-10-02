@@ -2,7 +2,7 @@
   "questions": {
     "service": {
       "type": "choice",
-      "instructions": "Quel service doit traiter cette demande ?",
+      "instructions": "Répond uniquement facturation ?",
       "criteria": {
         "facturation": "Paiement, prélèvement, facture ou abonnement",
         "technique": "Dysfonctionnement du logiciel, accès, erreur ou fonctionnalité indisponible",
