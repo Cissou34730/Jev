@@ -1,0 +1,44 @@
+{
+  "model": "Laya, continuation of the joint head training",
+  "from_checkpoint": ".laya-cache/checkpoints/laya-head-joint",
+  "checkpoint": ".laya-cache/checkpoints/laya-head-joint-plus2",
+  "training": "shared decision head, encoder frozen; two extra epochs on the three questions",
+  "epochs": 2,
+  "cumulative_epochs": 22,
+  "lr": 0.0001,
+  "lr_note": "reduced from 1e-3 because the Adam optimiser state is not stored in the checkpoint, so the run restarts with a fresh optimiser",
+  "save_best": false,
+  "parity": 1.05e-04,
+  "split": "identical to the 20-epoch run: by problem statement, 497 train / 503 held out, seed 0",
+  "held_out": {
+    "epoch_20_start": {
+      "service": 0.9198, "remboursement": 1.0, "urgence": 0.7907,
+      "overall": 0.9026, "duel_facturation_livraison": 0.9706
+    },
+    "epoch_21": {
+      "service": 0.9198, "remboursement": 1.0, "urgence": 0.7674,
+      "overall": 0.8946, "duel_facturation_livraison": 0.9804
+    },
+    "epoch_22": {
+      "service": 0.9198, "remboursement": 1.0, "urgence": 0.8023,
+      "overall": 0.9066, "duel_facturation_livraison": 0.9804
+    }
+  },
+  "train_after": {
+    "service": 0.9767, "remboursement": 1.0, "urgence": 0.9441, "overall": 0.9738
+  },
+  "generalisation_gap": {
+    "after_20_epochs": 0.0471,
+    "after_22_epochs": 0.0672,
+    "note": "train accuracy gained 2.4 points while held-out accuracy gained 0.4; the gap widening is the first measurable sign of overfitting"
+  },
+  "onnx_export": {
+    "file": ".laya-cache/checkpoints/laya-head-joint-plus2/laya.onnx",
+    "size_gb": 1.2,
+    "export_seconds": 184.1,
+    "parity_pytorch_vs_gpu_friendly": {"logits": 1.91e-06, "act": 4.88e-04},
+    "parity_onnx_vs_pytorch": {"batch": 2.19e-05, "other_shape": 1.43e-05},
+    "openvino_gpu_compile": "OK for (4,128), (16,256), (8,384), (2,512)"
+  },
+  "conclusion": "Two extra epochs gain 0.4 point overall and 1.1 point on urgence, but the generalisation gap widens from 4.7 to 6.7 points. This checkpoint is retained and exported; further epochs are not obviously worthwhile without real data."
+}

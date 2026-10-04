@@ -1,0 +1,52 @@
+{
+  "tickets": 200,
+  "questions": {
+    "service": {
+      "total": 200,
+      "correct": 93,
+      "accuracy": 0.465,
+      "confusion": {
+        "facturation->facturation": 13,
+        "facturation->technique": 59,
+        "livraison->livraison": 12,
+        "livraison->technique": 48,
+        "technique->technique": 68
+      }
+    },
+    "remboursement": {
+      "total": 200,
+      "correct": 134,
+      "accuracy": 0.67,
+      "confusion": {
+        "False->False": 38,
+        "False->True": 54,
+        "True->False": 12,
+        "True->True": 96
+      }
+    },
+    "urgence": {
+      "total": 200,
+      "correct": 142,
+      "accuracy": 0.71,
+      "confusion": {
+        "Faible->Faible": 44,
+        "Faible->Modérée": 10,
+        "Faible->Élevée": 8,
+        "Modérée->Faible": 4,
+        "Modérée->Modérée": 30,
+        "Modérée->Élevée": 34,
+        "Élevée->Modérée": 2,
+        "Élevée->Élevée": 68
+      }
+    }
+  },
+  "overall": {
+    "total_decisions": 600,
+    "correct": 369,
+    "accuracy": 0.615
+  },
+  "model": "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7",
+  "device": "GPU",
+  "elapsed_seconds": 36.496,
+  "decisions_per_second": 16.44
+}

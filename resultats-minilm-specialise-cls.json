@@ -1,0 +1,82 @@
+{
+  "model": "MoritzLaurer/multilingual-MiniLMv2-L6-mnli-xnli",
+  "training": "frozen cls-pooled encoder with one linear head per question",
+  "tickets": 1000,
+  "seed": 42,
+  "holdout": 0.2,
+  "questions": {
+    "service": {
+      "train_tickets": 763,
+      "test_tickets": 237,
+      "classes": [
+        "facturation",
+        "livraison",
+        "technique"
+      ],
+      "correct": 128,
+      "accuracy": 0.5401,
+      "mean_confidence": 0.6121,
+      "confusion": {
+        "facturation->facturation": 44,
+        "facturation->livraison": 26,
+        "livraison->facturation": 36,
+        "livraison->livraison": 32,
+        "livraison->technique": 25,
+        "technique->facturation": 7,
+        "technique->livraison": 15,
+        "technique->technique": 52
+      },
+      "train_groups": 63,
+      "test_groups": 16
+    },
+    "remboursement": {
+      "train_tickets": 763,
+      "test_tickets": 237,
+      "classes": [
+        "False",
+        "True"
+      ],
+      "correct": 204,
+      "accuracy": 0.8608,
+      "mean_confidence": 0.7111,
+      "confusion": {
+        "False->False": 92,
+        "False->True": 11,
+        "True->False": 22,
+        "True->True": 112
+      },
+      "train_groups": 60,
+      "test_groups": 19
+    },
+    "urgence": {
+      "train_tickets": 691,
+      "test_tickets": 309,
+      "classes": [
+        "Faible",
+        "Modérée",
+        "Élevée"
+      ],
+      "correct": 77,
+      "accuracy": 0.2492,
+      "mean_confidence": 0.7123,
+      "confusion": {
+        "Faible->Faible": 9,
+        "Faible->Modérée": 48,
+        "Faible->Élevée": 43,
+        "Modérée->Modérée": 1,
+        "Modérée->Élevée": 110,
+        "Élevée->Faible": 31,
+        "Élevée->Élevée": 67
+      },
+      "train_groups": 6,
+      "augmentation_tickets": 0,
+      "test_groups": 3
+    }
+  },
+  "overall": {
+    "test_decisions": 783,
+    "correct": 409,
+    "accuracy": 0.5223
+  },
+  "artifact_dir": ".laya-cache\\checkpoints\\minilm-ticket-heads-cls"
+}

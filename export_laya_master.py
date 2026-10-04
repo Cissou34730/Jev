@@ -252,7 +252,7 @@ def main():
         gpu_logits, gpu_act = gpu_model(b["input_ids"], b["attention_mask"], b["marker_pos"], b["marker_mask"], b["qtype"])
     d_logits = float((gpu_logits - ref_logits).abs().max())
     d_act = float((gpu_act - ref_act).abs().max())
-    print(f"max|Δ| GPU-friendly forward vs official DecisionModel.forward: logits={d_logits:.2e} act={d_act:.2e}")
+    print(f"max|delta| GPU-friendly forward vs official DecisionModel.forward: logits={d_logits:.2e} act={d_act:.2e}")
     if d_logits > 1e-3 or d_act > 1e-3:
         print("GPU-friendly forward does not match the official checkpoint's own forward; aborting", file=sys.stderr)
         sys.exit(2)

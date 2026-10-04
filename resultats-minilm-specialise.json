@@ -1,0 +1,81 @@
+{
+  "model": "MoritzLaurer/multilingual-MiniLMv2-L6-mnli-xnli",
+  "training": "frozen mean-pooled encoder with one linear head per question",
+  "tickets": 1000,
+  "seed": 42,
+  "holdout": 0.2,
+  "questions": {
+    "service": {
+      "train_tickets": 763,
+      "test_tickets": 237,
+      "classes": [
+        "facturation",
+        "livraison",
+        "technique"
+      ],
+      "correct": 192,
+      "accuracy": 0.8101,
+      "mean_confidence": 0.7455,
+      "confusion": {
+        "facturation->facturation": 56,
+        "facturation->livraison": 14,
+        "livraison->livraison": 86,
+        "livraison->technique": 7,
+        "technique->livraison": 24,
+        "technique->technique": 50
+      },
+      "train_groups": 63,
+      "test_groups": 16
+    },
+    "remboursement": {
+      "train_tickets": 763,
+      "test_tickets": 237,
+      "classes": [
+        "False",
+        "True"
+      ],
+      "correct": 220,
+      "accuracy": 0.9283,
+      "mean_confidence": 0.8598,
+      "confusion": {
+        "False->False": 102,
+        "False->True": 1,
+        "True->False": 16,
+        "True->True": 118
+      },
+      "train_groups": 60,
+      "test_groups": 19
+    },
+    "urgence": {
+      "train_tickets": 691,
+      "test_tickets": 309,
+      "classes": [
+        "Faible",
+        "Modérée",
+        "Élevée"
+      ],
+      "correct": 172,
+      "accuracy": 0.5566,
+      "mean_confidence": 0.7503,
+      "confusion": {
+        "Faible->Faible": 76,
+        "Faible->Modérée": 4,
+        "Faible->Élevée": 20,
+        "Modérée->Faible": 5,
+        "Modérée->Modérée": 3,
+        "Modérée->Élevée": 103,
+        "Élevée->Faible": 5,
+        "Élevée->Élevée": 93
+      },
+      "train_groups": 6,
+      "augmentation_tickets": 0,
+      "test_groups": 3
+    }
+  },
+  "overall": {
+    "test_decisions": 783,
+    "correct": 584,
+    "accuracy": 0.7458
+  },
+  "artifact_dir": ".laya-cache\\checkpoints\\minilm-ticket-heads"
+}

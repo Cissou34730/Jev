@@ -1,0 +1,45 @@
+{
+  "model": "convaiinnovations/laya-multilingual",
+  "checkpoint": ".laya-cache/checkpoints/laya-head-joint",
+  "training": "shared decision head retrained on the three questions jointly, encoder frozen and cached",
+  "questions": ["service", "remboursement", "urgence"],
+  "tickets": 1000,
+  "split": "by problem statement, 497 train / 503 held out, 79 problem statements, seed 0",
+  "epochs": 20,
+  "save_best": true,
+  "best_epoch": 20,
+  "note": "the best epoch is also the last one, so --save-best did not actually change the retained checkpoint",
+  "parity": 2.48e-05,
+  "encoder_cache": {"rows": 3000, "seconds": 886, "megabytes": 1005},
+  "held_out": {
+    "before": {
+      "service": 0.6358,
+      "remboursement": 0.9941,
+      "urgence": 0.407,
+      "overall": 0.6779,
+      "duel_facturation_livraison": 0.8529
+    },
+    "after": {
+      "service": 0.9198,
+      "remboursement": 1.0,
+      "urgence": 0.7907,
+      "overall": 0.9026,
+      "duel_facturation_livraison": 0.9706
+    }
+  },
+  "train_after": {
+    "service": 0.9535,
+    "remboursement": 1.0,
+    "urgence": 0.8944,
+    "overall": 0.9497
+  },
+  "progression_held_out": [
+    {"epoch": "before", "service": 0.6358, "remboursement": 0.9941, "urgence": 0.407, "overall": 0.6779},
+    {"epoch": 1, "service": 0.6481, "remboursement": 0.8994, "urgence": 0.4535, "overall": 0.666},
+    {"epoch": 5, "service": 0.8025, "remboursement": 1.0, "urgence": 0.5174, "overall": 0.7714},
+    {"epoch": 10, "service": 0.8457, "remboursement": 1.0, "urgence": 0.6163, "overall": 0.8191},
+    {"epoch": 15, "service": 0.8951, "remboursement": 1.0, "urgence": 0.7035, "overall": 0.8648},
+    {"epoch": 20, "service": 0.9198, "remboursement": 1.0, "urgence": 0.7907, "overall": 0.9026}
+  ],
+  "conclusion": "Joint training fixes the shared-head collapse. Laya beats every other configuration on all three questions. Urgence was still improving at epoch 20, so the run is not converged."
+}

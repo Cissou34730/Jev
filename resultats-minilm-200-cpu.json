@@ -1,0 +1,57 @@
+{
+  "tickets": 200,
+  "questions": {
+    "service": {
+      "total": 200,
+      "correct": 141,
+      "accuracy": 0.705,
+      "confusion": {
+        "facturation->facturation": 51,
+        "facturation->livraison": 14,
+        "facturation->technique": 7,
+        "livraison->facturation": 8,
+        "livraison->livraison": 51,
+        "livraison->technique": 1,
+        "technique->facturation": 18,
+        "technique->livraison": 11,
+        "technique->technique": 39
+      }
+    },
+    "remboursement": {
+      "total": 200,
+      "correct": 112,
+      "accuracy": 0.56,
+      "confusion": {
+        "False->False": 62,
+        "False->True": 30,
+        "True->False": 58,
+        "True->True": 50
+      }
+    },
+    "urgence": {
+      "total": 200,
+      "correct": 104,
+      "accuracy": 0.52,
+      "confusion": {
+        "Faible->Faible": 48,
+        "Faible->Modérée": 2,
+        "Faible->Élevée": 12,
+        "Modérée->Faible": 30,
+        "Modérée->Modérée": 27,
+        "Modérée->Élevée": 11,
+        "Élevée->Faible": 40,
+        "Élevée->Modérée": 1,
+        "Élevée->Élevée": 29
+      }
+    }
+  },
+  "overall": {
+    "total_decisions": 600,
+    "correct": 357,
+    "accuracy": 0.595
+  },
+  "model": "onnx-community/multilingual-MiniLMv2-L6-mnli-xnli-ONNX",
+  "device": "CPU",
+  "elapsed_seconds": 25.191,
+  "decisions_per_second": 23.82
+}

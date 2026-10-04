@@ -5,7 +5,7 @@
       "instructions": "Indique le service qui doit traiter cette demande ?",
       "criteria": {
         "facturation": "Paiement, prélèvement, facture ou abonnement",
-        "technique": "La recette du gateau au chocolat",
+        "technique": "Assistance technique, incident informatique, application, logiciel, accès, connexion, compte, erreur, bug ou panne",
         "livraison": "Acheminement, suivi, réception ou état d'un colis"
       }
     },

@@ -1,0 +1,1828 @@
+{
+  "questions": {
+    "service": {
+      "type": "choice",
+      "instructions": "Indique le service qui doit traiter cette demande ?",
+      "criteria": {
+        "facturation": "Paiement, prélèvement, facture ou abonnement",
+        "technique": "Assistance technique, incident informatique, application, logiciel, accès, connexion, compte, erreur, bug ou panne",
+        "livraison": "Acheminement, suivi, réception ou état d'un colis"
+      }
+    },
+    "remboursement": {
+      "type": "noul",
+      "instructions": "La personne demande-t-elle explicitement un remboursement ?"
+    },
+    "urgence": {
+      "type": "score",
+      "instructions": "Quel délai de réponse la personne demande-t-elle ?",
+      "criteria": [
+        "Faible : elle peut attendre, quelques jours ou plus",
+        "Modérée : un délai court, 48 heures ou la fin de la semaine",
+        "Élevée : le jour même, elle ne peut pas attendre"
+      ]
+    }
+  },
+  "tickets": [
+    {
+      "id": "LIV-0972",
+      "state": "Madame, Monsieur, Le transporteur a retourné le colis à l'expéditeur sans me contacter. Veuillez me rembourser. Une intervention immédiate est nécessaire car toute mon équipe est bloquée. Référence TKT-0972.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": true,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "LIV-0453",
+      "state": "Bonjour, La date de livraison annoncée pour la commande CMD-500452 vient de changer sans explication. Ce n'est pas urgent, une réponse cette semaine me convient. Référence TKT-0453.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": false,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "TEC-0440",
+      "state": "Bonjour au support, Les notifications ont disparu de l'application mobile alors qu'elles sont visibles sur le web. Une intervention immédiate est nécessaire car toute mon équipe est bloquée. Référence TKT-0440.",
+      "expected": {
+        "service": "technique",
+        "remboursement": false,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "FAC-0856",
+      "state": "Bonjour au support, La remise promise n'a pas été appliquée sur la facture F-20260855. Je souhaite le remboursement de la différence. Je peux attendre quelques jours pour votre retour. Référence TKT-0856.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": true,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "TEC-0263",
+      "state": "Je vous contacte car Je ne peux plus accéder à mon compte CLI-10262 malgré plusieurs réinitialisations. Merci de rembourser mon abonnement. Ce n'est pas urgent, une réponse cette semaine me convient. Référence TKT-0263.",
+      "expected": {
+        "service": "technique",
+        "remboursement": true,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "TEC-0749",
+      "state": "Je vous contacte car Le logiciel plante à chaque ouverture depuis 7 jours. Je demande le remboursement de la période inutilisable. Ce n'est pas urgent, une réponse cette semaine me convient. Référence TKT-0749.",
+      "expected": {
+        "service": "technique",
+        "remboursement": true,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "TEC-0629",
+      "state": "Je vous contacte car La fonctionnalité d'export incluse dans mon offre ne fonctionne plus. Je souhaite le remboursement du mois courant. Merci d'agir aujourd'hui, les conséquences sont importantes. Référence TKT-0629.",
+      "expected": {
+        "service": "technique",
+        "remboursement": true,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "LIV-0177",
+      "state": "Madame, Monsieur, J'ai reçu un article qui ne correspond pas à ma commande CMD-500176. Je demande son remboursement. Merci de traiter cette demande dans les 48 heures. Référence TKT-0177.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": true,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "TEC-0725",
+      "state": "Bonjour, L'application affiche l'erreur E403 lorsque j'ouvre le dossier CLI-10724. Merci de traiter cette demande dans les 48 heures. Référence TKT-0725.",
+      "expected": {
+        "service": "technique",
+        "remboursement": false,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "LIV-0441",
+      "state": "Bonjour, Je souhaite corriger l'adresse de livraison avant l'expédition de la commande CMD-500440. C'est urgent : cette situation bloque mon activité aujourd'hui. Référence TKT-0441.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": false,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "FAC-0775",
+      "state": "Je vous contacte car Le renouvellement de mon abonnement apparaît deux fois dans mon espace de facturation. Merci de regarder ce point lorsque vous aurez le temps. Référence TKT-0775.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": false,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "FAC-0484",
+      "state": "Madame, Monsieur, Un paiement de 149 euros que je n'ai pas autorisé apparaît sur mon compte. Je demande son remboursement. Merci d'agir aujourd'hui, les conséquences sont importantes. Référence TKT-0484.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": true,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "FAC-0658",
+      "state": "Bonjour l'équipe, La remise promise n'a pas été appliquée sur la facture F-20260657. Je souhaite le remboursement de la différence. Ce n'est pas urgent, une réponse cette semaine me convient. Référence TKT-0658.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": true,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "FAC-0013",
+      "state": "Madame, Monsieur, La remise promise n'a pas été appliquée sur la facture F-20260012. Je souhaite le remboursement de la différence. J'aimerais une solution avant la fin de la semaine. Référence TKT-0013.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": true,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "TEC-0707",
+      "state": "Madame, Monsieur, Le bouton Enregistrer reste désactivé après la saisie du formulaire. Merci de traiter cette demande dans les 48 heures. Référence TKT-0707.",
+      "expected": {
+        "service": "technique",
+        "remboursement": false,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "LIV-0276",
+      "state": "Bonjour l'équipe, J'ai reçu le modèle bleu au lieu du modèle rouge commandé. Pouvez-vous organiser le retour ? J'aimerais une solution avant la fin de la semaine. Référence TKT-0276.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": false,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "TEC-0461",
+      "state": "Bonjour au support, La fonctionnalité d'export incluse dans mon offre ne fonctionne plus. Je souhaite le remboursement du mois courant. Ce n'est pas urgent, une réponse cette semaine me convient. Référence TKT-0461.",
+      "expected": {
+        "service": "technique",
+        "remboursement": true,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "LIV-0474",
+      "state": "Madame, Monsieur, Je souhaite corriger l'adresse de livraison avant l'expédition de la commande CMD-500473. Le problème devient gênant et nécessite un retour rapide. Référence TKT-0474.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": false,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "LIV-0831",
+      "state": "Madame, Monsieur, J'ai reçu le modèle bleu au lieu du modèle rouge commandé. Pouvez-vous organiser le retour ? Merci de regarder ce point lorsque vous aurez le temps. Référence TKT-0831.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": false,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "FAC-0226",
+      "state": "Bonjour au support, Ma carte a été débitée deux fois de 149 euros pour la commande CMD-500225. Je demande le remboursement du doublon. Je peux attendre quelques jours pour votre retour. Référence TKT-0226.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": true,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "FAC-0523",
+      "state": "Je vous contacte car Le renouvellement de mon abonnement apparaît deux fois dans mon espace de facturation. Merci de regarder ce point lorsque vous aurez le temps. Référence TKT-0523.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": false,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "FAC-0919",
+      "state": "Bonjour l'équipe, Le renouvellement de mon abonnement apparaît deux fois dans mon espace de facturation. Merci de regarder ce point lorsque vous aurez le temps. Référence TKT-0919.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": false,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "FAC-0052",
+      "state": "Bonjour, La remise promise n'a pas été appliquée sur la facture F-20260051. Je souhaite le remboursement de la différence. Une intervention immédiate est nécessaire car toute mon équipe est bloquée. Référence TKT-0052.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": true,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "FAC-0091",
+      "state": "Bonjour au support, Pouvez-vous modifier l'adresse de facturation du compte CLI-10090 ? Je peux attendre quelques jours pour votre retour. Référence TKT-0091.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": false,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "LIV-0411",
+      "state": "Madame, Monsieur, Le transporteur a retourné le colis à l'expéditeur sans me contacter. Veuillez me rembourser. Merci de traiter cette demande dans les 48 heures. Référence TKT-0411.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": true,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "FAC-0706",
+      "state": "Bonjour, Pouvez-vous modifier l'adresse de facturation du compte CLI-10705 ? Le problème devient gênant et nécessite un retour rapide. Référence TKT-0706.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": false,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "LIV-0828",
+      "state": "Bonjour au support, Le suivi indique livré, mais le colis CMD-500827 est introuvable. Merci de me rembourser. Une intervention immédiate est nécessaire car toute mon équipe est bloquée. Référence TKT-0828.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": true,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "LIV-0405",
+      "state": "Madame, Monsieur, Le transporteur indique livré, mais je n'ai pas reçu le colis CMD-500404. Une intervention immédiate est nécessaire car toute mon équipe est bloquée. Référence TKT-0405.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": false,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "TEC-0482",
+      "state": "Je vous contacte car La mise à jour a supprimé mes paramètres et l'application reste inutilisable. Je souhaite être remboursé. Le problème devient gênant et nécessite un retour rapide. Référence TKT-0482.",
+      "expected": {
+        "service": "technique",
+        "remboursement": true,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "FAC-0781",
+      "state": "Bonjour l'équipe, Je souhaite comprendre le prélèvement de 19 euros visible sur mon relevé. Une intervention immédiate est nécessaire car toute mon équipe est bloquée. Référence TKT-0781.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": false,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "TEC-0905",
+      "state": "Bonjour l'équipe, Depuis la dernière mise à jour, l'export CSV produit un fichier vide. Merci de traiter cette demande dans les 48 heures. Référence TKT-0905.",
+      "expected": {
+        "service": "technique",
+        "remboursement": false,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "FAC-0913",
+      "state": "Bonjour l'équipe, La commande CMD-500912 a été annulée mais son paiement est toujours encaissé. Veuillez me rembourser. Le problème devient gênant et nécessite un retour rapide. Référence TKT-0913.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": true,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "FAC-0388",
+      "state": "Bonjour, Un paiement de 59 euros que je n'ai pas autorisé apparaît sur mon compte. Je demande son remboursement. Ce n'est pas urgent, une réponse cette semaine me convient. Référence TKT-0388.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": true,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "FAC-0244",
+      "state": "Je vous contacte car Un paiement de 19 euros que je n'ai pas autorisé apparaît sur mon compte. Je demande son remboursement. Ce n'est pas urgent, une réponse cette semaine me convient. Référence TKT-0244.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": true,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "TEC-0533",
+      "state": "Je vous contacte car La visioconférence coupe après quelques secondes sur tous nos postes. Remboursez la licence de ce mois. Ce n'est pas urgent, une réponse cette semaine me convient. Référence TKT-0533.",
+      "expected": {
+        "service": "technique",
+        "remboursement": true,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "LIV-0282",
+      "state": "Je vous contacte car Le produit est arrivé cassé dans un carton écrasé. Je souhaite être remboursé. Ce n'est pas urgent, une réponse cette semaine me convient. Référence TKT-0282.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": true,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "TEC-0152",
+      "state": "Madame, Monsieur, Les notifications ont disparu de l'application mobile alors qu'elles sont visibles sur le web. Merci d'agir aujourd'hui, les conséquences sont importantes. Référence TKT-0152.",
+      "expected": {
+        "service": "technique",
+        "remboursement": false,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "FAC-0478",
+      "state": "Bonjour au support, J'ai payé une option annuelle par erreur au lieu de l'option mensuelle. Je souhaite être remboursé. Je peux attendre quelques jours pour votre retour. Référence TKT-0478.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": true,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "FAC-0133",
+      "state": "Madame, Monsieur, Je souhaite comprendre le prélèvement de 249 euros visible sur mon relevé. Une intervention immédiate est nécessaire car toute mon équipe est bloquée. Référence TKT-0133.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": false,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "TEC-0068",
+      "state": "Je vous contacte car Le logiciel plante à chaque ouverture depuis 2 jours. Je demande le remboursement de la période inutilisable. Merci de traiter cette demande dans les 48 heures. Référence TKT-0068.",
+      "expected": {
+        "service": "technique",
+        "remboursement": true,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "LIV-0612",
+      "state": "Madame, Monsieur, Il manque la moitié des articles dans le colis CMD-500611. Je souhaite un remboursement des produits absents. Merci d'agir aujourd'hui, les conséquences sont importantes. Référence TKT-0612.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": true,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "TEC-0791",
+      "state": "Bonjour au support, La mise à jour a supprimé mes paramètres et l'application reste inutilisable. Je souhaite être remboursé. Une intervention immédiate est nécessaire car toute mon équipe est bloquée. Référence TKT-0791.",
+      "expected": {
+        "service": "technique",
+        "remboursement": true,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "LIV-0708",
+      "state": "Bonjour, Je souhaite corriger l'adresse de livraison avant l'expédition de la commande CMD-500707. J'aimerais une solution avant la fin de la semaine. Référence TKT-0708.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": false,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "LIV-0966",
+      "state": "Bonjour l'équipe, J'ai reçu un article qui ne correspond pas à ma commande CMD-500965. Je demande son remboursement. Merci de regarder ce point lorsque vous aurez le temps. Référence TKT-0966.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": true,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "LIV-0999",
+      "state": "Bonjour, Le suivi de la commande CMD-500998 n'a pas été actualisé depuis 3 jours. Merci d'agir aujourd'hui, les conséquences sont importantes. Référence TKT-0999.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": false,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "TEC-0590",
+      "state": "Bonjour l'équipe, Le logiciel plante à chaque ouverture depuis 3 jours. Je demande le remboursement de la période inutilisable. Le problème devient gênant et nécessite un retour rapide. Référence TKT-0590.",
+      "expected": {
+        "service": "technique",
+        "remboursement": true,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "TEC-0014",
+      "state": "Madame, Monsieur, La mise à jour a supprimé mes paramètres et l'application reste inutilisable. Je souhaite être remboursé. J'aimerais une solution avant la fin de la semaine. Référence TKT-0014.",
+      "expected": {
+        "service": "technique",
+        "remboursement": true,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "TEC-0623",
+      "state": "Je vous contacte car La fonctionnalité d'export incluse dans mon offre ne fonctionne plus. Je souhaite le remboursement du mois courant. Je peux attendre quelques jours pour votre retour. Référence TKT-0623.",
+      "expected": {
+        "service": "technique",
+        "remboursement": true,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "FAC-0394",
+      "state": "Bonjour l'équipe, Mon abonnement CLI-10393 a été prélevé après sa résiliation. Merci de me rembourser. Une intervention immédiate est nécessaire car toute mon équipe est bloquée. Référence TKT-0394.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": true,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "LIV-0846",
+      "state": "Bonjour au support, Le transporteur a retourné le colis à l'expéditeur sans me contacter. Veuillez me rembourser. C'est urgent : cette situation bloque mon activité aujourd'hui. Référence TKT-0846.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": true,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "FAC-0754",
+      "state": "Bonjour au support, Mon abonnement CLI-10753 a été prélevé après sa résiliation. Merci de me rembourser. Merci d'agir aujourd'hui, les conséquences sont importantes. Référence TKT-0754.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": true,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "LIV-0033",
+      "state": "Je vous contacte car Le transporteur a retourné le colis à l'expéditeur sans me contacter. Veuillez me rembourser. Merci de traiter cette demande dans les 48 heures. Référence TKT-0033.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": true,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "TEC-0494",
+      "state": "Bonjour, Le bouton Enregistrer reste désactivé après la saisie du formulaire. Merci d'agir aujourd'hui, les conséquences sont importantes. Référence TKT-0494.",
+      "expected": {
+        "service": "technique",
+        "remboursement": false,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "FAC-0505",
+      "state": "Madame, Monsieur, Le paiement de 29 euros est refusé alors que ma banque confirme que la carte fonctionne. Ce n'est pas urgent, une réponse cette semaine me convient. Référence TKT-0505.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": false,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "TEC-0944",
+      "state": "Bonjour, La synchronisation reste bloquée à 25 % sur tous mes documents. C'est urgent : cette situation bloque mon activité aujourd'hui. Référence TKT-0944.",
+      "expected": {
+        "service": "technique",
+        "remboursement": false,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "LIV-0501",
+      "state": "Bonjour l'équipe, Le suivi indique livré, mais le colis CMD-500500 est introuvable. Merci de me rembourser. Merci de traiter cette demande dans les 48 heures. Référence TKT-0501.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": true,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "LIV-0657",
+      "state": "Bonjour, Je souhaite corriger l'adresse de livraison avant l'expédition de la commande CMD-500656. C'est urgent : cette situation bloque mon activité aujourd'hui. Référence TKT-0657.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": false,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "LIV-0528",
+      "state": "Bonjour l'équipe, La date de livraison annoncée pour la commande CMD-500527 vient de changer sans explication. J'aimerais une solution avant la fin de la semaine. Référence TKT-0528.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": false,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "LIV-0825",
+      "state": "Madame, Monsieur, Le colis CMD-500824 est en retard de 2 jours. Je demande un remboursement complet. Merci de traiter cette demande dans les 48 heures. Référence TKT-0825.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": true,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "FAC-0061",
+      "state": "Bonjour au support, Le montant indiqué sur la facture F-20260060 ne correspond pas au tarif de mon contrat. Une intervention immédiate est nécessaire car toute mon équipe est bloquée. Référence TKT-0061.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": false,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "TEC-0935",
+      "state": "Je vous contacte car La fonctionnalité d'export incluse dans mon offre ne fonctionne plus. Je souhaite le remboursement du mois courant. C'est urgent : cette situation bloque mon activité aujourd'hui. Référence TKT-0935.",
+      "expected": {
+        "service": "technique",
+        "remboursement": true,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "TEC-0641",
+      "state": "Bonjour l'équipe, Le logiciel plante à chaque ouverture depuis 7 jours. Je demande le remboursement de la période inutilisable. Merci de regarder ce point lorsque vous aurez le temps. Référence TKT-0641.",
+      "expected": {
+        "service": "technique",
+        "remboursement": true,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "TEC-0449",
+      "state": "Bonjour, La mise à jour a supprimé mes paramètres et l'application reste inutilisable. Je souhaite être remboursé. Une intervention immédiate est nécessaire car toute mon équipe est bloquée. Référence TKT-0449.",
+      "expected": {
+        "service": "technique",
+        "remboursement": true,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "FAC-0751",
+      "state": "Bonjour l'équipe, Ma carte a été débitée deux fois de 19 euros pour la commande CMD-500750. Je demande le remboursement du doublon. Le problème devient gênant et nécessite un retour rapide. Référence TKT-0751.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": true,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "TEC-0896",
+      "state": "Bonjour l'équipe, Le logiciel plante à chaque ouverture depuis 3 jours. Je demande le remboursement de la période inutilisable. Merci de traiter cette demande dans les 48 heures. Référence TKT-0896.",
+      "expected": {
+        "service": "technique",
+        "remboursement": true,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "FAC-0538",
+      "state": "Bonjour au support, Mon abonnement CLI-10537 a été prélevé après sa résiliation. Merci de me rembourser. Merci d'agir aujourd'hui, les conséquences sont importantes. Référence TKT-0538.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": true,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "TEC-0914",
+      "state": "Bonjour, L'erreur E401 empêche toute utilisation du service. Je demande le remboursement des jours perdus. Le problème devient gênant et nécessite un retour rapide. Référence TKT-0914.",
+      "expected": {
+        "service": "technique",
+        "remboursement": true,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "LIV-0330",
+      "state": "Bonjour l'équipe, J'ai reçu le modèle bleu au lieu du modèle rouge commandé. Pouvez-vous organiser le retour ? Le problème devient gênant et nécessite un retour rapide. Référence TKT-0330.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": false,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "FAC-0616",
+      "state": "Madame, Monsieur, Je souhaite comprendre le prélèvement de 149 euros visible sur mon relevé. Merci de traiter cette demande dans les 48 heures. Référence TKT-0616.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": false,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "LIV-0753",
+      "state": "Je vous contacte car Le suivi indique livré, mais le colis CMD-500752 est introuvable. Merci de me rembourser. Merci de traiter cette demande dans les 48 heures. Référence TKT-0753.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": true,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "LIV-0210",
+      "state": "Madame, Monsieur, Le suivi indique livré, mais le colis CMD-500209 est introuvable. Merci de me rembourser. Merci de regarder ce point lorsque vous aurez le temps. Référence TKT-0210.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": true,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "FAC-0613",
+      "state": "Bonjour au support, Pouvez-vous modifier l'adresse de facturation du compte CLI-10612 ? Merci de regarder ce point lorsque vous aurez le temps. Référence TKT-0613.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": false,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "TEC-0794",
+      "state": "Je vous contacte car L'application affiche l'erreur APP-27 lorsque j'ouvre le dossier CLI-10793. Ce n'est pas urgent, une réponse cette semaine me convient. Référence TKT-0794.",
+      "expected": {
+        "service": "technique",
+        "remboursement": false,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "TEC-0377",
+      "state": "Bonjour, La visioconférence coupe après quelques secondes sur tous nos postes. Remboursez la licence de ce mois. Une intervention immédiate est nécessaire car toute mon équipe est bloquée. Référence TKT-0377.",
+      "expected": {
+        "service": "technique",
+        "remboursement": true,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "TEC-0758",
+      "state": "Je vous contacte car Les notifications ont disparu de l'application mobile alors qu'elles sont visibles sur le web. Merci de regarder ce point lorsque vous aurez le temps. Référence TKT-0758.",
+      "expected": {
+        "service": "technique",
+        "remboursement": false,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "FAC-0430",
+      "state": "Bonjour, J'ai payé une option annuelle par erreur au lieu de l'option mensuelle. Je souhaite être remboursé. Merci d'agir aujourd'hui, les conséquences sont importantes. Référence TKT-0430.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": true,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "LIV-0207",
+      "state": "Bonjour au support, La date de livraison annoncée pour la commande CMD-500206 vient de changer sans explication. C'est urgent : cette situation bloque mon activité aujourd'hui. Référence TKT-0207.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": false,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "FAC-0628",
+      "state": "Madame, Monsieur, La remise promise n'a pas été appliquée sur la facture F-20260627. Je souhaite le remboursement de la différence. Merci d'agir aujourd'hui, les conséquences sont importantes. Référence TKT-0628.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": true,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "TEC-0011",
+      "state": "Je vous contacte car L'erreur E401 empêche toute utilisation du service. Je demande le remboursement des jours perdus. Ce n'est pas urgent, une réponse cette semaine me convient. Référence TKT-0011.",
+      "expected": {
+        "service": "technique",
+        "remboursement": true,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "TEC-0281",
+      "state": "Bonjour l'équipe, L'erreur SYNC-12 empêche toute utilisation du service. Je demande le remboursement des jours perdus. Je peux attendre quelques jours pour votre retour. Référence TKT-0281.",
+      "expected": {
+        "service": "technique",
+        "remboursement": true,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "FAC-0028",
+      "state": "Bonjour au support, La commande CMD-500027 a été annulée mais son paiement est toujours encaissé. Veuillez me rembourser. Merci de regarder ce point lorsque vous aurez le temps. Référence TKT-0028.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": true,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "LIV-0447",
+      "state": "Bonjour, Le colis CMD-500446 est en retard de 2 jours. Je demande un remboursement complet. J'aimerais une solution avant la fin de la semaine. Référence TKT-0447.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": true,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "FAC-0964",
+      "state": "Bonjour, Mon abonnement CLI-10963 a été prélevé après sa résiliation. Merci de me rembourser. Ce n'est pas urgent, une réponse cette semaine me convient. Référence TKT-0964.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": true,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "FAC-0322",
+      "state": "Je vous contacte car Mon abonnement CLI-10321 a été prélevé après sa résiliation. Merci de me rembourser. Merci d'agir aujourd'hui, les conséquences sont importantes. Référence TKT-0322.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": true,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "FAC-0319",
+      "state": "Bonjour l'équipe, Mon abonnement CLI-10318 a été prélevé après sa résiliation. Merci de me rembourser. Merci de traiter cette demande dans les 48 heures. Référence TKT-0319.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": true,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "TEC-0638",
+      "state": "Madame, Monsieur, Le bouton Enregistrer reste désactivé après la saisie du formulaire. C'est urgent : cette situation bloque mon activité aujourd'hui. Référence TKT-0638.",
+      "expected": {
+        "service": "technique",
+        "remboursement": false,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "FAC-0118",
+      "state": "Madame, Monsieur, J'ai payé une option annuelle par erreur au lieu de l'option mensuelle. Je souhaite être remboursé. Je peux attendre quelques jours pour votre retour. Référence TKT-0118.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": true,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "TEC-0437",
+      "state": "Bonjour, Le bouton Enregistrer reste désactivé après la saisie du formulaire. Merci de traiter cette demande dans les 48 heures. Référence TKT-0437.",
+      "expected": {
+        "service": "technique",
+        "remboursement": false,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "FAC-0604",
+      "state": "Bonjour l'équipe, Un paiement de 149 euros que je n'ai pas autorisé apparaît sur mon compte. Je demande son remboursement. Je peux attendre quelques jours pour votre retour. Référence TKT-0604.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": true,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "LIV-0321",
+      "state": "Bonjour l'équipe, Le transporteur a retourné le colis à l'expéditeur sans me contacter. Veuillez me rembourser. Merci de traiter cette demande dans les 48 heures. Référence TKT-0321.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": true,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "FAC-0685",
+      "state": "Bonjour au support, Je souhaite comprendre le prélèvement de 29 euros visible sur mon relevé. Je peux attendre quelques jours pour votre retour. Référence TKT-0685.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": false,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "LIV-0861",
+      "state": "Madame, Monsieur, J'ai reçu un article qui ne correspond pas à ma commande CMD-500860. Je demande son remboursement. Le problème devient gênant et nécessite un retour rapide. Référence TKT-0861.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": true,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "TEC-0314",
+      "state": "Bonjour, Le courriel de réinitialisation du mot de passe n'arrive jamais. Merci d'agir aujourd'hui, les conséquences sont importantes. Référence TKT-0314.",
+      "expected": {
+        "service": "technique",
+        "remboursement": false,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "FAC-0298",
+      "state": "Bonjour, La remise promise n'a pas été appliquée sur la facture F-20260297. Je souhaite le remboursement de la différence. Je peux attendre quelques jours pour votre retour. Référence TKT-0298.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": true,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "LIV-0711",
+      "state": "Bonjour au support, Le suivi de la commande CMD-500710 n'a pas été actualisé depuis 10 jours. C'est urgent : cette situation bloque mon activité aujourd'hui. Référence TKT-0711.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": false,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "TEC-0653",
+      "state": "Madame, Monsieur, Le bouton Enregistrer reste désactivé après la saisie du formulaire. Le problème devient gênant et nécessite un retour rapide. Référence TKT-0653.",
+      "expected": {
+        "service": "technique",
+        "remboursement": false,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "FAC-0559",
+      "state": "Madame, Monsieur, Pouvez-vous modifier l'adresse de facturation du compte CLI-10558 ? Ce n'est pas urgent, une réponse cette semaine me convient. Référence TKT-0559.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": false,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "TEC-0005",
+      "state": "Bonjour au support, Depuis la dernière mise à jour, l'export CSV produit un fichier vide. Merci de traiter cette demande dans les 48 heures. Référence TKT-0005.",
+      "expected": {
+        "service": "technique",
+        "remboursement": false,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "FAC-0010",
+      "state": "Madame, Monsieur, La commande CMD-500009 a été annulée mais son paiement est toujours encaissé. Veuillez me rembourser. Ce n'est pas urgent, une réponse cette semaine me convient. Référence TKT-0010.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": true,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "TEC-0686",
+      "state": "Madame, Monsieur, La synchronisation reste bloquée à 99 % sur tous mes documents. Je peux attendre quelques jours pour votre retour. Référence TKT-0686.",
+      "expected": {
+        "service": "technique",
+        "remboursement": false,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "FAC-0448",
+      "state": "Bonjour au support, La remise promise n'a pas été appliquée sur la facture F-20260447. Je souhaite le remboursement de la différence. Merci d'agir aujourd'hui, les conséquences sont importantes. Référence TKT-0448.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": true,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "FAC-0802",
+      "state": "Bonjour au support, La remise promise n'a pas été appliquée sur la facture F-20260801. Je souhaite le remboursement de la différence. Merci de regarder ce point lorsque vous aurez le temps. Référence TKT-0802.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": true,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "TEC-0779",
+      "state": "Bonjour, L'application affiche l'erreur E403 lorsque j'ouvre le dossier CLI-10778. J'aimerais une solution avant la fin de la semaine. Référence TKT-0779.",
+      "expected": {
+        "service": "technique",
+        "remboursement": false,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "LIV-0813",
+      "state": "Bonjour, J'ai reçu le modèle bleu au lieu du modèle rouge commandé. Pouvez-vous organiser le retour ? Je peux attendre quelques jours pour votre retour. Référence TKT-0813.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": false,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "TEC-0464",
+      "state": "Bonjour, La mise à jour a supprimé mes paramètres et l'application reste inutilisable. Je souhaite être remboursé. J'aimerais une solution avant la fin de la semaine. Référence TKT-0464.",
+      "expected": {
+        "service": "technique",
+        "remboursement": true,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "LIV-0216",
+      "state": "Bonjour, Le transporteur a retourné le colis à l'expéditeur sans me contacter. Veuillez me rembourser. Merci d'agir aujourd'hui, les conséquences sont importantes. Référence TKT-0216.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": true,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "FAC-0808",
+      "state": "Bonjour, La commande CMD-500807 a été annulée mais son paiement est toujours encaissé. Veuillez me rembourser. C'est urgent : cette situation bloque mon activité aujourd'hui. Référence TKT-0808.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": true,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "TEC-0812",
+      "state": "Je vous contacte car Le courriel de réinitialisation du mot de passe n'arrive jamais. Je peux attendre quelques jours pour votre retour. Référence TKT-0812.",
+      "expected": {
+        "service": "technique",
+        "remboursement": false,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "FAC-0736",
+      "state": "Je vous contacte car Un paiement de 249 euros que je n'ai pas autorisé apparaît sur mon compte. Je demande son remboursement. C'est urgent : cette situation bloque mon activité aujourd'hui. Référence TKT-0736.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": true,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "FAC-0640",
+      "state": "Bonjour l'équipe, Un paiement de 249 euros que je n'ai pas autorisé apparaît sur mon compte. Je demande son remboursement. Ce n'est pas urgent, une réponse cette semaine me convient. Référence TKT-0640.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": true,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "FAC-0745",
+      "state": "Bonjour au support, Le renouvellement de mon abonnement apparaît deux fois dans mon espace de facturation. C'est urgent : cette situation bloque mon activité aujourd'hui. Référence TKT-0745.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": false,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "LIV-0585",
+      "state": "Bonjour au support, Le carton est arrivé endommagé et je voudrais organiser un échange. Merci d'agir aujourd'hui, les conséquences sont importantes. Référence TKT-0585.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": false,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "TEC-0191",
+      "state": "Bonjour au support, Je ne peux plus accéder à mon compte CLI-10190 malgré plusieurs réinitialisations. Merci de rembourser mon abonnement. Je peux attendre quelques jours pour votre retour. Référence TKT-0191.",
+      "expected": {
+        "service": "technique",
+        "remboursement": true,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "TEC-0422",
+      "state": "Bonjour l'équipe, Les notifications ont disparu de l'application mobile alors qu'elles sont visibles sur le web. C'est urgent : cette situation bloque mon activité aujourd'hui. Référence TKT-0422.",
+      "expected": {
+        "service": "technique",
+        "remboursement": false,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "LIV-0729",
+      "state": "Bonjour au support, Le suivi de la commande CMD-500728 n'a pas été actualisé depuis 10 jours. Une intervention immédiate est nécessaire car toute mon équipe est bloquée. Référence TKT-0729.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": false,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "FAC-0397",
+      "state": "Bonjour au support, Pouvez-vous modifier l'adresse de facturation du compte CLI-10396 ? Je peux attendre quelques jours pour votre retour. Référence TKT-0397.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": false,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "LIV-0756",
+      "state": "Madame, Monsieur, Le produit est arrivé cassé dans un carton écrasé. Je souhaite être remboursé. C'est urgent : cette situation bloque mon activité aujourd'hui. Référence TKT-0756.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": true,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "TEC-0359",
+      "state": "Bonjour au support, La visioconférence coupe après quelques secondes sur tous nos postes. Remboursez la licence de ce mois. C'est urgent : cette situation bloque mon activité aujourd'hui. Référence TKT-0359.",
+      "expected": {
+        "service": "technique",
+        "remboursement": true,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "FAC-0301",
+      "state": "Bonjour l'équipe, Un paiement de 19 euros que je n'ai pas autorisé apparaît sur mon compte. Je demande son remboursement. Le problème devient gênant et nécessite un retour rapide. Référence TKT-0301.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": true,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "TEC-0998",
+      "state": "Je vous contacte car Le courriel de réinitialisation du mot de passe n'arrive jamais. Merci d'agir aujourd'hui, les conséquences sont importantes. Référence TKT-0998.",
+      "expected": {
+        "service": "technique",
+        "remboursement": false,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "LIV-0639",
+      "state": "Je vous contacte car La date de livraison annoncée pour la commande CMD-500638 vient de changer sans explication. Merci d'agir aujourd'hui, les conséquences sont importantes. Référence TKT-0639.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": false,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "LIV-0306",
+      "state": "Bonjour au support, J'ai reçu un article qui ne correspond pas à ma commande CMD-500305. Je demande son remboursement. C'est urgent : cette situation bloque mon activité aujourd'hui. Référence TKT-0306.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": true,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "LIV-0930",
+      "state": "Bonjour, J'ai reçu un article qui ne correspond pas à ma commande CMD-500929. Je demande son remboursement. Ce n'est pas urgent, une réponse cette semaine me convient. Référence TKT-0930.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": true,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "TEC-0704",
+      "state": "Je vous contacte car Depuis la dernière mise à jour, l'export CSV produit un fichier vide. Ce n'est pas urgent, une réponse cette semaine me convient. Référence TKT-0704.",
+      "expected": {
+        "service": "technique",
+        "remboursement": false,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "TEC-0587",
+      "state": "Bonjour au support, Le logiciel plante à chaque ouverture depuis 14 jours. Je demande le remboursement de la période inutilisable. Ce n'est pas urgent, une réponse cette semaine me convient. Référence TKT-0587.",
+      "expected": {
+        "service": "technique",
+        "remboursement": true,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "TEC-0371",
+      "state": "Madame, Monsieur, La mise à jour a supprimé mes paramètres et l'application reste inutilisable. Je souhaite être remboursé. Je peux attendre quelques jours pour votre retour. Référence TKT-0371.",
+      "expected": {
+        "service": "technique",
+        "remboursement": true,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "LIV-0465",
+      "state": "Madame, Monsieur, Il manque la moitié des articles dans le colis CMD-500464. Je souhaite un remboursement des produits absents. Merci de traiter cette demande dans les 48 heures. Référence TKT-0465.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": true,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "LIV-0066",
+      "state": "Bonjour au support, Il manque la moitié des articles dans le colis CMD-500065. Je souhaite un remboursement des produits absents. Je peux attendre quelques jours pour votre retour. Référence TKT-0066.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": true,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "FAC-0826",
+      "state": "Bonjour, La remise promise n'a pas été appliquée sur la facture F-20260825. Je souhaite le remboursement de la différence. Merci d'agir aujourd'hui, les conséquences sont importantes. Référence TKT-0826.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": true,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "LIV-0423",
+      "state": "Bonjour, Je souhaite corriger l'adresse de livraison avant l'expédition de la commande CMD-500422. Merci d'agir aujourd'hui, les conséquences sont importantes. Référence TKT-0423.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": false,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "FAC-0235",
+      "state": "Madame, Monsieur, Le montant indiqué sur la facture F-20260234 ne correspond pas au tarif de mon contrat. Merci de regarder ce point lorsque vous aurez le temps. Référence TKT-0235.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": false,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "TEC-0536",
+      "state": "Bonjour au support, La visioconférence coupe après quelques secondes sur tous nos postes. Remboursez la licence de ce mois. J'aimerais une solution avant la fin de la semaine. Référence TKT-0536.",
+      "expected": {
+        "service": "technique",
+        "remboursement": true,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "TEC-0992",
+      "state": "Madame, Monsieur, Le courriel de réinitialisation du mot de passe n'arrive jamais. Merci de regarder ce point lorsque vous aurez le temps. Référence TKT-0992.",
+      "expected": {
+        "service": "technique",
+        "remboursement": false,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "TEC-0869",
+      "state": "Bonjour, Les notifications ont disparu de l'application mobile alors qu'elles sont visibles sur le web. Merci de traiter cette demande dans les 48 heures. Référence TKT-0869.",
+      "expected": {
+        "service": "technique",
+        "remboursement": false,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "TEC-0506",
+      "state": "Bonjour au support, La synchronisation reste bloquée à 12 % sur tous mes documents. Je peux attendre quelques jours pour votre retour. Référence TKT-0506.",
+      "expected": {
+        "service": "technique",
+        "remboursement": false,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "FAC-0877",
+      "state": "Bonjour, J'ai payé une option annuelle par erreur au lieu de l'option mensuelle. Je souhaite être remboursé. Le problème devient gênant et nécessite un retour rapide. Référence TKT-0877.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": true,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "FAC-0406",
+      "state": "Je vous contacte car Un paiement de 79 euros que je n'ai pas autorisé apparaît sur mon compte. Je demande son remboursement. Je peux attendre quelques jours pour votre retour. Référence TKT-0406.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": true,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "TEC-0569",
+      "state": "Madame, Monsieur, Je ne peux plus accéder à mon compte CLI-10568 malgré plusieurs réinitialisations. Merci de rembourser mon abonnement. Ce n'est pas urgent, une réponse cette semaine me convient. Référence TKT-0569.",
+      "expected": {
+        "service": "technique",
+        "remboursement": true,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "FAC-0022",
+      "state": "Bonjour, Le renouvellement de mon abonnement apparaît deux fois dans mon espace de facturation. Le problème devient gênant et nécessite un retour rapide. Référence TKT-0022.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": false,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "TEC-0179",
+      "state": "Bonjour, La mise à jour a supprimé mes paramètres et l'application reste inutilisable. Je souhaite être remboursé. Merci d'agir aujourd'hui, les conséquences sont importantes. Référence TKT-0179.",
+      "expected": {
+        "service": "technique",
+        "remboursement": true,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "FAC-0571",
+      "state": "Je vous contacte car Mon abonnement CLI-10570 a été prélevé après sa résiliation. Merci de me rembourser. J'aimerais une solution avant la fin de la semaine. Référence TKT-0571.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": true,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "LIV-0675",
+      "state": "Madame, Monsieur, La date de livraison annoncée pour la commande CMD-500674 vient de changer sans explication. Une intervention immédiate est nécessaire car toute mon équipe est bloquée. Référence TKT-0675.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": false,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "LIV-0699",
+      "state": "Bonjour, Le produit est arrivé cassé dans un carton écrasé. Je souhaite être remboursé. Le problème devient gênant et nécessite un retour rapide. Référence TKT-0699.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": true,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "FAC-0007",
+      "state": "Je vous contacte car Je souhaite comprendre le prélèvement de 19 euros visible sur mon relevé. Une intervention immédiate est nécessaire car toute mon équipe est bloquée. Référence TKT-0007.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": false,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "TEC-0743",
+      "state": "Je vous contacte car Les notifications ont disparu de l'application mobile alors qu'elles sont visibles sur le web. Le problème devient gênant et nécessite un retour rapide. Référence TKT-0743.",
+      "expected": {
+        "service": "technique",
+        "remboursement": false,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "TEC-0986",
+      "state": "Bonjour, La fonctionnalité d'export incluse dans mon offre ne fonctionne plus. Je souhaite le remboursement du mois courant. J'aimerais une solution avant la fin de la semaine. Référence TKT-0986.",
+      "expected": {
+        "service": "technique",
+        "remboursement": true,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "LIV-0684",
+      "state": "Madame, Monsieur, J'ai reçu un article qui ne correspond pas à ma commande CMD-500683. Je demande son remboursement. Merci d'agir aujourd'hui, les conséquences sont importantes. Référence TKT-0684.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": true,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "FAC-0040",
+      "state": "Bonjour l'équipe, Le renouvellement de mon abonnement apparaît deux fois dans mon espace de facturation. J'aimerais une solution avant la fin de la semaine. Référence TKT-0040.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": false,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "LIV-0168",
+      "state": "Madame, Monsieur, Le transporteur indique livré, mais je n'ai pas reçu le colis CMD-500167. Le problème devient gênant et nécessite un retour rapide. Référence TKT-0168.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": false,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "FAC-0895",
+      "state": "Je vous contacte car La commande CMD-500894 a été annulée mais son paiement est toujours encaissé. Veuillez me rembourser. Le problème devient gênant et nécessite un retour rapide. Référence TKT-0895.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": true,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "FAC-0580",
+      "state": "Je vous contacte car Pouvez-vous modifier l'adresse de facturation du compte CLI-10579 ? J'aimerais une solution avant la fin de la semaine. Référence TKT-0580.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": false,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "FAC-0730",
+      "state": "Bonjour l'équipe, J'ai payé une option annuelle par erreur au lieu de l'option mensuelle. Je souhaite être remboursé. Ce n'est pas urgent, une réponse cette semaine me convient. Référence TKT-0730.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": true,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "TEC-0929",
+      "state": "Bonjour, Le logiciel plante à chaque ouverture depuis 7 jours. Je demande le remboursement de la période inutilisable. Je peux attendre quelques jours pour votre retour. Référence TKT-0929.",
+      "expected": {
+        "service": "technique",
+        "remboursement": true,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "LIV-0804",
+      "state": "Je vous contacte car Le colis CMD-500803 est en retard de 7 jours. Je demande un remboursement complet. Je peux attendre quelques jours pour votre retour. Référence TKT-0804.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": true,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "FAC-0715",
+      "state": "Bonjour, Un paiement de 149 euros que je n'ai pas autorisé apparaît sur mon compte. Je demande son remboursement. Merci de traiter cette demande dans les 48 heures. Référence TKT-0715.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": true,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "FAC-0619",
+      "state": "Bonjour l'équipe, Pouvez-vous modifier l'adresse de facturation du compte CLI-10618 ? C'est urgent : cette situation bloque mon activité aujourd'hui. Référence TKT-0619.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": false,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "LIV-0195",
+      "state": "Madame, Monsieur, Il manque la moitié des articles dans le colis CMD-500194. Je souhaite un remboursement des produits absents. Merci de traiter cette demande dans les 48 heures. Référence TKT-0195.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": true,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "FAC-0382",
+      "state": "Je vous contacte car Je souhaite comprendre le prélèvement de 79 euros visible sur mon relevé. Le problème devient gênant et nécessite un retour rapide. Référence TKT-0382.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": false,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "TEC-0260",
+      "state": "Madame, Monsieur, Les notifications ont disparu de l'application mobile alors qu'elles sont visibles sur le web. Une intervention immédiate est nécessaire car toute mon équipe est bloquée. Référence TKT-0260.",
+      "expected": {
+        "service": "technique",
+        "remboursement": false,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "FAC-0376",
+      "state": "Je vous contacte car La commande CMD-500375 a été annulée mais son paiement est toujours encaissé. Veuillez me rembourser. Une intervention immédiate est nécessaire car toute mon équipe est bloquée. Référence TKT-0376.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": true,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "TEC-0419",
+      "state": "Bonjour, Les notifications ont disparu de l'application mobile alors qu'elles sont visibles sur le web. Le problème devient gênant et nécessite un retour rapide. Référence TKT-0419.",
+      "expected": {
+        "service": "technique",
+        "remboursement": false,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "FAC-0709",
+      "state": "Bonjour l'équipe, Le montant indiqué sur la facture F-20260708 ne correspond pas au tarif de mon contrat. C'est urgent : cette situation bloque mon activité aujourd'hui. Référence TKT-0709.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": false,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "FAC-0529",
+      "state": "Madame, Monsieur, Le paiement de 29 euros est refusé alors que ma banque confirme que la carte fonctionne. Merci d'agir aujourd'hui, les conséquences sont importantes. Référence TKT-0529.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": false,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "FAC-0697",
+      "state": "Madame, Monsieur, J'ai payé une option annuelle par erreur au lieu de l'option mensuelle. Je souhaite être remboursé. Merci de traiter cette demande dans les 48 heures. Référence TKT-0697.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": true,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "TEC-0809",
+      "state": "Madame, Monsieur, La mise à jour a supprimé mes paramètres et l'application reste inutilisable. Je souhaite être remboursé. Merci d'agir aujourd'hui, les conséquences sont importantes. Référence TKT-0809.",
+      "expected": {
+        "service": "technique",
+        "remboursement": true,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "TEC-0719",
+      "state": "Bonjour au support, Le logiciel plante à chaque ouverture depuis 2 jours. Je demande le remboursement de la période inutilisable. Merci d'agir aujourd'hui, les conséquences sont importantes. Référence TKT-0719.",
+      "expected": {
+        "service": "technique",
+        "remboursement": true,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "LIV-0597",
+      "state": "Madame, Monsieur, Le carton est arrivé endommagé et je voudrais organiser un échange. Je peux attendre quelques jours pour votre retour. Référence TKT-0597.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": false,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "FAC-0454",
+      "state": "Madame, Monsieur, Le paiement de 29 euros est refusé alors que ma banque confirme que la carte fonctionne. Merci de traiter cette demande dans les 48 heures. Référence TKT-0454.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": false,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "TEC-0278",
+      "state": "Bonjour au support, Le bouton Enregistrer reste désactivé après la saisie du formulaire. C'est urgent : cette situation bloque mon activité aujourd'hui. Référence TKT-0278.",
+      "expected": {
+        "service": "technique",
+        "remboursement": false,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "TEC-0386",
+      "state": "Je vous contacte car La synchronisation reste bloquée à 25 % sur tous mes documents. Merci d'agir aujourd'hui, les conséquences sont importantes. Référence TKT-0386.",
+      "expected": {
+        "service": "technique",
+        "remboursement": false,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "FAC-0973",
+      "state": "Bonjour, Le montant indiqué sur la facture F-20260972 ne correspond pas au tarif de mon contrat. Je peux attendre quelques jours pour votre retour. Référence TKT-0973.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": false,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "LIV-0312",
+      "state": "Bonjour, Le transporteur indique livré, mais je n'ai pas reçu le colis CMD-500311. Merci de traiter cette demande dans les 48 heures. Référence TKT-0312.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": false,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "TEC-0602",
+      "state": "Bonjour, Le bouton Enregistrer reste désactivé après la saisie du formulaire. Une intervention immédiate est nécessaire car toute mon équipe est bloquée. Référence TKT-0602.",
+      "expected": {
+        "service": "technique",
+        "remboursement": false,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "LIV-0018",
+      "state": "Madame, Monsieur, Le produit est arrivé cassé dans un carton écrasé. Je souhaite être remboursé. Une intervention immédiate est nécessaire car toute mon équipe est bloquée. Référence TKT-0018.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": true,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "FAC-0415",
+      "state": "Je vous contacte car Le montant indiqué sur la facture F-20260414 ne correspond pas au tarif de mon contrat. Merci de regarder ce point lorsque vous aurez le temps. Référence TKT-0415.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": false,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "LIV-0015",
+      "state": "Bonjour, J'ai reçu un article qui ne correspond pas à ma commande CMD-500014. Je demande son remboursement. Le problème devient gênant et nécessite un retour rapide. Référence TKT-0015.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": true,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "LIV-0006",
+      "state": "Madame, Monsieur, Le suivi de la commande CMD-500005 n'a pas été actualisé depuis 14 jours. Merci de traiter cette demande dans les 48 heures. Référence TKT-0006.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": false,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "TEC-0020",
+      "state": "Bonjour l'équipe, Le bouton Enregistrer reste désactivé après la saisie du formulaire. Ce n'est pas urgent, une réponse cette semaine me convient. Référence TKT-0020.",
+      "expected": {
+        "service": "technique",
+        "remboursement": false,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "TEC-0788",
+      "state": "Bonjour, L'erreur E500 empêche toute utilisation du service. Je demande le remboursement des jours perdus. Merci de traiter cette demande dans les 48 heures. Référence TKT-0788.",
+      "expected": {
+        "service": "technique",
+        "remboursement": true,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "FAC-0922",
+      "state": "Bonjour, Je souhaite comprendre le prélèvement de 149 euros visible sur mon relevé. Le problème devient gênant et nécessite un retour rapide. Référence TKT-0922.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": false,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "TEC-0233",
+      "state": "Bonjour, La fonctionnalité d'export incluse dans mon offre ne fonctionne plus. Je souhaite le remboursement du mois courant. Merci d'agir aujourd'hui, les conséquences sont importantes. Référence TKT-0233.",
+      "expected": {
+        "service": "technique",
+        "remboursement": true,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "TEC-0887",
+      "state": "Bonjour, Les notifications ont disparu de l'application mobile alors qu'elles sont visibles sur le web. Le problème devient gênant et nécessite un retour rapide. Référence TKT-0887.",
+      "expected": {
+        "service": "technique",
+        "remboursement": false,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "LIV-0135",
+      "state": "Bonjour au support, J'ai reçu le modèle bleu au lieu du modèle rouge commandé. Pouvez-vous organiser le retour ? C'est urgent : cette situation bloque mon activité aujourd'hui. Référence TKT-0135.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": false,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "FAC-0466",
+      "state": "Bonjour au support, Mon abonnement CLI-10465 a été prélevé après sa résiliation. Merci de me rembourser. Merci d'agir aujourd'hui, les conséquences sont importantes. Référence TKT-0466.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": true,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "LIV-0024",
+      "state": "Bonjour au support, Le transporteur indique livré, mais je n'ai pas reçu le colis CMD-500023. J'aimerais une solution avant la fin de la semaine. Référence TKT-0024.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": false,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "TEC-0368",
+      "state": "Bonjour, La synchronisation reste bloquée à 48 % sur tous mes documents. Merci d'agir aujourd'hui, les conséquences sont importantes. Référence TKT-0368.",
+      "expected": {
+        "service": "technique",
+        "remboursement": false,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "FAC-0445",
+      "state": "Madame, Monsieur, Ma carte a été débitée deux fois de 19 euros pour la commande CMD-500444. Je demande le remboursement du doublon. Merci de traiter cette demande dans les 48 heures. Référence TKT-0445.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": true,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "TEC-0764",
+      "state": "Bonjour au support, L'application affiche l'erreur E401 lorsque j'ouvre le dossier CLI-10763. Une intervention immédiate est nécessaire car toute mon équipe est bloquée. Référence TKT-0764.",
+      "expected": {
+        "service": "technique",
+        "remboursement": false,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "FAC-0412",
+      "state": "Madame, Monsieur, Un paiement de 99 euros que je n'ai pas autorisé apparaît sur mon compte. Je demande son remboursement. Une intervention immédiate est nécessaire car toute mon équipe est bloquée. Référence TKT-0412.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": true,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "LIV-0498",
+      "state": "Bonjour au support, Le colis CMD-500497 est en retard de 14 jours. Je demande un remboursement complet. Merci de regarder ce point lorsque vous aurez le temps. Référence TKT-0498.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": true,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "LIV-0615",
+      "state": "Madame, Monsieur, Le carton est arrivé endommagé et je voudrais organiser un échange. Merci de regarder ce point lorsque vous aurez le temps. Référence TKT-0615.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": false,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "FAC-0418",
+      "state": "Bonjour l'équipe, Le renouvellement de mon abonnement apparaît deux fois dans mon espace de facturation. Merci de traiter cette demande dans les 48 heures. Référence TKT-0418.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": false,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "LIV-0564",
+      "state": "Bonjour, Le transporteur indique livré, mais je n'ai pas reçu le colis CMD-500563. Le problème devient gênant et nécessite un retour rapide. Référence TKT-0564.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": false,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "LIV-0213",
+      "state": "Madame, Monsieur, J'ai reçu un article qui ne correspond pas à ma commande CMD-500212. Je demande son remboursement. Merci de traiter cette demande dans les 48 heures. Référence TKT-0213.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": true,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "LIV-0789",
+      "state": "Bonjour l'équipe, J'ai reçu un article qui ne correspond pas à ma commande CMD-500788. Je demande son remboursement. J'aimerais une solution avant la fin de la semaine. Référence TKT-0789.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": true,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "FAC-0079",
+      "state": "Bonjour l'équipe, Je n'ai pas reçu la facture de mai pour mon abonnement CLI-10078. C'est urgent : cette situation bloque mon activité aujourd'hui. Référence TKT-0079.",
+      "expected": {
+        "service": "facturation",
+        "remboursement": false,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "TEC-0635",
+      "state": "Bonjour l'équipe, L'application affiche l'erreur E403 lorsque j'ouvre le dossier CLI-10634. Le problème devient gênant et nécessite un retour rapide. Référence TKT-0635.",
+      "expected": {
+        "service": "technique",
+        "remboursement": false,
+        "urgence": "Modérée"
+      }
+    },
+    {
+      "id": "TEC-0893",
+      "state": "Bonjour au support, La visioconférence coupe après quelques secondes sur tous nos postes. Remboursez la licence de ce mois. Merci de regarder ce point lorsque vous aurez le temps. Référence TKT-0893.",
+      "expected": {
+        "service": "technique",
+        "remboursement": true,
+        "urgence": "Faible"
+      }
+    },
+    {
+      "id": "LIV-0342",
+      "state": "Je vous contacte car Le transporteur a retourné le colis à l'expéditeur sans me contacter. Veuillez me rembourser. C'est urgent : cette situation bloque mon activité aujourd'hui. Référence TKT-0342.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": true,
+        "urgence": "Élevée"
+      }
+    },
+    {
+      "id": "LIV-0060",
+      "state": "Bonjour au support, Le suivi de la commande CMD-500059 n'a pas été actualisé depuis 2 jours. J'aimerais une solution avant la fin de la semaine. Référence TKT-0060.",
+      "expected": {
+        "service": "livraison",
+        "remboursement": false,
+        "urgence": "Modérée"
+      }
+    }
+  ]
+}

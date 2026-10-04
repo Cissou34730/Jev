@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ASD-FT100 — Routage de tickets par Laya en local : objectif, démarche, résultat</title>
+<title>ASD-FT100 — Modèles de décision non génératifs pour le tri de tickets : historique, benchmarks et candidat retenu</title>
 <script>
   (() => {
     const param = new URLSearchParams(window.location.search).get("scoutTheme");
@@ -260,28 +260,30 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
 
 <header class="doc-head">
   <span class="doc-ref">ASD-FT100</span>
-  <h1>Routage de tickets par Laya en local</h1>
-  <p class="sub">Objectif, démarche, échecs, corrections et résultat final — inférence sur iGPU Intel</p>
+  <h1>Modèles de décision non génératifs pour le tri de tickets</h1>
+  <p class="sub">Historique, benchmarks locaux, spécialisations et candidat retenu</p>
   <dl class="meta">
     <div><dt>Référence</dt><dd>ASD-FT100</dd></div>
-    <div><dt>Date</dt><dd>3 octobre 2026</dd></div>
-    <div><dt>Statut</dt><dd>Clos — décision en attente</dd></div>
-    <div><dt>Périmètre</dt><dd>Question <code>service</code>, puis tête de décision</dd></div>
+    <div><dt>Date</dt><dd>4 octobre 2026</dd></div>
+    <div><dt>Statut</dt><dd>Clos — Laya retenu, exporté et prêt à tester</dd></div>
+    <div><dt>Périmètre</dt><dd>Laya, MiniLM et mDeBERTa sur trois décisions</dd></div>
     <div><dt>Environnement</dt><dd>Windows / OpenVINO / Iris Xe</dd></div>
-    <div><dt>Checkpoint</dt><dd><code>laya-master</code> (mmBERT-base)</dd></div>
+    <div><dt>Checkpoint retenu</dt><dd><code>laya-head-joint-plus2</code></dd></div>
   </dl>
 </header>
 
 <div class="box ok">
-  <span class="label">Résultat</span>
-  <p>La cause du mauvais routage n'était pas le texte des critères, ni les libellés, ni le type de question : c'était la <strong>tête de décision</strong>. En la réentraînant seule, encodeur gelé, l'exactitude sur des tickets dont le problème n'avait jamais été vu passe de <strong>42,2 % à 83,1 %</strong> et le duel facturation/livraison de <strong>83,0 % à 90,7 %</strong>.</p>
-  <p>Effet de bord mesuré : la tête étant partagée entre les trois questions, <code>remboursement</code> tombe de 99,4 % à 66,4 % et <code>urgence</code> de 48,3 % à 36,4 %. Correction identifiée, non encore appliquée.</p>
+  <span class="label">Conclusion</span>
+  <p><strong>Laya, dont la tête partagée est réentraînée sur les trois questions à la fois, domine toutes les autres configurations testées.</strong> Sur 503 tickets dont le problème n'a jamais été vu : <strong>92,0 % sur <code>service</code></strong>, <strong>100 % sur <code>remboursement</code></strong> et <strong>80,2 % sur <code>urgence</code></strong>, soit <strong>90,7 %</strong> de décisions correctes.</p>
+  <p>L'effondrement observé lors de la première phase n'était pas une limite du modèle : il venait d'avoir entraîné une tête <em>partagée</em> sur une <em>seule</em> question. Entraînée sur les trois, elle les tient toutes. Les modèles de remplacement évalués entre-temps, MiniLM et mDeBERTa, restent nettement en dessous.</p>
+  <p>Le modèle est exporté en ONNX et compilé sans erreur par OpenVINO sur l'iGPU. Il est donc prêt à être servi et testé de bout en bout (§A).</p>
+  <p>Réserve essentielle : <strong>le jeu reste synthétique</strong>. Ce résultat démontre que l'architecture n'était pas le blocage et que la démarche est rationnelle ; il ne démontre pas encore que le modèle généralisera à de vrais tickets clients.</p>
 </div>
 
 <!-- =========================================================== -->
 <section>
   <h2><span class="num">1.</span>Objet</h2>
-  <p>Faire fonctionner un modèle de décision Laya <strong>en local</strong>, sur iGPU Intel, pour router des tickets de support. Trois questions par ticket :</p>
+  <p>Évaluer des modèles de décision <strong>non génératifs</strong>, exécutables localement et exportables en ONNX/OpenVINO, pour classer des tickets de support. Le travail a commencé avec Laya, puis a comparé deux encodeurs NLI multilingues et plusieurs formes de spécialisation locale. Trois décisions sont mesurées par ticket :</p>
   <table>
     <thead><tr><th>Question</th><th>Type</th><th>Options</th><th>Attendu</th></tr></thead>
     <tbody>
@@ -291,6 +293,7 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
     </tbody>
   </table>
   <p>Le jeu de test est <code>tickets-1000.json</code> : 1000 tickets français, classes équilibrées (334 / 333 / 333).</p>
+  <p>L'objectif final n'est pas de gagner quelques points sur ce jeu synthétique, mais d'identifier le candidat le plus crédible pour un futur apprentissage supervisé sur des tickets métier réels.</p>
 </section>
 
 <!-- =========================================================== -->
@@ -301,6 +304,8 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
     <tbody>
       <tr><td>Serveur</td><td><code>laya_serve_openvino.py</code>, OpenVINO sur Intel Iris Xe</td></tr>
       <tr><td>Checkpoint</td><td><code>laya-master</code> — mmBERT-base multilingue, 22 couches, vocab 256 000</td></tr>
+      <tr><td>MiniLM</td><td><code>multilingual-MiniLMv2-L6-mnli-xnli</code> — ONNX/OpenVINO, CPU et iGPU</td></tr>
+      <tr><td>mDeBERTa</td><td><code>mDeBERTa-v3-base-xnli-multilingual-nli-2mil7</code> — modèle comparatif plus lourd</td></tr>
       <tr><td>Budget de séquence</td><td><code>max_len</code> 256, <code>head_max_len</code> 256, 5 marqueurs d'option</td></tr>
       <tr><td>Client</td><td><code>laya-client-spectre.ps1</code>, seuils <code>0.5</code> / <code>1.6</code> / <code>1.74</code></td></tr>
       <tr><td>Débit</td><td>3,5 tickets/s, 10,4 réponses/s (les refus 503 sont du backpressure normal)</td></tr>
@@ -311,7 +316,7 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
 
 <!-- =========================================================== -->
 <section>
-  <h2><span class="num">3.</span>Objectif poursuivi</h2>
+  <h2><span class="num">3.</span>Phase initiale — objectif Laya</h2>
   <p>Un seul objectif, formulé en une phrase : <strong>que <code>service</code> cesse de répondre <code>technique</code> à presque tout</strong>.</p>
   <p>La question était ouverte sur le <em>comment</em>, et la démarche a consisté à éliminer les causes une par une, puis à agir sur celle qui restait. Trois hypothèses ont été posées successivement :</p>
   <ol>
@@ -324,7 +329,7 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
 
 <!-- =========================================================== -->
 <section>
-  <h2><span class="num">4.</span>Démarche suivie</h2>
+  <h2><span class="num">4.</span>Démarche suivie sur Laya</h2>
 
   <ol class="steps">
     <li>
@@ -451,7 +456,7 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
 
 <!-- =========================================================== -->
 <section>
-  <h2><span class="num">7.</span>Résultat final</h2>
+  <h2><span class="num">7.</span>Résultat de la phase Laya</h2>
 
   <h3>7.1 Entraînement — 503 tickets dont le problème n'a jamais été vu</h3>
   <table>
@@ -491,49 +496,365 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
   </div>
 
   <div class="box">
-    <span class="label">Correction identifiée</span>
+    <span class="label">Correction identifiée — exécutée depuis (§10)</span>
     <p>Entraîner les trois questions ensemble, pour que la tête partagée conserve les trois :</p>
     <pre><code>uv run python train_head.py --question service,remboursement,urgence</code></pre>
     <p>L'objectif <code>proper_reward</code> gère déjà les trois types — terme RPS pour <code>score</code>, binaire pour <code>noul</code> — et les 1000 tickets portent les trois valeurs attendues.</p>
+    <p><strong>Cette correction n'a longtemps pas été lancée.</strong> Le projet est passé directement à l'évaluation de modèles de remplacement (§8 et §9), et c'est seulement après coup qu'elle a été exécutée. Son résultat, décisif, figure en <strong>§10</strong>.</p>
   </div>
 </section>
 
 <!-- =========================================================== -->
 <section>
-  <h2><span class="num">8.</span>Limites et réserves</h2>
+  <h2><span class="num">8.</span>Comparaison des modèles de remplacement</h2>
+
+  <p>Après la phase Laya, deux modèles NLI multilingues non génératifs ont été évalués sur les mêmes 800 tickets tenus à l'écart. Les formulations des hypothèses ont été corrigées avant la comparaison ; la température n'a pas constitué un levier utile, car elle modifie la calibration sans corriger le classement des classes.</p>
+
+  <table>
+    <thead><tr><th>Modèle zéro-shot</th><th class="num">Service</th><th class="num">Remboursement</th><th class="num">Urgence</th><th class="num">Global</th><th class="num">Débit</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>MiniLM</td>
+        <td class="num win">71,3 %</td>
+        <td class="num">57,9 %</td>
+        <td class="num">49,1 %</td>
+        <td class="num">59,4 %</td>
+        <td class="num win">99,4 décisions/s</td>
+      </tr>
+      <tr>
+        <td>mDeBERTa</td>
+        <td class="num bad">43,1 %</td>
+        <td class="num win">68,0 %</td>
+        <td class="num win">67,8 %</td>
+        <td class="num">59,6 %</td>
+        <td class="num">12,3 décisions/s</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="box note">
+    <span class="label">Lecture</span>
+    <p>Les scores globaux sont presque identiques, mais ils masquent des comportements opposés. MiniLM est nettement meilleur sur <code>service</code> et environ huit fois plus rapide. mDeBERTa domine sur <code>urgence</code>, mais s'effondre sur <code>service</code>. Aucun des deux modèles zéro-shot ne constitue une solution générale fiable.</p>
+  </div>
+</section>
+
+<!-- =========================================================== -->
+<section>
+  <h2><span class="num">9.</span>Spécialisation locale de MiniLM</h2>
+
+  <p>Une tête linéaire distincte a été entraînée pour chaque décision sur les représentations d'un encodeur MiniLM gelé. Le découpage sépare des groupes de problèmes afin d'éviter de mesurer uniquement la mémorisation de formulations déjà vues. Les tailles des jeux de test spécialisés diffèrent du benchmark zéro-shot ; les écarts ci-dessous indiquent une tendance, pas une comparaison expérimentale parfaitement contrôlée.</p>
+
+  <table>
+    <thead><tr><th>Question</th><th class="num">MiniLM zéro-shot</th><th class="num">MiniLM spécialisé</th><th class="num">Écart</th></tr></thead>
+    <tbody>
+      <tr><td><code>service</code></td><td class="num">71,3 %</td><td class="num win">81,0 %</td><td class="num win">+9,7 points</td></tr>
+      <tr><td><code>remboursement</code></td><td class="num">57,9 %</td><td class="num win">92,8 %</td><td class="num win">+34,9 points</td></tr>
+      <tr><td><code>urgence</code></td><td class="num">49,1 %</td><td class="num">55,7 %</td><td class="num">+6,6 points</td></tr>
+    </tbody>
+  </table>
+
+  <p>Le résultat sur <code>remboursement</code> montre qu'un petit modèle peut apprendre efficacement une décision bien définie. À l'inverse, <code>urgence</code> reste faible : la classe « Modérée » est notamment presque absorbée par « Élevée ».</p>
+
+  <div class="box fail">
+    <span class="label">Fine-tuning partiel d'urgence — échec</span>
+    <p>Le dégel de la dernière couche de MiniLM n'a pas amélioré la généralisation : <strong>50,5 %</strong> avec 648 exemples synthétiques supplémentaires et <strong>46,0 %</strong> sans augmentation, contre <strong>55,7 %</strong> avec la tête spécialisée et l'encodeur gelé. Ces checkpoints ne doivent pas être promus.</p>
+  </div>
+</section>
+
+<!-- =========================================================== -->
+<section>
+  <h2><span class="num">10.</span>Entraînement conjoint de Laya — l'expérience décisive</h2>
+
+  <p>La correction identifiée en §7 n'avait jamais été lancée. Elle l'a été ensuite, dans les mêmes conditions que le premier réentraînement : encodeur gelé et mis en cache, parité vérifiée avant toute optimisation (<code>2,48e-05</code>), découpage par énoncé de problème — 497 tickets d'entraînement, <strong>503 tenus à l'écart portant des problèmes jamais vus</strong>.</p>
+
+  <table>
+    <thead><tr><th>Question</th><th class="num">Avant</th><th class="num">Après 20 époques</th><th class="num">Écart</th></tr></thead>
+    <tbody>
+      <tr><td><code>service</code></td><td class="num">63,6 %</td><td class="num win">92,0 %</td><td class="num win">+28,4 points</td></tr>
+      <tr><td><code>remboursement</code></td><td class="num">99,4 %</td><td class="num win">100,0 %</td><td class="num win">+0,6 point</td></tr>
+      <tr><td><code>urgence</code></td><td class="num bad">40,7 %</td><td class="num win">79,1 %</td><td class="num win">+38,4 points</td></tr>
+      <tr><td><strong>Global</strong></td><td class="num">67,8 %</td><td class="num win">90,3 %</td><td class="num win">+22,5 points</td></tr>
+      <tr><td>Duel facturation / livraison</td><td class="num">85,3 %</td><td class="num win">97,1 %</td><td class="num win">+11,8 points</td></tr>
+    </tbody>
+  </table>
+
+  <h3>10.1 Progression des vingt premières époques, sur la moitié tenue à l'écart</h3>
+  <table>
+    <thead><tr><th>Époque</th><th class="num">Service</th><th class="num">Remb.</th><th class="num">Urgence</th><th class="num">Global</th></tr></thead>
+    <tbody>
+      <tr><td>avant</td><td class="num">63,6 %</td><td class="num">99,4 %</td><td class="num">40,7 %</td><td class="num">67,8 %</td></tr>
+      <tr><td>1</td><td class="num">64,8 %</td><td class="num">89,9 %</td><td class="num">45,4 %</td><td class="num">66,6 %</td></tr>
+      <tr><td>5</td><td class="num">80,3 %</td><td class="num">100,0 %</td><td class="num">51,7 %</td><td class="num">77,1 %</td></tr>
+      <tr><td>10</td><td class="num">84,6 %</td><td class="num">100,0 %</td><td class="num">61,6 %</td><td class="num">81,9 %</td></tr>
+      <tr><td>15</td><td class="num">89,5 %</td><td class="num">100,0 %</td><td class="num">70,4 %</td><td class="num">86,5 %</td></tr>
+      <tr><td><strong>20</strong></td><td class="num win">92,0 %</td><td class="num win">100,0 %</td><td class="num win">79,1 %</td><td class="num win">90,3 %</td></tr>
+    </tbody>
+  </table>
+
+  <div class="bars">
+    <div class="bar-row"><span class="bar-name">avant</span><span class="bar-track"><span class="bar-fill muted" style="width:67.8%"></span></span><span class="bar-val">67,8 %</span></div>
+    <div class="bar-row"><span class="bar-name">époque 5</span><span class="bar-track"><span class="bar-fill" style="width:77.1%"></span></span><span class="bar-val">77,1 %</span></div>
+    <div class="bar-row"><span class="bar-name">époque 10</span><span class="bar-track"><span class="bar-fill" style="width:81.9%"></span></span><span class="bar-val">81,9 %</span></div>
+    <div class="bar-row"><span class="bar-name">époque 15</span><span class="bar-track"><span class="bar-fill" style="width:86.5%"></span></span><span class="bar-val">86,5 %</span></div>
+    <div class="bar-row"><span class="bar-name">époque 20</span><span class="bar-track"><span class="bar-fill" style="width:90.3%"></span></span><span class="bar-val">90,3 %</span></div>
+  </div>
+
+  <div class="box ok">
+    <span class="label">Ce que cette mesure corrige</span>
+    <ul>
+      <li><strong>L'effondrement n'était pas structurel.</strong> La tête partagée ne « perd » pas les autres questions : elle perd ce sur quoi on cesse de l'entraîner. Entraînée sur les trois, elle les tient toutes.</li>
+      <li><strong><code>urgence</code> avait bien du signal.</strong> Elle passe de 40,7 % à 79,1 %, alors que les phases précédentes concluaient à une absence de signal exploitable. C'est la plus forte progression des trois.</li>
+      <li><strong><code>remboursement</code> atteint 100 %</strong> sur des problèmes jamais vus, pour une base de 50,4 % en réponse constante. La compétence est réelle, et le réentraînement conjoint la renforce au lieu de la détruire.</li>
+    </ul>
+  </div>
+
+  <div class="box note">
+    <span class="label">Réserves sur ce run</span>
+    <ul>
+      <li><strong>Le modèle n'avait pas convergé.</strong> <code>urgence</code> gagnait encore près de 9 points entre la quinzième et la vingtième époque. C'est ce qui a motivé la continuation décrite en §10.2.</li>
+      <li><code>--save-best</code> était actif, donc la moitié tenue à l'écart a aussi servi à choisir l'époque. Ici la meilleure époque <em>est</em> la dernière, ce qui annule en pratique l'effet de sélection, mais le chiffre reste une validation plutôt qu'un test strictement propre.</li>
+      <li>L'écart entre entraînement (94,97 %) et tenu à l'écart (90,26 %) était alors de 4,7 points : modéré, sans surapprentissage marqué.</li>
+      <li>Le jeu reste synthétique. Le découpage sépare les énoncés de problème, pas les clients ni les périodes.</li>
+    </ul>
+  </div>
+
+  <h3>10.2 Continuation de deux époques — où s'arrête le gain</h3>
+
+  <p>L'entraînement a été repris <strong>à partir du checkpoint de l'époque 20</strong>, sans refaire les vingt premières, sur le même découpage et la même graine. L'état de l'optimiseur Adam n'étant pas conservé dans le checkpoint, la reprise repart avec un optimiseur neuf ; le taux d'apprentissage a donc été ramené de <code>1e-3</code> à <code>1e-4</code> pour éviter un à-coup à la reprise.</p>
+
+  <table>
+    <thead><tr><th>Époque</th><th class="num">Service</th><th class="num">Remb.</th><th class="num">Urgence</th><th class="num">Global</th><th class="num">Duel f/l</th></tr></thead>
+    <tbody>
+      <tr><td>20 (départ)</td><td class="num">92,0 %</td><td class="num">100,0 %</td><td class="num">79,1 %</td><td class="num">90,3 %</td><td class="num">97,1 %</td></tr>
+      <tr><td>21</td><td class="num">92,0 %</td><td class="num">100,0 %</td><td class="num bad">76,7 %</td><td class="num bad">89,5 %</td><td class="num">98,0 %</td></tr>
+      <tr><td><strong>22</strong></td><td class="num">92,0 %</td><td class="num win">100,0 %</td><td class="num win">80,2 %</td><td class="num win">90,7 %</td><td class="num win">98,0 %</td></tr>
+    </tbody>
+  </table>
+
+  <p>Le gain est réel mais faible et irrégulier : <strong>+1,1 point sur <code>urgence</code></strong> et <strong>+0,4 point au global</strong>, avec un creux à l'époque 21. <code>service</code> et <code>remboursement</code> ne bougent pas.</p>
+
+  <div class="box note">
+    <span class="label">Premier signe mesurable de surapprentissage</span>
+    <table>
+      <thead><tr><th>Mesure</th><th class="num">Après 20 époques</th><th class="num">Après 22 époques</th></tr></thead>
+      <tbody>
+        <tr><td>Entraînement</td><td class="num">94,97 %</td><td class="num">97,38 %</td></tr>
+        <tr><td>Tenu à l'écart</td><td class="num">90,26 %</td><td class="num">90,66 %</td></tr>
+        <tr><td>Écart de généralisation</td><td class="num">4,7 points</td><td class="num bad">6,7 points</td></tr>
+      </tbody>
+    </table>
+    <p>L'entraînement gagne 2,4 points quand la validation n'en gagne que 0,4 : le modèle commence à apprendre les données plutôt que la tâche. Ce n'est pas encore un surapprentissage destructeur — la validation progresse toujours — mais c'est le moment où poursuivre devient peu rentable. <strong>L'entraînement a donc été arrêté à 22 époques.</strong></p>
+  </div>
+
+  <h3>10.3 Export ONNX et validation du chemin d'inférence</h3>
+
+  <p>Le checkpoint retenu a été exporté et vérifié à chaque étape de la chaîne :</p>
+  <table>
+    <thead><tr><th>Vérification</th><th class="num">Écart mesuré</th></tr></thead>
+    <tbody>
+      <tr><td>Forward adapté GPU contre <code>DecisionModel.forward</code> officiel</td><td class="num">1,91e-06 sur les logits</td></tr>
+      <tr><td>ONNX contre PyTorch, forme nominale</td><td class="num">2,19e-05</td></tr>
+      <tr><td>ONNX contre PyTorch, autre forme</td><td class="num">1,43e-05</td></tr>
+    </tbody>
+  </table>
+  <p>Le fichier fait <strong>1,20 Go</strong>, produit en 184 s. OpenVINO l'a compilé sans erreur sur l'iGPU pour quatre formes — (4, 128), (16, 256), (8, 384) et (2, 512). Le chemin de service est donc opérationnel, mais <strong>les chiffres de ce rapport proviennent de l'évaluation PyTorch du script</strong> : une mesure de bout en bout via le serveur reste à faire.</p>
+</section>
+
+<!-- =========================================================== -->
+<section>
+  <h2><span class="num">11.</span>Tableau comparatif global</h2>
+
+  <p>Synthèse de toutes les configurations mesurées au cours du projet, Laya compris. Les trois lignes Laya correspondent aux phases successives ; les trois autres aux modèles de remplacement. La colonne « Moyenne » est la moyenne simple des trois décisions, les effectifs par question n'étant pas identiques d'un protocole à l'autre.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Configuration</th>
+        <th>Type</th>
+        <th class="num">Service</th>
+        <th class="num">Remb.</th>
+        <th class="num">Urgence</th>
+        <th class="num">Moyenne</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Laya <code>laya-master</code></td>
+        <td>tête d'origine</td>
+        <td class="num bad">50,5 %</td>
+        <td class="num">99,4 %</td>
+        <td class="num bad">48,3 %</td>
+        <td class="num">66,1 %</td>
+      </tr>
+      <tr>
+        <td>Laya <code>laya-head</code></td>
+        <td>tête réentraînée sur <code>service</code> seul</td>
+        <td class="num">83,1 %</td>
+        <td class="num bad">66,4 %</td>
+        <td class="num bad">36,4 %</td>
+        <td class="num">62,0 %</td>
+      </tr>
+      <tr>
+        <td>MiniLM</td>
+        <td>zéro-shot</td>
+        <td class="num">71,3 %</td>
+        <td class="num">57,9 %</td>
+        <td class="num bad">49,1 %</td>
+        <td class="num">59,4 %</td>
+      </tr>
+      <tr>
+        <td>mDeBERTa</td>
+        <td>zéro-shot</td>
+        <td class="num bad">43,1 %</td>
+        <td class="num">68,0 %</td>
+        <td class="num">67,8 %</td>
+        <td class="num">59,6 %</td>
+      </tr>
+      <tr>
+        <td>MiniLM</td>
+        <td>têtes spécialisées, encodeur gelé</td>
+        <td class="num">81,0 %</td>
+        <td class="num">92,8 %</td>
+        <td class="num">55,7 %</td>
+        <td class="num">76,5 %</td>
+      </tr>
+      <tr>
+        <td><strong>Laya <code>laya-head-joint-plus2</code></strong></td>
+        <td><strong>tête réentraînée sur les 3 questions, 22 époques</strong></td>
+        <td class="num win">92,0 %</td>
+        <td class="num win">100,0 %</td>
+        <td class="num win">80,2 %</td>
+        <td class="num win">90,7 %</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="bars">
+    <div class="bar-row"><span class="bar-name">Laya d'origine</span><span class="bar-track"><span class="bar-fill muted" style="width:66.1%"></span></span><span class="bar-val">66,1 %</span></div>
+    <div class="bar-row"><span class="bar-name">Laya <code>service</code> seul</span><span class="bar-track"><span class="bar-fill muted" style="width:62.0%"></span></span><span class="bar-val">62,0 %</span></div>
+    <div class="bar-row"><span class="bar-name">MiniLM zéro-shot</span><span class="bar-track"><span class="bar-fill muted" style="width:59.4%"></span></span><span class="bar-val">59,4 %</span></div>
+    <div class="bar-row"><span class="bar-name">mDeBERTa zéro-shot</span><span class="bar-track"><span class="bar-fill muted" style="width:59.6%"></span></span><span class="bar-val">59,6 %</span></div>
+    <div class="bar-row"><span class="bar-name">MiniLM spécialisé</span><span class="bar-track"><span class="bar-fill muted" style="width:76.5%"></span></span><span class="bar-val">76,5 %</span></div>
+    <div class="bar-row"><span class="bar-name">Laya conjoint</span><span class="bar-track"><span class="bar-fill" style="width:90.7%"></span></span><span class="bar-val">90,7 %</span></div>
+  </div>
+
+  <div class="box note">
+    <span class="label">Précautions de lecture</span>
+    <ul>
+      <li>Les protocoles ne sont <strong>pas identiques</strong> : les lignes Laya sont mesurées sur <code>tickets-1000.json</code> avec un découpage par énoncé de problème, les modèles zéro-shot sur 800 tickets tenus à l'écart, les têtes spécialisées sur un découpage par groupes de problèmes. Ce tableau situe les ordres de grandeur, il ne départage pas au point de pourcentage.</li>
+      <li>La <strong>comparaison a longtemps été biaisée contre MiniLM</strong> : Laya a reçu un réentraînement de sa vraie tête de décision avec son objectif natif sur un encodeur de 22 couches, là où MiniLM n'a reçu qu'une tête linéaire sur une moyenne d'embeddings gelés d'un encodeur de 6 couches. L'écart final reste toutefois trop large pour être attribué au seul protocole.</li>
+      <li>Le <strong>99,4 % de Laya sur <code>remboursement</code> n'est pas un artefact de distribution</strong> : le jeu est à 496 / 504, donc une réponse constante plafonne à 50,4 %. Une version antérieure de ce rapport l'attribuait à un prix dégénéré ; c'était faux.</li>
+      <li>La moyenne ne tient pas compte du <strong>coût métier</strong> d'une erreur : se tromper sur <code>remboursement</code> n'a pas les mêmes conséquences que se tromper sur <code>urgence</code>.</li>
+      <li>Le <strong>débit n'est pas un critère ici</strong>. À 40 000 tickets par an, soit environ 480 décisions par jour ouvré, même le modèle le plus lent du tableau (mDeBERTa, 12 décisions/s) consomme moins d'une minute de calcul quotidien. Un argument de vitesse ne doit pas peser sur ce choix.</li>
+    </ul>
+  </div>
+
+  <p>La lecture utile n'est pas seulement la colonne « Moyenne » mais la <strong>stabilité</strong> : les deux modèles zéro-shot et les deux premières phases de Laya gagnent sur une décision en perdant sur une autre. Seul Laya entraîné conjointement tient les trois simultanément, et il est le seul à franchir 90 % sur deux d'entre elles.</p>
+</section>
+
+<!-- =========================================================== -->
+<section>
+  <h2><span class="num">12.</span>Décision technique</h2>
+
+  <div class="box ok">
+    <span class="label">Candidat retenu — Laya, tête entraînée conjointement</span>
+    <p>Laya est retenu. Il est la seule configuration testée à tenir les trois décisions simultanément, et il devance les autres sur chacune d'elles prise isolément :</p>
+    <ul>
+      <li><code>remboursement</code> à <strong>100 %</strong> sur des problèmes jamais vus, contre 92,8 % pour le meilleur concurrent ;</li>
+      <li><code>service</code> à <strong>92,0 %</strong>, contre 81,0 % ;</li>
+      <li><code>urgence</code> à <strong>80,2 %</strong>, contre 67,8 % pour le meilleur concurrent ;</li>
+      <li>entraînement réalisable <strong>sur CPU</strong>, encodeur gelé, environ 15 M de paramètres optimisés ;</li>
+      <li>chemin d'inférence déjà opérationnel : serveur OpenVINO et export ONNX existants.</li>
+    </ul>
+  </div>
+
+  <div class="box note">
+    <span class="label">Pourquoi la recommandation précédente était erronée</span>
+    <p>Une version antérieure de ce rapport désignait MiniLM. Cette recommandation reposait sur trois erreurs, corrigées ici :</p>
+    <ul>
+      <li>le 99,4 % de Laya sur <code>remboursement</code> était décrit comme un artefact de distribution, alors que le jeu est équilibré à 496 / 504 et qu'une réponse constante plafonne à 50,4 % ;</li>
+      <li><code>urgence</code> était déclaré sans signal exploitable, alors qu'il atteint 80,2 % une fois la tête correctement entraînée ;</li>
+      <li>le débit de MiniLM pesait dans l'arbitrage, alors qu'il est sans objet à 40 000 tickets par an.</li>
+    </ul>
+    <p>Surtout, la comparaison a été menée <strong>avant</strong> d'avoir exécuté la correction déjà identifiée pour Laya. Les modèles de remplacement ont donc été opposés à une version volontairement dégradée du candidat initial.</p>
+  </div>
+
+  <p>MiniLM conserve un intérêt résiduel : il reste le plus léger et le plus rapide, et sa tête spécialisée atteint 92,8 % sur <code>remboursement</code> pour un coût d'entraînement très faible. C'est une solution de repli crédible si la taille du modèle devenait une contrainte de déploiement.</p>
+  <p>mDeBERTa n'a plus de rôle évident. Son seul avantage, <code>urgence</code> à 67,8 % en zéro-shot, est désormais dépassé de plus de douze points par Laya entraîné.</p>
+</section>
+
+<!-- =========================================================== -->
+<section>
+  <h2><span class="num">13.</span>Limites et réserves</h2>
   <ul>
-    <li><strong>Le jeu de test vient d'un générateur.</strong> Le découpage sépare les problèmes, pas le monde : même vocabulaire, mêmes ouvertures, mêmes phrases d'urgence. Un jeu de tickets réels étiquetés reste la seule mesure qui tranche.</li>
-    <li><strong><code>urgence</code> n'a jamais eu de signal.</strong> Avant entraînement, la probabilité moyenne sur la bonne réponse était de 36,6 % contre 33,3 % pour l'uniforme. L'entraînement conjoint l'empêchera de se dégrader, il ne la fera pas monter.</li>
-    <li><strong>Le 92,8 % observé côté client sur 500 tickets est gonflé</strong> : environ la moitié a servi à l'entraînement. Le seul chiffre honnête est le 83,1 % du script, sur la moitié tenue à l'écart.</li>
-    <li><strong>Le script ne conserve pas la meilleure époque</strong>, il écrit la dernière. Ici la dernière était la meilleure en exactitude — c'est un hasard favorable, pas une garantie.</li>
-    <li><strong>La cohérence des budgets de séquence n'est pas vérifiée automatiquement</strong> : le chargement annonce <code>max_len</code> 1024, le serveur tourne à 256. Sans effet ici (les lignes font ~105 tokens en moyenne), mais à surveiller sur des tickets longs.</li>
+    <li><strong>Le jeu de test vient d'un générateur.</strong> C'est la réserve la plus lourde de ce rapport. Le découpage sépare les énoncés de problème, mais tous les tickets partagent le vocabulaire, les tournures et la structure du même générateur. Laya peut avoir appris la grammaire du générateur autant que la tâche.</li>
+    <li><strong>Le 90,7 % n'est pas un chiffre de production.</strong> Il est mesuré sur des problèmes jamais vus, ce qui est exigeant, mais à l'intérieur d'un univers synthétique.</li>
+    <li><strong>Le surapprentissage a commencé.</strong> Entre 20 et 22 époques, l'écart entre entraînement et validation passe de 4,7 à 6,7 points pour 0,4 point de gain réel. Poursuivre sur ces données n'est plus rentable.</li>
+    <li><strong>Il n'existe pas de jeu de test réellement indépendant.</strong> Les 503 tickets tenus à l'écart ont servi à suivre l'entraînement et à décider de s'arrêter : ce sont des données de validation, pas de test.</li>
+    <li><strong>Le 100 % sur <code>remboursement</code> appelle de la prudence.</strong> Il peut signifier que la décision est explicitement présente dans le texte, mais aussi que le générateur y place des marqueurs trop réguliers.</li>
+    <li><strong>Les protocoles ne sont pas strictement comparables d'une ligne à l'autre</strong> du tableau §11. Ils documentent une trajectoire expérimentale.</li>
+    <li><strong>Aucune configuration n'atteint 95 % sur les trois décisions simultanément.</strong> Deux y sont pour Laya conjoint, mais <code>urgence</code> reste à 80,2 %.</li>
+    <li><strong>Les chiffres viennent de l'évaluation PyTorch du script</strong>, pas du serveur. L'ONNX est vérifié numériquement (écart ~2e-05) et compile sous OpenVINO, mais la mesure de bout en bout n'a pas encore été faite.</li>
+    <li><strong>Le 92,8 % historiquement observé côté client avec Laya sur 500 tickets est gonflé</strong> : environ la moitié a servi à l'entraînement. Toute mesure du client sur <code>tickets-1000.json</code> souffre du même biais.</li>
+    <li><strong>La cohérence des budgets de séquence n'est pas vérifiée automatiquement</strong> : le chargement annonce <code>max_len</code> 1024, le serveur tourne à 256. Sans effet ici (~105 tokens en moyenne), mais à surveiller sur des tickets longs.</li>
   </ul>
 </section>
 
 <!-- =========================================================== -->
 <section>
-  <h2><span class="num">9.</span>Reste à faire</h2>
+  <h2><span class="num">14.</span>Suite recommandée</h2>
   <ol>
-    <li>Réentraîner sur <code>service,remboursement,urgence</code> et vérifier que les trois tiennent.</li>
-    <li>Copier <code>laya-head\laya.onnx</code> ailleurs avant réexport, pour garder la comparaison.</li>
-    <li>Recalibrer les seuils <code>ScoreLowCut</code> / <code>ScoreHighCut</code> si, et seulement si, <code>MeanP(expected)</code> sur <code>urgence</code> remonte nettement au-dessus de 33,3 %.</li>
-    <li>Constituer un jeu de tickets réels étiquetés, et rejouer la mesure dessus.</li>
+    <li><strong>Lancer le serveur et le client sur le checkpoint exporté</strong> (§A) pour vérifier que le chemin ONNX/OpenVINO reproduit les 90,7 % du script. C'est la seule étape encore immédiatement réalisable sur les données actuelles.</li>
+    <li><strong>Mesurer le checkpoint via le serveur sur <code>tickets-503-laya-heldout.json</code>.</strong> Le jeu tenu à l'écart est désormais exporté et permet une comparaison honnête avec l'évaluation PyTorch.</li>
+    <li>Constituer un jeu de <strong>vrais tickets</strong> avec une définition stable et vérifiable de chaque décision. Sans cela, aucun des chiffres de ce rapport n'engage quoi que ce soit en production.</li>
+    <li>Séparer entraînement, validation et test <strong>par client et par période</strong>, et non plus seulement par énoncé de problème, avec un jeu de test jamais consulté pendant l'entraînement.</li>
+    <li>Mesurer la <strong>précision à couverture contrôlée</strong> : quelle proportion des tickets peut être décidée à 95 % de précision, en laissant le reste indécidé. C'est la métrique qui correspond réellement au besoin métier.</li>
+    <li>Traiter <code>urgence</code> comme un problème à part : c'est la seule décision qui résiste encore, et il faut déterminer si le critère lui-même est défini de façon exploitable.</li>
+    <li>Sur de vraies données, envisager de <strong>dégeler les dernières couches de l'encodeur</strong>. Jamais tenté ici, faute de GPU adapté, mais c'est le levier restant au-delà de la tête.</li>
+    <li>Conserver MiniLM spécialisé comme <strong>repli léger</strong>, et abandonner mDeBERTa, désormais dominé sur ses trois questions.</li>
   </ol>
 </section>
 
 <!-- =========================================================== -->
 <section>
   <h2><span class="num">A.</span>Annexe — commandes</h2>
-  <h3>Entraîner la tête</h3>
-  <pre><code>uv run python train_head.py --question service</code></pre>
-  <h3>Exporter en ONNX</h3>
-  <pre><code>uv run python export_laya_master.py --repo .laya-cache/checkpoints/laya-head --out .laya-cache/checkpoints/laya-head</code></pre>
-  <h3>Servir le modèle réentraîné</h3>
-  <pre><code>$env:LAYA_OV_ONNX_PATH = ".laya-cache\checkpoints\laya-head\laya.onnx"
+
+  <h3>Tester soi-même le modèle retenu</h3>
+  <p>Deux terminaux. Le premier sert le modèle, le second mesure.</p>
+  <pre><code># Terminal 1 — serveur
+$env:LAYA_OV_ONNX_PATH = ".laya-cache\checkpoints\laya-head-joint-plus2\laya.onnx"
 uv run python laya_serve_openvino.py --batch-states 50 --max-concurrent 1 --max-len 256</code></pre>
-  <p><strong>Sans <code>--label-bias</code>.</strong> L'entraînement porte sur les logits bruts ; le biais est une correction calée sur l'ancien modèle.</p>
-  <h3>Mesurer</h3>
-  <pre><code>.\laya-client-spectre.ps1 -InputPath .\tickets-1000.json -BatchSize 50 -OutputPath .\resultats-finetune.json</code></pre>
+  <pre><code># Terminal 2 — client, une fois le serveur prêt
+.\laya-client-spectre.ps1 -InputPath .\tickets-503-laya-heldout.json -BatchSize 50 -OutputPath .\resultats-client-heldout.json</code></pre>
+
+  <div class="box note">
+    <span class="label">Deux précautions</span>
+    <ul>
+      <li><strong>Ne pas passer <code>--label-bias</code></strong>, ni <code>-ScoreLowCut</code> / <code>-ScoreHighCut</code>. Ces corrections ont été calées sur l'ancienne tête défaillante et fausseraient le résultat. Les valeurs par défaut sont les bonnes.</li>
+      <li><strong>Le premier appel est lent</strong> : OpenVINO recompile le modèle pour l'iGPU après tout nouvel export. Attendre que le serveur annonce qu'il est prêt avant de lancer le client.</li>
+    </ul>
+  </div>
+
+  <h3>Recréer le jeu tenu à l'écart sans lancer d'entraînement</h3>
+  <pre><code>uv run python train_head.py --question service,remboursement,urgence --tickets tickets-1000.json --holdout 0.5 --seed 0 --heldout-out tickets-503-laya-heldout.json --split-only</code></pre>
+  <p>Cette commande ne charge pas Laya et ne calcule pas l'encodeur. Elle reproduit exactement les 503 tickets utilisés pour les chiffres hors échantillon de ce rapport.</p>
+
+  <h3>Entraîner la tête sur les trois questions</h3>
+  <pre><code>uv run python train_head.py --question service,remboursement,urgence --out .laya-cache/checkpoints/laya-head-joint --save-best</code></pre>
+  <p>Sur Windows, forcer <code>$env:PYTHONUTF8 = "1"</code> : la console cp1252 ne peut pas encoder certains caractères du journal. Prévoir environ quinze minutes de mise en cache de l'encodeur avant la première époque.</p>
+
+  <h3>Prolonger un entraînement existant</h3>
+  <pre><code>uv run python train_head.py --question service,remboursement,urgence --init .laya-cache/checkpoints/laya-head-joint --out .laya-cache/checkpoints/laya-head-joint-plus2 --epochs 2 --lr 1e-4</code></pre>
+  <p>Le checkpoint ne contient que les poids : l'optimiseur repart de zéro, d'où le taux d'apprentissage réduit.</p>
+
+  <h3>Exporter en ONNX</h3>
+  <pre><code>uv run python export_laya_master.py --repo .laya-cache/checkpoints/laya-head-joint-plus2 --out .laya-cache/checkpoints/laya-head-joint-plus2</code></pre>
+  <p>L'export écrit <code>laya.onnx</code> et les fichiers de tokenizer à la racine du dossier, ce que le script d'entraînement ne fait pas ; le serveur en a besoin.</p>
+
+  <h3>Évaluer MiniLM sous OpenVINO</h3>
+  <pre><code>uv run python test_minilm_nli.py --input tickets-800-minilm-validation.json --device GPU</code></pre>
+  <h3>Entraîner les têtes spécialisées MiniLM</h3>
+  <pre><code>uv run python train_minilm_heads.py</code></pre>
 </section>
 
 <!-- =========================================================== -->
@@ -545,14 +866,26 @@ uv run python laya_serve_openvino.py --batch-states 50 --max-concurrent 1 --max-
       <tr><td><code>laya_openvino_agent.py</code></td><td>modifié</td><td>Température, biais par option, journalisation des logits</td></tr>
       <tr><td><code>laya_serve_openvino.py</code></td><td>modifié</td><td>Flags, surcharges par requête, bloc <code>decoding</code> dans <code>/health</code></td></tr>
       <tr><td><code>laya-client-spectre.ps1</code></td><td>modifié</td><td>Tableau final en Spectre, plus de colonne perdue</td></tr>
-      <tr><td><code>train_head.py</code></td><td>créé</td><td>Réentraînement de la tête, encodeur gelé et mis en cache</td></tr>
+      <tr><td><code>train_head.py</code></td><td>modifié</td><td>Réentraînement de la tête, encodeur gelé et mis en cache ; ventilation par question ajoutée ; caractère non encodable corrigé</td></tr>
+      <tr><td><code>export_laya_master.py</code></td><td>modifié</td><td>Export ONNX ; même correction d'encodage console</td></tr>
+      <tr><td><code>.laya-cache/checkpoints/laya-head-joint-plus2/</code></td><td>créé</td><td><strong>Checkpoint retenu</strong> — <code>laya.onnx</code> (1,20 Go) exporté et compilé par OpenVINO GPU</td></tr>
+      <tr><td><code>resultats-laya-conjoint.json</code></td><td>créé</td><td>Résultats de l'entraînement conjoint, progression sur 20 époques</td></tr>
+      <tr><td><code>resultats-laya-conjoint-plus2.json</code></td><td>créé</td><td>Résultats de la continuation, écart de généralisation et vérifications d'export</td></tr>
+      <tr><td><code>tickets-503-laya-heldout.json</code></td><td>créé</td><td>Les 503 tickets hors entraînement, directement utilisables par le client</td></tr>
       <tr><td><code>tickets-200-service-noul.json</code></td><td>créé</td><td>Variante noul, 3 questions booléennes</td></tr>
-      <tr><td><code>.laya-cache/checkpoints/laya-head/</code></td><td>créé</td><td>Checkpoint réentraîné + <code>laya.onnx</code> exporté</td></tr>
+      <tr><td><code>.laya-cache/checkpoints/laya-head/</code></td><td>nettoyé</td><td>Entraînement sur <code>service</code> seul — remplacé, conservé uniquement par ses résultats</td></tr>
+      <tr><td><code>.laya-cache/checkpoints/laya-head-joint/</code></td><td>nettoyé</td><td>Étape à 20 époques — remplacée par la continuation</td></tr>
+      <tr><td><code>.laya-cache/checkpoints/minilm-urgency-partial*/</code></td><td>nettoyé</td><td>Fine-tuning partiel MiniLM abandonné</td></tr>
+      <tr><td><code>test_minilm_nli.py</code></td><td>créé</td><td>Benchmark ONNX/OpenVINO de MiniLM et mDeBERTa</td></tr>
+      <tr><td><code>train_minilm_heads.py</code></td><td>créé</td><td>Entraînement des têtes spécialisées sur encodeur MiniLM gelé</td></tr>
+      <tr><td><code>finetune_minilm_urgency.py</code></td><td>créé</td><td>Fine-tuning partiel expérimental pour <code>urgence</code></td></tr>
+      <tr><td><code>resultats-minilm-specialise.json</code></td><td>créé</td><td>Résultats des têtes MiniLM spécialisées</td></tr>
+      <tr><td><code>rapport-minilm-urgence-finetuning.json</code></td><td>créé</td><td>Synthèse des essais de fine-tuning partiel</td></tr>
     </tbody>
   </table>
 </section>
 
-<p class="foot">ASD-FT100 — 3 octobre 2026. Les chiffres proviennent des journaux d'exécution conservés dans le dépôt. Le checkpoint d'origine <code>.laya-cache/checkpoints/laya-master/</code> n'a pas été modifié.</p>
+<p class="foot">ASD-FT100 — mis à jour le 4 octobre 2026. Les chiffres proviennent des résultats et journaux d'exécution conservés dans le dépôt. Le checkpoint d'origine <code>.laya-cache/checkpoints/laya-master/</code> est conservé comme référence ; les checkpoints intermédiaires remplacés ont été nettoyés. Le checkpoint retenu est <code>laya-head-joint-plus2/</code>.</p>
 
 </div>
 </body>

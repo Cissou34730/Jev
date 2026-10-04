@@ -1,0 +1,23 @@
+{
+  "task": "urgence partial fine-tuning report",
+  "baseline": {
+    "minilm_zero_shot": 0.497,
+    "minilm_frozen_head": 0.5566,
+    "mdeberta_zero_shot": 0.684
+  },
+  "experiments": [
+    {
+      "name": "partial_with_augmentation",
+      "accuracy": 0.5049,
+      "elapsed_seconds": 438.4,
+      "augmentation": 648
+    },
+    {
+      "name": "partial_original_only",
+      "accuracy": 0.4595,
+      "elapsed_seconds": 136.5,
+      "augmentation": 0
+    }
+  ],
+  "conclusion": "No improvement. Keep the frozen MiniLM head for service/refund and mDeBERTa zero-shot for urgency; do not promote either partial checkpoint."
+}

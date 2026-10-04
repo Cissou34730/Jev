@@ -1,0 +1,58 @@
+{
+  "model": "MoritzLaurer/multilingual-MiniLMv2-L6-mnli-xnli",
+  "task": "urgence",
+  "method": "last transformer layer and classification head fine-tuned on CPU",
+  "device": "CPU",
+  "cpu_threads": 4,
+  "process_priority": "below normal",
+  "epochs": 3,
+  "batch_size": 8,
+  "max_length": 128,
+  "learning_rate": 2e-05,
+  "train_tickets_original": 691,
+  "train_tickets_augmentation": 0,
+  "test_tickets": 309,
+  "train_formulation_groups": 6,
+  "test_formulation_groups": 3,
+  "epoch_history": [
+    {
+      "epoch": 1,
+      "train_loss": 1.543,
+      "seconds": 43.1
+    },
+    {
+      "epoch": 2,
+      "train_loss": 1.0179,
+      "seconds": 43.0
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.9598,
+      "seconds": 42.9
+    }
+  ],
+  "elapsed_seconds": 136.5,
+  "held_out": {
+    "tickets": 309,
+    "correct": 142,
+    "accuracy": 0.4595,
+    "loss": 1.0218,
+    "mean_confidence": 0.6108,
+    "confusion": {
+      "Faible->Faible": 19,
+      "Faible->Modérée": 63,
+      "Faible->Élevée": 18,
+      "Modérée->Modérée": 74,
+      "Modérée->Élevée": 37,
+      "Élevée->Faible": 11,
+      "Élevée->Modérée": 38,
+      "Élevée->Élevée": 49
+    }
+  },
+  "baselines": {
+    "minilm_zero_shot": 0.497,
+    "minilm_frozen_head": 0.5566,
+    "mdeberta_zero_shot": 0.684
+  },
+  "checkpoint": ".laya-cache\\checkpoints\\minilm-urgency-partial-original"
+}

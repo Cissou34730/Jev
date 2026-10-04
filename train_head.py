@@ -34,7 +34,9 @@ Two things to know before trusting a number this prints:
 
   * the split is by template, not by ticket. The tickets come from a generator with a couple of
     dozen phrasings per class, so a ticket-level split puts the same phrasing on both sides and
-    the held-out score measures nothing. `--seed` picks the grouping and is printed.
+    the held-out score measures nothing. `--seed` picks the grouping and is printed. The exact
+    held-out tickets are always written to `<out>/heldout-tickets.json`; `--split-only` can
+    recreate that file without loading the model or computing the encoder cache.
   * `--label-bias none` when you serve the fine-tuned model. Training happens on raw logits; a
     bias applied at inference afterwards is a correction fitted on the old model.
 """
@@ -256,6 +258,11 @@ def main() -> None:
     ap.add_argument("--cache-batch", type=int, default=16, help="rows per encoder forward")
     ap.add_argument("--holdout", type=float, default=0.5, help="fraction of tickets held out")
     ap.add_argument("--seed", type=int, default=0)
+    ap.add_argument("--heldout-out",
+                    help="write the client-compatible held-out dataset here; defaults to "
+                         "<out>/heldout-tickets.json")
+    ap.add_argument("--split-only", action="store_true",
+                    help="write the held-out dataset and exit without loading the model")
     ap.add_argument("--freeze-type-emb", action="store_true",
                     help="leave the shared per-question-type embedding alone")
     ap.add_argument("--save-best", action="store_true",
@@ -264,15 +271,6 @@ def main() -> None:
                          "validation number and not a clean test; evaluating every epoch roughly "
                          "doubles the run")
     args = ap.parse_args()
-
-    device = torch.device("cpu")
-    started = time.time()
-    agent = laya.load(args.checkpoint, device="cpu")
-    model = agent.model.to(device)
-    model.train()
-    print("loaded %s in %.0fs: max_len %s, head_max_len %s, head_layers %s"
-          % (args.checkpoint, time.time() - started, agent.cfg.get("max_len"),
-             agent.cfg.get("head_max_len"), len(model.head.layers) if model.head else 0))
 
     # -- questions ----------------------------------------------------------------------------
     data = json.load(open(args.tickets, encoding="utf-8"))
@@ -291,8 +289,37 @@ def main() -> None:
         raise SystemExit("no ticket carries an expected value for %s" % ", ".join(wanted))
     print("%d ticket(s), %d question(s): %s" % (len(tickets), len(wanted), ", ".join(wanted)))
 
-    # -- rows, with the encoder output cached once --------------------------------------------
+    # -- split, before loading the model -------------------------------------------------------
     states = [t["state"] for t in tickets]
+    train_rows, test_rows, boiler = split_by_template(states, args.holdout, args.seed)
+    keys = {key_of(state, boiler) for state in states}
+    print("split by problem statement: %d train ticket(s) / %d held out, %d problem statement(s), "
+          "%d boilerplate sentence(s) dropped, seed %d"
+          % (len(train_rows), len(test_rows), len(keys), len(boiler), args.seed))
+    if len(keys) < 10:
+        print("warning: only %d distinct problem statement(s); the split is coarse" % len(keys))
+
+    heldout_out = args.heldout_out or os.path.join(args.out, "heldout-tickets.json")
+    heldout_parent = os.path.dirname(os.path.abspath(heldout_out))
+    os.makedirs(heldout_parent, exist_ok=True)
+    with open(heldout_out, "w", encoding="utf-8") as handle:
+        json.dump({"questions": questions, "tickets": [tickets[i] for i in test_rows]},
+                  handle, ensure_ascii=False, indent=2)
+        handle.write("\n")
+    print("wrote %d held-out ticket(s) to %s" % (len(test_rows), heldout_out))
+    if args.split_only:
+        return
+
+    device = torch.device("cpu")
+    started = time.time()
+    agent = laya.load(args.checkpoint, device="cpu")
+    model = agent.model.to(device)
+    model.train()
+    print("loaded %s in %.0fs: max_len %s, head_max_len %s, head_layers %s"
+          % (args.checkpoint, time.time() - started, agent.cfg.get("max_len"),
+             agent.cfg.get("head_max_len"), len(model.head.layers) if model.head else 0))
+
+    # -- rows, with the encoder output cached once --------------------------------------------
     rows: List[Dict[str, Any]] = []
     for i, ticket in enumerate(tickets):
         for name in wanted:
@@ -338,19 +365,10 @@ def main() -> None:
     for i, row in enumerate(rows[: min(len(rows), args.batch)]):
         sample_cache[i, : cache[i].size(0)] = cache[i]
     delta = check_parity(model, sample, sample_cache)
-    print("parity: max|Δ| head_forward vs DecisionModel.forward = %.2e" % delta)
+    print("parity: max|delta| head_forward vs DecisionModel.forward = %.2e" % delta)
     if delta > 1e-3:
         raise SystemExit("the copied head pass does not match the checkpoint's own forward; "
                          "training on it would train something else")
-
-    # -- split, by problem statement ----------------------------------------------------------
-    train_rows, test_rows, boiler = split_by_template(states, args.holdout, args.seed)
-    keys = {key_of(state, boiler) for state in states}
-    print("split by problem statement: %d train ticket(s) / %d held out, %d problem statement(s), "
-          "%d boilerplate sentence(s) dropped, seed %d"
-          % (len(train_rows), len(test_rows), len(keys), len(boiler), args.seed))
-    if len(keys) < 10:
-        print("warning: only %d distinct problem statement(s); the split is coarse" % len(keys))
 
     def one_batch(picks: List[int]):
         """One tensor per batch: the cached hidden states padded, plus target, mask and qtype."""
@@ -380,6 +398,7 @@ def main() -> None:
     def evaluate(indices: List[int]) -> Dict[str, float]:
         model.eval()
         correct = total = duel_right = duel_total = 0
+        per_question: Dict[str, List[int]] = {}
         with torch.no_grad():
             for start in range(0, len(indices), 64):
                 picks = indices[start:start + 64]
@@ -389,8 +408,12 @@ def main() -> None:
                 for j, i in enumerate(picks):
                     row = rows[i]
                     truth = row["target"]
-                    correct += int(picked[j] == truth)
+                    hit = int(picked[j] == truth)
+                    correct += hit
                     total += 1
+                    tally = per_question.setdefault(row["question"], [0, 0])
+                    tally[0] += hit
+                    tally[1] += 1
                     keys = option_keys(internal[row["question"]])
                     if "facturation" in keys and "livraison" in keys:
                         # The duel the label bias buried: facturation against livraison only. Found
@@ -403,7 +426,9 @@ def main() -> None:
         return {"n": total, "correct": correct,
                 "accuracy": round(correct / max(1, total), 4),
                 "duel_right": duel_right, "duel_total": duel_total,
-                "duel": round(duel_right / max(1, duel_total), 4)}
+                "duel": round(duel_right / max(1, duel_total), 4),
+                "by_question": {q: {"n": n, "correct": c, "accuracy": round(c / max(1, n), 4)}
+                                for q, (c, n) in sorted(per_question.items())}}
 
     print("held out, before: %s" % json.dumps(evaluate(test_rows), ensure_ascii=False))
 

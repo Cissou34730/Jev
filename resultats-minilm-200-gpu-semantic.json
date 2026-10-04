@@ -1,0 +1,56 @@
+{
+  "tickets": 200,
+  "questions": {
+    "service": {
+      "total": 200,
+      "correct": 96,
+      "accuracy": 0.48,
+      "confusion": {
+        "facturation->facturation": 60,
+        "facturation->livraison": 12,
+        "livraison->facturation": 19,
+        "livraison->livraison": 32,
+        "livraison->technique": 9,
+        "technique->facturation": 17,
+        "technique->livraison": 47,
+        "technique->technique": 4
+      }
+    },
+    "remboursement": {
+      "total": 200,
+      "correct": 112,
+      "accuracy": 0.56,
+      "confusion": {
+        "False->False": 62,
+        "False->True": 30,
+        "True->False": 58,
+        "True->True": 50
+      }
+    },
+    "urgence": {
+      "total": 200,
+      "correct": 63,
+      "accuracy": 0.315,
+      "confusion": {
+        "Faible->Faible": 1,
+        "Faible->Modérée": 50,
+        "Faible->Élevée": 11,
+        "Modérée->Faible": 1,
+        "Modérée->Modérée": 44,
+        "Modérée->Élevée": 23,
+        "Élevée->Faible": 2,
+        "Élevée->Modérée": 50,
+        "Élevée->Élevée": 18
+      }
+    }
+  },
+  "overall": {
+    "total_decisions": 600,
+    "correct": 271,
+    "accuracy": 0.4517
+  },
+  "model": "onnx-community/multilingual-MiniLMv2-L6-mnli-xnli-ONNX",
+  "device": "GPU",
+  "elapsed_seconds": 2.68,
+  "decisions_per_second": 223.91
+}
