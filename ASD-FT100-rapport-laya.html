@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ASD-FT100 — Routage de tickets par Laya en local : objectif, démarche, résultat</title>
+<script>
+  (() => {
+    const param = new URLSearchParams(window.location.search).get("scoutTheme");
+    const theme =
+      param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    document.documentElement.setAttribute("data-theme", theme);
+  })();
+</script>
+<style>
+:root {
+  color-scheme: light;
+  --cp-bg: #f7f4ef;
+  --cp-bg-elevated: #fcfbf8;
+  --cp-surface: #ffffff;
+  --cp-surface-soft: #f5f5f5;
+  --cp-border: #dedede;
+  --cp-border-strong: #919191;
+  --cp-text: #242424;
+  --cp-text-muted: #5c5c5c;
+  --cp-text-soft: #6f6f6f;
+  --cp-accent: #b11f4b;
+  --cp-accent-hover: #9a1a41;
+  --cp-accent-soft: rgba(177, 31, 75, 0.08);
+  --cp-accent-fg: #ffffff;
+  --cp-success: #16a34a;
+  --cp-danger: #dc2626;
+  --cp-warning: #f59e0b;
+  --cp-link: #0078d4;
+  --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.12);
+  --cp-overlay: rgba(255, 255, 255, 0.8);
+  --cp-panel: rgba(255, 255, 255, 0.86);
+  --cp-panel-strong: rgba(255, 255, 255, 0.96);
+  --cp-sheen: rgba(255, 255, 255, 0.55);
+  --cp-highlight: rgba(177, 31, 75, 0.12);
+}
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --cp-bg: #3d3b3a;
+  --cp-bg-elevated: #343231;
+  --cp-surface: #292929;
+  --cp-surface-soft: #2e2e2e;
+  --cp-border: #474747;
+  --cp-border-strong: #5f5f5f;
+  --cp-text: #dedede;
+  --cp-text-muted: #919191;
+  --cp-text-soft: #b0b0b0;
+  --cp-accent: #fd8ea1;
+  --cp-accent-hover: #fb7b91;
+  --cp-accent-soft: rgba(253, 142, 161, 0.14);
+  --cp-accent-fg: #1a1a1a;
+  --cp-success: #4ade80;
+  --cp-danger: #f87171;
+  --cp-warning: #fbbf24;
+  --cp-link: #4da6ff;
+  --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.32);
+  --cp-overlay: rgba(41, 41, 41, 0.88);
+  --cp-panel: rgba(41, 41, 41, 0.72);
+  --cp-panel-strong: rgba(41, 41, 41, 0.96);
+  --cp-sheen: rgba(255, 255, 255, 0.04);
+  --cp-highlight: rgba(253, 142, 161, 0.12);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 0 0 64px;
+  background: var(--cp-bg);
+  color: var(--cp-text);
+  font-family: "Segoe UI", Aptos, Calibri, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.page { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+/* --- en-tête de fiche --------------------------------------------------- */
+.doc-head {
+  background: var(--cp-surface);
+  border: 1px solid var(--cp-border);
+  border-radius: 16px;
+  padding: 28px 32px;
+  margin: 32px 0 28px;
+  box-shadow: 0 0 2px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.14);
+}
+.doc-ref {
+  display: inline-block;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cp-accent-fg);
+  background: var(--cp-accent);
+  padding: 3px 10px;
+  border-radius: 0.625rem;
+  margin-bottom: 14px;
+}
+.doc-head h1 { margin: 0 0 6px; font-size: 26px; line-height: 1.25; font-weight: 650; }
+.doc-head .sub { color: var(--cp-text-muted); font-size: 15px; margin: 0 0 20px; }
+.meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 12px 24px;
+  border-top: 1px solid var(--cp-border);
+  padding-top: 18px;
+}
+.meta dt {
+  font-size: 11px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--cp-text-soft);
+  margin: 0 0 2px;
+}
+.meta dd { margin: 0; font-size: 14px; font-weight: 600; }
+
+/* --- structure ---------------------------------------------------------- */
+section { margin: 0 0 34px; }
+h2 {
+  font-size: 19px;
+  font-weight: 650;
+  margin: 0 0 4px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--cp-border);
+}
+h2 .num { color: var(--cp-accent); margin-right: 8px; font-variant-numeric: tabular-nums; }
+h3 { font-size: 15px; font-weight: 650; margin: 22px 0 8px; color: var(--cp-text); }
+p { margin: 10px 0; }
+ul, ol { margin: 10px 0; padding-left: 22px; }
+li { margin: 5px 0; }
+code, .mono {
+  font-family: Consolas, "Courier New", Courier, monospace;
+  font-size: 13px;
+  background: var(--cp-surface-soft);
+  border: 1px solid var(--cp-border);
+  border-radius: 4px;
+  padding: 1px 5px;
+}
+pre {
+  font-family: Consolas, "Courier New", Courier, monospace;
+  font-size: 12.5px;
+  background: var(--cp-surface-soft);
+  border: 1px solid var(--cp-border);
+  border-radius: 0.625rem;
+  padding: 12px 14px;
+  overflow-x: auto;
+  margin: 12px 0;
+}
+pre code { background: none; border: none; padding: 0; }
+strong { font-weight: 650; }
+em { color: var(--cp-text-muted); font-style: normal; }
+
+/* --- tableaux ----------------------------------------------------------- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 14px 0;
+  font-size: 14px;
+  background: var(--cp-surface);
+  border: 1px solid var(--cp-border);
+  border-radius: 0.625rem;
+  overflow: hidden;
+}
+th, td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--cp-border); }
+th {
+  font-size: 11.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--cp-text-soft);
+  background: var(--cp-surface-soft);
+  font-weight: 650;
+}
+tbody tr:last-child td { border-bottom: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+.win { color: var(--cp-success); font-weight: 650; }
+.bad { color: var(--cp-danger); font-weight: 650; }
+.warn { color: var(--cp-warning); font-weight: 650; }
+
+/* --- encadrés ----------------------------------------------------------- */
+.box {
+  background: var(--cp-surface);
+  border: 1px solid var(--cp-border);
+  border-left: 4px solid var(--cp-accent);
+  border-radius: 0.625rem;
+  padding: 14px 18px;
+  margin: 16px 0;
+}
+.box.fail { border-left-color: var(--cp-danger); }
+.box.ok { border-left-color: var(--cp-success); }
+.box.note { border-left-color: var(--cp-border-strong); }
+.box p:first-child { margin-top: 0; }
+.box p:last-child { margin-bottom: 0; }
+.box .label {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--cp-text-soft);
+  margin-bottom: 4px;
+  font-weight: 650;
+}
+
+/* --- barres ------------------------------------------------------------- */
+.bars { margin: 16px 0; }
+.bar-row { display: grid; grid-template-columns: 110px 1fr 78px; gap: 12px; align-items: center; margin: 7px 0; }
+.bar-name { font-size: 13px; color: var(--cp-text-muted); }
+.bar-track { background: var(--cp-surface-soft); border: 1px solid var(--cp-border); border-radius: 0.625rem; height: 20px; overflow: hidden; }
+.bar-fill { height: 100%; background: var(--cp-accent); border-radius: 0.625rem 0 0 0.625rem; }
+.bar-fill.muted { background: var(--cp-border-strong); }
+.bar-val { font-size: 13px; font-variant-numeric: tabular-nums; text-align: right; font-weight: 650; }
+
+/* --- chronologie -------------------------------------------------------- */
+.steps { list-style: none; padding: 0; margin: 16px 0; counter-reset: step; }
+.steps > li {
+  position: relative;
+  padding: 0 0 18px 42px;
+  margin: 0;
+  border-left: 2px solid var(--cp-border);
+  margin-left: 14px;
+}
+.steps > li:last-child { border-left-color: transparent; padding-bottom: 0; }
+.steps > li::before {
+  counter-increment: step;
+  content: counter(step);
+  position: absolute;
+  left: -15px;
+  top: -2px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--cp-surface);
+  border: 2px solid var(--cp-border-strong);
+  color: var(--cp-text);
+  font-size: 12px;
+  font-weight: 650;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.steps > li.fail::before { border-color: var(--cp-danger); color: var(--cp-danger); }
+.steps > li.ok::before { border-color: var(--cp-success); color: var(--cp-success); }
+.steps .t { font-weight: 650; display: block; margin-bottom: 2px; }
+.steps .d { color: var(--cp-text-muted); font-size: 14px; }
+
+.foot { color: var(--cp-text-soft); font-size: 13px; border-top: 1px solid var(--cp-border); padding-top: 16px; margin-top: 40px; }
+
+@media print {
+  body { background: var(--cp-surface); }
+  .doc-head, table, .box { box-shadow: none; }
+  section { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="doc-head">
+  <span class="doc-ref">ASD-FT100</span>
+  <h1>Routage de tickets par Laya en local</h1>
+  <p class="sub">Objectif, démarche, échecs, corrections et résultat final — inférence sur iGPU Intel</p>
+  <dl class="meta">
+    <div><dt>Référence</dt><dd>ASD-FT100</dd></div>
+    <div><dt>Date</dt><dd>3 octobre 2026</dd></div>
+    <div><dt>Statut</dt><dd>Clos — décision en attente</dd></div>
+    <div><dt>Périmètre</dt><dd>Question <code>service</code>, puis tête de décision</dd></div>
+    <div><dt>Environnement</dt><dd>Windows / OpenVINO / Iris Xe</dd></div>
+    <div><dt>Checkpoint</dt><dd><code>laya-master</code> (mmBERT-base)</dd></div>
+  </dl>
+</header>
+
+<div class="box ok">
+  <span class="label">Résultat</span>
+  <p>La cause du mauvais routage n'était pas le texte des critères, ni les libellés, ni le type de question : c'était la <strong>tête de décision</strong>. En la réentraînant seule, encodeur gelé, l'exactitude sur des tickets dont le problème n'avait jamais été vu passe de <strong>42,2 % à 83,1 %</strong> et le duel facturation/livraison de <strong>83,0 % à 90,7 %</strong>.</p>
+  <p>Effet de bord mesuré : la tête étant partagée entre les trois questions, <code>remboursement</code> tombe de 99,4 % à 66,4 % et <code>urgence</code> de 48,3 % à 36,4 %. Correction identifiée, non encore appliquée.</p>
+</div>
+
+<!-- =========================================================== -->
+<section>
+  <h2><span class="num">1.</span>Objet</h2>
+  <p>Faire fonctionner un modèle de décision Laya <strong>en local</strong>, sur iGPU Intel, pour router des tickets de support. Trois questions par ticket :</p>
+  <table>
+    <thead><tr><th>Question</th><th>Type</th><th>Options</th><th>Attendu</th></tr></thead>
+    <tbody>
+      <tr><td><code>service</code></td><td>choice</td><td>3</td><td>facturation / technique / livraison</td></tr>
+      <tr><td><code>remboursement</code></td><td>noul</td><td>2</td><td>vrai / faux</td></tr>
+      <tr><td><code>urgence</code></td><td>score</td><td>3 niveaux</td><td>Faible / Modérée / Élevée</td></tr>
+    </tbody>
+  </table>
+  <p>Le jeu de test est <code>tickets-1000.json</code> : 1000 tickets français, classes équilibrées (334 / 333 / 333).</p>
+</section>
+
+<!-- =========================================================== -->
+<section>
+  <h2><span class="num">2.</span>Contexte technique</h2>
+  <table>
+    <thead><tr><th>Élément</th><th>Valeur</th></tr></thead>
+    <tbody>
+      <tr><td>Serveur</td><td><code>laya_serve_openvino.py</code>, OpenVINO sur Intel Iris Xe</td></tr>
+      <tr><td>Checkpoint</td><td><code>laya-master</code> — mmBERT-base multilingue, 22 couches, vocab 256 000</td></tr>
+      <tr><td>Budget de séquence</td><td><code>max_len</code> 256, <code>head_max_len</code> 256, 5 marqueurs d'option</td></tr>
+      <tr><td>Client</td><td><code>laya-client-spectre.ps1</code>, seuils <code>0.5</code> / <code>1.6</code> / <code>1.74</code></td></tr>
+      <tr><td>Débit</td><td>3,5 tickets/s, 10,4 réponses/s (les refus 503 sont du backpressure normal)</td></tr>
+      <tr><td>Entraînement</td><td><code>torch</code> en build CPU — pas de GPU exploitable pour l'entraînement</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- =========================================================== -->
+<section>
+  <h2><span class="num">3.</span>Objectif poursuivi</h2>
+  <p>Un seul objectif, formulé en une phrase : <strong>que <code>service</code> cesse de répondre <code>technique</code> à presque tout</strong>.</p>
+  <p>La question était ouverte sur le <em>comment</em>, et la démarche a consisté à éliminer les causes une par une, puis à agir sur celle qui restait. Trois hypothèses ont été posées successivement :</p>
+  <ol>
+    <li>le texte du prompt (instruction, descriptions des critères, libellés) oriente la décision ;</li>
+    <li>le modèle est correctement entraîné mais mal lu, donc un réglage de décision suffit ;</li>
+    <li>le chemin de décision lui-même est biaisé, et il faut le réentraîner.</li>
+  </ol>
+  <p>Seule la troisième a survécu.</p>
+</section>
+
+<!-- =========================================================== -->
+<section>
+  <h2><span class="num">4.</span>Démarche suivie</h2>
+
+  <ol class="steps">
+    <li>
+      <span class="t">Établir une référence</span>
+      <span class="d"><code>service</code> en <code>choice</code>, sans aucun réglage : <strong>50,5 %</strong> sur 200 tickets. Répartition des choix : technique 166, livraison 23, facturation 11 — pour une vérité de 68 / 60 / 72.</span>
+    </li>
+    <li>
+      <span class="t">Faire varier le texte du prompt</span>
+      <span class="d">Instruction reformulée, impérative, avec point d'interrogation : ±4 points sur 200, <code>technique</code> toujours dominant.</span>
+    </li>
+    <li class="fail">
+      <span class="t">Remplacer les descriptions des critères</span>
+      <span class="d">Charabia sur les trois critères : 37 %, <code>technique</code> 194/200. Puis « La recette du gateau au chocolat » comme description de <code>technique</code> : 50,5 %, <code>technique</code> 166/200 — <em>identique à la référence</em>.</span>
+    </li>
+    <li class="fail">
+      <span class="t">Renommer les libellés</span>
+      <span class="d"><code>technique</code> → <code>B</code>, etc. : 53 %, et <strong>la 2<sup>e</sup> option gagne toujours</strong>. Le mot n'est donc pas le pilote.</span>
+    </li>
+    <li class="fail">
+      <span class="t">Supprimer le ticket</span>
+      <span class="d">État constant sur 200 tickets : 34 %, chaque tête sort une classe fixe. Le texte du ticket n'est pas lu pour cette décision.</span>
+    </li>
+    <li class="fail">
+      <span class="t">Jouer sur la température</span>
+      <span class="d">0,7 → 55,0 % ; 0,5 → 53,5 % ; contre 58,5 % à 1,0. Une température multiplie l'écart entre options, elle ne peut pas en privilégier une : <strong>ça dégrade</strong>.</span>
+    </li>
+    <li class="ok">
+      <span class="t">Instrumenter : journaliser les logits</span>
+      <span class="d">Sortie JSONL, une ligne par couple (ticket, question) avec les logits <strong>bruts</strong>, le biais et la température appliqués, les probabilités et l'argmax. C'est ce qui a rendu la suite mesurable.</span>
+    </li>
+    <li class="ok">
+      <span class="t">Ajouter un décalage par option</span>
+      <span class="d">Biais sur les logits avant softmax : 50,5 % → <strong>58,5 %</strong> sur 200 ; <strong>74,9 %</strong> sur 1000. Puis vérification sur une moitié tenue à l'écart : un seul chiffre suffit (T ≈ 5), les deux autres offsets n'apportent que 2–3 points.</span>
+    </li>
+    <li class="fail">
+      <span class="t">Convertir la question en noul</span>
+      <span class="d">Trois questions booléennes à la place du <code>choice</code>. Résultat : 132/128, 88/132, 155/140 contre la baseline triviale « toujours non ». <strong>Le biais suit la question, pas le type de question.</strong></span>
+    </li>
+    <li class="ok">
+      <span class="t">Réentraîner la tête de décision seule</span>
+      <span class="d">Encodeur gelé, sortie mise en cache, objectif <code>proper_reward</code> fourni par Laya. Découpage par problème, parité vérifiée avant entraînement. Résultat en §7.</span>
+    </li>
+  </ol>
+</section>
+
+<!-- =========================================================== -->
+<section>
+  <h2><span class="num">5.</span>Échecs et impasses</h2>
+
+  <div class="box fail">
+    <span class="label">Échec 1 — la description des critères est décorative</span>
+    <p><code>technique</code> gagne <strong>68 fois sur 68</strong> avec « La recette du gateau au chocolat » comme description. Un modèle qui lit les critères ne peut pas faire ça. Trois essais concordants (charabia, recette, renommage).</p>
+  </div>
+
+  <div class="box fail">
+    <span class="label">Échec 2 — le libellé n'est pas le pilote</span>
+    <p>Renommé en <code>B</code>, la 2<sup>e</sup> option gagne toujours. Le prior est attaché à la <em>position</em> ou à la tête, pas au mot.</p>
+  </div>
+
+  <div class="box fail">
+    <span class="label">Échec 3 — l'exactitude sur jeu équilibré est trompeuse</span>
+    <p>Sur un jeu à 1/3–1/3–1/3, <strong>répartir</strong> ses réponses fait monter l'exactitude même sans lire le ticket. Le 58,5 % ne prouvait donc rien par lui-même, et le 74,9 % était ajusté sur les tickets qui le mesuraient.</p>
+  </div>
+
+  <div class="box fail">
+    <span class="label">Échec 4 — la conversion en noul n'a rien réglé</span>
+    <p>Le même prior apparaît sur la tête noul : <code>technique</code> à 193 <code>true</code> sur 200 pour 68 réels. Le problème a été déplacé, pas supprimé.</p>
+  </div>
+
+  <div class="box fail">
+    <span class="label">Échec 5 — le découpage « par tournure » ne découpait rien</span>
+    <p>Premier essai du split : <strong>192 clés distinctes sur 200 tickets</strong>. Le générateur compose ouverture × problème × urgence × référence, donc presque chaque ticket est unique — découper au hasard. Détecté avant tout entraînement.</p>
+  </div>
+
+  <div class="box fail">
+    <span class="label">Échec 6 — deux défauts dans le script d'entraînement</span>
+    <p>La vérification de parité tournait avec le dropout actif (les deux forwards auraient divergé au hasard) ; et la séquence gel/dégel de l'encodeur était inversée, correcte par accident. Corrigés avant le premier lancement.</p>
+  </div>
+
+  <div class="box fail">
+    <span class="label">Échec 7 — modification d'un fichier pendant son exécution</span>
+    <p><code>train_head.py</code> édité alors que l'entraînement tournait. Sans effet sur le run (Python lit le source une fois au démarrage), mais la pratique est fautive.</p>
+  </div>
+</section>
+
+<!-- =========================================================== -->
+<section>
+  <h2><span class="num">6.</span>Corrections et contournements</h2>
+
+  <table>
+    <thead><tr><th>Problème</th><th>Correction</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Impossible de voir ce que le modèle produit réellement</td>
+        <td>Option <code>--logits FICHIER</code> : JSONL, logits bruts avant biais et température, en-tête de configuration en première ligne</td>
+      </tr>
+      <tr>
+        <td>Le prior par option masque la lecture</td>
+        <td>Option <code>--label-bias "clé=valeur"</code> (libellé ou <code>#position</code>), surchargeable par requête</td>
+      </tr>
+      <tr>
+        <td>Un biais par défaut appliqué sans demande</td>
+        <td>Défaut ramené à <code>none</code> : un serveur sans flag répond exactement ce que dit le modèle</td>
+      </tr>
+      <tr>
+        <td>Le tableau final du client perdait des colonnes</td>
+        <td>Rendu Spectre en deux tableaux : plus aucune colonne supprimée, les longues valeurs passent à la ligne</td>
+      </tr>
+      <tr>
+        <td>Le découpage ne séparait pas les tournures</td>
+        <td>Décor <strong>mesuré</strong> au lieu d'être listé : toute phrase présente dans plus de 10 % des tickets est écartée, les cinq ouvertures retirées par préfixe. Résultat : 79 groupes sur 1000, recouvrement nul</td>
+      </tr>
+      <tr>
+        <td>Entraîner un encodeur sur CPU est hors de portée</td>
+        <td>Encodeur gelé et sa sortie mise en cache une fois (1000 lignes, 307 s, 322 Mo). La boucle ne touche que 15 M de paramètres</td>
+      </tr>
+      <tr>
+        <td>Risque d'optimiser une copie du forward et non le vrai</td>
+        <td>Vérification de parité avant tout entraînement : écart mesuré <code>1,14e-05</code>, seuil d'abandon à <code>1e-3</code></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- =========================================================== -->
+<section>
+  <h2><span class="num">7.</span>Résultat final</h2>
+
+  <h3>7.1 Entraînement — 503 tickets dont le problème n'a jamais été vu</h3>
+  <table>
+    <thead><tr><th>Époque</th><th class="num">Exactitude</th><th class="num">Duel f/l</th></tr></thead>
+    <tbody>
+      <tr><td>avant</td><td class="num">212/503 = 42,2 %</td><td class="num">303/365 = 83,0 %</td></tr>
+      <tr><td>1</td><td class="num">48,9 %</td><td class="num">82,5 %</td></tr>
+      <tr><td>5</td><td class="num">79,1 %</td><td class="num">88,2 %</td></tr>
+      <tr><td>10</td><td class="num">80,7 %</td><td class="num">88,0 %</td></tr>
+      <tr><td>15</td><td class="num">79,1 %</td><td class="num">91,8 %</td></tr>
+      <tr><td><strong>20</strong></td><td class="num win">418/503 = 83,1 %</td><td class="num">331/365 = 90,7 %</td></tr>
+    </tbody>
+  </table>
+
+  <div class="bars">
+    <div class="bar-row"><span class="bar-name">avant</span><span class="bar-track"><span class="bar-fill muted" style="width:42.2%"></span></span><span class="bar-val">42,2 %</span></div>
+    <div class="bar-row"><span class="bar-name">époque 5</span><span class="bar-track"><span class="bar-fill" style="width:79.1%"></span></span><span class="bar-val">79,1 %</span></div>
+    <div class="bar-row"><span class="bar-name">époque 10</span><span class="bar-track"><span class="bar-fill" style="width:80.7%"></span></span><span class="bar-val">80,7 %</span></div>
+    <div class="bar-row"><span class="bar-name">époque 20</span><span class="bar-track"><span class="bar-fill" style="width:83.1%"></span></span><span class="bar-val">83,1 %</span></div>
+  </div>
+
+  <p>Le duel facturation/livraison passe de 77 % mesurés sur le modèle d'origine à <strong>90,7 %</strong> sur des problèmes jamais vus : <strong>+13,7 points</strong>. L'encodeur contenait donc du signal que la tête d'origine n'extrayait pas.</p>
+
+  <h3>7.2 Effet de bord — la tête est partagée entre les trois questions</h3>
+  <table>
+    <thead><tr><th>Question</th><th class="num">Avant</th><th class="num">Après réentraînement</th><th>Effet</th></tr></thead>
+    <tbody>
+      <tr><td><code>service</code></td><td class="num">50,5 %</td><td class="num win">83,1 % <em>(hors échantillon)</em></td><td>Objectif atteint</td></tr>
+      <tr><td><code>remboursement</code></td><td class="num">99,4 %</td><td class="num bad">66,4 %</td><td>Dégradé — prior basculé sur <code>false</code> (380 pour 238 attendus)</td></tr>
+      <tr><td><code>urgence</code></td><td class="num">48,3 %</td><td class="num bad">36,4 %</td><td>Dégradé — à peine au-dessus du hasard (33,3 %)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="box note">
+    <span class="label">Lecture</span>
+    <p>Le <code>type_emb</code> a bien compartimenté : les embeddings de type <code>noul</code> et <code>score</code> n'ont reçu aucun gradient et sont intacts. Mais les <strong>couches de tête et le <code>scorer</code> sont partagés</strong> et ont bougé. Le prior corrigé pour <code>service</code> s'est déplacé sur les deux autres questions.</p>
+  </div>
+
+  <div class="box">
+    <span class="label">Correction identifiée</span>
+    <p>Entraîner les trois questions ensemble, pour que la tête partagée conserve les trois :</p>
+    <pre><code>uv run python train_head.py --question service,remboursement,urgence</code></pre>
+    <p>L'objectif <code>proper_reward</code> gère déjà les trois types — terme RPS pour <code>score</code>, binaire pour <code>noul</code> — et les 1000 tickets portent les trois valeurs attendues.</p>
+  </div>
+</section>
+
+<!-- =========================================================== -->
+<section>
+  <h2><span class="num">8.</span>Limites et réserves</h2>
+  <ul>
+    <li><strong>Le jeu de test vient d'un générateur.</strong> Le découpage sépare les problèmes, pas le monde : même vocabulaire, mêmes ouvertures, mêmes phrases d'urgence. Un jeu de tickets réels étiquetés reste la seule mesure qui tranche.</li>
+    <li><strong><code>urgence</code> n'a jamais eu de signal.</strong> Avant entraînement, la probabilité moyenne sur la bonne réponse était de 36,6 % contre 33,3 % pour l'uniforme. L'entraînement conjoint l'empêchera de se dégrader, il ne la fera pas monter.</li>
+    <li><strong>Le 92,8 % observé côté client sur 500 tickets est gonflé</strong> : environ la moitié a servi à l'entraînement. Le seul chiffre honnête est le 83,1 % du script, sur la moitié tenue à l'écart.</li>
+    <li><strong>Le script ne conserve pas la meilleure époque</strong>, il écrit la dernière. Ici la dernière était la meilleure en exactitude — c'est un hasard favorable, pas une garantie.</li>
+    <li><strong>La cohérence des budgets de séquence n'est pas vérifiée automatiquement</strong> : le chargement annonce <code>max_len</code> 1024, le serveur tourne à 256. Sans effet ici (les lignes font ~105 tokens en moyenne), mais à surveiller sur des tickets longs.</li>
+  </ul>
+</section>
+
+<!-- =========================================================== -->
+<section>
+  <h2><span class="num">9.</span>Reste à faire</h2>
+  <ol>
+    <li>Réentraîner sur <code>service,remboursement,urgence</code> et vérifier que les trois tiennent.</li>
+    <li>Copier <code>laya-head\laya.onnx</code> ailleurs avant réexport, pour garder la comparaison.</li>
+    <li>Recalibrer les seuils <code>ScoreLowCut</code> / <code>ScoreHighCut</code> si, et seulement si, <code>MeanP(expected)</code> sur <code>urgence</code> remonte nettement au-dessus de 33,3 %.</li>
+    <li>Constituer un jeu de tickets réels étiquetés, et rejouer la mesure dessus.</li>
+  </ol>
+</section>
+
+<!-- =========================================================== -->
+<section>
+  <h2><span class="num">A.</span>Annexe — commandes</h2>
+  <h3>Entraîner la tête</h3>
+  <pre><code>uv run python train_head.py --question service</code></pre>
+  <h3>Exporter en ONNX</h3>
+  <pre><code>uv run python export_laya_master.py --repo .laya-cache/checkpoints/laya-head --out .laya-cache/checkpoints/laya-head</code></pre>
+  <h3>Servir le modèle réentraîné</h3>
+  <pre><code>$env:LAYA_OV_ONNX_PATH = ".laya-cache\checkpoints\laya-head\laya.onnx"
+uv run python laya_serve_openvino.py --batch-states 50 --max-concurrent 1 --max-len 256</code></pre>
+  <p><strong>Sans <code>--label-bias</code>.</strong> L'entraînement porte sur les logits bruts ; le biais est une correction calée sur l'ancien modèle.</p>
+  <h3>Mesurer</h3>
+  <pre><code>.\laya-client-spectre.ps1 -InputPath .\tickets-1000.json -BatchSize 50 -OutputPath .\resultats-finetune.json</code></pre>
+</section>
+
+<!-- =========================================================== -->
+<section>
+  <h2><span class="num">B.</span>Annexe — fichiers</h2>
+  <table>
+    <thead><tr><th>Fichier</th><th>État</th><th>Rôle</th></tr></thead>
+    <tbody>
+      <tr><td><code>laya_openvino_agent.py</code></td><td>modifié</td><td>Température, biais par option, journalisation des logits</td></tr>
+      <tr><td><code>laya_serve_openvino.py</code></td><td>modifié</td><td>Flags, surcharges par requête, bloc <code>decoding</code> dans <code>/health</code></td></tr>
+      <tr><td><code>laya-client-spectre.ps1</code></td><td>modifié</td><td>Tableau final en Spectre, plus de colonne perdue</td></tr>
+      <tr><td><code>train_head.py</code></td><td>créé</td><td>Réentraînement de la tête, encodeur gelé et mis en cache</td></tr>
+      <tr><td><code>tickets-200-service-noul.json</code></td><td>créé</td><td>Variante noul, 3 questions booléennes</td></tr>
+      <tr><td><code>.laya-cache/checkpoints/laya-head/</code></td><td>créé</td><td>Checkpoint réentraîné + <code>laya.onnx</code> exporté</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<p class="foot">ASD-FT100 — 3 octobre 2026. Les chiffres proviennent des journaux d'exécution conservés dans le dépôt. Le checkpoint d'origine <code>.laya-cache/checkpoints/laya-master/</code> n'a pas été modifié.</p>
+
+</div>
+</body>
+</html>

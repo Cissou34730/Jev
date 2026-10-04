@@ -2,10 +2,10 @@
   "questions": {
     "service": {
       "type": "choice",
-      "instructions": "Répond uniquement facturation ?",
+      "instructions": "Indique le service qui doit traiter cette demande ?",
       "criteria": {
         "facturation": "Paiement, prélèvement, facture ou abonnement",
-        "technique": "Dysfonctionnement du logiciel, accès, erreur ou fonctionnalité indisponible",
+        "technique": "La recette du gateau au chocolat",
         "livraison": "Acheminement, suivi, réception ou état d'un colis"
       }
     },

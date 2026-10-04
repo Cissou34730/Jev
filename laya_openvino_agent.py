@@ -29,6 +29,16 @@ Configuration, all environment variables:
   LAYA_OV_MAX_LEN         the compiled sequence length     (default 128)
   LAYA_OV_MAX_ROWS        rows per forward pass at most    (default 256)
   LAYA_OV_SHAPE_CACHE     compiled shapes kept resident    (default 8)
+  LAYA_OV_TEMPERATURE     one temperature for every head, replacing the checkpoint's fitted
+                          ones ("none" keeps them)         (default: the checkpoint's)
+  LAYA_OV_LABEL_BIAS      logit offsets per option, "technique=-1.3,#0=0.5", "none" for none
+                          (default: none -- nothing is offset unless asked for)
+  LAYA_OV_LOGITS_PATH     JSONL file, one line per (state, question) with the raw logits the
+                          bias and temperature were applied to, and the result (default off)
+
+The last three exist because this head answers `technique` to almost anything: the raw logits are
+what says whether that is a prior on the label or a real reading of the state, `--temperature`
+changes how sharply they are read, and the label offsets are the direct lever on the prior.
 """
 from __future__ import annotations
 
@@ -56,6 +66,48 @@ CHECKPOINT = ROOT / ".laya-cache" / "checkpoints" / "laya-master"
 def _env(name: str, default: str) -> str:
     value = os.environ.get(name, "").strip()
     return value or default
+
+
+# Measured on the 1000-ticket French run (resultats.json, multilingual checkpoint, 2026-10): the
+# mean probability over the three options was facturation 0.093, technique 0.786, livraison 0.120,
+# and the head answered `technique` for 795 states. The head therefore starts from a strong prior
+# on one option and the other two start too low. Offsetting the raw logits by
+# log(1/3 / mean_p), shifted to a zero mean so the overall sharpness is untouched, turns 53.8%
+# into 61.7% on that same file -- the head was not ranking badly, its baseline was wrong.
+#
+# The keys are the option keys of the question, and `#0`, `#1`, ... addresses options by position.
+# A key the question does not have is simply not applied, so renaming the labels (as the A/B/C
+# experiment did) switches this off rather than mis-applying it to the wrong option.
+DEFAULT_LABEL_BIAS = {"technique": -1.3363, "facturation": 0.7961, "livraison": 0.5403}
+
+
+def parse_label_bias(spec: str) -> Dict[str, float]:
+    """`"technique=-1.3,#0=0.5"` -> {"technique": -1.3, "#0": 0.5}.
+
+    `""` and `"default"` give DEFAULT_LABEL_BIAS, `"none"` gives nothing. Raises ValueError on a
+    part that is not `key=number`, so the server can answer with the flag's name instead of a
+    traceback.
+    """
+    text = (spec or "").strip()
+    if text.lower() in ("", "default"):
+        return dict(DEFAULT_LABEL_BIAS)
+    if text.lower() in ("none", "off"):
+        return {}
+    table: Dict[str, float] = {}
+    for part in text.split(","):
+        if not part.strip():
+            continue
+        key, sep, value = part.partition("=")
+        if not sep or not key.strip():
+            raise ValueError(f"label bias part {part!r} is not key=number")
+        table[key.strip()] = float(value)
+    return table
+
+
+def _state_head(state: Any) -> str:
+    """The state as one short line: enough to tell two tickets apart in the logits log."""
+    text = state if isinstance(state, str) else serialize_state(state)
+    return " ".join(text.split())[:200]
 
 
 # When this process started and how much memory it holds. A pass that slows down has to be read
@@ -114,6 +166,9 @@ class OpenVINOAgent:
         max_len: Optional[int] = None,
         max_rows: Optional[int] = None,
         shape_cache: Optional[int] = None,
+        temperature: Optional[float] = None,
+        label_bias: Optional[Any] = None,
+        logits_path: Optional[str] = None,
     ) -> None:
         self.onnx_path = onnx_path or _env("LAYA_OV_ONNX_PATH", str(CHECKPOINT / "laya.onnx"))
         checkpoint = Path(self.onnx_path).parent
@@ -126,6 +181,19 @@ class OpenVINOAgent:
         self.max_len = int(max_len or _env("LAYA_OV_MAX_LEN", "128"))
         self.max_rows = int(max_rows or _env("LAYA_OV_MAX_ROWS", "256"))
         self.shape_cache_size = int(shape_cache or _env("LAYA_OV_SHAPE_CACHE", "8"))
+        # One temperature for every head, or the checkpoint's fitted ones. A request carries its
+        # own in `request_temperature` (see laya_serve_openvino), which wins over this.
+        raw_temperature = _env("LAYA_OV_TEMPERATURE", "") if temperature is None else temperature
+        self.temperature_override = (
+            float(raw_temperature) if raw_temperature and float(raw_temperature) > 0 else None
+        )
+        if label_bias is None:
+            self.label_bias = parse_label_bias(_env("LAYA_OV_LABEL_BIAS", "none"))
+        elif isinstance(label_bias, str):
+            self.label_bias = parse_label_bias(label_bias)
+        else:
+            self.label_bias = {str(key): float(value) for key, value in label_bias.items()}
+        self.logits_path = logits_path if logits_path is not None else _env("LAYA_OV_LOGITS_PATH", "")
         if not Path(self.onnx_path).is_file():
             raise RuntimeError(f"ONNX model not found: {self.onnx_path}. Run export_laya_master.py first.")
 
@@ -138,10 +206,23 @@ class OpenVINOAgent:
         self.model_id = "laya-master-openvino"
         self._core = None
         self._compiled: Dict[int, Any] = {}
+        # Set by the server for the length of one Router call, because the Router has no argument
+        # for either and one forward pass at a time runs on one worker thread; see
+        # laya_serve_openvino._predict. `request_label_bias` replaces `label_bias` when set.
+        self.request_temperature: Optional[float] = None
+        self.request_label_bias: Optional[Dict[str, float]] = None
         # Counted here, not by the caller: one forward pass is one call to the compiled model, and
         # with several states per call that is not the same as one request and not the same as one
         # batch. Printed as it happens, so a server log says whether anything is going on at all.
         self.pass_count = 0
+        # Read back in the log by whoever is reading the logits: what the numbers were scaled and
+        # offset by is the difference between "the head is broken" and "the head was overridden".
+        print(
+            f"openvino agent: {self.model_id} on {self.device}, max_len {self.max_len}, "
+            f"temperature {self.temperature_override or 'checkpoint'}, "
+            f"label_bias {self.label_bias or 'none'}, logits {self.logits_path or 'off'}",
+            file=sys.stderr, flush=True,
+        )
 
     # -- engine ------------------------------------------------------------------------------
 
@@ -224,13 +305,60 @@ class OpenVINOAgent:
             items.append({"qid": qid, "ids": seq, "markers": markers, "qtype": QTYPES[q["t"]]})
         return items
 
-    def _decode(self, logits: np.ndarray, item: Dict[str, Any], q: Dict[str, Any]) -> Dict[str, Any]:
+    def _option_keys(self, q: Dict[str, Any], k: int) -> List[str]:
+        """The name each option is addressed by in a bias table, in rendered order."""
+        if q["t"] == "choice":
+            return [str(key) for key in (q.get("crit") or {})]
+        if q["t"] == "score":
+            return [str(i) for i in range(k)]
+        return ["false", "true"][:k]
+
+    def _bias_for(self, q: Dict[str, Any], k: int, keys: List[str]) -> Optional[np.ndarray]:
+        """The per-option logit offset, or None when no key of this question is in the table."""
+        table = self.request_label_bias if self.request_label_bias is not None else self.label_bias
+        if not table:
+            return None
+        offsets = np.array(
+            [float(table.get(key, table.get("#%d" % i, 0.0))) for i, key in enumerate(keys)],
+            dtype=np.float64,
+        )
+        return offsets if offsets.any() else None
+
+    def _scale_for(self, qtype: int, k: int) -> float:
+        """This head's temperature: the request's, else the server's, else the checkpoint's."""
+        requested = self.request_temperature
+        if requested is None:
+            requested = self.temperature_override
+        if requested:
+            return float(requested)
+        return self.temperature_by_options.get(temp_bucket(qtype, k), self.temperature[qtype])
+
+    def _decode(self, logits: np.ndarray, item: Dict[str, Any], q: Dict[str, Any],
+                log: Optional[List[Dict[str, Any]]] = None) -> Dict[str, Any]:
         k = len(item["markers"])
         qtype = item["qtype"]
-        scale = self.temperature_by_options.get(temp_bucket(qtype, k), self.temperature[qtype])
-        z = logits[:k] / scale
+        keys = self._option_keys(q, k)
+        raw = np.asarray(logits[:k], dtype=np.float64)
+        bias = self._bias_for(q, k, keys)
+        scale = self._scale_for(qtype, k)
+        z = ((raw + bias) if bias is not None else raw) / scale
         p = np.exp(z - z.max())
         p = p / p.sum()
+        if log is not None:
+            # The raw logits, before the bias and the temperature: those two are logged next to
+            # them so a line can be replayed, and so an overridden run is not mistaken for a
+            # reading of the model.
+            log.append({
+                "ts": time.time(),
+                "qid": item["qid"],
+                "type": q["t"],
+                "keys": keys,
+                "logits": [round(float(value), 6) for value in raw],
+                "bias": [round(float(value), 6) for value in bias] if bias is not None else None,
+                "temperature": scale,
+                "probs": [round(float(value), 6) for value in p],
+                "argmax": keys[int(p.argmax())],
+            })
         confidence = round(confidence_from_probs(p, k), 4)
         answer_confidence_value = round(answer_confidence(p, k), 4)
         if q["t"] == "choice":
@@ -260,15 +388,17 @@ class OpenVINOAgent:
 
     # -- inference ---------------------------------------------------------------------------
 
-    def _run(self, per_state_items: List[List[Dict[str, Any]]], internal: Dict[str, Any], ids: List[str]):
+    def _run(self, per_state_items: List[List[Dict[str, Any]]], internal: Dict[str, Any],
+             ids: List[str], states: Optional[List[Any]] = None):
         """Answer every (state, question) row; returns (per-state answers, input tokens)."""
         flat = [(state_index, item) for state_index, items in enumerate(per_state_items) for item in items]
         input_tokens = sum(len(item["ids"]) for _, item in flat)
         answers: List[Dict[str, Any]] = [{} for _ in per_state_items]
+        log: Optional[List[Dict[str, Any]]] = [] if self.logits_path else None
         for start in range(0, len(flat), self.max_rows):
             part = flat[start:start + self.max_rows]
             rows = len(part)
-            states = len({state_index for state_index, _ in part})
+            state_count = len({state_index for state_index, _ in part})
             compiled = self._compile(rows)
             # The phases are timed apart because one total says nothing about the GPU: building the
             # feeds, copying the logits and decoding are CPU work on this same thread, and only the
@@ -285,19 +415,52 @@ class OpenVINOAgent:
             decode_started = time.perf_counter()
             for offset, (state_index, item) in enumerate(part):
                 qid = item["qid"]
-                answers[state_index][qid] = self._decode(logits[offset], item, internal[qid])
+                written = len(log) if log is not None else 0
+                answers[state_index][qid] = self._decode(logits[offset], item, internal[qid], log=log)
+                if log is not None and len(log) > written:
+                    # The state is only known here; the logits line is not complete without it.
+                    log[written]["state"] = _state_head(states[state_index]) if states else ""
             decode_seconds = time.perf_counter() - decode_started
             self.pass_count += 1
             total_seconds = feeds_seconds + infer_seconds + copy_seconds + decode_seconds
             print(
-                f"forward pass {self.pass_count}: {states} state(s), {rows} items | "
+                f"forward pass {self.pass_count}: {state_count} state(s), {rows} items | "
                 f"feeds {feeds_seconds:.2f}s infer {infer_seconds:.2f}s "
                 f"copy {copy_seconds:.2f}s decode {decode_seconds:.2f}s | "
                 f"total {total_seconds:.2f}s | up {time.perf_counter() - _PROCESS_STARTED:.0f}s, "
                 f"rss {_resident_mb():.0f} MB",
                 file=sys.stderr, flush=True,
             )
+            if log:
+                self._write_logits(log)
         return answers, input_tokens
+
+    def _write_logits(self, records: List[Dict[str, Any]]) -> None:
+        """Append one pass of logits to `logits_path`, one JSON object per line.
+
+        Started with a header line naming the model and the overrides, so a file collected over a
+        day of runs says which run each line belongs to. A failure to write is reported and the
+        inference carries on: losing the log is not worth losing the answer.
+        """
+        path = Path(self.logits_path)
+        try:
+            fresh = not path.exists()
+            path.parent.mkdir(parents=True, exist_ok=True)
+            with path.open("a", encoding="utf-8") as handle:
+                if fresh:
+                    handle.write(json.dumps({
+                        "logits_log": "start",
+                        "ts": time.time(),
+                        "model": self.model_id,
+                        "onnx": self.onnx_path,
+                        "max_len": self.max_len,
+                        "temperature": self.temperature_override,
+                        "label_bias": self.label_bias,
+                    }, ensure_ascii=False) + "\n")
+                for record in records:
+                    handle.write(json.dumps(record, ensure_ascii=False) + "\n")
+        except OSError as exc:
+            print(f"logits log {self.logits_path} unwritable: {exc}", file=sys.stderr, flush=True)
 
     def _prepare(self, questions: Any):
         if not isinstance(questions, dict) or not questions:
@@ -331,7 +494,7 @@ class OpenVINOAgent:
                 f"{time.perf_counter() - encode_started:.2f}s",
                 file=sys.stderr, flush=True,
             )
-            answers, input_tokens = self._run(encoded, internal, ids)
+            answers, input_tokens = self._run(encoded, internal, ids, states=part)
             tokens = max(1, input_tokens // max(1, len(part)))
             for state_answers in answers:
                 results.append({

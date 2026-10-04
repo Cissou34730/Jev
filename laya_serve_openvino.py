@@ -44,10 +44,27 @@ Every setting has a command-line flag and an environment variable, the flag winn
   --max-concurrent N      requests admitted at once; beyond it the
                           server answers 503 with Retry-After       (LAYA_MAX_CONCURRENT, default 2)
   --max-len N             compiled sequence length for every question (LAYA_OV_MAX_LEN, default 128)
+  --temperature F         one temperature for every head, replacing the checkpoint's fitted ones,
+                          "none" to keep them, 0 to keep them too        (LAYA_OV_TEMPERATURE)
+  --label-bias SPEC       logit offsets per option, "technique=-1.3,#0=0.5", "default" for the
+                          measured French table or "none"; unset offsets nothing
+                                                                    (LAYA_OV_LABEL_BIAS)
+  --logits PATH           JSONL file, one line per (state, question) with the raw logits, the bias
+                          and temperature applied to them, and the result  (LAYA_OV_LOGITS_PATH)
   --host H, --port N      where to listen                             (LAYA_HOST, LAYA_PORT)
   LAYA_LOG_LEVEL          uvicorn log level                           (default info)
   LAYA_ACCESS_LOG         uvicorn's one line per request              (default off)
   LAYA_API_KEY            bearer token, unchecked when unset
+
+A request may carry `"temperature"` and `"label_bias"` of its own, on either route; they apply to
+that request's states only. The Router has no argument for either, so the server sets them on the
+agent for the length of the call -- one forward pass at a time runs on one worker thread, so
+nothing else can read them meanwhile.
+
+`--label-bias` and `--temperature` change what the model answers. The startup line and `/health`
+print what is in force, and every logits line repeats it, so a run that was overridden cannot be
+read later as a reading of the checkpoint. Nothing is offset and no temperature is replaced unless
+the flag asks for it, so an untouched server answers exactly what the model says.
 """
 from __future__ import annotations
 
@@ -71,15 +88,22 @@ from laya import serve as stock
 from laya.mcp.device import agent_device, resolve_device, router_agent
 from laya.router import Router
 
-from laya_openvino_agent import OpenVINOAgent
+from laya_openvino_agent import OpenVINOAgent, parse_label_bias
 
 # Every name the Router can route to, all pointing at the same agent.
 ROUTER_NAMES = ("english", "multilingual", "typed-decisions")
 DEFAULT_NAME = "multilingual"
 
 
-def build_router(max_len: Optional[int] = None) -> Router:
-    agent = OpenVINOAgent(max_len=max_len)
+def build_router(
+    max_len: Optional[int] = None,
+    temperature: Optional[float] = None,
+    label_bias: Optional[Any] = None,
+    logits_path: Optional[str] = None,
+) -> Router:
+    agent = OpenVINOAgent(
+        max_len=max_len, temperature=temperature, label_bias=label_bias, logits_path=logits_path,
+    )
     # No `models=` map: the three names already exist, and `load()` returns an attached agent
     # before it would ever look a repository up.
     router = Router(default=DEFAULT_NAME, max_loaded=len(ROUTER_NAMES), preload=False)
@@ -104,6 +128,56 @@ def _env_int(name: str, default: int) -> int:
     except ValueError:
         return default
     return value if value > 0 else default
+
+
+def _request_temperature(body: Dict[str, Any]) -> Optional[float]:
+    """A request's own temperature, or None to use the server's."""
+    raw = body.get("temperature")
+    if raw is None:
+        return None
+    if isinstance(raw, bool) or not isinstance(raw, (int, float)) or not raw > 0:
+        raise HTTPException(status_code=400, detail="'temperature' must be a number greater than 0")
+    return float(raw)
+
+
+def _request_label_bias(body: Dict[str, Any]) -> Optional[Dict[str, float]]:
+    """A request's own logit offsets, or None to use the server's. Replaces them, not adds to them."""
+    raw = body.get("label_bias")
+    if raw is None:
+        return None
+    if isinstance(raw, str):
+        try:
+            return parse_label_bias(raw)
+        except (TypeError, ValueError):
+            raise HTTPException(
+                status_code=400,
+                detail="'label_bias' must look like {'technique': -1.3}, 'technique=-1.3,#0=0.5' "
+                       "or 'none'",
+            )
+    if not isinstance(raw, dict):
+        raise HTTPException(
+            status_code=400, detail="'label_bias' must be an object of number offsets, or a string"
+        )
+    try:
+        return {str(key): float(value) for key, value in raw.items()}
+    except (TypeError, ValueError):
+        raise HTTPException(status_code=400, detail="'label_bias' values must be numbers")
+
+
+def _predict(router: Router, agent: Any, requests: list, batch_size: int,
+             temperature: Optional[float], label_bias: Optional[Dict[str, float]]):
+    """One Router call with the request's temperature and bias in force.
+
+    Runs on the engine thread -- the only thread that touches the agent -- and clears both
+    attributes before returning, so a later call cannot inherit them.
+    """
+    agent.request_temperature = temperature
+    agent.request_label_bias = label_bias
+    try:
+        return router.predict_batch(requests, batch_size=batch_size)
+    finally:
+        agent.request_temperature = None
+        agent.request_label_bias = None
 
 
 def build_app(router: Router, batching: bool, window_ms: int, batch_states: int, max_concurrent: int):
@@ -131,6 +205,11 @@ def _build_batched_app(router: Router, window_ms: int, batch_states: int,
     pool = ThreadPoolExecutor(max_workers=1, thread_name_prefix="laya-infer")
     queue: asyncio.Queue = asyncio.Queue()
     admission: Optional[asyncio.Semaphore] = None
+    # The one agent behind all three names: `_predict` sets a request's temperature and bias on it
+    # for the length of the call, on the worker thread, where nothing else can be running.
+    engine_agent = router_agent(router, DEFAULT_NAME)
+    if engine_agent is None:
+        raise RuntimeError(f"the {DEFAULT_NAME} agent is not attached")
     # Requests seen and items sent, counted per HTTP request. Forward passes are counted by the
     # agent, which is the only place that knows how many the call really became.
     passes = {"requests": 0, "items": 0}
@@ -146,13 +225,25 @@ def _build_batched_app(router: Router, window_ms: int, batch_states: int,
         """One forward pass for the whole batch; every parked request gets its own result."""
         requests = [
             {"state": state, "questions": questions, "model": model}
-            for state, questions, model, _ in batch
+            for state, questions, model, _, _, _ in batch
         ]
-        items = sum(len(questions) for _, questions, _, _ in batch)
+        items = sum(len(questions) for _, questions, _, _, _, _ in batch)
+        # A forward pass carries one temperature and one bias table for all of its rows, so a batch
+        # that mixes requests takes the first override and says so, rather than answering some
+        # requests under another one's settings.
+        temperature = next((job[3] for job in batch if job[3] is not None), None)
+        label_bias = next((job[4] for job in batch if job[4] is not None), None)
+        if any(job[3] != temperature or job[4] != label_bias for job in batch):
+            print(
+                "warning: one forward pass carries requests that disagree on temperature or "
+                f"label_bias; the first ({temperature} / {label_bias}) is used for all of them",
+                file=sys.stderr, flush=True,
+            )
         started = time.perf_counter()
         try:
             results = await asyncio.get_running_loop().run_in_executor(
-                pool, lambda: router.predict_batch(requests, batch_size=batch_states)
+                pool, _predict, router, engine_agent, requests, batch_states,
+                temperature, label_bias,
             )
         except BaseException as exc:  # includes CancelledError on shutdown
             for *_, future in batch:
@@ -222,9 +313,14 @@ def _build_batched_app(router: Router, window_ms: int, batch_states: int,
                 "states_per_forward_pass": batch_states,
                 "requests_admitted": admission_limit,
                 "requests_served": passes["requests"],
-                "forward_passes": getattr(router_agent(router, DEFAULT_NAME), "pass_count", None),
+                "forward_passes": getattr(engine_agent, "pass_count", None),
                 "items_through_engine": passes["items"],
                 "queued": queue.qsize(),
+            },
+            "decoding": {
+                "temperature": getattr(engine_agent, "temperature_override", None),
+                "label_bias": getattr(engine_agent, "label_bias", None),
+                "logits_log": getattr(engine_agent, "logits_path", None) or None,
             },
         }
 
@@ -268,9 +364,13 @@ def _build_batched_app(router: Router, window_ms: int, batch_states: int,
         cap = stock._resolve_max_token_budget()
         stock._validate_budget_param(body, "max_len", cap)
         stock._validate_budget_param(body, "head_max_len", cap)
+        # Validated before the request is parked: a bad override is the client's error, not a
+        # future answered under settings it did not ask for.
+        temperature = _request_temperature(body)
+        label_bias = _request_label_bias(body)
 
         future: asyncio.Future = asyncio.get_running_loop().create_future()
-        await queue.put((state, questions, model, future))
+        await queue.put((state, questions, model, temperature, label_bias, future))
         try:
             result, ms = await future
         except HTTPException:
@@ -341,13 +441,15 @@ def _build_batched_app(router: Router, window_ms: int, batch_states: int,
         else:
             batch_size = raw_batch_size
         model = stock._resolve_model(body.get("model"))
+        temperature = _request_temperature(body)
+        label_bias = _request_label_bias(body)
         requests = [{"state": state, "questions": questions, "model": model} for state in states]
 
         started = time.perf_counter()
         try:
             # Laya splits the request's states into forward passes of the client's batch_size.
             results = await asyncio.get_running_loop().run_in_executor(
-                pool, lambda: router.predict_batch(requests, batch_size=batch_size)
+                pool, _predict, router, engine_agent, requests, batch_size, temperature, label_bias,
             )
         except ValueError as exc:
             raise HTTPException(status_code=422, detail=str(exc))
@@ -409,6 +511,19 @@ def _parse_args(argv: Optional[list] = None):
                              "options share this budget with the state, so a question with little "
                              "room left truncates the state, possibly to nothing "
                              f"(env LAYA_OV_MAX_LEN, default {_env_int('LAYA_OV_MAX_LEN', 128)})")
+    parser.add_argument("--temperature", type=float, default=None,
+                        help="one temperature for every head, replacing the checkpoint's fitted "
+                             "ones; leave it out to keep them "
+                             "(env LAYA_OV_TEMPERATURE)")
+    parser.add_argument("--label-bias", default=None,
+                        help="logit offsets added to the options before the temperature, "
+                             "'technique=-1.3,#0=0.5', 'default' for the measured French table "
+                             "or 'none'; unset offsets nothing "
+                             "(env LAYA_OV_LABEL_BIAS)")
+    parser.add_argument("--logits", default=None,
+                        help="JSONL file to append the raw logits to, one line per (state, "
+                             "question) with the bias and temperature applied to them "
+                             "(env LAYA_OV_LOGITS_PATH, default off)")
     parser.add_argument("--host", default=None,
                         help=f"bind address (env LAYA_HOST, default {os.environ.get('LAYA_HOST', '127.0.0.1')})")
     parser.add_argument("--port", type=int, default=None,
@@ -428,9 +543,25 @@ def main() -> None:
     if batch_states < 1 or window_ms < 0 or max_concurrent < 1 or max_len < 1:
         raise SystemExit("--batch-states, --max-concurrent and --max-len must be at least 1, "
                          "and --window-ms cannot be negative")
+    if args.temperature is not None and args.temperature <= 0:
+        raise SystemExit("--temperature must be greater than 0; leave it out to keep the "
+                         "checkpoint's own temperatures")
+    if args.label_bias is not None:
+        try:
+            parse_label_bias(args.label_bias)
+        except (TypeError, ValueError):
+            raise SystemExit("--label-bias must look like 'technique=-1.3,#0=0.5' or be 'none'")
+    if args.logits and batching is False:
+        print("laya-serve/OpenVINO: --batch off, so a request's own temperature and label_bias are "
+              "ignored; --temperature, --label-bias and --logits still apply to every request",
+              file=sys.stderr, flush=True)
 
     uvicorn.run(
-        build_app(build_router(max_len=max_len), batching, window_ms, batch_states, max_concurrent),
+        build_app(
+            build_router(max_len=max_len, temperature=args.temperature,
+                         label_bias=args.label_bias, logits_path=args.logits),
+            batching, window_ms, batch_states, max_concurrent,
+        ),
         host=args.host or os.environ.get("LAYA_HOST", "127.0.0.1"),
         port=args.port or int(os.environ.get("LAYA_PORT", "8001")),
         log_level=os.environ.get("LAYA_LOG_LEVEL", "info"),

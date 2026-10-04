@@ -431,9 +431,20 @@ if ($failed.Count -lt $tickets.Count) {
     Write-Host ''
     Write-Host "routed to $($health.loaded -join ', ')"
 }
-$accuracy | Format-Table -AutoSize
+# `Format-Table -AutoSize` silently drops the columns that do not fit the console, which is how
+# ExpectedDistribution disappeared and LayaDistribution came back cut with an ellipsis. Spectre
+# wraps a cell instead of dropping it, so nothing is lost whatever the window width. Two tables
+# rather than one: the two distribution columns need about seventy characters between them, and in
+# a single nine-column table they take that room from the numbers, squeezing Question and the
+# header row down to one character each. Rendered with the same renderer as the live table above.
+$accuracyNumbers = Format-SpectreTable -Data @($accuracy) `
+    -Property 'Question', 'Type', 'Correct', 'Scored', 'Accuracy', 'MeanP(expected)', 'MeanConfidence' `
+    -Border Rounded -Expand -Wrap
+$accuracyDistributions = Format-SpectreTable -Data @($accuracy) `
+    -Property 'Question', 'ExpectedDistribution', 'LayaDistribution' `
+    -Border Rounded -Expand -Wrap
+Format-SpectreRows -Data @($accuracyNumbers, $accuracyDistributions)
 $failed | Select-Object -First 3 | ForEach-Object { Write-Warning "Ticket $($_.Ticket.$IdProperty): $($_.Error)" }
-
 if ($OutputPath) {
     $results | ForEach-Object {
         $ticket = $_.Ticket
