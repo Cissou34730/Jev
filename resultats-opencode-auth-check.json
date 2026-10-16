@@ -1,0 +1,51 @@
+[
+  {
+    "id": "LIV-0972",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "livraison",
+        "confidence": 0.85,
+        "probabilities": {
+          "facturation": 0.1,
+          "technique": 0,
+          "livraison": 0.9
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "urgence": {
+        "type": "score",
+        "score": 2,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : elle peut attendre, quelques jours ou plus",
+          "1": "Modérée : un délai court, 48 heures ou la fin de la semaine",
+          "2": "Élevée : le jour même, elle ne peut pas attendre"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 0,
+          "2": 1
+        }
+      }
+    },
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Élevée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 533,
+      "output_tokens": 79
+    },
+    "error": null
+  }
+]

@@ -1,0 +1,198 @@
+[
+  {
+    "id": "LIV-0972",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "livraison",
+        "confidence": 0.83,
+        "probabilities": {
+          "facturation": 0.11,
+          "technique": 0,
+          "livraison": 0.89
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "urgence": {
+        "type": "score",
+        "score": 2,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : elle peut attendre, quelques jours ou plus",
+          "1": "Modérée : un délai court, 48 heures ou la fin de la semaine",
+          "2": "Élevée : le jour même, elle ne peut pas attendre"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 0,
+          "2": 1
+        }
+      }
+    },
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Élevée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 533,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "LIV-0453",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "livraison",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 0,
+          "technique": 0,
+          "livraison": 1
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "urgence": {
+        "type": "score",
+        "score": 0.91,
+        "confidence": 0.86,
+        "legend": {
+          "0": "Faible : elle peut attendre, quelques jours ou plus",
+          "1": "Modérée : un délai court, 48 heures ou la fin de la semaine",
+          "2": "Élevée : le jour même, elle ne peut pas attendre"
+        },
+        "probabilities": {
+          "0": 0.09,
+          "1": 0.91,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Faible"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": false
+    },
+    "usage": {
+      "input_tokens": 524,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "TEC-0440",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "technique",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 0,
+          "technique": 1,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "urgence": {
+        "type": "score",
+        "score": 2,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : elle peut attendre, quelques jours ou plus",
+          "1": "Modérée : un délai court, 48 heures ou la fin de la semaine",
+          "2": "Élevée : le jour même, elle ne peut pas attendre"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 0,
+          "2": 1
+        }
+      }
+    },
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Élevée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 526,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "FAC-0856",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "facturation",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 1,
+          "technique": 0,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.98
+      },
+      "urgence": {
+        "type": "score",
+        "score": 0,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : elle peut attendre, quelques jours ou plus",
+          "1": "Modérée : un délai court, 48 heures ou la fin de la semaine",
+          "2": "Élevée : le jour même, elle ne peut pas attendre"
+        },
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Faible"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 529,
+      "output_tokens": 79
+    },
+    "error": null
+  }
+]
