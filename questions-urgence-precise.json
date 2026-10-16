@@ -1,0 +1,24 @@
+{
+  "service": {
+    "type": "choice",
+    "instructions": "Indique le service qui doit traiter cette demande ?",
+    "criteria": {
+      "facturation": "Paiement, prélèvement, facture ou abonnement",
+      "technique": "Assistance technique, incident informatique, application, logiciel, accès, connexion, compte, erreur, bug ou panne",
+      "livraison": "Acheminement, suivi, réception ou état d'un colis"
+    }
+  },
+  "remboursement": {
+    "type": "noul",
+    "instructions": "La personne demande-t-elle explicitement un remboursement ?"
+  },
+  "urgence": {
+    "type": "score",
+    "instructions": "Quel délai de réponse la personne demande-t-elle explicitement dans son message ? Se fier uniquement au délai qu'elle exprime, pas à la gravité du problème.",
+    "criteria": [
+      "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+      "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+      "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+    ]
+  }
+}
