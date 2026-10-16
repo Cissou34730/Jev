@@ -1,39 +1,74 @@
 #Requires -Version 7.0
 <#
 .SYNOPSIS
-Sends the tickets of a JSON file to llama-server's Clef-flash (POST /v1/systemone) and scores the
-answers against 'expected' when present.
+Tests Clef-flash through llama-server with the live Spectre display and prediction measures of
+laya-client-spectre.ps1.
 
 .DESCRIPTION
-Same shape as jev-client.ps1: the input is either {"questions": {...}, "tickets": [...]} or a bare
-array of tickets (then use -QuestionsPath). One request per ticket, sent concurrently: llama-server
-exposes only a single-record /v1/systemone endpoint for Clef-flash (unlike Laya's batch endpoint), so
-there is no batch_size to send.
+The input is either {"questions": {...}, "tickets": [...]} or a bare array of tickets (then use
+-QuestionsPath). The display shows live requests, throughput, per-question accuracy, probability of
+the expected answer, confidence, and expected/predicted distributions. Clef only supports one state
+per /v1/systemone request, so each ticket is sent separately with bounded concurrency.
+
+Requires PwshSpectreConsole and SpectreScriptRenderable.ps1, as laya-client-spectre.ps1 does.
+The original -TicketsFile, -ServerUrl, -Limit and -OutFile parameters remain accepted.
 
 .EXAMPLE
-.\clef-client.ps1 -InputPath .\tickets-503-laya-heldout.json -MaxTickets 20
+.\clef-client.ps1 -Limit 20
 .\clef-client.ps1 -InputPath .\tickets-503-laya-heldout.json -OutputPath resultats-clef-flash-503.json
 #>
 [CmdletBinding()]
 param(
-    [Parameter(Mandatory)]
-    [string]$InputPath,
+    [Alias('TicketsFile')]
+    [string]$InputPath = (Join-Path $PSScriptRoot 'tickets-503-laya-heldout.json'),
     [string]$QuestionsPath,
     [string]$TextProperty = 'state',
     [string]$IdProperty = 'id',
     [string]$BaseUrl = 'http://127.0.0.1:8711',
+    [string]$ServerUrl,
+    [Alias('Limit')]
     [int]$MaxTickets = 0,
     [int]$Concurrency = 4,
     [string]$Model = 'clef-flash',
+    [int]$MaxWaitSeconds = 300,
+    [int]$RefreshMs = 200,
     [int]$TimeoutSeconds = 3600,
-    [string]$OutputPath
+    [Alias('OutFile')]
+    [string]$OutputPath,
+    [double]$NoulThreshold = 0.5,
+    [double]$ScoreLowCut,
+    [double]$ScoreHighCut
 )
 
 $ErrorActionPreference = 'Stop'
 
-if ($MaxTickets -lt 0 -or $Concurrency -lt 1) {
-    throw 'MaxTickets must be >= 0 and Concurrency >= 1.'
+if ($PSBoundParameters.ContainsKey('ScoreLowCut') -ne $PSBoundParameters.ContainsKey('ScoreHighCut')) {
+    throw '-ScoreLowCut and -ScoreHighCut go together: pass both, or neither'
 }
+$scoreCutsActive = $PSBoundParameters.ContainsKey('ScoreLowCut')
+if ($scoreCutsActive -and $ScoreLowCut -ge $ScoreHighCut) {
+    throw "-ScoreLowCut ($ScoreLowCut) must be below -ScoreHighCut ($ScoreHighCut)"
+}
+if ($MaxTickets -lt 0 -or $Concurrency -lt 1 -or $MaxWaitSeconds -lt 1 -or
+    $RefreshMs -lt 1 -or $TimeoutSeconds -lt 1 -or $NoulThreshold -lt 0 -or $NoulThreshold -gt 1) {
+    throw 'MaxTickets must be >= 0, Concurrency/MaxWaitSeconds/RefreshMs/TimeoutSeconds >= 1, NoulThreshold between 0 and 1.'
+}
+if ($PSBoundParameters.ContainsKey('ServerUrl')) {
+    if ($PSBoundParameters.ContainsKey('BaseUrl')) {
+        throw 'Pass either -ServerUrl or -BaseUrl, not both.'
+    }
+    if ($ServerUrl -notmatch '^https?://.+/v1/systemone/?$') {
+        throw '-ServerUrl must be the full /v1/systemone endpoint URL.'
+    }
+    $BaseUrl = $ServerUrl -replace '/v1/systemone/?$', ''
+}
+
+$OutputEncoding = [Console]::InputEncoding = [Console]::OutputEncoding = [System.Text.UTF8Encoding]::new()
+if (-not (Get-Module -ListAvailable -Name PwshSpectreConsole)) {
+    throw 'PwshSpectreConsole is missing: Install-Module PwshSpectreConsole -Scope CurrentUser'
+}
+Import-Module PwshSpectreConsole -ErrorAction Stop
+. (Join-Path $PSScriptRoot 'SpectreScriptRenderable.ps1')
 
 $data = Get-Content -LiteralPath $InputPath -Raw -Encoding UTF8 | ConvertFrom-Json -Depth 20
 $questions = $data.questions
@@ -55,34 +90,181 @@ catch {
     throw "Server not reachable at $BaseUrl. Start it with: .\clef-server.ps1"
 }
 
-Write-Host "$($tickets.Count) ticket(s), concurrency $Concurrency -> $BaseUrl"
-$watch = [System.Diagnostics.Stopwatch]::StartNew()
+Write-Host "llama-server at $BaseUrl, model $Model"
+$questionCount = @($questions.PSObject.Properties.Name).Count
+Write-Host "$($tickets.Count) state(s), $($tickets.Count) request(s), concurrency $Concurrency"
+$progress = [hashtable]::Synchronized(@{})
+$indexedTickets = for ($i = 0; $i -lt $tickets.Count; $i++) {
+    $progress[$i] = @{ Status = 'pending'; Started = $null; Seconds = 0 }
+    [pscustomobject]@{ Index = $i; Ticket = $tickets[$i] }
+}
+$questionsJson = $questions | ConvertTo-Json -Depth 20 -Compress
 
-$requestCount = $tickets.Count
-$results = $tickets | ForEach-Object -ThrottleLimit $Concurrency -Parallel {
-    $ticket = $_
+function New-SpectreProgress {
+    $snapshot = @{}
+    [System.Threading.Monitor]::Enter($progress.SyncRoot)
+    try {
+        foreach ($key in @($progress.Keys)) { $snapshot[$key] = $progress[$key] }
+    }
+    finally { [System.Threading.Monitor]::Exit($progress.SyncRoot) }
+
+    $doneRows = @($snapshot.Values | Where-Object { $_.Status -eq 'done' })
+    $done = @($doneRows | ForEach-Object { $_.Seconds })
+    $completed = @($snapshot.Keys | Where-Object { $snapshot[$_].Status -in 'done', 'failed' } | Sort-Object)
+    $active = @($snapshot.Keys | Where-Object { $snapshot[$_].Status -in 'sent', 'waiting' } | Sort-Object)
+    $pending = @($snapshot.Keys | Where-Object { $snapshot[$_].Status -eq 'pending' } | Sort-Object | Select-Object -First 3)
+    $visible = @($completed | Select-Object -Last 12) + $active + $pending | Sort-Object -Unique
+    $rows = foreach ($index in $visible) {
+        $row = $snapshot[$index]
+        $seconds = if ($row.Started) { ([DateTime]::UtcNow - $row.Started).TotalSeconds }
+            else { [double]$row.Seconds }
+        $duration = if ($seconds -ge 0.05) { '{0:N1}s' -f $seconds } else { '' }
+        $perTicket = ''
+        $answersPerSecond = ''
+        if ($row.Status -eq 'done' -and $seconds) {
+            $perTicket = '{0:N0} ms' -f ($seconds * 1000.0)
+            $answersPerSecond = '{0:N1}' -f ($questionCount / $seconds)
+        }
+        [pscustomobject]@{
+            Request              = $index + 1
+            Status               = $row.Status
+            States               = 1
+            'Accepted to answer' = $duration
+            'Per ticket'         = $perTicket
+            'Answers/s'          = $answersPerSecond
+        }
+    }
+
+    $summary = @(('received {0}/{1} request(s), elapsed {2:N1}s' -f `
+            $completed.Count, $tickets.Count, $watch.Elapsed.TotalSeconds))
+    if ($done.Count) {
+        $sorted = @($done | Sort-Object)
+        if ($sorted.Count % 2) { $median = $sorted[[int](($sorted.Count - 1) / 2)] }
+        else { $median = ($sorted[$sorted.Count / 2 - 1] + $sorted[$sorted.Count / 2]) / 2 }
+        $summary += ('min {0:N1}s  median {1:N1}s  mean {2:N1}s  max {3:N1}s' -f `
+                $sorted[0], $median, ($done | Measure-Object -Average).Average, $sorted[-1])
+    }
+    else { $summary += 'min -  median -  mean -  max -' }
+    $elapsed = [Math]::Max($watch.Elapsed.TotalSeconds, 0.001)
+    $summary += ('throughput {0:N1} state(s)/s, {1:N1} answer(s)/s over {2} state(s) in {3:N1}s' -f `
+            ($done.Count / $elapsed), ($done.Count * $questionCount / $elapsed), $done.Count, $elapsed)
+
+    $table = Format-SpectreTable -Data @($rows) `
+        -Property 'Request', 'Status', 'States', 'Accepted to answer', 'Per ticket', 'Answers/s' `
+        -Border Rounded -Expand
+    $panel = Format-SpectrePanel -Data ($summary -join "`n") -Header '[grey]summary[/]'
+    return Format-SpectreRows -Data @($table, $panel)
+}
+
+$watch = [System.Diagnostics.Stopwatch]::StartNew()
+$job = $indexedTickets | ForEach-Object -ThrottleLimit $Concurrency -Parallel {
+    $item = $_
     $text = $using:TextProperty
-    $questionSet = $using:questions
+    $questionSet = $using:questionsJson | ConvertFrom-Json -Depth 20
+    $questionNames = @($questionSet.PSObject.Properties.Name)
     $uri = $using:BaseUrl
     $timeout = $using:TimeoutSeconds
     $modelName = $using:Model
-    $body = @{ model = $modelName; state = $ticket.$text; questions = $questionSet } | ConvertTo-Json -Depth 20 -Compress
-    try {
-        $response = Invoke-RestMethod -Method Post -Uri "$uri/v1/systemone" `
-            -ContentType 'application/json; charset=utf-8' -TimeoutSec $timeout `
-            -Body ([Text.Encoding]::UTF8.GetBytes($body))
-        [pscustomobject]@{ Ticket = $ticket; Answers = $response.answers; Error = $null }
+    $progressRows = $using:progress
+    $maxWait = $using:MaxWaitSeconds
+    $body = @{ model = $modelName; state = $item.Ticket.$text; questions = $questionSet } |
+        ConvertTo-Json -Depth 20 -Compress
+    $refusals = 0
+    $waited = 0
+    $errorMessage = $null
+    $answers = $null
+    $inferenceMs = $null
+    $requestSeconds = 0
+    while ($true) {
+        $progressRows[$item.Index] = @{ Status = 'sent'; Started = [DateTime]::UtcNow; Seconds = 0 }
+        $attempt = [System.Diagnostics.Stopwatch]::StartNew()
+        try {
+            $response = Invoke-WebRequest -Method Post -Uri "$uri/v1/systemone" `
+                -ContentType 'application/json; charset=utf-8' -TimeoutSec $timeout `
+                -Body ([Text.Encoding]::UTF8.GetBytes($body))
+            $payload = $response.Content | ConvertFrom-Json -Depth 20
+            if (-not $payload.answers) { throw 'the server returned no answers' }
+            foreach ($name in $questionNames) {
+                if ($null -eq $payload.answers.PSObject.Properties[$name]) {
+                    throw "the server returned no answer for '$name'"
+                }
+                $answer = $payload.answers.$name
+                if ($answer.type -ne $questionSet.$name.type) {
+                    throw "the server returned the wrong answer type for '$name'"
+                }
+                if ($answer.type -in 'choice', 'score' -and
+                    (-not $answer.probabilities -or -not @($answer.probabilities.PSObject.Properties).Count)) {
+                    throw "the server returned no probabilities for '$name'"
+                }
+                if ($answer.type -eq 'noul' -and $null -eq $answer.PSObject.Properties['noul']) {
+                    throw "the server returned no noul value for '$name'"
+                }
+            }
+            if ($null -ne $response.Headers['X-Inference-Time-Ms']) {
+                $inferenceMs = [double]($response.Headers['X-Inference-Time-Ms'] | Select-Object -First 1)
+            }
+            $answers = $payload.answers
+            $attempt.Stop()
+            $requestSeconds = $attempt.Elapsed.TotalSeconds
+            $errorMessage = $null
+            break
+        }
+        catch {
+            $errorMessage = "$($_.Exception.Message) $($_.ErrorDetails.Message)"
+            $answers = $null
+            $status = 0
+            $wait = 1
+            if ($_.Exception.Response) {
+                $status = [int]$_.Exception.Response.StatusCode
+                $retryAfter = $_.Exception.Response.Headers.RetryAfter
+                if ($retryAfter -and $retryAfter.Delta) {
+                    $wait = [int][math]::Ceiling($retryAfter.Delta.TotalSeconds)
+                }
+            }
+            if ($status -ne 503 -or $waited + $wait -gt $maxWait) { break }
+            $refusals++
+            $waited += $wait
+            $progressRows[$item.Index] = @{ Status = 'waiting'; Started = $null; Seconds = 0 }
+            Start-Sleep -Seconds $wait
+        }
     }
-    catch {
-        [pscustomobject]@{ Ticket = $ticket; Answers = $null; Error = "$($_.Exception.Message) $($_.ErrorDetails.Message)" }
+    if ($errorMessage -and $refusals -gt 0 -and $waited -ge $maxWait) {
+        $errorMessage = "no slot in $waited s: $errorMessage"
     }
+    $progressRows[$item.Index] = @{
+        Status = if ($errorMessage) { 'failed' } else { 'done' }
+        Started = $null
+        Seconds = $requestSeconds
+    }
+    [pscustomobject]@{
+        Index = $item.Index; Ticket = $item.Ticket; Answers = $answers; Error = $errorMessage
+        InferenceMs = $inferenceMs; Seconds = $requestSeconds; Refusals = $refusals
+    }
+} -AsJob
+
+$live = [SpectreScriptRenderable]::new({ New-SpectreProgress })
+Invoke-SpectreLive -Data $live -ScriptBlock {
+    param([Spectre.Console.LiveDisplayContext] $Context)
+    while ($job.State -in 'Running', 'NotStarted') {
+        $Context.refresh()
+        Start-Sleep -Milliseconds $RefreshMs
+    }
+    $Context.refresh()
 }
 $watch.Stop()
+$results = @(Receive-Job -Job $job -ErrorAction Stop | Sort-Object -Property Index)
+Remove-Job -Job $job -Force
+if ($results.Count -ne $tickets.Count) {
+    throw "the client collected $($results.Count) result(s) for $($tickets.Count) ticket(s)"
+}
 
 function Get-ScoreLevel($Answer) {
-    # The score is a probability-weighted average level and can land between two levels (e.g.
-    # 1.89 for a 3-level question), so the level the model actually favors is the argmax of its
-    # per-level probabilities, not round(score). Same logic as laya-client-spectre.ps1.
+    if ($scoreCutsActive) {
+        $value = [double]$Answer.score
+        if ($value -le $ScoreLowCut) { return 0 }
+        if ($value -gt $ScoreHighCut) { return 2 }
+        return 1
+    }
     $level = 0
     $best = -1
     foreach ($key in $Answer.probabilities.PSObject.Properties.Name) {
@@ -95,38 +277,133 @@ function Get-ScoreLevel($Answer) {
 function Test-Answer($Definition, $Answer, $Expected) {
     switch ($Definition.type) {
         'choice' { return $Answer.choice -eq $Expected }
-        'noul' { return ([double]$Answer.noul -ge 0.5) -eq [bool]$Expected }
+        'noul' { return ([double]$Answer.noul -ge $NoulThreshold) -eq [bool]$Expected }
         'score' {
             $level = Get-ScoreLevel $Answer
-            # Criteria can be a full sentence ("Élevée : le jour même..."); expected only carries
-            # the label before the colon, so compare on that.
             $label = ($Definition.criteria[$level] -split ':')[0].Trim()
             return $label -eq $Expected
         }
     }
 }
 
-$failed = @($results | Where-Object { $_.Error })
-$scored = @($results | Where-Object { -not $_.Error -and $_.Ticket.expected })
-$accuracy = foreach ($name in $questions.PSObject.Properties.Name) {
-    $correct = @($scored | Where-Object { Test-Answer $questions.$name $_.Answers.$name $_.Ticket.expected.$name }).Count
-    [pscustomobject]@{
-        Question = $name
-        Type     = $questions.$name.type
-        Correct  = $correct
-        Scored   = $scored.Count
-        Accuracy = if ($scored.Count) { '{0:P1}' -f ($correct / $scored.Count) } else { 'n/a' }
+function Get-ExpectedProbability($Definition, $Answer, $Expected) {
+    switch ($Definition.type) {
+        'choice' {
+            if ($null -eq $Answer.probabilities.PSObject.Properties[$Expected]) {
+                throw "unknown expected choice label: $Expected"
+            }
+            return [double]$Answer.probabilities.$Expected
+        }
+        'noul' {
+            $pTrue = [double]$Answer.noul
+            if ([bool]$Expected) { return $pTrue }
+            return 1.0 - $pTrue
+        }
+        'score' {
+            for ($i = 0; $i -lt $Definition.criteria.Count; $i++) {
+                $label = ($Definition.criteria[$i] -split ':')[0].Trim()
+                if ($label -eq $Expected) { return [double]$Answer.probabilities."$i" }
+            }
+            throw "unknown expected score label: $Expected"
+        }
     }
 }
 
+function Get-AnswerConfidence($Definition, $Answer) {
+    # Laya's answer_confidence is the winning probability; Clef's entropy-based confidence
+    # is not the same measure, so derive the winning probability from Clef's probabilities.
+    if ($Definition.type -eq 'noul') {
+        $p = [double]$Answer.noul
+        return [math]::Max($p, 1.0 - $p)
+    }
+    return (@($Answer.probabilities.PSObject.Properties.Value | ForEach-Object { [double]$_ }) |
+        Measure-Object -Maximum).Maximum
+}
+
+function Get-ChosenLabel($Definition, $Answer) {
+    switch ($Definition.type) {
+        'choice' { return $Answer.choice }
+        'noul' {
+            if ([double]$Answer.noul -ge $NoulThreshold) { return 'true' }
+            return 'false'
+        }
+        'score' {
+            $level = Get-ScoreLevel $Answer
+            return ($Definition.criteria[$level] -split ':')[0].Trim()
+        }
+    }
+}
+
+$failed = @($results | Where-Object { $_.Error })
+$answered = @($results | Where-Object { -not $_.Error })
+$scored = @($answered | Where-Object { $_.Ticket.expected })
+$accuracy = foreach ($name in $questions.PSObject.Properties.Name) {
+    $correct = @($scored | Where-Object { Test-Answer $questions.$name $_.Answers.$name $_.Ticket.expected.$name }).Count
+    $expectedProbs = @($scored | ForEach-Object { Get-ExpectedProbability $questions.$name $_.Answers.$name $_.Ticket.expected.$name })
+    $meanExpectedProb = if ($expectedProbs.Count) { ($expectedProbs | Measure-Object -Average).Average } else { $null }
+    $confidences = @($scored | ForEach-Object { Get-AnswerConfidence $questions.$name $_.Answers.$name })
+    $meanConfidence = if ($confidences.Count) { ($confidences | Measure-Object -Average).Average } else { $null }
+    $chosen = @($scored | ForEach-Object { Get-ChosenLabel $questions.$name $_.Answers.$name })
+    $distribution = ($chosen | Group-Object | Sort-Object Name | ForEach-Object { "$($_.Name):$($_.Count)" }) -join ' '
+    $expectedLabels = @($scored | ForEach-Object { $_.Ticket.expected.$name })
+    $expectedDistribution = ($expectedLabels | Group-Object | Sort-Object Name | ForEach-Object { "$($_.Name):$($_.Count)" }) -join ' '
+    [pscustomobject]@{
+        Question             = $name
+        Type                 = $questions.$name.type
+        Correct              = $correct
+        Scored               = $scored.Count
+        Accuracy             = if ($scored.Count) { '{0:P1}' -f ($correct / $scored.Count) } else { 'n/a' }
+        'MeanP(expected)'    = if ($null -ne $meanExpectedProb) { '{0:P1}' -f $meanExpectedProb } else { 'n/a' }
+        MeanConfidence       = if ($null -ne $meanConfidence) { '{0:P1}' -f $meanConfidence } else { 'n/a' }
+        ClefDistribution     = $distribution
+        ExpectedDistribution = $expectedDistribution
+    }
+}
+
+$refusals = [int](($results | Measure-Object -Property Refusals -Sum).Sum)
+$inference = @($answered | ForEach-Object { $_.InferenceMs } | Where-Object { $null -ne $_ })
 Write-Host ''
-Write-Host ("{0} request(s), {1} ticket(s) in {2:N1}s ({3:N1} tickets/s), {4} failed" -f `
-        $requestCount, $tickets.Count, $watch.Elapsed.TotalSeconds, ($tickets.Count / [math]::Max($watch.Elapsed.TotalSeconds, 0.001)), $failed.Count)
-$accuracy | Format-Table -AutoSize
+Write-Host ("{0} request(s) sent, {1} refused, {2} state(s) in {3:N1}s ({4:N1} state(s)/s, {5:N1} answer(s)/s), {6} failed request(s), {7} failed state(s)" -f `
+        $tickets.Count, $refusals, $tickets.Count, $watch.Elapsed.TotalSeconds,
+        ($answered.Count / [math]::Max($watch.Elapsed.TotalSeconds, 0.001)),
+        ($answered.Count * $questionCount / [math]::Max($watch.Elapsed.TotalSeconds, 0.001)),
+        $failed.Count, $failed.Count)
+if ($answered.Count) {
+    Write-Host ("answers: {0} = {1} state(s) x {2} question(s)" -f `
+            ($answered.Count * $questionCount), $answered.Count, $questionCount)
+}
+if ($inference.Count) {
+    Write-Host ("server-reported inference: {0} of {1} request(s) answered, sum {2:N0} ms" -f `
+            $inference.Count, $tickets.Count, ($inference | Measure-Object -Sum).Sum)
+}
+Write-Host ''
+$accuracyNumbers = Format-SpectreTable -Data @($accuracy) `
+    -Property 'Question', 'Type', 'Correct', 'Scored', 'Accuracy', 'MeanP(expected)', 'MeanConfidence' `
+    -Border Rounded -Expand -Wrap
+$accuracyDistributions = Format-SpectreTable -Data @($accuracy) `
+    -Property 'Question', 'ExpectedDistribution', 'ClefDistribution' `
+    -Border Rounded -Expand -Wrap
+Format-SpectreRows -Data @($accuracyNumbers, $accuracyDistributions)
 $failed | Select-Object -First 3 | ForEach-Object { Write-Warning "Ticket $($_.Ticket.$IdProperty): $($_.Error)" }
 
 if ($OutputPath) {
-    $results | ForEach-Object { [pscustomobject]@{ id = $_.Ticket.$IdProperty; answers = $_.Answers; error = $_.Error } } |
-        ConvertTo-Json -Depth 20 | Set-Content -LiteralPath $OutputPath -Encoding UTF8
+    $outputRows = @($results | ForEach-Object {
+        $ticket = $_.Ticket
+        $matches = $null
+        if (-not $_.Error -and $ticket.expected) {
+            $matches = [ordered]@{}
+            foreach ($name in $questions.PSObject.Properties.Name) {
+                $matches[$name] = [bool](Test-Answer $questions.$name $_.Answers.$name $ticket.expected.$name)
+            }
+        }
+        [pscustomobject]@{
+            id       = $ticket.$IdProperty
+            answers  = $_.Answers
+            expected = $ticket.expected
+            match    = $matches
+            error    = $_.Error
+        }
+    })
+    ConvertTo-Json -InputObject $outputRows -Depth 20 | Set-Content -LiteralPath $OutputPath -Encoding UTF8
     Write-Host "Results written to $OutputPath"
 }

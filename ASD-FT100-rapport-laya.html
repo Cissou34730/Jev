@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ASD-FT100 — Modèles de décision non génératifs pour le tri de tickets : historique, benchmarks et candidat retenu</title>
+<title>ASD-FT100 — Modèles de décision non génératifs pour le tri de tickets : historique, benchmarks et essai Clef-flash</title>
 <script>
   (() => {
     const param = new URLSearchParams(window.location.search).get("scoutTheme");
@@ -261,29 +261,30 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
 <header class="doc-head">
   <span class="doc-ref">ASD-FT100</span>
   <h1>Modèles de décision non génératifs pour le tri de tickets</h1>
-  <p class="sub">Historique, benchmarks locaux, spécialisations et candidat retenu</p>
+  <p class="sub">Historique, benchmarks locaux, essai Clef-flash et candidat retenu</p>
   <dl class="meta">
     <div><dt>Référence</dt><dd>ASD-FT100</dd></div>
-    <div><dt>Date</dt><dd>4 octobre 2026</dd></div>
-    <div><dt>Statut</dt><dd>Clos — Laya retenu, exporté et prêt à tester</dd></div>
-    <div><dt>Périmètre</dt><dd>Laya, MiniLM et mDeBERTa sur trois décisions</dd></div>
-    <div><dt>Environnement</dt><dd>Windows / OpenVINO / Iris Xe</dd></div>
+    <div><dt>Date</dt><dd>6 octobre 2026</dd></div>
+    <div><dt>Statut</dt><dd>Laya retenu ; Clef-flash exploré sur 20 tickets</dd></div>
+    <div><dt>Périmètre</dt><dd>Laya, MiniLM, mDeBERTa ; Clef-flash en essai limité</dd></div>
+    <div><dt>Environnement</dt><dd>Windows / OpenVINO et llama.cpp Vulkan / Iris Xe</dd></div>
     <div><dt>Checkpoint retenu</dt><dd><code>laya-head-joint-plus2</code></dd></div>
   </dl>
 </header>
 
 <div class="box ok">
   <span class="label">Conclusion</span>
-  <p><strong>Laya, dont la tête partagée est réentraînée sur les trois questions à la fois, domine toutes les autres configurations testées.</strong> Sur 503 tickets dont le problème n'a jamais été vu : <strong>92,0 % sur <code>service</code></strong>, <strong>100 % sur <code>remboursement</code></strong> et <strong>80,2 % sur <code>urgence</code></strong>, soit <strong>90,7 %</strong> de décisions correctes.</p>
+  <p><strong>Laya, dont la tête partagée est réentraînée sur les trois questions à la fois, reste le candidat retenu sur cette machine.</strong> Sur 503 tickets dont le problème n'a jamais été vu : <strong>92,0 % sur <code>service</code></strong>, <strong>100 % sur <code>remboursement</code></strong> et <strong>80,2 % sur <code>urgence</code></strong>, soit <strong>90,7 %</strong> de décisions correctes.</p>
   <p>L'effondrement observé lors de la première phase n'était pas une limite du modèle : il venait d'avoir entraîné une tête <em>partagée</em> sur une <em>seule</em> question. Entraînée sur les trois, elle les tient toutes. Les modèles de remplacement évalués entre-temps, MiniLM et mDeBERTa, restent nettement en dessous.</p>
   <p>Le modèle est exporté en ONNX et compilé sans erreur par OpenVINO sur l'iGPU. Il est donc prêt à être servi et testé de bout en bout (§A).</p>
+  <p>Un essai ultérieur de <strong>Clef-flash Q4_K_M sans fine-tuning</strong> sur 20 tickets donne 90 % sur <code>service</code>, 100 % sur <code>remboursement</code> et 65 % sur <code>urgence</code>. L'inférence locale observée est aussi beaucoup plus lente. Ce petit échantillon ne tranche pas le potentiel de Clef sur d'autres données ou matériels (§11.1).</p>
   <p>Réserve essentielle : <strong>le jeu reste synthétique</strong>. Ce résultat démontre que l'architecture n'était pas le blocage et que la démarche est rationnelle ; il ne démontre pas encore que le modèle généralisera à de vrais tickets clients.</p>
 </div>
 
 <!-- =========================================================== -->
 <section>
   <h2><span class="num">1.</span>Objet</h2>
-  <p>Évaluer des modèles de décision <strong>non génératifs</strong>, exécutables localement et exportables en ONNX/OpenVINO, pour classer des tickets de support. Le travail a commencé avec Laya, puis a comparé deux encodeurs NLI multilingues et plusieurs formes de spécialisation locale. Trois décisions sont mesurées par ticket :</p>
+  <p>Évaluer des modèles de décision <strong>non génératifs</strong>, exécutables localement et exportables en ONNX/OpenVINO, pour classer des tickets de support. Le travail a commencé avec Laya, puis a comparé deux encodeurs NLI multilingues et plusieurs formes de spécialisation locale. L'essai exploratoire ultérieur de Clef-flash utilise <strong>GGUF/llama.cpp, pas ONNX/OpenVINO</strong> : cette exigence initiale n'est pas vérifiée pour Clef. Trois décisions sont mesurées par ticket :</p>
   <table>
     <thead><tr><th>Question</th><th>Type</th><th>Options</th><th>Attendu</th></tr></thead>
     <tbody>
@@ -306,6 +307,7 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
       <tr><td>Checkpoint</td><td><code>laya-master</code> — mmBERT-base multilingue, 22 couches, vocab 256 000</td></tr>
       <tr><td>MiniLM</td><td><code>multilingual-MiniLMv2-L6-mnli-xnli</code> — ONNX/OpenVINO, CPU et iGPU</td></tr>
       <tr><td>mDeBERTa</td><td><code>mDeBERTa-v3-base-xnli-multilingual-nli-2mil7</code> — modèle comparatif plus lourd</td></tr>
+      <tr><td>Essai Clef-flash</td><td><code>llama-server</code> Vulkan, GGUF Q4_K_M et projecteur f16 dans <code>.clef-cache/</code> ; aucune exportation ONNX de Clef réalisée</td></tr>
       <tr><td>Budget de séquence</td><td><code>max_len</code> 256, <code>head_max_len</code> 256, 5 marqueurs d'option</td></tr>
       <tr><td>Client</td><td><code>laya-client-spectre.ps1</code>, seuils <code>0.5</code> / <code>1.6</code> / <code>1.74</code></td></tr>
       <tr><td>Débit</td><td>3,5 tickets/s, 10,4 réponses/s (les refus 503 sont du backpressure normal)</td></tr>
@@ -745,11 +747,26 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
       <li>La <strong>comparaison a longtemps été biaisée contre MiniLM</strong> : Laya a reçu un réentraînement de sa vraie tête de décision avec son objectif natif sur un encodeur de 22 couches, là où MiniLM n'a reçu qu'une tête linéaire sur une moyenne d'embeddings gelés d'un encodeur de 6 couches. L'écart final reste toutefois trop large pour être attribué au seul protocole.</li>
       <li>Le <strong>99,4 % de Laya sur <code>remboursement</code> n'est pas un artefact de distribution</strong> : le jeu est à 496 / 504, donc une réponse constante plafonne à 50,4 %. Une version antérieure de ce rapport l'attribuait à un prix dégénéré ; c'était faux.</li>
       <li>La moyenne ne tient pas compte du <strong>coût métier</strong> d'une erreur : se tromper sur <code>remboursement</code> n'a pas les mêmes conséquences que se tromper sur <code>urgence</code>.</li>
-      <li>Le <strong>débit n'est pas un critère ici</strong>. À 40 000 tickets par an, soit environ 480 décisions par jour ouvré, même le modèle le plus lent du tableau (mDeBERTa, 12 décisions/s) consomme moins d'une minute de calcul quotidien. Un argument de vitesse ne doit pas peser sur ce choix.</li>
+      <li>Pour <strong>les modèles de ce tableau</strong>, le débit n'est pas discriminant à 40 000 tickets par an : même le plus lent (mDeBERTa, 12 décisions/s) demande moins d'une minute de calcul quotidien. Ce constat ne s'étend pas à Clef-flash dans sa configuration locale (§11.1).</li>
     </ul>
   </div>
 
   <p>La lecture utile n'est pas seulement la colonne « Moyenne » mais la <strong>stabilité</strong> : les deux modèles zéro-shot et les deux premières phases de Laya gagnent sur une décision en perdant sur une autre. Seul Laya entraîné conjointement tient les trois simultanément, et il est le seul à franchir 90 % sur deux d'entre elles.</p>
+
+  <h3>11.1 Essai local de Clef-flash — indication, pas benchmark complet</h3>
+  <p><a href="https://huggingface.co/Cloudflare/clef-flash">Clef-flash</a> est un autre modèle de décision non génératif, testé ici <strong>sans adaptation à nos tickets</strong> : <a href="https://huggingface.co/bartowski/Cloudflare_clef-flash-GGUF">GGUF Q4_K_M</a> d'environ 6,04 Go, servi par <code>llama-server</code> via <code>/v1/systemone</code>. Le projecteur multimodal f16 d'environ 0,92 Go est chargé ; cet essai n'évalue que du texte, pas les entrées image ou vidéo. Il n'y a ni export ONNX/OpenVINO de Clef dans ce dépôt, ni entraînement ou évaluation complète de Clef.</p>
+  <p>Les chiffres Clef ci-dessous viennent d'une sortie console de <strong>20 tickets</strong> communiquée lors de l'essai, sans fichier de prédictions Clef conservé. La colonne Laya a été calculée à partir de <code>resultats-joint-plus2.json</code>, en ne retenant que les 20 premiers identifiants de <code>tickets-503-laya-heldout.json</code> (mêmes étiquettes vérifiées). <strong>La comparaison par ticket suppose que Clef a bien reçu ces 20 premiers tickets avec l'entrée par défaut et <code>-Limit 20</code> ; sans son JSON, cet appariement n'est pas vérifiable.</strong></p>
+  <table>
+    <thead><tr><th>Décision</th><th class="num">Clef-flash Q4_K_M, 20</th><th class="num">Laya conjoint + 2 époques, 20</th></tr></thead>
+    <tbody>
+      <tr><td><code>service</code></td><td class="num">18/20 = 90 %</td><td class="num">19/20 = 95 %</td></tr>
+      <tr><td><code>remboursement</code></td><td class="num">20/20 = 100 %</td><td class="num">20/20 = 100 %</td></tr>
+      <tr><td><code>urgence</code></td><td class="num bad">13/20 = 65 %</td><td class="num win">20/20 = 100 %</td></tr>
+      <tr><td><strong>Toutes décisions</strong></td><td class="num">51/60 = 85 %</td><td class="num">59/60 = 98,3 %</td></tr>
+    </tbody>
+  </table>
+  <p>L'écart de cet essai se concentre sur <code>urgence</code> ; <code>remboursement</code> est à égalité. Le 20/20 de Laya sur l'urgence n'est <strong>pas</strong> son niveau général : l'évaluation PyTorch sur les 503 tickets de validation donne 80,2 %. Cette validation a contribué au choix du checkpoint ; les tickets restent synthétiques. Clef, de son côté, n'a pas été fine-tuné et sa quantification peut influer sur ses réponses. <strong>Aucun gain après fine-tuning n'a été mesuré.</strong></p>
+  <p>Sur un autre essai léger, Clef a traité <strong>10 tickets en 121,7 s</strong>, soit environ <strong>0,08 ticket/s</strong> (12,2 s/ticket). Le rapport consignait auparavant environ <strong>3,5 tickets/s</strong> pour Laya sous OpenVINO : l'ordre de grandeur observé est d'environ 40 fois moins de débit pour Clef, <strong>pas une mesure comparative contrôlée</strong>. Les modèles, la taille des requêtes, l'implémentation et le regroupement diffèrent : Laya regroupe jusqu'à 50 tickets par appel, Clef en traite un par appel ; la part réelle de calcul déportée sur l'iGPU dans cet essai Clef n'est pas documentée. Dans cette configuration, sur ce PC, le temps de réponse de Clef est peu pratique ; cela ne préjuge ni d'un autre matériel ni d'une autre implémentation.</p>
 </section>
 
 <!-- =========================================================== -->
@@ -758,7 +775,7 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
 
   <div class="box ok">
     <span class="label">Candidat retenu — Laya, tête entraînée conjointement</span>
-    <p>Laya est retenu. Il est la seule configuration testée à tenir les trois décisions simultanément, et il devance les autres sur chacune d'elles prise isolément :</p>
+    <p>Laya est retenu. Parmi les configurations évaluées sur les jeux les plus larges du §11, il est le seul à tenir les trois décisions simultanément, et il devance les autres sur chacune d'elles prise isolément :</p>
     <ul>
       <li><code>remboursement</code> à <strong>100 %</strong> sur des problèmes jamais vus, contre 92,8 % pour le meilleur concurrent ;</li>
       <li><code>service</code> à <strong>92,0 %</strong>, contre 81,0 % ;</li>
@@ -781,6 +798,7 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
 
   <p>MiniLM conserve un intérêt résiduel : il reste le plus léger et le plus rapide, et sa tête spécialisée atteint 92,8 % sur <code>remboursement</code> pour un coût d'entraînement très faible. C'est une solution de repli crédible si la taille du modèle devenait une contrainte de déploiement.</p>
   <p>mDeBERTa n'a plus de rôle évident. Son seul avantage, <code>urgence</code> à 67,8 % en zéro-shot, est désormais dépassé de plus de douze points par Laya entraîné.</p>
+  <p>Clef-flash mérite d'être distingué des autres candidats : l'essai limité du §11.1 ne justifie pas de le déclarer inférieur en général, mais <strong>ne justifie pas non plus de remplacer Laya sur ce PC</strong>. Un éventuel fine-tuning exigerait un protocole distinct et du matériel adapté ; il n'a pas été réalisé.</p>
 </section>
 
 <!-- =========================================================== -->
@@ -793,6 +811,7 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
     <li><strong>Il n'existe pas de jeu de test réellement indépendant.</strong> Les 503 tickets tenus à l'écart ont servi à suivre l'entraînement et à décider de s'arrêter : ce sont des données de validation, pas de test.</li>
     <li><strong>Le 100 % sur <code>remboursement</code> appelle de la prudence.</strong> Il peut signifier que la décision est explicitement présente dans le texte, mais aussi que le générateur y place des marqueurs trop réguliers.</li>
     <li><strong>Les protocoles ne sont pas strictement comparables d'une ligne à l'autre</strong> du tableau §11. Ils documentent une trajectoire expérimentale.</li>
+    <li><strong>Clef-flash n'a été observé que sur 20 tickets pour la qualité et 10 pour la vitesse</strong>, sans fichier de prédictions Clef conservé ; l'appariement exact avec Laya et l'écart de débit ne constituent pas un benchmark contrôlé. Ses capacités multimodales ne sont pas évaluées.</li>
     <li><strong>Aucune configuration n'atteint 95 % sur les trois décisions simultanément.</strong> Deux y sont pour Laya conjoint, mais <code>urgence</code> reste à 80,2 %.</li>
     <li><strong>Les chiffres viennent de l'évaluation PyTorch du script</strong>, pas du serveur. L'ONNX est vérifié numériquement (écart ~2e-05) et compile sous OpenVINO, mais la mesure de bout en bout n'a pas encore été faite.</li>
     <li><strong>Le 92,8 % historiquement observé côté client avec Laya sur 500 tickets est gonflé</strong> : environ la moitié a servi à l'entraînement. Toute mesure du client sur <code>tickets-1000.json</code> souffre du même biais.</li>
@@ -804,8 +823,9 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
 <section>
   <h2><span class="num">14.</span>Suite recommandée</h2>
   <ol>
-    <li><strong>Lancer le serveur et le client sur le checkpoint exporté</strong> (§A) pour vérifier que le chemin ONNX/OpenVINO reproduit les 90,7 % du script. C'est la seule étape encore immédiatement réalisable sur les données actuelles.</li>
-    <li><strong>Mesurer le checkpoint via le serveur sur <code>tickets-503-laya-heldout.json</code>.</strong> Le jeu tenu à l'écart est désormais exporté et permet une comparaison honnête avec l'évaluation PyTorch.</li>
+    <li><strong>Lancer le serveur et le client Laya sur le checkpoint exporté</strong> (§A) pour vérifier que le chemin ONNX/OpenVINO reproduit les 90,7 % du script. C'est la vérification de bout en bout encore à faire pour Laya sur les données actuelles.</li>
+    <li><strong>Mesurer le checkpoint via le serveur sur <code>tickets-503-laya-heldout.json</code>.</strong> Le jeu tenu à l'écart est désormais exporté et permet de vérifier la concordance avec l'évaluation PyTorch ; il reste un jeu de validation, pas un test indépendant.</li>
+    <li>Ne pas engager de fine-tuning de Clef ou de benchmark complet sur cette machine sur la seule base de 20 tickets. Si Clef est repris plus tard sur un matériel plus adapté, conserver les prédictions par ticket et mesurer le même jeu de test indépendant, le temps de réponse et le coût d'exécution ; aucune amélioration après adaptation n'est présumée.</li>
     <li>Constituer un jeu de <strong>vrais tickets</strong> avec une définition stable et vérifiable de chaque décision. Sans cela, aucun des chiffres de ce rapport n'engage quoi que ce soit en production.</li>
     <li>Séparer entraînement, validation et test <strong>par client et par période</strong>, et non plus seulement par énoncé de problème, avec un jeu de test jamais consulté pendant l'entraînement.</li>
     <li>Mesurer la <strong>précision à couverture contrôlée</strong> : quelle proportion des tickets peut être décidée à 95 % de précision, en laissant le reste indécidé. C'est la métrique qui correspond réellement au besoin métier.</li>
@@ -834,6 +854,14 @@ uv run python laya_serve_openvino.py --batch-states 50 --max-concurrent 1 --max-
       <li><strong>Le premier appel est lent</strong> : OpenVINO recompile le modèle pour l'iGPU après tout nouvel export. Attendre que le serveur annonce qu'il est prêt avant de lancer le client.</li>
     </ul>
   </div>
+
+  <h3>Reproduire l'essai limité Clef-flash</h3>
+  <p>Depuis la racine du dépôt, avec le binaire et les fichiers GGUF téléchargés dans <code>.clef-cache/</code> (ignoré par Git). Le projecteur multimodal reste chargé même si le client n'envoie que du texte. <code>PwshSpectreConsole</code> est requis, comme pour le client Laya ; le serveur traite une requête par ticket, sans endpoint batch.</p>
+  <pre><code># Terminal 1 — serveur, attendre qu'il annonce être prêt
+.\clef-server.ps1
+# Terminal 2 — essai limité, enregistrer les réponses pour comparaison ultérieure
+.\clef-client.ps1 -InputPath .\tickets-503-laya-heldout.json -Limit 20 -OutFile .\resultats-clef-flash-20.json</code></pre>
+  <p>Cette commande documente la reproduction possible ; elle n'a pas été utilisée pour produire les résultats Clef du §11.1, dont seule la sortie console de 20 tickets est connue. Aucune évaluation sur les 503 tickets n'a été lancée ici.</p>
 
   <h3>Recréer le jeu tenu à l'écart sans lancer d'entraînement</h3>
   <pre><code>uv run python train_head.py --question service,remboursement,urgence --tickets tickets-1000.json --holdout 0.5 --seed 0 --heldout-out tickets-503-laya-heldout.json --split-only</code></pre>
@@ -872,6 +900,9 @@ uv run python laya_serve_openvino.py --batch-states 50 --max-concurrent 1 --max-
       <tr><td><code>resultats-laya-conjoint.json</code></td><td>créé</td><td>Résultats de l'entraînement conjoint, progression sur 20 époques</td></tr>
       <tr><td><code>resultats-laya-conjoint-plus2.json</code></td><td>créé</td><td>Résultats de la continuation, écart de généralisation et vérifications d'export</td></tr>
       <tr><td><code>tickets-503-laya-heldout.json</code></td><td>créé</td><td>Les 503 tickets hors entraînement, directement utilisables par le client</td></tr>
+      <tr><td><code>resultats-joint-plus2.json</code></td><td>créé</td><td>Prédictions Laya du client ; seuls les 20 premiers identifiants tenus à l'écart servent à l'essai comparatif Clef du §11.1</td></tr>
+      <tr><td><code>clef-server.ps1</code> et <code>clef-client.ps1</code></td><td>créés</td><td>Serveur GGUF multimodal et client Spectre pour Clef, une requête par ticket</td></tr>
+      <tr><td><code>.clef-cache/</code></td><td>créé, ignoré par Git</td><td>Binaire llama.cpp portable, GGUF Q4_K_M et projecteur multimodal f16 ; pas de résultat d'évaluation complète</td></tr>
       <tr><td><code>tickets-200-service-noul.json</code></td><td>créé</td><td>Variante noul, 3 questions booléennes</td></tr>
       <tr><td><code>.laya-cache/checkpoints/laya-head/</code></td><td>nettoyé</td><td>Entraînement sur <code>service</code> seul — remplacé, conservé uniquement par ses résultats</td></tr>
       <tr><td><code>.laya-cache/checkpoints/laya-head-joint/</code></td><td>nettoyé</td><td>Étape à 20 époques — remplacée par la continuation</td></tr>
@@ -885,7 +916,7 @@ uv run python laya_serve_openvino.py --batch-states 50 --max-concurrent 1 --max-
   </table>
 </section>
 
-<p class="foot">ASD-FT100 — mis à jour le 4 octobre 2026. Les chiffres proviennent des résultats et journaux d'exécution conservés dans le dépôt. Le checkpoint d'origine <code>.laya-cache/checkpoints/laya-master/</code> est conservé comme référence ; les checkpoints intermédiaires remplacés ont été nettoyés. Le checkpoint retenu est <code>laya-head-joint-plus2/</code>.</p>
+<p class="foot">ASD-FT100 — mis à jour le 6 octobre 2026. Les chiffres Laya proviennent des résultats conservés dans le dépôt ; les 20 scores Clef proviennent d'une sortie console communiquée lors de l'essai, et son temps de 121,7 s d'un autre essai léger, sans JSON Clef archivé. Le checkpoint d'origine <code>.laya-cache/checkpoints/laya-master/</code> est conservé comme référence ; les checkpoints intermédiaires remplacés ont été nettoyés. Le checkpoint retenu est <code>laya-head-joint-plus2/</code>.</p>
 
 </div>
 </body>
