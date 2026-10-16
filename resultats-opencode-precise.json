@@ -1,0 +1,4902 @@
+[
+  {
+    "id": "LIV-0972",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "livraison",
+        "confidence": 0.85,
+        "probabilities": {
+          "facturation": 0.1,
+          "technique": 0,
+          "livraison": 0.9
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "urgence": {
+        "type": "score",
+        "score": 2,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 0,
+          "2": 1
+        }
+      }
+    },
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Élevée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 626,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "LIV-0453",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "livraison",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 0,
+          "technique": 0,
+          "livraison": 1
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "urgence": {
+        "type": "score",
+        "score": 0,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Faible"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 617,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "TEC-0440",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "technique",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 0,
+          "technique": 1,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.01
+      },
+      "urgence": {
+        "type": "score",
+        "score": 2,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 0,
+          "2": 1
+        }
+      }
+    },
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Élevée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 619,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "FAC-0856",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "facturation",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 1,
+          "technique": 0,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.98
+      },
+      "urgence": {
+        "type": "score",
+        "score": 0,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Faible"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 622,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "TEC-0263",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "technique",
+        "confidence": 0.79,
+        "probabilities": {
+          "facturation": 0.14,
+          "technique": 0.86,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "urgence": {
+        "type": "score",
+        "score": 0,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Faible"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 627,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "TEC-0749",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "technique",
+        "confidence": 0.53,
+        "probabilities": {
+          "facturation": 0.31,
+          "technique": 0.69,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "urgence": {
+        "type": "score",
+        "score": 0,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Faible"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 618,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "TEC-0629",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "technique",
+        "confidence": 0.67,
+        "probabilities": {
+          "facturation": 0.22,
+          "technique": 0.78,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "urgence": {
+        "type": "score",
+        "score": 2,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 0,
+          "2": 1
+        }
+      }
+    },
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Élevée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 621,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "LIV-0177",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "facturation",
+        "confidence": 0.48,
+        "probabilities": {
+          "facturation": 0.65,
+          "technique": 0,
+          "livraison": 0.35
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "urgence": {
+        "type": "score",
+        "score": 1,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 1,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Modérée"
+    },
+    "match": {
+      "service": false,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 619,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "TEC-0725",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "technique",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 0,
+          "technique": 1,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "urgence": {
+        "type": "score",
+        "score": 1,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 1,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Modérée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 618,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "LIV-0441",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "livraison",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 0,
+          "technique": 0,
+          "livraison": 1
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "urgence": {
+        "type": "score",
+        "score": 1.96,
+        "confidence": 0.94,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0.02,
+          "1": 0,
+          "2": 0.98
+        }
+      }
+    },
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Élevée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 617,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "FAC-0775",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "facturation",
+        "confidence": 0.97,
+        "probabilities": {
+          "facturation": 0.98,
+          "technique": 0.02,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.03
+      },
+      "urgence": {
+        "type": "score",
+        "score": 0,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Faible"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 612,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "FAC-0484",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "facturation",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 1,
+          "technique": 0,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "urgence": {
+        "type": "score",
+        "score": 2,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 0,
+          "2": 1
+        }
+      }
+    },
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Élevée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 619,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "FAC-0658",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "facturation",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 1,
+          "technique": 0,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.98
+      },
+      "urgence": {
+        "type": "score",
+        "score": 0,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Faible"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 629,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "FAC-0013",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "facturation",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 1,
+          "technique": 0,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.98
+      },
+      "urgence": {
+        "type": "score",
+        "score": 1,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 1,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Modérée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 627,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "TEC-0707",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "technique",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 0,
+          "technique": 1,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "urgence": {
+        "type": "score",
+        "score": 1,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 1,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Modérée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 612,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "LIV-0276",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "livraison",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 0,
+          "technique": 0,
+          "livraison": 1
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.04
+      },
+      "urgence": {
+        "type": "score",
+        "score": 1,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 1,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Modérée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 618,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "TEC-0461",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "facturation",
+        "confidence": 0.35,
+        "probabilities": {
+          "facturation": 0.57,
+          "technique": 0.43,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "urgence": {
+        "type": "score",
+        "score": 0,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Faible"
+    },
+    "match": {
+      "service": false,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 620,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "LIV-0474",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "livraison",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 0,
+          "technique": 0,
+          "livraison": 1
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.03
+      },
+      "urgence": {
+        "type": "score",
+        "score": 1,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 1,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Modérée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 620,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "LIV-0831",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "livraison",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 0,
+          "technique": 0,
+          "livraison": 1
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.05
+      },
+      "urgence": {
+        "type": "score",
+        "score": 0,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Faible"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 614,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "FAC-0226",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "facturation",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 1,
+          "technique": 0,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "urgence": {
+        "type": "score",
+        "score": 0,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Faible"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 626,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "FAC-0523",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "facturation",
+        "confidence": 0.98,
+        "probabilities": {
+          "facturation": 0.99,
+          "technique": 0.01,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.04
+      },
+      "urgence": {
+        "type": "score",
+        "score": 0,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Faible"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 612,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "FAC-0919",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "facturation",
+        "confidence": 0.98,
+        "probabilities": {
+          "facturation": 0.99,
+          "technique": 0.01,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.04
+      },
+      "urgence": {
+        "type": "score",
+        "score": 0,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Faible"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 613,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "FAC-0052",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "facturation",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 1,
+          "technique": 0,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.98
+      },
+      "urgence": {
+        "type": "score",
+        "score": 2,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 0,
+          "2": 1
+        }
+      }
+    },
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Élevée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 628,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "FAC-0091",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "facturation",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 1,
+          "technique": 0,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.01
+      },
+      "urgence": {
+        "type": "score",
+        "score": 0,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Faible"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 610,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "LIV-0411",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "livraison",
+        "confidence": 0.67,
+        "probabilities": {
+          "facturation": 0.22,
+          "technique": 0,
+          "livraison": 0.78
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "urgence": {
+        "type": "score",
+        "score": 1,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 1,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Modérée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 621,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "FAC-0706",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "facturation",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 1,
+          "technique": 0,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "urgence": {
+        "type": "score",
+        "score": 1,
+        "confidence": 0.98,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 0.99,
+          "2": 0.01
+        }
+      }
+    },
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Modérée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 611,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "LIV-0828",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "livraison",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 0,
+          "technique": 0,
+          "livraison": 1
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "urgence": {
+        "type": "score",
+        "score": 2,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 0,
+          "2": 1
+        }
+      }
+    },
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Élevée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 625,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "LIV-0405",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "livraison",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 0,
+          "technique": 0,
+          "livraison": 1
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.04
+      },
+      "urgence": {
+        "type": "score",
+        "score": 2,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 0,
+          "2": 1
+        }
+      }
+    },
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Élevée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 622,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "TEC-0482",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "technique",
+        "confidence": 0.59,
+        "probabilities": {
+          "facturation": 0.27,
+          "technique": 0.73,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "urgence": {
+        "type": "score",
+        "score": 1,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 1,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Modérée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 623,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "FAC-0781",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "facturation",
+        "confidence": 0.91,
+        "probabilities": {
+          "facturation": 0.94,
+          "technique": 0.06,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.09
+      },
+      "urgence": {
+        "type": "score",
+        "score": 2,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 0,
+          "2": 1
+        }
+      }
+    },
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Élevée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 620,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "TEC-0905",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "technique",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 0,
+          "technique": 1,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "urgence": {
+        "type": "score",
+        "score": 1,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 1,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Modérée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 611,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "FAC-0913",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "facturation",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 1,
+          "technique": 0,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "urgence": {
+        "type": "score",
+        "score": 1,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 1,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Modérée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 627,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "FAC-0388",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "facturation",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 1,
+          "technique": 0,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "urgence": {
+        "type": "score",
+        "score": 0,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Faible"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 616,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "FAC-0244",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "facturation",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 1,
+          "technique": 0,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "urgence": {
+        "type": "score",
+        "score": 0,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Faible"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 620,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "TEC-0533",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "technique",
+        "confidence": 0.34,
+        "probabilities": {
+          "facturation": 0.44,
+          "technique": 0.56,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.98
+      },
+      "urgence": {
+        "type": "score",
+        "score": 0,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Faible"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 620,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "LIV-0282",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "livraison",
+        "confidence": 0.7,
+        "probabilities": {
+          "facturation": 0.2,
+          "technique": 0,
+          "livraison": 0.8
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "urgence": {
+        "type": "score",
+        "score": 0,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Faible"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 616,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "TEC-0152",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "technique",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 0,
+          "technique": 1,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "urgence": {
+        "type": "score",
+        "score": 2,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 0,
+          "2": 1
+        }
+      }
+    },
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Élevée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 615,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "FAC-0478",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "facturation",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 1,
+          "technique": 0,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "urgence": {
+        "type": "score",
+        "score": 0,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Faible"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 614,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "FAC-0133",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "facturation",
+        "confidence": 0.83,
+        "probabilities": {
+          "facturation": 0.89,
+          "technique": 0.11,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.09
+      },
+      "urgence": {
+        "type": "score",
+        "score": 2,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 0,
+          "2": 1
+        }
+      }
+    },
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Élevée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 619,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "TEC-0068",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "technique",
+        "confidence": 0.56,
+        "probabilities": {
+          "facturation": 0.29,
+          "technique": 0.71,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "urgence": {
+        "type": "score",
+        "score": 1,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 1,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Modérée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 617,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "LIV-0612",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "livraison",
+        "confidence": 0.86,
+        "probabilities": {
+          "facturation": 0.09,
+          "technique": 0,
+          "livraison": 0.91
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "urgence": {
+        "type": "score",
+        "score": 2,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 0,
+          "2": 1
+        }
+      }
+    },
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Élevée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 620,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "TEC-0791",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "technique",
+        "confidence": 0.86,
+        "probabilities": {
+          "facturation": 0.09,
+          "technique": 0.91,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "urgence": {
+        "type": "score",
+        "score": 2,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 0,
+          "2": 1
+        }
+      }
+    },
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Élevée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 626,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "LIV-0708",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "livraison",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 0,
+          "technique": 0,
+          "livraison": 1
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "urgence": {
+        "type": "score",
+        "score": 1,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 1,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Modérée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 618,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "LIV-0966",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "facturation",
+        "confidence": 0.37,
+        "probabilities": {
+          "facturation": 0.58,
+          "technique": 0,
+          "livraison": 0.42
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "urgence": {
+        "type": "score",
+        "score": 0,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Faible"
+    },
+    "match": {
+      "service": false,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 620,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "LIV-0999",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "livraison",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 0,
+          "technique": 0,
+          "livraison": 1
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.03
+      },
+      "urgence": {
+        "type": "score",
+        "score": 2,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 0,
+          "2": 1
+        }
+      }
+    },
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Élevée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 616,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "TEC-0590",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "technique",
+        "confidence": 0.79,
+        "probabilities": {
+          "facturation": 0.14,
+          "technique": 0.86,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "urgence": {
+        "type": "score",
+        "score": 1,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 1,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Modérée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 618,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "TEC-0014",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "technique",
+        "confidence": 0.61,
+        "probabilities": {
+          "facturation": 0.26,
+          "technique": 0.74,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "urgence": {
+        "type": "score",
+        "score": 1,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 1,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Modérée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 623,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "TEC-0623",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "technique",
+        "confidence": 0.46,
+        "probabilities": {
+          "facturation": 0.36,
+          "technique": 0.64,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "urgence": {
+        "type": "score",
+        "score": 0,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Faible"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 618,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "FAC-0394",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "facturation",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 1,
+          "technique": 0,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "urgence": {
+        "type": "score",
+        "score": 2,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 0,
+          "2": 1
+        }
+      }
+    },
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Élevée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 629,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "LIV-0846",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "livraison",
+        "confidence": 0.74,
+        "probabilities": {
+          "facturation": 0.17,
+          "technique": 0,
+          "livraison": 0.83
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "urgence": {
+        "type": "score",
+        "score": 1.9,
+        "confidence": 0.85,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0.05,
+          "1": 0,
+          "2": 0.95
+        }
+      }
+    },
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Élevée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 620,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "FAC-0754",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "facturation",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 1,
+          "technique": 0,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "urgence": {
+        "type": "score",
+        "score": 2,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 0,
+          "2": 1
+        }
+      }
+    },
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Élevée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 621,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "LIV-0033",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "livraison",
+        "confidence": 0.51,
+        "probabilities": {
+          "facturation": 0.33,
+          "technique": 0,
+          "livraison": 0.67
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "urgence": {
+        "type": "score",
+        "score": 1,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 1,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Modérée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 622,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "TEC-0494",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "technique",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 0,
+          "technique": 1,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "urgence": {
+        "type": "score",
+        "score": 2,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 0,
+          "2": 1
+        }
+      }
+    },
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Élevée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 609,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "FAC-0505",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "facturation",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 1,
+          "technique": 0,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.08
+      },
+      "urgence": {
+        "type": "score",
+        "score": 0,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Faible"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 615,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "TEC-0944",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "technique",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 0,
+          "technique": 1,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "urgence": {
+        "type": "score",
+        "score": 1.98,
+        "confidence": 0.97,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0,
+          "2": 0.99
+        }
+      }
+    },
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Élevée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 609,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "LIV-0501",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "livraison",
+        "confidence": 0.95,
+        "probabilities": {
+          "facturation": 0.03,
+          "technique": 0,
+          "livraison": 0.97
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "urgence": {
+        "type": "score",
+        "score": 1,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 1,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Modérée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 623,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "LIV-0657",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "livraison",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 0,
+          "technique": 0,
+          "livraison": 1
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "urgence": {
+        "type": "score",
+        "score": 1.92,
+        "confidence": 0.88,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0.04,
+          "1": 0,
+          "2": 0.96
+        }
+      }
+    },
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Élevée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 617,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "LIV-0528",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "livraison",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 0,
+          "technique": 0,
+          "livraison": 1
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.03
+      },
+      "urgence": {
+        "type": "score",
+        "score": 1,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 1,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Modérée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 622,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "LIV-0825",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "livraison",
+        "confidence": 0.95,
+        "probabilities": {
+          "facturation": 0.03,
+          "technique": 0,
+          "livraison": 0.97
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "urgence": {
+        "type": "score",
+        "score": 1,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 1,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Modérée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 617,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "FAC-0061",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "facturation",
+        "confidence": 0.98,
+        "probabilities": {
+          "facturation": 0.99,
+          "technique": 0.01,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.07
+      },
+      "urgence": {
+        "type": "score",
+        "score": 2,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 0,
+          "2": 1
+        }
+      }
+    },
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Élevée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 622,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "TEC-0935",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "technique",
+        "confidence": 0.83,
+        "probabilities": {
+          "facturation": 0.11,
+          "technique": 0.89,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "urgence": {
+        "type": "score",
+        "score": 1.93,
+        "confidence": 0.91,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0.03,
+          "1": 0,
+          "2": 0.97
+        }
+      }
+    },
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Élevée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 621,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "TEC-0641",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "technique",
+        "confidence": 0.54,
+        "probabilities": {
+          "facturation": 0.31,
+          "technique": 0.6900000000000001,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "urgence": {
+        "type": "score",
+        "score": 0,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Faible"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 617,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "TEC-0449",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "technique",
+        "confidence": 0.79,
+        "probabilities": {
+          "facturation": 0.14,
+          "technique": 0.86,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "urgence": {
+        "type": "score",
+        "score": 2,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 0,
+          "2": 1
+        }
+      }
+    },
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Élevée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 624,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "FAC-0751",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "facturation",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 1,
+          "technique": 0,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "urgence": {
+        "type": "score",
+        "score": 1,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 1,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Modérée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 631,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "TEC-0896",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "facturation",
+        "confidence": 0.3,
+        "probabilities": {
+          "facturation": 0.53,
+          "technique": 0.47,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "urgence": {
+        "type": "score",
+        "score": 1,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 1,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Modérée"
+    },
+    "match": {
+      "service": false,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 618,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "FAC-0538",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "facturation",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 1,
+          "technique": 0,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "urgence": {
+        "type": "score",
+        "score": 2,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 0,
+          "2": 1
+        }
+      }
+    },
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Élevée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 621,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "TEC-0914",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "technique",
+        "confidence": 0.8,
+        "probabilities": {
+          "facturation": 0.13,
+          "technique": 0.87,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "urgence": {
+        "type": "score",
+        "score": 1,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 1,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Modérée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 614,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "LIV-0330",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "livraison",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 0,
+          "technique": 0,
+          "livraison": 1
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.04
+      },
+      "urgence": {
+        "type": "score",
+        "score": 1,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 1,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Modérée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 617,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "FAC-0616",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "facturation",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 1,
+          "technique": 0,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.07
+      },
+      "urgence": {
+        "type": "score",
+        "score": 1,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 1,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Modérée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 614,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "LIV-0753",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "livraison",
+        "confidence": 0.97,
+        "probabilities": {
+          "facturation": 0.02,
+          "technique": 0,
+          "livraison": 0.98
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "urgence": {
+        "type": "score",
+        "score": 1,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 1,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Modérée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 622,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "LIV-0210",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "livraison",
+        "confidence": 0.97,
+        "probabilities": {
+          "facturation": 0.02,
+          "technique": 0,
+          "livraison": 0.98
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "urgence": {
+        "type": "score",
+        "score": 0,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Faible"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 620,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "FAC-0613",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "facturation",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 1,
+          "technique": 0,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "urgence": {
+        "type": "score",
+        "score": 0,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Faible"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 612,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "TEC-0794",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "technique",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 0,
+          "technique": 1,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.01
+      },
+      "urgence": {
+        "type": "score",
+        "score": 0,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Faible"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 623,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "TEC-0377",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "technique",
+        "confidence": 0.92,
+        "probabilities": {
+          "facturation": 0.05,
+          "technique": 0.95,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.98
+      },
+      "urgence": {
+        "type": "score",
+        "score": 2,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 0,
+          "2": 1
+        }
+      }
+    },
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Élevée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 620,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "TEC-0758",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "technique",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 0,
+          "technique": 1,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.01
+      },
+      "urgence": {
+        "type": "score",
+        "score": 0,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Faible"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 615,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "FAC-0430",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "facturation",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 1,
+          "technique": 0,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "urgence": {
+        "type": "score",
+        "score": 2,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 0,
+          "2": 1
+        }
+      }
+    },
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Élevée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 615,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "LIV-0207",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "livraison",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 0,
+          "technique": 0,
+          "livraison": 1
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.03
+      },
+      "urgence": {
+        "type": "score",
+        "score": 1.89,
+        "confidence": 0.85,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0.05,
+          "1": 0,
+          "2": 0.95
+        }
+      }
+    },
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Élevée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 618,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "FAC-0628",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "facturation",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 1,
+          "technique": 0,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.98
+      },
+      "urgence": {
+        "type": "score",
+        "score": 2,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 0,
+          "2": 1
+        }
+      }
+    },
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Élevée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 626,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "TEC-0011",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "technique",
+        "confidence": 0.69,
+        "probabilities": {
+          "facturation": 0.21,
+          "technique": 0.79,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "urgence": {
+        "type": "score",
+        "score": 0,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Faible"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 619,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "TEC-0281",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "technique",
+        "confidence": 0.79,
+        "probabilities": {
+          "facturation": 0.14,
+          "technique": 0.86,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "urgence": {
+        "type": "score",
+        "score": 0,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Faible"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 617,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "FAC-0028",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "facturation",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 1,
+          "technique": 0,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "urgence": {
+        "type": "score",
+        "score": 0,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Faible"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 623,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "LIV-0447",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "livraison",
+        "confidence": 0.94,
+        "probabilities": {
+          "facturation": 0.04,
+          "technique": 0,
+          "livraison": 0.96
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "urgence": {
+        "type": "score",
+        "score": 1,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 1,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Modérée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 615,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "FAC-0964",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "facturation",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 1,
+          "technique": 0,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "urgence": {
+        "type": "score",
+        "score": 0,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Faible"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 620,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "FAC-0322",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "facturation",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 1,
+          "technique": 0,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "urgence": {
+        "type": "score",
+        "score": 2,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 0,
+          "2": 1
+        }
+      }
+    },
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Élevée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 623,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "FAC-0319",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "facturation",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 1,
+          "technique": 0,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "urgence": {
+        "type": "score",
+        "score": 1,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 1,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Modérée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 624,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "TEC-0638",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "technique",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 0,
+          "technique": 1,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "urgence": {
+        "type": "score",
+        "score": 1.97,
+        "confidence": 0.94,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0.02,
+          "1": 0,
+          "2": 0.98
+        }
+      }
+    },
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Élevée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 612,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "FAC-0118",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "facturation",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 1,
+          "technique": 0,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "urgence": {
+        "type": "score",
+        "score": 0,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Faible"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 615,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "TEC-0437",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "technique",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 0,
+          "technique": 1,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.01
+      },
+      "urgence": {
+        "type": "score",
+        "score": 1,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 1,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Modérée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 609,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "FAC-0604",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "facturation",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 1,
+          "technique": 0,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "urgence": {
+        "type": "score",
+        "score": 0,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Faible"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 618,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "LIV-0321",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "livraison",
+        "confidence": 0.41,
+        "probabilities": {
+          "facturation": 0.39,
+          "technique": 0,
+          "livraison": 0.61
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "urgence": {
+        "type": "score",
+        "score": 1,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 1,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Modérée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 623,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "FAC-0685",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "facturation",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 1,
+          "technique": 0,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.05
+      },
+      "urgence": {
+        "type": "score",
+        "score": 0,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Faible"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 609,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "LIV-0861",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "facturation",
+        "confidence": 0.28,
+        "probabilities": {
+          "facturation": 0.52,
+          "technique": 0,
+          "livraison": 0.48
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "urgence": {
+        "type": "score",
+        "score": 1,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 1,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Modérée"
+    },
+    "match": {
+      "service": false,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 619,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "TEC-0314",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "technique",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 0,
+          "technique": 1,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "urgence": {
+        "type": "score",
+        "score": 2,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 0,
+          "2": 1
+        }
+      }
+    },
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Élevée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 610,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "FAC-0298",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "facturation",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 1,
+          "technique": 0,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.98
+      },
+      "urgence": {
+        "type": "score",
+        "score": 0,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Faible"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 620,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "LIV-0711",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "livraison",
+        "confidence": 0.97,
+        "probabilities": {
+          "facturation": 0,
+          "technique": 0.02,
+          "livraison": 0.98
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.03
+      },
+      "urgence": {
+        "type": "score",
+        "score": 1.89,
+        "confidence": 0.85,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0.05,
+          "1": 0,
+          "2": 0.95
+        }
+      }
+    },
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Élevée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 619,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "TEC-0653",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "technique",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 0,
+          "technique": 1,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "urgence": {
+        "type": "score",
+        "score": 1,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 1,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Modérée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 612,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "FAC-0559",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "facturation",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 1,
+          "technique": 0,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.01
+      },
+      "urgence": {
+        "type": "score",
+        "score": 0,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "facturation",
+      "remboursement": false,
+      "urgence": "Faible"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 615,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "TEC-0005",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "technique",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 0,
+          "technique": 1,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "urgence": {
+        "type": "score",
+        "score": 1,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 1,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Modérée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 608,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "FAC-0010",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "facturation",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 1,
+          "technique": 0,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "urgence": {
+        "type": "score",
+        "score": 0,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Faible"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 626,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "TEC-0686",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "technique",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 0,
+          "technique": 1,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "urgence": {
+        "type": "score",
+        "score": 0,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Faible"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 609,
+      "output_tokens": 79
+    },
+    "error": null
+  }
+]
