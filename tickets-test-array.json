@@ -1,0 +1,56 @@
+[
+  {
+    "id": "LIV-0972",
+    "state": "Madame, Monsieur, Le transporteur a retourné le colis à l'expéditeur sans me contacter. Veuillez me rembourser. Une intervention immédiate est nécessaire car toute mon équipe est bloquée. Référence TKT-0972.",
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Élevée"
+    }
+  },
+  {
+    "id": "LIV-0453",
+    "state": "Bonjour, La date de livraison annoncée pour la commande CMD-500452 vient de changer sans explication. Ce n'est pas urgent, une réponse cette semaine me convient. Référence TKT-0453.",
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Faible"
+    }
+  },
+  {
+    "id": "TEC-0440",
+    "state": "Bonjour au support, Les notifications ont disparu de l'application mobile alors qu'elles sont visibles sur le web. Une intervention immédiate est nécessaire car toute mon équipe est bloquée. Référence TKT-0440.",
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Élevée"
+    }
+  },
+  {
+    "id": "FAC-0856",
+    "state": "Bonjour au support, La remise promise n'a pas été appliquée sur la facture F-20260855. Je souhaite le remboursement de la différence. Je peux attendre quelques jours pour votre retour. Référence TKT-0856.",
+    "expected": {
+      "service": "facturation",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  {
+    "id": "TEC-0263",
+    "state": "Je vous contacte car Je ne peux plus accéder à mon compte CLI-10262 malgré plusieurs réinitialisations. Merci de rembourser mon abonnement. Ce n'est pas urgent, une réponse cette semaine me convient. Référence TKT-0263.",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  },
+  {
+    "id": "TEC-0749",
+    "state": "Je vous contacte car Le logiciel plante à chaque ouverture depuis 7 jours. Je demande le remboursement de la période inutilisable. Ce n'est pas urgent, une réponse cette semaine me convient. Référence TKT-0749.",
+    "expected": {
+      "service": "technique",
+      "remboursement": true,
+      "urgence": "Faible"
+    }
+  }
+]
