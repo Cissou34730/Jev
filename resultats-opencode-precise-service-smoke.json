@@ -1,0 +1,149 @@
+[
+  {
+    "id": "LIV-0972",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "livraison",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 0,
+          "technique": 0,
+          "livraison": 1
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "urgence": {
+        "type": "score",
+        "score": 2,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 0,
+          "2": 1
+        }
+      }
+    },
+    "expected": {
+      "service": "livraison",
+      "remboursement": true,
+      "urgence": "Élevée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 755,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "LIV-0453",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "livraison",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 0,
+          "technique": 0,
+          "livraison": 1
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "urgence": {
+        "type": "score",
+        "score": 0,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0
+        }
+      }
+    },
+    "expected": {
+      "service": "livraison",
+      "remboursement": false,
+      "urgence": "Faible"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 746,
+      "output_tokens": 79
+    },
+    "error": null
+  },
+  {
+    "id": "TEC-0440",
+    "answers": {
+      "service": {
+        "type": "choice",
+        "choice": "technique",
+        "confidence": 1,
+        "probabilities": {
+          "facturation": 0,
+          "technique": 1,
+          "livraison": 0
+        }
+      },
+      "remboursement": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "urgence": {
+        "type": "score",
+        "score": 2,
+        "confidence": 1,
+        "legend": {
+          "0": "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+          "1": "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+          "2": "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+        },
+        "probabilities": {
+          "0": 0,
+          "1": 0,
+          "2": 1
+        }
+      }
+    },
+    "expected": {
+      "service": "technique",
+      "remboursement": false,
+      "urgence": "Élevée"
+    },
+    "match": {
+      "service": true,
+      "remboursement": true,
+      "urgence": true
+    },
+    "usage": {
+      "input_tokens": 748,
+      "output_tokens": 79
+    },
+    "error": null
+  }
+]

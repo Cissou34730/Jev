@@ -1,0 +1,24 @@
+{
+  "service": {
+    "type": "choice",
+    "instructions": "Indique le service qui doit traiter cette demande. Se fier à la nature du problème (argent, outil ou colis) et non aux mots employés : une demande de remboursement, à elle seule, ne rend pas la demande facturaire.",
+    "criteria": {
+      "facturation": "Le problème porte sur l'argent réclamé ou prélevé : facture erronée, montant contesté, prélèvement en double, remise ou tarif promis non appliqué, abonnement facturé à tort ou renouvelé deux fois.",
+      "technique": "Le problème porte sur un outil ou un service qui ne fonctionne pas : application, logiciel, fonctionnalité, erreur, bug, panne, notifications, accès, connexion ou compte inaccessible.",
+      "livraison": "Le problème porte sur l'acheminement d'un colis : envoi, date de livraison, suivi, réception, état du colis ou retour du colis à l'expéditeur."
+    }
+  },
+  "remboursement": {
+    "type": "noul",
+    "instructions": "La personne demande-t-elle explicitement un remboursement ?"
+  },
+  "urgence": {
+    "type": "score",
+    "instructions": "Quel délai de réponse la personne demande-t-elle explicitement dans son message ? Se fier uniquement au délai qu'elle exprime, pas à la gravité du problème.",
+    "criteria": [
+      "Faible : la personne indique qu'elle peut attendre, ou ne réclame aucune réponse rapide (par exemple « pas urgent », « quelques jours », « cette semaine »)",
+      "Modérée : la personne réclame une réponse rapide mais pas le jour même (par exemple « dans les 48 heures », « rapidement », « avant la fin de la semaine »)",
+      "Élevée : la personne réclame une réponse le jour même, ou dit ne pas pouvoir attendre (par exemple « immédiatement », « aujourd'hui »)"
+    ]
+  }
+}
