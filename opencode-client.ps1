@@ -114,50 +114,56 @@ if ($missing) { throw "A ticket has no '$TextProperty' property; use -TextProper
 Write-Host "opencode Jev at $ApiBase, model $Model"
 $questionCount = @($questions.PSObject.Properties.Name).Count
 Write-Host "$($tickets.Count) state(s), $($tickets.Count) request(s), concurrency $Concurrency"
-$progress = [hashtable]::Synchronized(@{})
+# One live row per concurrency slot: a worker holds a slot for the whole request, so the table
+# keeps a fixed size instead of scrolling one line per ticket.
+$slotCount = [Math]::Min($Concurrency, $tickets.Count)
+$slots = [hashtable]::Synchronized(@{})
+for ($slot = 0; $slot -lt $slotCount; $slot++) {
+    $slots[$slot] = @{ Busy = $false; Status = 'idle'; Ticket = ''; Started = $null; LastSeconds = $null; LastOk = $true }
+}
+$freeSlots = [System.Collections.Concurrent.ConcurrentQueue[int]]::new()
+for ($slot = 0; $slot -lt $slotCount; $slot++) { $freeSlots.Enqueue($slot) }
+$doneTimes = [System.Collections.Concurrent.ConcurrentQueue[double]]::new()
+$outcomes = [System.Collections.Concurrent.ConcurrentQueue[bool]]::new()
 $indexedTickets = for ($i = 0; $i -lt $tickets.Count; $i++) {
-    $progress[$i] = @{ Status = 'pending'; Started = $null; Seconds = 0 }
     [pscustomobject]@{ Index = $i; Ticket = $tickets[$i] }
 }
 $questionsJson = $questions | ConvertTo-Json -Depth 20 -Compress
 
 function New-SpectreProgress {
     $snapshot = @{}
-    [System.Threading.Monitor]::Enter($progress.SyncRoot)
+    [System.Threading.Monitor]::Enter($slots.SyncRoot)
     try {
-        foreach ($key in @($progress.Keys)) { $snapshot[$key] = $progress[$key] }
+        foreach ($key in @($slots.Keys)) { $snapshot[$key] = $slots[$key] }
     }
-    finally { [System.Threading.Monitor]::Exit($progress.SyncRoot) }
+    finally { [System.Threading.Monitor]::Exit($slots.SyncRoot) }
 
-    $doneRows = @($snapshot.Values | Where-Object { $_.Status -eq 'done' })
-    $done = @($doneRows | ForEach-Object { $_.Seconds })
-    $completed = @($snapshot.Keys | Where-Object { $snapshot[$_].Status -in 'done', 'failed' } | Sort-Object)
-    $active = @($snapshot.Keys | Where-Object { $snapshot[$_].Status -in 'sent', 'waiting' } | Sort-Object)
-    $pending = @($snapshot.Keys | Where-Object { $snapshot[$_].Status -eq 'pending' } | Sort-Object | Select-Object -First 3)
-    $visible = @($completed | Select-Object -Last 12) + $active + $pending | Sort-Object -Unique
-    $rows = foreach ($index in $visible) {
-        $row = $snapshot[$index]
-        $seconds = if ($row.Started) { ([DateTime]::UtcNow - $row.Started).TotalSeconds }
-            else { [double]$row.Seconds }
-        $duration = if ($seconds -ge 0.05) { '{0:N1}s' -f $seconds } else { '' }
+    $rows = foreach ($slot in 0..($slotCount - 1)) {
+        $row = $snapshot[$slot]
+        $elapsed = ''
+        if ($row.Busy -and $row.Started) {
+            $elapsed = '{0:N1}s' -f ([DateTime]::UtcNow - $row.Started).TotalSeconds
+        }
         $perTicket = ''
         $answersPerSecond = ''
-        if ($row.Status -eq 'done' -and $seconds) {
-            $perTicket = '{0:N0} ms' -f ($seconds * 1000.0)
-            $answersPerSecond = '{0:N1}' -f ($questionCount / $seconds)
+        if ($null -ne $row.LastSeconds -and $row.LastSeconds -gt 0) {
+            $perTicket = '{0:N0} ms' -f ($row.LastSeconds * 1000.0)
+            $answersPerSecond = '{0:N1}' -f ($questionCount / $row.LastSeconds)
         }
         [pscustomobject]@{
-            Request              = $index + 1
-            Status               = $row.Status
-            States               = 1
-            'Accepted to answer' = $duration
-            'Per ticket'         = $perTicket
-            'Answers/s'          = $answersPerSecond
+            Slot         = $slot + 1
+            Ticket       = $row.Ticket
+            Status       = $row.Status
+            Elapsed      = $elapsed
+            'Per ticket' = $perTicket
+            'Answers/s'  = $answersPerSecond
         }
     }
 
+    $finished = $outcomes.ToArray()
+    $done = $doneTimes.ToArray()
     $summary = @(('received {0}/{1} request(s), elapsed {2:N1}s' -f `
-            $completed.Count, $tickets.Count, $watch.Elapsed.TotalSeconds))
+            $finished.Count, $tickets.Count, $watch.Elapsed.TotalSeconds))
     if ($done.Count) {
         $sorted = @($done | Sort-Object)
         if ($sorted.Count % 2) { $median = $sorted[[int](($sorted.Count - 1) / 2)] }
@@ -167,11 +173,12 @@ function New-SpectreProgress {
     }
     else { $summary += 'min -  median -  mean -  max -' }
     $elapsed = [Math]::Max($watch.Elapsed.TotalSeconds, 0.001)
-    $summary += ('throughput {0:N1} state(s)/s, {1:N1} answer(s)/s over {2} state(s) in {3:N1}s' -f `
-            ($done.Count / $elapsed), ($done.Count * $questionCount / $elapsed), $done.Count, $elapsed)
+    $failed = @($finished | Where-Object { -not $_ }).Count
+    $summary += ('throughput {0:N1} state(s)/s, {1:N1} answer(s)/s over {2} state(s) in {3:N1}s, {4} failed' -f `
+            ($done.Count / $elapsed), ($done.Count * $questionCount / $elapsed), $done.Count, $elapsed, $failed)
 
     $table = Format-SpectreTable -Data @($rows) `
-        -Property 'Request', 'Status', 'States', 'Accepted to answer', 'Per ticket', 'Answers/s' `
+        -Property 'Slot', 'Ticket', 'Status', 'Elapsed', 'Per ticket', 'Answers/s' `
         -Border Rounded -Expand
     $panel = Format-SpectrePanel -Data ($summary -join "`n") -Header '[grey]summary[/]'
     return Format-SpectreRows -Data @($table, $panel)
@@ -187,8 +194,12 @@ $job = $indexedTickets | ForEach-Object -ThrottleLimit $Concurrency -Parallel {
     $timeout = $using:TimeoutSeconds
     $modelName = $using:Model
     $key = $using:ApiKey
-    $progressRows = $using:progress
     $maxWait = $using:MaxWaitSeconds
+    $idProperty = $using:IdProperty
+    $slotTable = $using:slots
+    $free = $using:freeSlots
+    $doneQueue = $using:doneTimes
+    $outcomeQueue = $using:outcomes
     $body = @{ model = $modelName; state = $item.Ticket.$text; questions = $questionSet } |
         ConvertTo-Json -Depth 20 -Compress
     $headers = @{ Authorization = "Bearer $key" }
@@ -198,8 +209,13 @@ $job = $indexedTickets | ForEach-Object -ThrottleLimit $Concurrency -Parallel {
     $answers = $null
     $usage = $null
     $requestSeconds = 0
+    $ticketLabel = [string]$item.Ticket.$idProperty
+    # Hold one concurrency slot for the whole request, so the table has a stable row per worker.
+    $mySlot = -1
+    while (-not $free.TryDequeue([ref]$mySlot)) { Start-Sleep -Milliseconds 5 }
     while ($true) {
-        $progressRows[$item.Index] = @{ Status = 'sent'; Started = [DateTime]::UtcNow; Seconds = 0 }
+        $slotTable[$mySlot] = @{ Busy = $true; Status = 'sent'; Ticket = $ticketLabel; Started = [DateTime]::UtcNow
+            LastSeconds = $slotTable[$mySlot].LastSeconds; LastOk = $slotTable[$mySlot].LastOk }
         $attempt = [System.Diagnostics.Stopwatch]::StartNew()
         try {
             $response = Invoke-WebRequest -Method Post -Uri "$uri/systemone" `
@@ -247,18 +263,26 @@ $job = $indexedTickets | ForEach-Object -ThrottleLimit $Concurrency -Parallel {
             if ($status -notin 429, 503 -or $waited + $wait -gt $maxWait) { break }
             $refusals++
             $waited += $wait
-            $progressRows[$item.Index] = @{ Status = 'waiting'; Started = $null; Seconds = 0 }
+            $slotTable[$mySlot].Status = 'waiting'
+            $slotTable[$mySlot].Started = $null
             Start-Sleep -Seconds $wait
         }
     }
     if ($errorMessage -and $refusals -gt 0 -and $waited -ge $maxWait) {
         $errorMessage = "no slot in $waited s: $errorMessage"
     }
-    $progressRows[$item.Index] = @{
-        Status = if ($errorMessage) { 'failed' } else { 'done' }
-        Started = $null
-        Seconds = $requestSeconds
+    $previousSeconds = $slotTable[$mySlot].LastSeconds
+    $outcomeQueue.Enqueue(($null -eq $errorMessage))
+    if ($null -eq $errorMessage) { $doneQueue.Enqueue($requestSeconds) }
+    $slotTable[$mySlot] = @{
+        Busy        = $false
+        Status      = if ($errorMessage) { 'failed' } else { 'idle' }
+        Ticket      = $ticketLabel
+        Started     = $null
+        LastSeconds = if ($null -eq $errorMessage) { $requestSeconds } else { $previousSeconds }
+        LastOk      = ($null -eq $errorMessage)
     }
+    $free.Enqueue($mySlot)
     [pscustomobject]@{
         Index = $item.Index; Ticket = $item.Ticket; Answers = $answers; Error = $errorMessage
         Usage = $usage; Seconds = $requestSeconds; Refusals = $refusals
