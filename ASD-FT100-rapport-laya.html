@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ASD-FT100 — Modèles de décision non génératifs pour le tri de tickets : historique, benchmarks et essai Clef-flash</title>
+<title>ASD-FT100 — Modèles de décision pour le tri de tickets : benchmarks locaux et API Jev</title>
 <script>
   (() => {
     const param = new URLSearchParams(window.location.search).get("scoutTheme");
@@ -261,12 +261,12 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
 <header class="doc-head">
   <span class="doc-ref">ASD-FT100</span>
   <h1>Modèles de décision non génératifs pour le tri de tickets</h1>
-  <p class="sub">Historique, benchmarks locaux, essai Clef-flash et candidat retenu</p>
+  <p class="sub">Historique, benchmarks locaux, essai Clef-flash et API Jev sur OpenCode</p>
   <dl class="meta">
     <div><dt>Référence</dt><dd>ASD-FT100</dd></div>
-    <div><dt>Date</dt><dd>6 octobre 2026</dd></div>
-    <div><dt>Statut</dt><dd>Laya retenu ; Clef-flash exploré sur 20 tickets</dd></div>
-    <div><dt>Périmètre</dt><dd>Laya, MiniLM, mDeBERTa ; Clef-flash en essai limité</dd></div>
+    <div><dt>Date</dt><dd>3 novembre 2026</dd></div>
+    <div><dt>Statut</dt><dd>Laya retenu en local ; Jev testé via API</dd></div>
+    <div><dt>Périmètre</dt><dd>Modèles locaux et Jev hébergé sur OpenCode</dd></div>
     <div><dt>Environnement</dt><dd>Windows / OpenVINO et llama.cpp Vulkan / Iris Xe</dd></div>
     <div><dt>Checkpoint retenu</dt><dd><code>laya-head-joint-plus2</code></dd></div>
   </dl>
@@ -278,6 +278,7 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
   <p>L'effondrement observé lors de la première phase n'était pas une limite du modèle : il venait d'avoir entraîné une tête <em>partagée</em> sur une <em>seule</em> question. Entraînée sur les trois, elle les tient toutes. Les modèles de remplacement évalués entre-temps, MiniLM et mDeBERTa, restent nettement en dessous.</p>
   <p>Le modèle est exporté en ONNX et compilé sans erreur par OpenVINO sur l'iGPU. Il est donc prêt à être servi et testé de bout en bout (§A).</p>
   <p>Un essai ultérieur de <strong>Clef-flash Q4_K_M sans fine-tuning</strong> sur 20 tickets donne 90 % sur <code>service</code>, 100 % sur <code>remboursement</code> et 65 % sur <code>urgence</code>. L'inférence locale observée est aussi beaucoup plus lente. Ce petit échantillon ne tranche pas le potentiel de Clef sur d'autres données ou matériels (§11.1).</p>
+  <p>Un essai distinct de <strong>Jev 1.13 via l'API OpenCode</strong>, avec les instructions précisées, obtient <strong>400/400 sur chacune des trois décisions</strong> sur les 400 premiers tickets synthétiques. Le résultat provient de la console et les prédictions de ce dernier essai n'ont pas été enregistrées (§11.2).</p>
   <p>Réserve essentielle : <strong>le jeu reste synthétique</strong>. Ce résultat démontre que l'architecture n'était pas le blocage et que la démarche est rationnelle ; il ne démontre pas encore que le modèle généralisera à de vrais tickets clients.</p>
 </div>
 
@@ -767,6 +768,24 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
   </table>
   <p>L'écart de cet essai se concentre sur <code>urgence</code> ; <code>remboursement</code> est à égalité. Le 20/20 de Laya sur l'urgence n'est <strong>pas</strong> son niveau général : l'évaluation PyTorch sur les 503 tickets de validation donne 80,2 %. Cette validation a contribué au choix du checkpoint ; les tickets restent synthétiques. Clef, de son côté, n'a pas été fine-tuné et sa quantification peut influer sur ses réponses. <strong>Aucun gain après fine-tuning n'a été mesuré.</strong></p>
   <p>Sur un autre essai léger, Clef a traité <strong>10 tickets en 121,7 s</strong>, soit environ <strong>0,08 ticket/s</strong> (12,2 s/ticket). Le rapport consignait auparavant environ <strong>3,5 tickets/s</strong> pour Laya sous OpenVINO : l'ordre de grandeur observé est d'environ 40 fois moins de débit pour Clef, <strong>pas une mesure comparative contrôlée</strong>. Les modèles, la taille des requêtes, l'implémentation et le regroupement diffèrent : Laya regroupe jusqu'à 50 tickets par appel, Clef en traite un par appel ; la part réelle de calcul déportée sur l'iGPU dans cet essai Clef n'est pas documentée. Dans cette configuration, sur ce PC, le temps de réponse de Clef est peu pratique ; cela ne préjuge ni d'un autre matériel ni d'une autre implémentation.</p>
+
+  <h3>11.2 Jev 1.13 via OpenCode — 400 tickets</h3>
+  <p>Le dernier essai utilise <code>jev-1.13</code> sur l'API hébergée OpenCode, et non l'API OpenAI ni une exécution locale. Le client envoie une requête par ticket avec son <code>state</code> et les trois questions de <code>questions-precise.json</code> ; les réponses sont comparées aux étiquettes <code>expected</code> du jeu <code>tickets-1000.json</code>.</p>
+  <table>
+    <thead><tr><th>Décision</th><th class="num">Correct / évalué</th><th class="num">Exactitude</th><th class="num">Probabilité moyenne de l'attendu</th></tr></thead>
+    <tbody>
+      <tr><td><code>service</code></td><td class="num">400 / 400</td><td class="num">100 %</td><td class="num">98,0 %</td></tr>
+      <tr><td><code>remboursement</code></td><td class="num">400 / 400</td><td class="num">100 %</td><td class="num">97,8 %</td></tr>
+      <tr><td><code>urgence</code></td><td class="num">400 / 400</td><td class="num">100 %</td><td class="num">99,6 %</td></tr>
+    </tbody>
+  </table>
+  <p>La console indique <strong>400 requêtes, 1 200 réponses, aucune erreur et aucune nouvelle tentative après limitation</strong>, en 54,8 s avec quatre requêtes simultanées : 7,3 tickets/s et 21,9 réponses/s. Elle rapporte 298 755 tokens en entrée et 31 600 en sortie, pour un coût estimé de <strong>0,0125 $</strong> selon les tarifs configurés dans le client (0,042 $ par million de tokens en entrée, 0 $ en sortie). Ce montant est une estimation, pas une facture ni une garantie de tarif.</p>
+  <p><strong>Instructions améliorées :</strong> le service est choisi selon la nature du problème et non la seule mention d'un remboursement ; les critères distinguent les problèmes d'argent, d'outil et de colis. Pour l'urgence, la consigne demande de suivre uniquement le délai exprimé, pas la gravité, et précise les trois niveaux. La question de remboursement reste inchangée.</p>
+  <p>Un ancien fichier de résultats OpenCode conserve 95/100 réponses correctes sur <code>service</code>, 100/100 sur <code>remboursement</code> et 100/100 sur <code>urgence</code>. Les fichiers de résultats ne conservent pas les instructions ni le modèle utilisés : ils ne permettent donc pas d'attribuer à eux seuls l'écart aux modifications des consignes. Le dernier essai, sans <code>-OutputPath</code>, n'a pas archivé ses prédictions par ticket ; ses chiffres proviennent de la sortie console.</p>
+  <div class="box note">
+    <span class="label">Portée</span>
+    <p>Les 400 premiers tickets sont synthétiques et les instructions ont été affinées au cours des essais : ce n'est pas un test indépendant. Les jeux, les instructions et les modalités d'exécution diffèrent des évaluations locales ; ces scores et débits ne constituent pas une comparaison contrôlée. L'envoi à une API externe impose aussi de vérifier les règles de confidentialité avant d'utiliser des tickets réels.</p>
+  </div>
 </section>
 
 <!-- =========================================================== -->
@@ -775,7 +794,7 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
 
   <div class="box ok">
     <span class="label">Candidat retenu — Laya, tête entraînée conjointement</span>
-    <p>Laya est retenu. Parmi les configurations évaluées sur les jeux les plus larges du §11, il est le seul à tenir les trois décisions simultanément, et il devance les autres sur chacune d'elles prise isolément :</p>
+    <p>Laya est retenu pour l'exécution locale. Parmi les configurations locales évaluées dans le tableau du §11, il est le seul à tenir les trois décisions simultanément, et il devance les autres sur chacune d'elles prise isolément :</p>
     <ul>
       <li><code>remboursement</code> à <strong>100 %</strong> sur des problèmes jamais vus, contre 92,8 % pour le meilleur concurrent ;</li>
       <li><code>service</code> à <strong>92,0 %</strong>, contre 81,0 % ;</li>
@@ -812,7 +831,7 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
     <li><strong>Le 100 % sur <code>remboursement</code> appelle de la prudence.</strong> Il peut signifier que la décision est explicitement présente dans le texte, mais aussi que le générateur y place des marqueurs trop réguliers.</li>
     <li><strong>Les protocoles ne sont pas strictement comparables d'une ligne à l'autre</strong> du tableau §11. Ils documentent une trajectoire expérimentale.</li>
     <li><strong>Clef-flash n'a été observé que sur 20 tickets pour la qualité et 10 pour la vitesse</strong>, sans fichier de prédictions Clef conservé ; l'appariement exact avec Laya et l'écart de débit ne constituent pas un benchmark contrôlé. Ses capacités multimodales ne sont pas évaluées.</li>
-    <li><strong>Aucune configuration n'atteint 95 % sur les trois décisions simultanément.</strong> Deux y sont pour Laya conjoint, mais <code>urgence</code> reste à 80,2 %.</li>
+    <li><strong>Parmi les configurations locales du tableau §11, aucune n'atteint 95 % sur les trois décisions simultanément.</strong> Deux y sont pour Laya conjoint, mais <code>urgence</code> reste à 80,2 %. L'essai hébergé Jev du §11.2 dépasse ce seuil sur un autre protocole.</li>
     <li><strong>Les chiffres viennent de l'évaluation PyTorch du script</strong>, pas du serveur. L'ONNX est vérifié numériquement (écart ~2e-05) et compile sous OpenVINO, mais la mesure de bout en bout n'a pas encore été faite.</li>
     <li><strong>Le 92,8 % historiquement observé côté client avec Laya sur 500 tickets est gonflé</strong> : environ la moitié a servi à l'entraînement. Toute mesure du client sur <code>tickets-1000.json</code> souffre du même biais.</li>
     <li><strong>La cohérence des budgets de séquence n'est pas vérifiée automatiquement</strong> : le chargement annonce <code>max_len</code> 1024, le serveur tourne à 256. Sans effet ici (~105 tokens en moyenne), mais à surveiller sur des tickets longs.</li>
@@ -823,6 +842,7 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
 <section>
   <h2><span class="num">14.</span>Suite recommandée</h2>
   <ol>
+    <li><strong>Évaluer Jev et Laya sur un même jeu indépendant</strong>, avec des questions figées avant le test, et archiver les prédictions, les versions de modèle, les instructions, les temps et les coûts. Vérifier les conditions de confidentialité avant tout envoi de données réelles à OpenCode.</li>
     <li><strong>Lancer le serveur et le client Laya sur le checkpoint exporté</strong> (§A) pour vérifier que le chemin ONNX/OpenVINO reproduit les 90,7 % du script. C'est la vérification de bout en bout encore à faire pour Laya sur les données actuelles.</li>
     <li><strong>Mesurer le checkpoint via le serveur sur <code>tickets-503-laya-heldout.json</code>.</strong> Le jeu tenu à l'écart est désormais exporté et permet de vérifier la concordance avec l'évaluation PyTorch ; il reste un jeu de validation, pas un test indépendant.</li>
     <li>Ne pas engager de fine-tuning de Clef ou de benchmark complet sur cette machine sur la seule base de 20 tickets. Si Clef est repris plus tard sur un matériel plus adapté, conserver les prédictions par ticket et mesurer le même jeu de test indépendant, le temps de réponse et le coût d'exécution ; aucune amélioration après adaptation n'est présumée.</li>
@@ -838,6 +858,11 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
 <!-- =========================================================== -->
 <section>
   <h2><span class="num">A.</span>Annexe — commandes</h2>
+
+  <h3>Reproduire l'essai Jev et conserver les résultats</h3>
+  <p>Dans PowerShell 7, avec la clé OpenCode configurée et <code>PwshSpectreConsole</code> installé :</p>
+  <pre><code>.\opencode-client.ps1 -InputPath .\tickets-1000.json -QuestionsPath .\questions-precise.json -MaxTickets 400 -OutputPath .\resultats-opencode-400.json</code></pre>
+  <p>La commande du dernier essai ne comportait pas <code>-OutputPath</code> ; l'option ci-dessus permet de conserver les résultats d'un futur essai.</p>
 
   <h3>Tester soi-même le modèle retenu</h3>
   <p>Deux terminaux. Le premier sert le modèle, le second mesure.</p>
@@ -916,7 +941,7 @@ uv run python laya_serve_openvino.py --batch-states 50 --max-concurrent 1 --max-
   </table>
 </section>
 
-<p class="foot">ASD-FT100 — mis à jour le 6 octobre 2026. Les chiffres Laya proviennent des résultats conservés dans le dépôt ; les 20 scores Clef proviennent d'une sortie console communiquée lors de l'essai, et son temps de 121,7 s d'un autre essai léger, sans JSON Clef archivé. Le checkpoint d'origine <code>.laya-cache/checkpoints/laya-master/</code> est conservé comme référence ; les checkpoints intermédiaires remplacés ont été nettoyés. Le checkpoint retenu est <code>laya-head-joint-plus2/</code>.</p>
+<p class="foot">ASD-FT100 — mis à jour le 3 novembre 2026. Les chiffres Laya proviennent des résultats conservés dans le dépôt ; les scores Clef et le dernier essai Jev sur 400 tickets proviennent de sorties console, sans prédictions archivées pour ces essais. Le checkpoint d'origine <code>.laya-cache/checkpoints/laya-master/</code> est conservé comme référence ; le checkpoint local retenu est <code>laya-head-joint-plus2/</code>.</p>
 
 </div>
 </body>
